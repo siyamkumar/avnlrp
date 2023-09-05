@@ -1,3 +1,13 @@
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700&display=swap');
+
+
+html,
+body {
+    font-family: 'Plus Jakarta Sans', sans-serif !important;
+    font-weight: 500;
+    font-size: 14px;
+}
+
 .main-container {
     margin-top: 10vh;
 }
@@ -8,10 +18,139 @@
 
 }
 
+.home-page-header-description {
+    font-size: 18px;
+    font-weight: 400;
+}
+
+.form-search-container {
+
+    background: #fff;
+    box-shadow: 0 18px 40px rgba(25, 15, 9, .1);
+    border-radius: 8px;
+    display: inline-block;
+    width: 100%;
+    padding: 10px;
+
+}
+
+.btn {
+    border-radius: 0 !important;
+    padding: 11px 11px !important;
+}
+
+.btn-next {
+    display: inline-block;
+    background-color: #E0E6F7;
+    color: #3c65f5;
+    padding: 11px 11px;
+    min-width: 95px;
+    border: 1px solid transparent;
+    text-transform: capitalize;
+    text-align: center;
+    text-decoration: none;
+    vertical-align: middle;
+    cursor: pointer;
+    line-height: 1.5em;
+    transition: .2s
+}
+
+.navbar-nav .nav-link {
+    position: relative;
+}
+
+.navbar-nav .nav-link.active,
+.navbar-nav .nav-link.show {
+    font-weight: 500 !important;
+}
+
+a.sub-menu-active:before {
+    content: "";
+    height: 2px;
+    width: 100%;
+    background-color: #3c65f5;
+    position: absolute;
+    bottom: -10px;
+    left: 0;
+}
+
+.btn-next svg {
+    width: 20px;
+}
+
+.btn-next g path {
+    stroke: #3c65f5;
+}
+
+.btn-next:hover {
+    background-color: #3C65F5;
+    color: #E0E6F7;
+
+}
+
+.btn-next:hover g path {
+    stroke: #E0E6F7;
+}
+
+.form-search:focus {
+
+    border: 0 !important;
+    box-shadow: none !important;
+}
+
+.form-search {
+    height: 50px;
+    border: 0 solid rgba(26, 15, 9, .1);
+    border-radius: 0;
+    padding: 10px 20px 10px 34px;
+    display: inline-block;
+    width: 100%;
+    font-size: 14px;
+    outline: 0 !important;
+    border: 0 !important;
+}
+
+.form-search-button {
+    vertical-align: middle;
+    color: #fff !important;
+    background-color: #3c65f5 !important;
+    padding: 10px 25px;
+    border-radius: 8px;
+    transition: .2s;
+    font-weight: 500;
+    font-size: 14px !important;
+    line-height: 22px !important;
+}
+
+.form-search-button svg {
+    display: inline-block;
+}
+
+.form-control {
+     padding: 11px 15px 13px 20px !important; 
+    border: 1px solid #e0e6f6;
+    box-shadow: none !important;
+}
+
+.form-floating>.form-control:focus,
+.form-floating>.form-control:not(:placeholder-shown),
+.form-floating>.form-control-plaintext:focus,
+.form-floating>.form-control-plaintext:not(:placeholder-shown) {
+    padding-top: 1.625rem !important;
+    padding-bottom: 0.625rem !important;
+}
+
+.form-control:focus {
+    border-color: #b4c0e0 !important;
+
+}
+
 .app-wrapper {
     min-height: 80vh;
     background-color: #F3F6F9;
 }
+
+
 
 .brand-header {
     height: 10vh;
@@ -205,6 +344,30 @@
     }
 } */
 
+/* COMMON CSS */
+
+/* LOGO */
+
+.brand img {
+    height: 99px;
+}
+
+.brand-header .brand img {
+    height: 9vh
+}
+
+/* END OF COMMON CSS */
+
+
+/* LOGIN PAGE */
+
+.form-signin {
+    height: 83vh;
+    max-width: 330px;
+    padding: 1rem;
+}
+
+/* END OF LOGIN PAGE */
 
 /* NEW JOB CREATION */
 
@@ -216,4 +379,15 @@
 
 .new-job-container::-webkit-scrollbar {
     display: none;
-  }
+}
+
+/* JOB ADMIN PANEL */
+
+#job-menu .nav-link.active {
+    font-weight: 700;
+
+}
+
+.application-container {
+    min-height: 81vh;
+}

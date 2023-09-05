@@ -15,7 +15,7 @@
 
     <nav class="brand-header navbar navbar-expand-md py-3 border-bottom position-fixed w-100 bg-white">
         <div class="container-fluid">
-            <a class="navbar-brand " href="/">Recruitment Portal of AVNL</a>
+            <a class="navbar-brand brand" href="/"> <img src={{ asset('images/avnllogo.jpg') }} /></a>
 
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#guestMenu"
                 aria-controls="guestMenu" aria-expanded="false" aria-label="Toggle navigation">
@@ -49,9 +49,9 @@
         </div>
     </nav>
     <main class="main-container">
-
+        {{ $slot }}
     </main>
-    {{ $slot }}
+   
 
     <footer class="footer py-3 bg-light ">
         <div class="container py-1">

@@ -40,6 +40,13 @@ return [
             'driver' => 'session',
             'provider' => 'users',
         ],
+
+        'applicants' => [
+            'driver' =>'session',
+            'provider' => 'candidates',
+            'expire_on_close' => true
+            
+        ]
     ],
 
     /*
@@ -64,6 +71,11 @@ return [
             'driver' => 'eloquent',
             'model' => App\Models\User::class,
         ],
+
+        'candidates' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\Candidate::class,
+        ]
 
         // 'users' => [
         //     'driver' => 'database',
@@ -97,6 +109,8 @@ return [
             'expire' => 60,
             'throttle' => 60,
         ],
+
+        
     ],
 
     /*

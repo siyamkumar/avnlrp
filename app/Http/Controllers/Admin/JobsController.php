@@ -12,7 +12,7 @@ class JobsController extends Controller
      */
     public function index()
     {
-        return view('admin.jobs.index');
+        
     }
 
     /**
@@ -20,7 +20,7 @@ class JobsController extends Controller
      */
     public function create()
     {
-        return view('admin.jobs.create');
+        
     }
 
     /**

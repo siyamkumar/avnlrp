@@ -10,32 +10,48 @@
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.bunny.net">
-    <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
 
     <!-- Scripts -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 
 <body class="">
-    
-        @include('layouts.navigation')
 
-        
+    @include('layouts.navigation')
 
-        <!-- Page Content -->
-        <main class="app-wrapper container-fluid">
-            <!-- Page Heading -->
-            @if (isset($header))
-                <header class="">
-                    <div class="">
-                        {{ $header }}
-                    </div>
-                </header>
-            @endif
 
-            {{ $slot }}
-        </main>
-    </div>
+
+    <!-- Page Content -->
+    <main class="app-wrapper container-fluid">
+        <!-- Page Heading -->
+        @if (isset($header))
+            <header class="">
+                <div class="">
+                    {{ $header }}
+                </div>
+            </header>
+        @endif
+
+        {{ $slot }}
+    </main>
+
+    @if (session('message'))
+        <x-toast :message="session('message')" :status="session('status')" />
+    @endif
+
+
+    <footer class="footer py-3 bg-light ">
+        <div class="container py-1">
+            <div class="d-flex align-items-center">
+
+                Copyright &copy; {{ date('Y') }}. All rights Reserved - Official Website of Armoured Vehicles Nigam
+                Limited.
+
+
+            </div>
+        </div>
+
+    </footer>
 </body>
 
 </html>
