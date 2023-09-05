@@ -9,7 +9,7 @@
        
     </script>
 
-<h1>Welcome Thenu</h1>
+
 <div class="container">
     <div class="row g-4 pt-3">
         <div class="col-12 col-xxl-6">
