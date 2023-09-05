@@ -2,7 +2,7 @@
     
     <x-slot name="candidateheader">
         <h2 class="">
-            {{ __('Next Steps') }}
+            {{ __('Your Profile') }}
         </h2>
     </x-slot>
 

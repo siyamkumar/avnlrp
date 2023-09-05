@@ -35,9 +35,9 @@ class AuthOTPController extends Controller
 
         $now = Carbon::now();
         if (!$verificationCode) {
-            return redirect()->back()->with('error', 'Your OTP is not correct');
+            return redirect()->back()->withErrors(['otpincorrect' => 'Your OTP is not correct']);
         } elseif ($verificationCode && $now->isAfter($verificationCode->expire_at)) {
-            return redirect()->route('otp.login')->with('error', 'Your OTP has been expired');
+            return redirect()->route('otp.login')->with('otpexpired', 'Your OTP has been expired');
         }
 
         $candidate = Candidate::whereId($request->candidate_id)->first();
@@ -55,5 +55,4 @@ class AuthOTPController extends Controller
 
         return redirect()->route('otp.login')->with('error', 'Your Otp is not correct');
     }
-
 }

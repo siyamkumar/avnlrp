@@ -25,41 +25,78 @@
             <div class="collapse navbar-collapse justify-content-end" id="guestMenu">
                 <ul class="navbar-nav ms-auto mb-2 mb-md-0">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page"  href="{{ route('alljobs')}}">Job Openings</a>
+                        <a class="nav-link {{ request()->routeIs('alljobs') ? 'active' : '' }}" aria-current="page"
+                            href="{{ route('alljobs') }}">Job Openings</a>
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link" href={{route('jobupdates')}}>Job Updates</a>
+                        <a class="nav-link {{ request()->routeIs('jobupdates') ? 'active' : '' }}"
+                            href={{ route('jobupdates') }}>Job Updates</a>
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link" href={{ route('applicationstatus') }}>Application Status</a>
+                        <a class="nav-link {{ request()->routeIs('applicationstatus') ? 'active' : '' }}"
+                            href={{ route('applicationstatus') }}>Application Status</a>
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link" href={{ route('applicationstatus') }}>How to Apply?</a>
+                        <a class="nav-link {{ request()->routeIs('applicationstatus') ? 'active' : '' }}"
+                            href={{ route('applicationstatus') }}>How to Apply?</a>
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link" href={{ route('applicationstatus') }}>Fraud Notice</a>
+                        <a class="nav-link {{ request()->routeIs('applicationstatus') ? 'active' : '' }}"
+                            href={{ route('applicationstatus') }}>Fraud Notice</a>
                     </li>
+
+                    @if (auth()->guard('applicants')->user())
+                        <li  class="nav-item">
+                            <form id="frm-logout" action="{{ route('candidatelogout') }}" method="POST">
+                               @csrf
+                                <button type="submit" class="nav-link">Log out</button>
+
+                            </form>
+                        </li>
+                    @else
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('jobapply') }}">Candidate Login</a>
+                        </li>
+                    @endif
 
                 </ul>
             </div>
         </div>
     </nav>
     <main class="main-container">
+
+        @if (isset($header))
+            <div class="text-center">
+                <h1 class="pt-5 mt-5 mb-5">{{ $header }}</h1>
+            </div>
+        @endif
+
         {{ $slot }}
     </main>
-   
 
-    <footer class="footer py-3 bg-light ">
-        <div class="container py-1">
-            <div class="d-flex align-items-center">
-              
-                    Copyright &copy; {{ date('Y') }}. All rights Reserved - Official Website of Armoured Vehicles Nigam Limited.
-              
-                
+
+    <footer class="footer bg-light position-fixed w-100 ">
+        <div class="container">
+            <div class="d-flex align-items-center justify-content-between">
+                <div>
+                    Copyright &copy; {{ date('Y') }}. All rights Reserved - Official Website of Armoured Vehicles
+                    Nigam Limited.
+                </div>
+
+
+                <ul class="navbar navbar-nav">
+                    <li class="nav-item">
+                        <a href="{{ route('login') }}" class="nav-link">Admin Login</a>
+                    </li>
+
+                </ul>
+
+
+
             </div>
         </div>
 

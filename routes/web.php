@@ -11,6 +11,7 @@ use App\Http\Controllers\Applicants\SecondaryEducationController;
 
 use App\Http\Controllers\Applicants\StatusController;
 use App\Http\Controllers\AuthOTPController;
+use App\Http\Controllers\CandidateSessionController;
 use App\Http\Controllers\HomepageController;
 use App\Http\Controllers\JobPosting\ActiveJobPostingController;
 use App\Http\Controllers\JobPosting\AgeCriteriaController;
@@ -53,7 +54,7 @@ Route::get('/job-apply', function () {
     return view('applicants.jobapply');
 })->name('jobapply');
 
-Route::get('/next-step', NextStepsController::class);
+
 
 Route::get('/job-updates', function () {
     return view('applicants.jobupdates');
@@ -86,6 +87,22 @@ Route::middleware('auth')->group(function () {
 
 
 // CANDIDATE LOGINS
+Route::get('/candidate-register', function () {
+    return view('applicants.jobapply');
+})->name('candidateregister');
+Route::get('/candidate-login', [CandidateSessionController::class, 'create']);
+Route::post('candidatelogin', [CandidateSessionController::class, 'store'])->name('candidatelogin');
+
+
+Route::middleware('candidateAuth')->group(function () {
+    
+    Route::get('/next-step', NextStepsController::class);
+    Route::resource('personaldetails', PersonalDetailsController::class);
+
+});
+
+
+
 
 Route::controller(AuthOTPController::class)->group(function () {
     // Route::post('/verify/{candidate}', 'verify')->name('otp.verify');
@@ -94,38 +111,38 @@ Route::controller(AuthOTPController::class)->group(function () {
     Route::get('/otp/verification/{candidate_id}', 'verification')->name('otp.verification');
     Route::post('/otp/login', 'loginWithOtp')->name('otp.getlogin');
 
+    Route::post('candidate-logout', [CandidateSessionController::class, 'destroy'])
+        ->name('candidatelogout');
+
     Route::get('education-details', EducationController::class)->name('educationdetails');
-    Route::resource('personaldetails', PersonalDetailsController::class);
+    
     Route::resource('secondaryeducationdetails', SecondaryEducationController::class);
     Route::resource('experiencedetails', ExperienceController::class);
 
-    Route::get('higher-secondary-details', function(){
+    Route::get('higher-secondary-details', function () {
         return view('applicants.next-steps.higher-secondary-school');
     });
 
-    Route::get('graduation-details', function() {
+    Route::get('graduation-details', function () {
         return view('applicants.next-steps.graduation-details');
     });
 
-    
-    Route::get('post-graduation-details', function() {
+
+    Route::get('post-graduation-details', function () {
         return view('applicants.next-steps.post-graduation-details');
     });
 
-    Route::get('post-graduation-details', function() {
+    Route::get('post-graduation-details', function () {
         return view('applicants.next-steps.post-graduation-details');
     });
 
-    Route::get('iti-details', function() {
+    Route::get('iti-details', function () {
         return view('applicants.next-steps.iti');
     });
 
-    Route::get('diploma-details', function() {
+    Route::get('diploma-details', function () {
         return view('applicants.next-steps.diploma-details');
     });
-
-
-
 });
 
 require __DIR__ . '/auth.php';

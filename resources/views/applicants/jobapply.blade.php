@@ -1,43 +1,77 @@
 <x-guest-layout>
-    <main class="p-5"
-        style="height: 83vh;
-        display: flex;
-    align-items: center;
-    background-color: #f5f5f5;
-    ">
 
-        <div class="text-center" style=" width: 100%;
-max-width: 600px;
-padding: 15px;
-margin: auto;">
-            <form class="m-5" action={{ route('applicantregister') }} method="POST">
-                @csrf
-                <h1 class="h3 mb-3 fw-normal">Apply for a Job</h1>
-
-                <div class="form-floating mb-3">
-                    <input type="text" name="fullname" class="form-control" id="fullname" placeholder="Full Name">
-                    <label for="fullname">Full Name</label>
-                </div>
-
-                <div class="form-floating mb-3">
-                    <input type="email" class="form-control" id="email" name="email"
-                        placeholder="name@example.com">
-                    <label for="email">Email address</label>
-                </div>
-
-                <div class="form-floating mb-3">
-                    <input type="text" class="form-control" id="phone_no" name="phone_no" placeholder="Phone No">
-                    <label for="phone_no">Mobile Number</label>
-                </div>
-
-
-                <div class="checkbox mb-3">
-
-                </div>
-                <button class="w-100 btn btn-lg btn-primary" type="submit">Next</button>
-
-            </form>
+    <x-slot name="header">
+        <div class="text-center">
+            <h2 class="">Candidate Register</h2>
         </div>
+    </x-slot>
+
+    <div class="container">
+
+        <div class="row">
+            <div class="col-lg-4 col-md-6 col-sm-12 mx-auto">
+                <x-card class="border-0 rounded-0 p-3">
+
+                    <form action={{ route('applicantregister') }} method="POST">
+
+                        @csrf
+
+
+                        <div class="form-group mb-3">
+
+                            <label for="fullname" class="form-label">Full Name*</label>
+                            <input class="form-control @error('email') is-invalid @enderror" id="fullname"
+                                type="text" name="fullname" placeholder="Full Name" value="{{ old('fullname') }}">
+                            @error('fullname')
+                                <div class="invalid-feedback">
+                                    <span>{{ $message }}</span>
+                                </div>
+                            @enderror
+
+                        </div>
+
+
+
+
+                        <div class="form-group mb-3">
+                            <label for="email" class="form-label">Email address*</label>
+                            <input class="form-control @error('email') is-invalid @enderror" id="email"
+                                type="email" name="email" placeholder="yourname@email.com"
+                                value="{{ old('email') }}">
+                            @error('email')
+                                <div class="invalid-feedback">
+                                    <span>{{ $message }}</span>
+                                </div>
+                            @enderror
+                        </div>
+
+                        
+                        <div class="form-group mb-3">
+                            <label for="phone_no" class="form-label">Phone No*</label>
+                            <input class="form-control @error('phone_no') is-invalid @enderror" id="phone_no"
+                                type="text" name="phone_no" placeholder="+91 99999 99999"
+                                value="{{ old('phone_no') }}">
+                            @error('phone_no')
+                                <div class="invalid-feedback">
+                                    <span>{{ $message }}</span>
+                                </div>
+                            @enderror
+                        </div>
+
+
+
+
+                     
+                        <button class="btn btn-primary btn-login w-100 mb-3" type="submit">Next</button>
+                        <div class="text-muted text-center">Already registered? <a href="/candidate-login" class="text-decoration-none fw-bold text-dark">Login Now</a></div>
+
+                    </form>
+                </x-card>
+            </div>
+        </div>
+
+
+    </div>
 
     </main>
 </x-guest-layout>

@@ -1,45 +1,66 @@
 <x-guest-layout>
-    <!-- Session Status -->
+
     <x-auth-session-status class="mb-4" :status="session('status')" />
 
-    <div class="form-signin w-100 m-auto">
-        <form method="POST" action="{{ route('login') }}">
-            @csrf
-            <h1 class="h3 mb-3 fw-normal">Recruitment Portal Admin Login</h1>
+    <x-slot name="header">
+        <div class="text-center">
+
+            <h2 class="">Admin Login</h2>
+
+        </div>
+    </x-slot>
+    <div class="container">
 
 
-            @error('loginFailed')
-                <div class="alert alert-danger" role="alert">
-                    {{ $message }}
-                </div>
-            @enderror
+        <div class="row login-register-cover">
+            <div class="col-lg-4 col-md-6 col-sm-12 mx-auto">
 
-            <div class="form-floating mb-3">
-                <input type="email" class="form-control @error('email') is-invalid @enderror" id="email" placeholder="name@avnl.co.in"
-                    value="{{ old('email') }}" name="email">
-                <label for="email">Email address</label>
-                @error('email')
-                    <div class="invalid-feedback">
-                        <span>{{ $message }}</span>
-                    </div>
-                @enderror
+
+
+
+                <x-card class="border-0 rounded-0 p-3">
+
+                    @error('loginFailed')
+                        <div class="alert alert-danger" role="alert">
+                            {{ $message }}
+                        </div>
+                    @enderror
+                    <form method="POST" action="{{ route('login') }}">
+                        @csrf
+
+                        <div class="form-group mb-3">
+                            <label class="form-label" for="input-1">Email address*</label>
+                            <input class="form-control @error('email') is-invalid @enderror" id="email"
+                                type="text" required="" name="email" placeholder="hradmin@avnl.co.in"
+                                value="{{ old('email') }}">
+                            @error('email')
+                                <div class="invalid-feedback">
+                                    <span>{{ $message }}</span>
+                                </div>
+                            @enderror
+
+                        </div>
+                        <div class="form-group mb-3"><label class="form-label " for="input-4">Password *</label>
+                            <input class="form-control  @error('password') is-invalid @enderror" id="password"
+                                type="password" required="" name="password" placeholder="************">
+                            @error('password')
+                                <div class="invalid-feedback">
+                                    <span>{{ $message }}</span>
+                                </div>
+                            @enderror
+                        </div>
+
+
+                        <div class="form-group"><button class="btn btn-primary btn-login w-100 " type="submit"
+                                name="login">Login</button></div>
+
+                    </form>
+                </x-card>
             </div>
-            <div class="form-floating mb-3">
-                <input type="password" class="form-control @error('password') is-invalid @enderror" id="floatingPassword" placeholder="Password" id="password"
-                    name="password">
-                <label for="floatingPassword">Password</label>
-                @error('password')
-                <div class="invalid-feedback">
-                    <span>{{ $message }}</span>
-                </div>
-            @enderror
-            </div>
 
 
-            <button class="btn btn-primary w-100 py-2" type="submit">Sign in</button>
-            <p class="mt-5 mb-3 text-body-secondary">© 2017–2023</p>
-        </form>
+        </div>
+
 
     </div>
-
 </x-guest-layout>
