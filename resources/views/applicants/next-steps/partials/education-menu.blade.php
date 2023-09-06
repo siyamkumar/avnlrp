@@ -1,30 +1,41 @@
-<nav class="navbar navbar-expand-lg">
-    <div class="container-fluid">
+<div class="card shadow-none border border-300 mb-3 ">
 
-        
-            <ul class="navbar-nav">
-                <li class="nav-item">
-                    <a class="nav-link active {{ request()->routeIs('secondaryeducationdetails.*') ? 'sub-menu-active' : '' }}"
-                        href="{{ route('secondaryeducationdetails.create') }}">Secondary Education</a>
+    <div class="card-body p-0">
+
+        <div class="px-4 py-3">
+            <ul class="nav nav-underline" id="myTab" role="tablist">
+                <li class="nav-item text-center" role="presentation">
+
+                    <x-icons.checkok />
+                    <a class="nav-link pt-0 {{ request()->routeIs('secondaryeducationdetails.*') ? 'active' : '' }}"
+                        href="{{ route('secondaryeducationdetails.index') }}">Secondary Education</a>
+
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Higher Secondary Education</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">ITI/Diploma Education</a>
-                </li>
-
-
-
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Undergraduate Education </a>
+                <li class="nav-item text-center" role="presentation">
+                    <x-icons.checkpartial />
+                    <a class="nav-link pt-0 {{ request()->routeIs('highersecondaryeducationdetails.*') ? 'active' : '' }}"
+                        href="{{ route('highersecondaryeducationdetails.index') }}">Higher Secondary Education</a>
                 </li>
 
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Postgraduate Education </a>
+                <li class="nav-item text-center" role="presentation">
+                    <x-icons.checknotok />
+                    <a class="nav-link pt-0" id="qualification-tab" data-bs-toggle="tab" href="#tab-qualification"
+                        role="tab" aria-selected="false">ITI/Diploma Education</a>
                 </li>
+
+                <li class="nav-item text-center" role="presentation">
+                    <x-icons.checknotok />
+                    <a class="nav-link pt-0" id="responsibility-tab" data-bs-toggle="tab" href="#tab-responsibility"
+                        role="tab" aria-selected="false">Undergraduate Education</a>
+                </li>
+
+                <li class="nav-item text-center" role="presentation">
+                    <x-icons.checknotok />
+                    <a class="nav-link pt-0" id="terms-tab" data-bs-toggle="tab" href="#tab-terms" role="tab"
+                        aria-selected="false">Postgraduate Education</a>
+
 
             </ul>
-        
+        </div>
     </div>
-</nav>
+</div>

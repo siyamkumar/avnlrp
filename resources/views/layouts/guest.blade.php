@@ -50,9 +50,9 @@
                     </li>
 
                     @if (auth()->guard('applicants')->user())
-                        <li  class="nav-item">
+                        <li class="nav-item">
                             <form id="frm-logout" action="{{ route('candidatelogout') }}" method="POST">
-                               @csrf
+                                @csrf
                                 <button type="submit" class="nav-link">Log out</button>
 
                             </form>

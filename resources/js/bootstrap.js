@@ -6,6 +6,7 @@
 
 import axios from 'axios';
 import * as Popper from '@popperjs/core';
+import * as FilePond from 'filepond';
 
 window.Popper = Popper;
 
@@ -15,6 +16,7 @@ import * as bootstrap from '../../node_modules/bootstrap/dist/js/bootstrap.esm.j
 
 window.axios = axios;
 window.bootstrap = bootstrap;
+window.FilePond = FilePond;
 
 
 

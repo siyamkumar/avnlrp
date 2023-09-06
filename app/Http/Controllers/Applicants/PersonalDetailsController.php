@@ -30,10 +30,11 @@ class PersonalDetailsController extends Controller
     public function store(PersonalDetailsFormRequest $request)
     {
 
-
-
         PersonalDetail::create($request->validated());
-        return redirect()->route('personaldetails.index')->with('success', 'Personal Details created successfully');
+        return redirect()->route('personaldetails.index')->with([
+            'status' => 'success',
+            'message' => 'Personal Details Updated Successfully'
+        ]);
     }
 
 
@@ -53,7 +54,10 @@ class PersonalDetailsController extends Controller
     {
         $personaldetail->fill($request->validated());
         $personaldetail->save();
-        return redirect()->route('personaldetails.index')->with('success', 'Personal Details Update successfully');
+        return redirect()->back()->with([
+            'status' => 'success',
+            'message' => 'Personal Details Updated Successfully'
+        ]);
     }
 
 

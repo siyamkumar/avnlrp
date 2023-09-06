@@ -9,9 +9,9 @@
     @include('applicants.next-steps.partials.education-menu')
 
     @isset($secondaryeducationdetail)
-        
+        @include('applicants.next-steps.partials.secondary-education-details.edit')
     @else
-        @include('applicants.next-steps.partials.education.secondary-create')
+        @include('applicants.next-steps.partials.secondary-education-details.create')
     @endisset
 
 

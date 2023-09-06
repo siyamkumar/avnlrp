@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\JobsController;
 use App\Http\Controllers\Applicants\ApplicantController;
 use App\Http\Controllers\Applicants\EducationController;
 use App\Http\Controllers\Applicants\ExperienceController;
+use App\Http\Controllers\Applicants\HigherSecondaryEducationController;
 use App\Http\Controllers\Applicants\NextStepsController;
 use App\Http\Controllers\Applicants\PersonalDetailsController;
 use App\Http\Controllers\Applicants\SecondaryEducationController;
@@ -95,28 +96,21 @@ Route::post('candidatelogin', [CandidateSessionController::class, 'store'])->nam
 
 
 Route::middleware('candidateAuth')->group(function () {
-    
+
     Route::get('/next-step', NextStepsController::class);
     Route::resource('personaldetails', PersonalDetailsController::class);
-
-});
-
-
+    Route::resource('secondaryeducationdetails', SecondaryEducationController::class);
+    Route::resource('highersecondaryeducationdetails', HigherSecondaryEducationController::class);
 
 
-Route::controller(AuthOTPController::class)->group(function () {
-    // Route::post('/verify/{candidate}', 'verify')->name('otp.verify');
-    Route::get('/otp/login', 'login')->name('otp.login');
-    Route::post('/otp/generate', 'generate')->name('otp.generate');
-    Route::get('/otp/verification/{candidate_id}', 'verification')->name('otp.verification');
-    Route::post('/otp/login', 'loginWithOtp')->name('otp.getlogin');
+
 
     Route::post('candidate-logout', [CandidateSessionController::class, 'destroy'])
         ->name('candidatelogout');
 
     Route::get('education-details', EducationController::class)->name('educationdetails');
-    
-    Route::resource('secondaryeducationdetails', SecondaryEducationController::class);
+
+
     Route::resource('experiencedetails', ExperienceController::class);
 
     Route::get('higher-secondary-details', function () {
@@ -143,6 +137,17 @@ Route::controller(AuthOTPController::class)->group(function () {
     Route::get('diploma-details', function () {
         return view('applicants.next-steps.diploma-details');
     });
+});
+
+
+
+
+Route::controller(AuthOTPController::class)->group(function () {
+    // Route::post('/verify/{candidate}', 'verify')->name('otp.verify');
+    Route::get('/otp/login', 'login')->name('otp.login');
+    Route::post('/otp/generate', 'generate')->name('otp.generate');
+    Route::get('/otp/verification/{candidate_id}', 'verification')->name('otp.verification');
+    Route::post('/otp/login', 'loginWithOtp')->name('otp.getlogin');
 });
 
 require __DIR__ . '/auth.php';

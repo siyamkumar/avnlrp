@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Applicants\HigherSecondaryEducationDetail;
 use App\Models\Applicants\PersonalDetail;
 use App\Models\Applicants\SecondaryEducationDetail;
 use Illuminate\Auth\Authenticatable;
@@ -29,5 +30,9 @@ class Candidate extends Model implements AuthorizableContract, AuthenticatableCo
 
     public function secondaryeducationdetails(){
         return $this->hasOne(SecondaryEducationDetail::class);
+    }
+
+    public function highersecondaryeducationdetails(){
+        return $this->hasOne(HigherSecondaryEducationDetail::class);
     }
 }

@@ -5,9 +5,10 @@ namespace App\Models\Applicants;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class SecondaryEducationDetail extends Model
+class HigherSecondaryEducationDetail extends Model
 {
     use HasFactory;
+
     protected $fillable = [
         'candidate_id',
         'school_name',
@@ -17,8 +18,9 @@ class SecondaryEducationDetail extends Model
         'marksheet_path',
     ];
 
-    // protected $casts = [
-    //     'year_of_passing' => 'datetime:Y'
-    // ];
+    protected $dates = [
+        'year_of_passing' => 'datetime:Y'
+    ];
+
 
 }

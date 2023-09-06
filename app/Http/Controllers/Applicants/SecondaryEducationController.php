@@ -34,7 +34,8 @@ class SecondaryEducationController extends Controller
      */
     public function store(SecondaryEducationFormRequest $request)
     {
-        if ($request->file('marksheet_document'))
+        
+        if ($request->file('marksheet_document')) {
             SecondaryEducationDetail::create(
                 array_merge(
                     $request->validated(),
@@ -43,6 +44,12 @@ class SecondaryEducationController extends Controller
                     ]
                 )
             );
+        }
+
+        else{
+            SecondaryEducationDetail::create($request->validated());
+        }
+
         return redirect()->route('secondaryeducationdetails.index');
     }
 

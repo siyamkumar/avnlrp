@@ -4,11 +4,8 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class SecondaryEducationFormRequest extends FormRequest
+class HigherSecondaryEducationFormRequest extends FormRequest
 {
-    /**
-     * Determine if the user is authorized to make this request.
-     */ 
     public function authorize(): bool
     {
         if (auth()->guard('applicants')->user())
@@ -16,11 +13,7 @@ class SecondaryEducationFormRequest extends FormRequest
         return false;
     }
 
-    /**
-     * Get the validation rules that apply to the request.
-     *
-     * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array|string>
-     */
+    
     public function rules(): array
     {
         return [
@@ -29,15 +22,13 @@ class SecondaryEducationFormRequest extends FormRequest
             'school_board' => 'required',
             'year_of_passing' => 'required',
             'score' => 'required',
-            'marksheet_document' => 'mimes:png,jpg,jpeg,csv,txt,pdf|max:2048',
-           
+            'marksheet_path' => '',
         ];
     }
-
     protected function prepareForValidation()
     {
-      
-       $this->merge([
+
+        $this->merge([
             'candidate_id' => auth()->guard('applicants')->user()->id,
         ]);
     }
