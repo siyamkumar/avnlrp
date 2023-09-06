@@ -8,26 +8,35 @@
     
     <a href="{{route('experiencedetails.create')}}" class="btn btn-primary">Add Experience</a>
     
+
+
     <table class="table">
         <tr>
+            <th>Sl.No</th>
             <th>Name of the Company / Organization</th>
             <th>Post Held</th>
-            <th>Period of Employment</th>
-            <th>Pay Scale/Level & Grade Pay in case of PSUs/Govt. Depts</th>
+            <th>Period of Employment From </th>
+            <th>Period of Employment To</th>
+            <th>Pay Scale  in case of PSUs/Govt. Depts</th>
             <th>CTC (In Rs.) in other cases</th>
             <th>Major Responsibilities</th>
         </tr>
-        
-        <tr>
-            <td>1</td>
-            <td>a</td>
-            <td >a</td>
+        @foreach ($expdetails as $key=>$item)
             
-            <td>a</td>
-            <td>a</td>
-            <td>a</td>
-        </tr>
 
+      
+        <tr>
+            <td>{{++$key}} </td>
+            <td>{{$item->companyName}} </td>
+            <td>{{$item->postName}}</td>
+            <td >{{$item->periodFrom}}</td>
+            <td >{{$item->periodTo}}</td>
+           
+            <td>{{$item->payScale}}</td>
+            <td>{{$item->ctc}}</td>
+            <td>{{$item->jobsSummary}}</td>
+        </tr>
+        @endforeach
     </table>
 
     

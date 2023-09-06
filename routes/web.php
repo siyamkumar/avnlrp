@@ -8,7 +8,7 @@ use App\Http\Controllers\Applicants\ExperienceController;
 use App\Http\Controllers\Applicants\NextStepsController;
 use App\Http\Controllers\Applicants\PersonalDetailsController;
 use App\Http\Controllers\Applicants\SecondaryEducationController;
-
+use App\Http\Controllers\ExperienceDetailController;
 use App\Http\Controllers\Applicants\StatusController;
 use App\Http\Controllers\AuthOTPController;
 use App\Http\Controllers\CandidateSessionController;
@@ -117,7 +117,7 @@ Route::controller(AuthOTPController::class)->group(function () {
     Route::get('education-details', EducationController::class)->name('educationdetails');
     
     Route::resource('secondaryeducationdetails', SecondaryEducationController::class);
-    Route::resource('experiencedetails', ExperienceController::class);
+    Route::resource('experiencedetails', ExperienceDetailController::class);
 
     Route::get('higher-secondary-details', function () {
         return view('applicants.next-steps.higher-secondary-school');
