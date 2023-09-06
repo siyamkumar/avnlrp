@@ -6,11 +6,11 @@
         </h2>
     </x-slot>
 
-
+    {{-- //{{dd($experiencedetail)}} --}}
 
     <form method="POST" action="{{ route('experiencedetails.store') }}" >
         @csrf
-
+    {{--  --}}
         <div class="row g-3 pb-3 border-bottom">
             <div class="col-md-6">
                 <label for="companyName" class="form-label"> Name of the
