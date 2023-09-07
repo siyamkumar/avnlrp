@@ -5,6 +5,7 @@ use App\Http\Controllers\Controller;
 use App\Models\ExperienceDetail;
 use App\Http\Requests\ExperienceDetailFormRequest;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use DB;
 
 class ExperienceDetailController extends Controller
@@ -27,8 +28,11 @@ class ExperienceDetailController extends Controller
     public function create()
     {
         
-     
-            return view('applicants.next-steps.experience.create');
+        $expdetails= ExperienceDetail::where('candidate_id',auth()->guard('applicants')->user()->id)->get();
+        //dd($expdetails);
+    
+            return view('applicants.next-steps.experience.create')->with(['expdetails'=>$expdetails]);
+            //return view('applicants.next-steps.experience.create');
     }
 
     /**
@@ -36,14 +40,40 @@ class ExperienceDetailController extends Controller
      */
     public function store(ExperienceDetailFormRequest $request)
     {
-        ExperienceDetail::create($request->validated());
+
+        $file = $request->file('experience_path');
+
+        $fileName = $file->getClientOriginalName();
+        dd($fileName);
+        $upload = Storage::putFileAs("storage\Temp", $file, $fileName);
+
+        // ExperienceDetail::create([
+           
+
+           
+        // 'candidate_id'=>$request->candidate_id,
+        // 'companyName'=>$request->companyName,
+        // 'postName'=>$request->postName,
+        // 'periodFrom'=>$request->periodFrom,
+        // 'periodTo'=>$request->periodTo,
+        // 'payScale' =>$request->payScale,
+        // 'ctc'=>$request->ctc,
+        // 'experience_path' => $upload,
+        // 'jobsSummary' =>$request->jobsSummary,
+           
+           
+        // ])->validated();
+
+       
+        ExperienceDetail::create (array_merge($request->all(), ['experience_path' => 'fileName']));
+        //ExperienceDetail::create($request->validated());
         return redirect()->route('experiencedetails.index');
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(ExperienceDetail $experienceDetail)
+    public function show(ExperienceDetail $experiencedetail)
     {
         //
     }
@@ -51,26 +81,31 @@ class ExperienceDetailController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(ExperienceDetail $experienceDetail)
+    public function edit(ExperienceDetail $experiencedetail)
     {
-        return view('applicants.next-steps.experience.create', compact('experienceDetail'));
+       // dd($experiencedetail);
+      //  $experienceDetail= ExperienceDetail::where('candidate_id', $experienceDetail->candidate_id)->get();
+//$experienceDetail=ExperienceDetail::where('candidate_id',$experienceDetail->candidate_id)->get();
+        return view('applicants.next-steps.experience.edit', compact('experiencedetail'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(ExperienceDetailFormRequest $request, ExperienceDetail $experienceDetail)
+    public function update(ExperienceDetailFormRequest $request, ExperienceDetail $experiencedetail)
     {
-        $experienceDetail->fill($request->validated());
-        $experienceDetail->save();
-        return redirect()->route('experienceDetails.create')->with('success', 'Details Update successfully');
+        $experiencedetail->fill($request->validated());
+        $experiencedetail->save();
+        return redirect()->route('experiencedetails.index')->with('success', 'Details Update successfully');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(ExperienceDetail $experienceDetail)
+    public function destroy(ExperienceDetail $experiencedetail)
     {
         //
+       dd($experiencedetail);
+        $experiencedetail=ExperienceDetail::where('id',$experiencedetail->id)->delete();
     }
 }

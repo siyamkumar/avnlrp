@@ -31,7 +31,7 @@ class ExperienceDetailFormRequest extends FormRequest
             'periodTo' => 'required',
             'payScale' => 'required|integer',
             'ctc' => 'required',
-            //'experience_path' => 'required',
+           'experience_path' => 'required',
             'jobsSummary' => 'required',
         ];
     }

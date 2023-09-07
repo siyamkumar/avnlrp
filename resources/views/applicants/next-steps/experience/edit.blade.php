@@ -6,11 +6,11 @@
         </h2>
     </x-slot>
 
-    {{-- //{{dd($experiencedetail)}} --}}
-    @vite('resources/js/app.js')
-    <form method="POST" action="{{ route('experiencedetails.store') }}" enctype="multipart/form-data" >
-        @csrf
-    {{--  --}}
+
+
+    <form method="POST" action="{{ route('experiencedetails.update',$experiencedetail) }}" >
+        @csrf  @method('PATCH')
+    {{-- {{dd($experiencedetail)}} --}}
         <div class="row g-3 pb-3 border-bottom">
             <div class="col-md-6">
                 <label for="companyName" class="form-label"> Name of the
@@ -97,15 +97,14 @@
                     {{ $message }}
                 </div>
                 @enderror
-                <label for="experience_path" class=" form-label">Experience Cerificate</label>
-                {{-- <input class="form-control  @error('experienceFile') is-invalid @enderror" 
+                <label for="experienceFile" class=" form-label">Experience Cerificate</label>
+                {{-- <input class="filepond  @error('experienceFile') is-invalid @enderror" 
                 type="file" id="experienceFile" name="experienceFile"  value="{{ old('experienceFile', $experiencedetail->experienceFile ?? '') }}">
                 @error('experienceFile')
                 <div class="invalid-feedback">
                     {{ $message }}
                 </div>
                 @enderror --}}
-
                 <input type="file" name="experience_path" class="filepond"/>
 
             </div>
@@ -126,7 +125,7 @@
 
 
         <div class="mt-3">
-            <button type="submit" class="btn btn-primary"> Save & Continue </button>
+            <button type="submit" class="btn btn-warning"> Update </button>
         </div>
 
 

@@ -20,6 +20,7 @@
             <th>Pay Scale  in case of PSUs/Govt. Depts</th>
             <th>CTC (In Rs.) in other cases</th>
             <th>Major Responsibilities</th>
+            <th colspan="2" >Action</th>
         </tr>
         @foreach ($expdetails as $key=>$item)
             
@@ -35,6 +36,12 @@
             <td>{{$item->payScale}}</td>
             <td>{{$item->ctc}}</td>
             <td>{{$item->jobsSummary}}</td>
+            <td> <x-icons.edit href="{{ route('experiencedetails.edit' ,$item) }}" />
+            </td>
+            {{-- <td>
+                <x-icons.delete href="{{ route('experiencedetails.destroy') }}" />
+            </td> --}}
+            {{-- <td> <a href={{ route('experiencedetails.edit' ,$item) }} class="btn btn-success">Edit</a></td> --}}
         </tr>
         @endforeach
     </table>

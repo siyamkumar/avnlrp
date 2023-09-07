@@ -6,7 +6,9 @@
 
 import axios from 'axios';
 import * as Popper from '@popperjs/core';
+import * as FilePond from 'filepond';
 
+import 'filepond/dist/filepond.min.css';
 window.Popper = Popper;
 
 // import '../../node_modules/bootstrap/dist/js/bootstrap.js';
@@ -16,7 +18,7 @@ import * as bootstrap from '../../node_modules/bootstrap/dist/js/bootstrap.esm.j
 window.axios = axios;
 window.bootstrap = bootstrap;
 
-
+window.FilePond = FilePond;
 
 window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 

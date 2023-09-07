@@ -18,7 +18,7 @@ class ExperienceDetail extends Model
         'periodTo',
         'payScale' ,
         'ctc' ,
-        //'experience_path' ,
+        'experience_path' ,
         'jobsSummary' ,
     ];
 }
