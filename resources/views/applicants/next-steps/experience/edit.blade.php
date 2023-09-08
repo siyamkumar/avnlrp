@@ -10,7 +10,7 @@
 
     <form method="POST" action="{{ route('experiencedetails.update',$experiencedetail) }}" >
         @csrf  @method('PATCH')
-    {{-- {{dd($experiencedetail)}} --}}
+ 
         <div class="row g-3 pb-3 border-bottom">
             <div class="col-md-6">
                 <label for="companyName" class="form-label"> Name of the
@@ -105,7 +105,7 @@
                     {{ $message }}
                 </div>
                 @enderror --}}
-                <input type="file" name="experience_path" class="filepond"/>
+                <input type="file" name="experience_path" class="filepond"  value="{{ old('experience_path', $experiencedetail->experience_path ?? '') }}" accept="image/*" labelIdle="{{ old('experience_path', $experiencedetail->experience_path ?? '') }}"/>
 
             </div>
 
@@ -114,8 +114,8 @@
             <div class="col-md-6">
                 <label for="jobsSummary" class="form-label"> Jobs Summary</label>
                 <textarea class="form-control  @error('jobsSummary') is-invalid @enderror" id="jobsSummary" rows="3" 
-                name="jobsSummary"  value="{{ old('jobsSummary', $experiencedetail->jobsSummary ?? '') }}"></textarea>
-                @error('jobsSummary')
+                name="jobsSummary"  value="">{{ old('jobsSummary', $experiencedetail->jobsSummary ?? '') }}</textarea>
+               @error('jobsSummary')
                 <div class="invalid-feedback">
                     {{ $message }}
                 </div>

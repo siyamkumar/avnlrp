@@ -44,8 +44,8 @@ class ExperienceDetailController extends Controller
         $file = $request->file('experience_path');
 
         $fileName = $file->getClientOriginalName();
-        dd($fileName);
-        $upload = Storage::putFileAs("storage\Temp", $file, $fileName);
+       // dd($fileName);
+        $upload = Storage::putFileAs("certificate", $file, $fileName);
 
         // ExperienceDetail::create([
            
@@ -65,7 +65,7 @@ class ExperienceDetailController extends Controller
         // ])->validated();
 
        
-        ExperienceDetail::create (array_merge($request->all(), ['experience_path' => 'fileName']));
+        ExperienceDetail::create (array_merge($request->all(), ['experience_path' => $fileName]));
         //ExperienceDetail::create($request->validated());
         return redirect()->route('experiencedetails.index');
     }
@@ -73,9 +73,12 @@ class ExperienceDetailController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(ExperienceDetail $experiencedetail)
+    public function show(string $id)
     {
         //
+        $data=DB::table('experience_details')->where('id',$id)->first();
+        $filepath=storage_path("app/public/certificate/{$data->experience_path}");
+        return \Response::download($filepath);
     }
 
     /**
@@ -107,5 +110,13 @@ class ExperienceDetailController extends Controller
         //
        dd($experiencedetail);
         $experiencedetail=ExperienceDetail::where('id',$experiencedetail->id)->delete();
+    }
+
+    public function download($id)
+    {
+
+        $data=DB::table('experience_details')->where('id',$id)->first();
+        $filepath=storage_path("app/public/certificate/{$data->experience_path}");
+        return \Response::download($filepath);
     }
 }
