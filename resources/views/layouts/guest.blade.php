@@ -25,8 +25,8 @@
             <div class="collapse navbar-collapse justify-content-end" id="guestMenu">
                 <ul class="navbar-nav ms-auto mb-2 mb-md-0">
                     <li class="nav-item">
-                        <a class="nav-link {{ request()->routeIs('alljobs') ? 'active' : '' }}" aria-current="page"
-                            href="{{ route('alljobs') }}">Job Openings</a>
+                        <a class="nav-link {{ request()->routeIs('jobs.*') ? 'active' : '' }}" aria-current="page"
+                            href="{{ route('jobs.index') }}">Job Openings</a>
                     </li>
 
                     <li class="nav-item">
