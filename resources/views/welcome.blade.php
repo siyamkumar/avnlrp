@@ -38,7 +38,7 @@
                                 <a href="{{ route('jobs.show', $jobposting) }}" class="text-decoration-none">
                                     <div class="d-flex flex-column h-100 p-5 pb-3 text-dark">
 
-                                        <b>{{ $jobposting->lo   cationunit->unit_name }}</b>
+                                        <b>{{ $jobposting->locationunit->unit_name }}</b>
                                         <small>{{
                                              $jobposting->locationunit->address }}</small>
     
