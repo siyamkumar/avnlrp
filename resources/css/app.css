@@ -362,3 +362,7 @@ a.sub-menu-active:before {
 .application-container {
     min-height: 81vh;
 }
+
+.experience-table{
+    font-size: 12px;
+}

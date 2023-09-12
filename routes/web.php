@@ -5,9 +5,13 @@ use App\Http\Controllers\Admin\JobsController;
 use App\Http\Controllers\Applicants\ApplicantController;
 use App\Http\Controllers\Applicants\EducationController;
 use App\Http\Controllers\Applicants\ExperienceController;
+use App\Http\Controllers\Applicants\GraduationEducationController;
 use App\Http\Controllers\Applicants\HigherSecondaryEducationController;
+use App\Http\Controllers\Applicants\JobApplicataionsController;
+use App\Http\Controllers\Applicants\JobApplyController;
 use App\Http\Controllers\Applicants\NextStepsController;
 use App\Http\Controllers\Applicants\PersonalDetailsController;
+use App\Http\Controllers\Applicants\PostGraduationEducationController;
 use App\Http\Controllers\Applicants\SecondaryEducationController;
 
 use App\Http\Controllers\Applicants\StatusController;
@@ -21,6 +25,8 @@ use App\Http\Controllers\JobPosting\EducationCriteriaController;
 use App\Http\Controllers\JobPosting\ExperienceCriteriaController;
 use App\Http\Controllers\JobPostingController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\PublicJobPostingController;
+use App\Models\Applicants\GraduationEducationDetail;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -42,18 +48,11 @@ Route::get('/job-openings', function () {
     return view('applicants.jobopenings');
 })->name('alljobs');
 
-Route::get('/job-openings/details/', function () {
-    return view('applicants.jobdetails');
-})->name('jobdetails');
 
 Route::post('/job-openings/details/apply', [ApplicantController::class, 'store'])->name('applicantregister');
 
 
 
-
-Route::get('/job-apply', function () {
-    return view('applicants.jobapply');
-})->name('jobapply');
 
 
 
@@ -91,7 +90,7 @@ Route::middleware('auth')->group(function () {
 Route::get('/candidate-register', function () {
     return view('applicants.jobapply');
 })->name('candidateregister');
-Route::get('/candidate-login', [CandidateSessionController::class, 'create']);
+Route::get('/candidate-login', [CandidateSessionController::class, 'create'])->name('candidateLogin');
 Route::post('candidatelogin', [CandidateSessionController::class, 'store'])->name('candidatelogin');
 
 
@@ -101,9 +100,13 @@ Route::middleware('candidateAuth')->group(function () {
     Route::resource('personaldetails', PersonalDetailsController::class);
     Route::resource('secondaryeducationdetails', SecondaryEducationController::class);
     Route::resource('highersecondaryeducationdetails', HigherSecondaryEducationController::class);
+    Route::resource('graduationeducationdetails', GraduationEducationController::class);
+    Route::resource('postgraduationeducationdetails', PostGraduationEducationController::class);
+    Route::resource('experiencedetails', ExperienceController::class);
+    route::resource('jobapplication', JobApplicataionsController::class);
 
 
-
+    Route::post('job-apply/{job}', JobApplyController::class)->name('jobapply');
 
     Route::post('candidate-logout', [CandidateSessionController::class, 'destroy'])
         ->name('candidatelogout');
@@ -111,32 +114,9 @@ Route::middleware('candidateAuth')->group(function () {
     Route::get('education-details', EducationController::class)->name('educationdetails');
 
 
-    Route::resource('experiencedetails', ExperienceController::class);
+  
 
-    Route::get('higher-secondary-details', function () {
-        return view('applicants.next-steps.higher-secondary-school');
-    });
-
-    Route::get('graduation-details', function () {
-        return view('applicants.next-steps.graduation-details');
-    });
-
-
-    Route::get('post-graduation-details', function () {
-        return view('applicants.next-steps.post-graduation-details');
-    });
-
-    Route::get('post-graduation-details', function () {
-        return view('applicants.next-steps.post-graduation-details');
-    });
-
-    Route::get('iti-details', function () {
-        return view('applicants.next-steps.iti');
-    });
-
-    Route::get('diploma-details', function () {
-        return view('applicants.next-steps.diploma-details');
-    });
+  
 });
 
 
@@ -149,5 +129,8 @@ Route::controller(AuthOTPController::class)->group(function () {
     Route::get('/otp/verification/{candidate_id}', 'verification')->name('otp.verification');
     Route::post('/otp/login', 'loginWithOtp')->name('otp.getlogin');
 });
+
+
+Route::resource('jobs', PublicJobPostingController::class)->only(['index', 'show']);
 
 require __DIR__ . '/auth.php';

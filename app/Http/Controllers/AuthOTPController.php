@@ -37,7 +37,7 @@ class AuthOTPController extends Controller
         if (!$verificationCode) {
             return redirect()->back()->withErrors(['otpincorrect' => 'Your OTP is not correct']);
         } elseif ($verificationCode && $now->isAfter($verificationCode->expire_at)) {
-            return redirect()->route('otp.login')->with('otpexpired', 'Your OTP has been expired');
+            return redirect()->route('otp.verification', $request->candidate_id)->withErrors(['otpexpired' =>'Your OTP has been expired']);
         }
 
         $candidate = Candidate::whereId($request->candidate_id)->first();

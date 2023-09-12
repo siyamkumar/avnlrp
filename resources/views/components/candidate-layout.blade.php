@@ -54,7 +54,7 @@
                         </li>
 
                         <li class="list-group-item nav-item mb-3 border">
-                            <a href="" class="nav-link d-flex align-items-center">
+                            <a href="{{ route('jobapplication.index') }}" class="nav-link d-flex align-items-center">
 
                                 <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"
                                     width="20" class="me-2">
@@ -147,17 +147,17 @@
             </div>
             <div class="col-md-9">
 
-                <div class="row pt-3 mb-3">
+               
                     @if (isset($candidateheader))
-                        <header class="d-flex justify-content-between">
-                            <div class="">
+                        <div class="d-flex justify-content-between pt-3 mb-3 w-100 align-items-center">
+                            
                                 {{ $candidateheader }}
-                            </div>
+                            
 
-                        </header>
+                        </div>
                     @endif
 
-                </div>
+               
 
                 <x-card>
                     {{ $slot }}

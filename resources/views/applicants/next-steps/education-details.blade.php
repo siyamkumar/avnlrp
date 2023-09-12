@@ -10,21 +10,20 @@
 
     @include('applicants.next-steps.partials.education-menu')
 
- 
+
     <div>
         <table class="table border-top ">
             <thead>
-                
+
                 <tr>
-                    
+
                     <th>Qualification</th>
                     <th>% of marks obtained/CGPA</th>
                     <th>Year of Passing</th>
                     <th>Name of School/College</th>
-                    <th>Affiliated
-                        institute/university</th>
+                    <th>Affiliated institute/university</th>
                 </tr>
-            
+
             </thead>
 
             <tbody>
@@ -38,8 +37,7 @@
                     </tr>
                 @endif
 
-                @if(isset($highersecondaryeducationdetails))
-
+                @if (isset($highersecondaryeducationdetails))
                     <tr>
                         <td>12th / Higher Secondary</td>
                         <td>{{ $highersecondaryeducationdetails->score }} </td>
@@ -47,7 +45,38 @@
                         <td>{{ $highersecondaryeducationdetails->school_name }}</td>
                         <td>{{ $highersecondaryeducationdetails->school_board }}</td>
                     </tr>
+                @endif
 
+                @if (isset($itidiplomadetails))
+                    <tr>
+                        <td>I.T.I/Diploma </td>
+                        <td>{{ $itidiplomadetails->score }} </td>
+                        <td>{{ $itidiplomadetails->year_of_passing }}</td>
+                        <td>{{ $itidiplomadetails->college_name }}</td>
+                        <td>{{ $itidiplomadetails->university_name }}</td>
+                    </tr>
+                @endif
+
+
+                @if (isset($graduationeducationdetails))
+                    <tr>
+                        <td>U.G. </td>
+                        <td>{{ $graduationeducationdetails->score }} </td>
+                        <td>{{ $graduationeducationdetails->year_of_passing }}</td>
+                        <td>{{ $graduationeducationdetails->college_name }}</td>
+                        <td>{{ $graduationeducationdetails->university_name }}</td>
+                    </tr>
+                @endif
+
+
+                @if (isset($postgraduationeducationdetails))
+                    <tr>
+                        <td>P.G. </td>
+                        <td>{{ $postgraduationeducationdetails->score }} </td>
+                        <td>{{ $postgraduationeducationdetails->year_of_passing }}</td>
+                        <td>{{ $postgraduationeducationdetails->college_name }}</td>
+                        <td>{{ $postgraduationeducationdetails->university_name }}</td>
+                    </tr>
                 @endif
 
 

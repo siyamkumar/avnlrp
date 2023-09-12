@@ -1,7 +1,6 @@
 <?php
 
 use App\Models\Candidate;
-use App\Models\JobPosting;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -13,12 +12,15 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('application_reference_numbers', function (Blueprint $table) {
+        Schema::create('graduation_education_details', function (Blueprint $table) {
             $table->id();
             $table->foreignIdFor(Candidate::class);
-            $table->foreignIdFor(JobPosting::class);
-            $table->boolean('isComplete');
-            $table->string('status')->default('TBS');
+            $table->string('course_name');
+            $table->string('college_name');
+            $table->string('university_name');
+            $table->year('year_of_passing');
+            $table->integer('score');
+            $table->string('marksheet_path')->nullable();
             $table->timestamps();
         });
     }
@@ -28,6 +30,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('application_reference_numbers');
+        Schema::dropIfExists('graduation_education_details');
     }
 };

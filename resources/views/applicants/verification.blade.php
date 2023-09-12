@@ -20,6 +20,12 @@
                             </div>
                         @enderror
 
+                        @error('otpexpired')
+                        <div class="alert alert-danger" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </div>
+                        @enderror
+
                         <div class="form-group mb-3">
 
 

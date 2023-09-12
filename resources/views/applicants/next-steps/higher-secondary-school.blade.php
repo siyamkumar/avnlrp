@@ -2,7 +2,7 @@
 
     <x-slot name="candidateheader">
         <h2 class="">
-            {{ __('Education') }} <small class="text-muted fw-light"> | Higher Secondary Education Details </small>
+            {{ __('Education') }} <small class="text-muted fw-light"> | Higher Secondary Details </small>
         </h2>
     </x-slot>
 

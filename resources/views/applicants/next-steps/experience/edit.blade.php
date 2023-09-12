@@ -8,14 +8,14 @@
 
 
 
-    <form method="POST" action="{{ route('experiencedetails.store') }}">
-        @csrf
+    <form method="POST" action="{{ route('experiencedetails.update', $experiencedetail) }}">
+        @csrf @method('put')
 
         @include('applicants.next-steps.experience.form')
        
 
         <div class="mt-3">
-            <button type="submit" class="btn btn-primary"> Save & Continue </button>
+            <button type="submit" class="btn btn-warning"> Update </button>
         </div>
 
 

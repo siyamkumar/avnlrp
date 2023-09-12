@@ -15,6 +15,7 @@ class CurrencyFormat extends Component
         $numberFormatter = new NumberFormatter("en_IN", NumberFormatter::CURRENCY);
         $numberFormatter->setPattern(str_replace('¤#', '¤ #', $numberFormatter->getPattern()));
         $inr = $numberFormatter->formatCurrency($amount, "INR");
+        $inr = str_replace('.00', ' /-', $inr);
         $this->amount = $inr;
     }
 

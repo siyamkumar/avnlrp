@@ -17,14 +17,17 @@
                                 <div class="col-md-4">
                                     <div class="d-flex align-items-center">
                                         <x-icons.location />
-                                        AVNL HQ, Chennai
+
+                                        {{ $job->locationunit->unit_name }}
+
+
                                     </div>
                                 </div>
                                 <div class="col-md-4">
-                                    Date : 28 Jul, 2023
+                                    Date : {{ $job->jobPostingDate->format('d, M/Y') }}
                                 </div>
                                 <div class="col-md-4">
-                                    Last Date to Apply : 19 Aug, 2023
+                                    Last Date to Apply : {{ $job->jobPostingLastDate->format('d, M/Y') }}
                                 </div>
                             </div>
 
@@ -32,11 +35,10 @@
                             <div class="row ">
                                 <div class="col-12">
                                     <h2>
-                                        Assitant Company Secretary
+                                        {{ $job->jobTitle }}
                                     </h2>
                                     <p>
-                                        Qualified Company Secretary having Associate/Fellow membership of the ICSI
-                                        Institute. Degree in law and candidates with PSU is an added advantage
+                                        {{ $job->summary }}
                                     </p>
                                 </div>
                             </div>
@@ -245,8 +247,31 @@
                                         </div>
 
                                         <div class="col-12">
-                                            <a href="{{ route('jobapply') }}" class="btn btn-primary w-100">Apply
-                                                Now</a>
+
+                                            @php
+                                                $c = auth()
+                                                    ->guard('applicants')
+                                                    ->user();
+                                                $applied = $c
+                                                    ->jobapplications()
+                                                    ->where('job_posting_id', $job->id)
+                                                    ->exists();
+                                            @endphp
+
+                                            @if ($applied)
+                                            <div class="alert alert-warning" role="alert">
+                                                You have already applied to this job. 
+                                              </div>
+                                            @else
+                                                <form action="{{ route('jobapply', $job) }}" method="POST">
+                                                    @csrf
+                                                    <button name="jobposting" class="btn btn-primary w-100">Apply Now</button>
+
+                                                </form>
+                                            @endif
+
+
+
                                         </div>
 
                                     </div>

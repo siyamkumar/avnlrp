@@ -25,14 +25,14 @@
 
                 <li class="nav-item text-center" role="presentation">
                     <x-icons.checknotok />
-                    <a class="nav-link pt-0" id="responsibility-tab" data-bs-toggle="tab" href="#tab-responsibility"
-                        role="tab" aria-selected="false">Undergraduate Education</a>
+                    <a class="nav-link pt-0 {{ request()->routeIs('graduationeducationdetails.*') ? 'active' : '' }}" href="{{ route('graduationeducationdetails.index') }}"
+                       >Undergraduate Education</a>
                 </li>
 
-                <li class="nav-item text-center" role="presentation">
+                <li class="nav-item text-center" >
                     <x-icons.checknotok />
-                    <a class="nav-link pt-0" id="terms-tab" data-bs-toggle="tab" href="#tab-terms" role="tab"
-                        aria-selected="false">Postgraduate Education</a>
+                    <a class="nav-link pt-0 {{ request()->routeIs('postgraduationeducationdetails.*') ? 'active' : '' }}"  
+                        href="{{ route('postgraduationeducationdetails.index') }}" >Postgraduate Education</a>
 
 
             </ul>

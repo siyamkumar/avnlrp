@@ -14,7 +14,7 @@
     <div class="col-md-6">
         <label for="boardTwelveth" class="form-label">Name of Board</label>
         <input type="text" class="form-control  @error('school_board') is-invalid @enderror" id="school_board"
-            name="school_board" placeholder=" Board Name" value="{{ old('school_board', $highersecondaryeducationdetail->school_board) }}">
+            name="school_board" placeholder=" Board Name" value="{{ old('school_board', $highersecondaryeducationdetail->school_board ?? '') }}">
         @error('school_board')
             <div class="invalid-feedback">
                 {{ $message }}
