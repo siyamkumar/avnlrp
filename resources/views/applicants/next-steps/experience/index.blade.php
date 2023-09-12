@@ -4,13 +4,23 @@
             {{ __('Experience Details') }}
             {{-- <small class="text-muted fw-light"> | Post Graduation Details </small> --}}
         </h2>
+        <a href="{{ route('experiencedetails.create') }}" class="btn btn-primary">Add Experience</a>
+        
+
+
     </x-slot>
+<<<<<<< HEAD
     
     <a href="{{route('experiencedetails.create')}}" class="btn btn-primary">Add Experience</a>
     
 
 
     <table class="table">
+=======
+
+
+    <table class="table experience-table">
+>>>>>>> 73680dbf1aa8a9d5fe936e147f406264a81ad0e3
         <tr>
             <th>Sl.No</th>
             <th>Name of the Company / Organization</th>
@@ -23,6 +33,7 @@
             <th >View</th>
             <th colspan="2" >Action</th>
         </tr>
+<<<<<<< HEAD
         @foreach ($expdetails as $key=>$item)
             
 
@@ -77,5 +88,21 @@
     
 
     
+=======
+
+        @foreach ($expdetails as $key => $item)
+            <tr>
+                <td>{{ $item->companyName }} </td>
+                <td>{{ $item->postName }}</td>
+                <td>{{ $item->periodFrom->format('M, Y') }} - {{ $item->periodTo->format('M, Y') }}</td>
+                <td>{{ $item->payScale }}</td>
+                <td>{{ $item->ctc }}</td>
+                <td>{{ $item->jobsSummary }}</td>
+            </tr>
+        @endforeach
+    </table>
+
+
+>>>>>>> 73680dbf1aa8a9d5fe936e147f406264a81ad0e3
 
 </x-candidate-layout>

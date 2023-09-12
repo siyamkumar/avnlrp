@@ -33,3 +33,12 @@ body {
     min-height: 85vh;
     background-color: #F3F6F9;
 }
+
+.job-card{
+    transition: all .4s cubic-bezier(0.175, 0.885, 0, 1);
+    cursor: pointer;
+    min-height: 40vh;
+}
+.job-card:hover{
+      transform: scale(1.05, 1.05);
+}

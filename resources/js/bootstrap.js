@@ -17,6 +17,7 @@ import * as bootstrap from '../../node_modules/bootstrap/dist/js/bootstrap.esm.j
 
 window.axios = axios;
 window.bootstrap = bootstrap;
+window.FilePond = FilePond;
 
 window.FilePond = FilePond;
 

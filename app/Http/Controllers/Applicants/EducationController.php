@@ -20,6 +20,9 @@ class EducationController extends Controller
         
             return view('applicants.next-steps.education-details')->with([
                 'secondaryeducationdetails' => $candidate->secondaryeducationdetails,
+                'highersecondaryeducationdetails' => $candidate->highersecondaryeducationdetails,
+                'graduationeducationdetails' => $candidate->graduationeducationdetails,
+                'postgraduationeducationdetails' => $candidate->graduationeducationdetails,
             ]);
         }
         return response('not allowed', 403);

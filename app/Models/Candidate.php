@@ -2,7 +2,11 @@
 
 namespace App\Models;
 
+use App\Models\Applicants\ApplicationReferenceNumber;
+use App\Models\Applicants\GraduationEducationDetail;
+use App\Models\Applicants\HigherSecondaryEducationDetail;
 use App\Models\Applicants\PersonalDetail;
+use App\Models\Applicants\PostGraduationEducationDetail;
 use App\Models\Applicants\SecondaryEducationDetail;
 use Illuminate\Auth\Authenticatable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -29,5 +33,21 @@ class Candidate extends Model implements AuthorizableContract, AuthenticatableCo
 
     public function secondaryeducationdetails(){
         return $this->hasOne(SecondaryEducationDetail::class);
+    }
+
+    public function highersecondaryeducationdetails(){
+        return $this->hasOne(HigherSecondaryEducationDetail::class);
+    }
+
+    public function graduationeducationdetails(){
+        return $this->hasOne(GraduationEducationDetail::class);
+    }
+
+    public function postgraduationeducationdetails(){
+        return $this->hasOne(PostGraduationEducationDetail::class);
+    }
+
+    public function jobapplications(){
+        return $this->hasMany(ApplicationReferenceNumber::class, 'candidate_id', 'id');
     }
 }

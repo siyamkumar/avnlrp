@@ -50,16 +50,16 @@
                     </li>
 
                     @if (auth()->guard('applicants')->user())
-                        <li  class="nav-item">
+                        <li class="nav-item">
                             <form id="frm-logout" action="{{ route('candidatelogout') }}" method="POST">
-                               @csrf
+                                @csrf
                                 <button type="submit" class="nav-link">Log out</button>
 
                             </form>
                         </li>
                     @else
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('jobapply') }}">Candidate Login</a>
+                            <a class="nav-link" href="{{ route('candidateLogin') }}">Candidate Login</a>
                         </li>
                     @endif
 

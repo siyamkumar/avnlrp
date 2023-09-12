@@ -8,6 +8,7 @@
 
 
 
+<<<<<<< HEAD
     <form method="POST" action="{{ route('experiencedetails.update',$experiencedetail) }}" >
         @csrf  @method('PATCH')
  
@@ -105,7 +106,8 @@
                     {{ $message }}
                 </div>
                 @enderror --}}
-                <input type="file" name="experience_path" class="filepond"  value="{{ old('experience_path', $experiencedetail->experience_path ?? '') }}" accept="image/*" labelIdle="{{ old('experience_path', $experiencedetail->experience_path ?? '') }}"/>
+                <input type="file" name="experience_path" class="filepond"  value="{{ old('experience_path', $experiencedetail->experience_path ?? '') }}" 
+                accept="image/*" labelIdle="{{ old('experience_path', $experiencedetail->experience_path ?? '') }}"/>
 
             </div>
 
@@ -123,6 +125,13 @@
             </div>
         </div>
 
+=======
+    <form method="POST" action="{{ route('experiencedetails.update', $experiencedetail) }}">
+        @csrf @method('put')
+
+        @include('applicants.next-steps.experience.form')
+       
+>>>>>>> 73680dbf1aa8a9d5fe936e147f406264a81ad0e3
 
         <div class="mt-3">
             <button type="submit" class="btn btn-warning"> Update </button>

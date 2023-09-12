@@ -14,11 +14,16 @@
                     <form method="POST" action="{{ route('otp.getlogin') }}">
                         @csrf
 
-                        {{$errors}}
                         @error('otpincorrect')
                             <div class="alert alert-danger" role="alert">
                                 <strong>{{ $message }}</strong>
                             </div>
+                        @enderror
+
+                        @error('otpexpired')
+                        <div class="alert alert-danger" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </div>
                         @enderror
 
                         <div class="form-group mb-3">
@@ -28,12 +33,12 @@
                                 name="otp" value="{{ old('otp') }}" required autocomplete="otp" autofocus
                                 placeholder="Enter OTP">
                         </div>
-
+                        <input type="hidden" name="candidate_id" value="{{ $candidate_id }}" />
 
                         <button class="btn btn-primary btn-login w-100" type="submit">Next</button>
 
 
-                        <input type="hidden" name="candidate_id" value="{{ $candidate_id }}" />
+
 
 
 

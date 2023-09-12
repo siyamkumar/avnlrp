@@ -17,7 +17,8 @@ class SecondaryEducationDetail extends Model
         'marksheet_path',
     ];
 
-    protected $casts = [
-        'year_of_passing' => 'datetime:Y'
-    ];
+    // protected $casts = [
+    //     'year_of_passing' => 'datetime:Y'
+    // ];
+
 }

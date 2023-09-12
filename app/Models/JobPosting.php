@@ -22,12 +22,14 @@ class JobPosting extends Model
         'renumeration',
         'summary',
         'user_id',
+        'isContract'
     ];
 
 
     protected $casts = [
         'jobPostingDate' => 'date',
-        'jobPostingLastDate' => 'date'
+        'jobPostingLastDate' => 'date',
+        'isContract' => 'boolean'
     ];
 
     public function user(){

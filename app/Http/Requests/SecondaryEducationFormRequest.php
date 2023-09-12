@@ -29,8 +29,8 @@ class SecondaryEducationFormRequest extends FormRequest
             'school_board' => 'required',
             'year_of_passing' => 'required',
             'score' => 'required',
-            'marksheet_document' => 'required|mimes:png,jpg,jpeg,csv,txt,pdf|max:2048',
-            'marksheet_path' => 'string'
+            'marksheet_document' => 'mimes:png,jpg,jpeg,csv,txt,pdf|max:2048',
+           
         ];
     }
 

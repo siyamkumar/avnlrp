@@ -6,9 +6,9 @@
 
 
     @if (isset($personaldetail))
-        @include('applicants.next-steps.partials.personal-details-edit')
+        @include('applicants.next-steps.partials.personal-details.edit')
     @else
-        @include('applicants.next-steps.partials.personal-details-create')
+        @include('applicants.next-steps.partials.personal-details.create')
     @endif
     
 
