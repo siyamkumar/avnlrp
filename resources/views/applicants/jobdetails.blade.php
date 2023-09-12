@@ -252,20 +252,29 @@
                                                 $c = auth()
                                                     ->guard('applicants')
                                                     ->user();
-                                                $applied = $c
-                                                    ->jobapplications()
-                                                    ->where('job_posting_id', $job->id)
-                                                    ->exists();
+                                                $applied = null;
                                             @endphp
 
+                                            @php
+                                                if ($c) {
+                                                    $applied = $c
+                                                        ->jobapplications()
+                                                        ->where('job_posting_id', $job->id)
+                                                        ->exists();
+                                                }
+                                            @endphp
+
+
+
                                             @if ($applied)
-                                            <div class="alert alert-warning" role="alert">
-                                                You have already applied to this job. 
-                                              </div>
+                                                <div class="alert alert-warning" role="alert">
+                                                    You have already applied to this job.
+                                                </div>
                                             @else
                                                 <form action="{{ route('jobapply', $job) }}" method="POST">
                                                     @csrf
-                                                    <button name="jobposting" class="btn btn-primary w-100">Apply Now</button>
+                                                    <button name="jobposting" class="btn btn-primary w-100">Apply
+                                                        Now</button>
 
                                                 </form>
                                             @endif
