@@ -128,7 +128,6 @@ Route::controller(AuthOTPController::class)->group(function () {
     Route::post('/otp/generate', 'generate')->name('otp.generate');
     Route::get('/otp/verification/{candidate_id}', 'verification')->name('otp.verification');
     Route::post('/otp/login', 'loginWithOtp')->name('otp.getlogin');
-<<<<<<< HEAD
 
     Route::post('candidate-logout', [CandidateSessionController::class, 'destroy'])
         ->name('candidatelogout');
@@ -162,8 +161,6 @@ Route::controller(AuthOTPController::class)->group(function () {
     Route::get('diploma-details', function () {
         return view('applicants.next-steps.diploma-details');
     });
-=======
->>>>>>> 73680dbf1aa8a9d5fe936e147f406264a81ad0e3
 });
 
 

@@ -1,3 +1,4 @@
+
 <x-guest-layout>
 
     @if (session('message'))
@@ -13,10 +14,13 @@
                 <div class="position-sticky" style="top: 12vh;">
 
                     <x-card>
+                    
 
                         <div class="bg-white d-flex align-items-center">
                             <div class="me-3">
-                                <img class="rounded-circle" src="https://placehold.co/75x75">
+                                {{-- <img class="rounded-circle" src="https://placehold.co/75x75"> --}}
+                                {{-- <a href="{{ route('experiencedetails.show',$item->id) }}" data-bs-toggle="modal" data-bs-target="#modalimg" >{{ $item->experience_path }}</a> --}}
+                                {{-- <img class="rounded-circle" src={{ $personaldetail->photo_path }}> --}}
                             </div>
                             <div>
                                 <h5 class="">{{ auth()->guard('applicants')->user()->fullname ?? '' }}</h5>

@@ -8,6 +8,7 @@ use App\Models\Applicants\PersonalDetail;
 use App\Models\Candidate;
 use App\Models\RegionState;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class PersonalDetailsController extends Controller
 {
@@ -30,11 +31,24 @@ class PersonalDetailsController extends Controller
     public function store(PersonalDetailsFormRequest $request)
     {
 
-        PersonalDetail::create($request->validated());
+        $file = $request->file('photo_path');
+    
+        $fileName = $file->getClientOriginalName();
+  
+        $upload = Storage::putFileAs("photo", $file, $fileName);
+        $file1 = $request->file('sign_path');
+    
+        $fileName1 = $file1->getClientOriginalName();
+      
+        $upload1 = Storage::putFileAs("sign", $file1, $fileName1);
+
+        PersonalDetail::create (array_merge($request->all(),['photo_path'=> $fileName],['sign_path'=> $fileName1]));
         return redirect()->route('personaldetails.index')->with([
             'status' => 'success',
             'message' => 'Personal Details Updated Successfully'
         ]);
+
+       
     }
 
 

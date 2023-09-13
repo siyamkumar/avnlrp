@@ -30,10 +30,22 @@ import '../../node_modules/bootstrap/dist/css/bootstrap.css';
 
 
 const inputElement = document.querySelector('input[type="file"].filepond');
+
 FilePond.create(inputElement, {
     allowImagePreview: true,
     allowMultiple: false,
-    labelIdle: `Drag & Drop your Featured Image or <span class="filepond--label-action">Browse</span>`,
+    labelIdle: `Drag & Drop  Image or <span class="filepond--label-action">Browse</span>`,
+    credits: false,
+    storeAsFile: true,
+
+});
+
+const inputElement1 = document.querySelector('input[type="file"].filepond');
+
+FilePond.create(inputElement1, {
+    allowImagePreview: true,
+    allowMultiple: false,
+    labelIdle: `Drag & Drop  Image or <span class="filepond--label-action">Browse</span>`,
     credits: false,
     storeAsFile: true,
 

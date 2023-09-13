@@ -1,4 +1,4 @@
-<form method="POST" action="{{ route('personaldetails.store') }}">
+<form method="POST" action="{{ route('personaldetails.store') }}" enctype="multipart/form-data">
     @csrf
 
 

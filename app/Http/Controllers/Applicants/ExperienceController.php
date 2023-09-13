@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\ExperienceDetailFormRequest;
 use App\Models\Applicants\ExperienceDetail;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class ExperienceController extends Controller
 {
@@ -25,8 +26,19 @@ class ExperienceController extends Controller
 
     public function store(ExperienceDetailFormRequest $request)
     {
-        ExperienceDetail::create($request->validated());
-        return redirect()->route('experiencedetails.index');
+      
+            $file = $request->file('experience_path');
+    
+              $fileName = $file->getClientOriginalName();
+            
+              $upload = Storage::putFileAs("storage\Temp", $file, $fileName);
+              
+      
+              ExperienceDetail::create (array_merge($request->all(),['experience_path'=>$fileName]));
+              return redirect()->route('experiencedetails.index');
+
+        // ExperienceDetail::create($request->validated());
+        // return redirect()->route('experiencedetails.index');
     }
 
     public function show(string $id)

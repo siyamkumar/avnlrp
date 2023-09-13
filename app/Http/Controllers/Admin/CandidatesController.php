@@ -4,6 +4,10 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+// use App\Http\Controllers\Controller;
+use App\Models\PersonalDetail;
+
+
 
 class CandidatesController extends Controller
 {
@@ -12,6 +16,12 @@ class CandidatesController extends Controller
      */
     public function index()
     {
+        // $photopath= PersonalDetail::where('candidate_id',auth()->guard('applicants')->user()->id)->get();
+        // //dd($expdetails);
+    
+        //     return view('applicants.next-steps.experience.index')->with(['expdetails'=>$photopath]);
+     
+        // return view('admin.candidates.index',['[photo_path]'=>$photopath]);
         return view('admin.candidates.index');
     }
 
@@ -21,6 +31,9 @@ class CandidatesController extends Controller
     public function create()
     {
         //
+
+
+
     }
 
     /**
@@ -37,6 +50,10 @@ class CandidatesController extends Controller
     public function show(string $id)
     {
         //
+// $data=DB::table('personal_details')->where('id',$id)->first();
+//         $filepath=storage_path("app/public/photo/{$data->photo_path}");
+//         return \Response::download($filepath);
+
     }
 
     /**
