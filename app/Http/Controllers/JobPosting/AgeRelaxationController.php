@@ -1,22 +1,20 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\JobPosting;
 
 use App\Http\Controllers\Controller;
-use App\Models\Applicants\ApplicationReferenceNumber;
-
+use App\Models\JobPosting;
+use App\Models\JobPosting\ReservationAgeRelaxation;
 use Illuminate\Http\Request;
 
-class CandidatesController extends Controller
+class AgeRelaxationController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        return view('admin.candidates.index')->with([
-            'applications' => ApplicationReferenceNumber::paginate(5),
-        ]);
+        //
     }
 
     /**
@@ -30,9 +28,19 @@ class CandidatesController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(Request $request, JobPosting $jobposting)
     {
-        //
+
+        ReservationAgeRelaxation::create([
+            'job_posting_id' => $jobposting->id,
+            'reservation_category_id' => $request->reservation_category_id,
+            'upper_relaxation' => $request->upper_relaxation,
+            'lower_relaxation' => $request->lower_relaxation
+        ]);
+        return redirect()->back()->with([
+            'status' => 'success',
+            'message' => 'Relaxation Added Successfully'
+        ]);
     }
 
     /**
@@ -64,5 +72,6 @@ class CandidatesController extends Controller
      */
     public function destroy(string $id)
     {
+        //
     }
 }

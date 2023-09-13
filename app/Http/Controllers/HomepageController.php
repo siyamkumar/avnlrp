@@ -12,6 +12,6 @@ class HomepageController extends Controller
      */
     public function __invoke(Request $request)
     {
-        return view('welcome')->with(['jobpostings' => JobPosting::where('status', 'active')->get()]);
+        return view('welcome')->with(['jobpostings' => JobPosting::where('status', 'active')->take(3)->get()]);
     }
 }

@@ -22,4 +22,6 @@ class PersonalDetail extends Model
         'region_state_id',
         'pin_code',
     ];
+
+    
 }

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\JobPostingFormRequest;
 use App\Models\JobPosting;
 use App\Models\LocationUnit;
+use App\Models\ReservationCategory;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 
@@ -51,18 +52,22 @@ class JobPostingController extends Controller
 
     public function show(JobPosting $jobPosting)
     {
-
     }
 
     public function edit(JobPosting $jobposting)
     {
-        return view('admin.jobs.edit', compact('jobposting'));
+        return view('admin.jobs.edit')
+            ->with([
+                'jobposting' => $jobposting,
+                'reservationcategories' => ReservationCategory::all(),
+                
+            ]);
     }
 
 
     public function update(JobPostingFormRequest $request, JobPosting $jobposting)
     {
-      
+
         $jobposting->update($request->validated());
         return redirect()->back()->with([
             'status' => 'success',
@@ -72,6 +77,5 @@ class JobPostingController extends Controller
 
     public function destroy(JobPosting $jobPosting)
     {
-
     }
 }

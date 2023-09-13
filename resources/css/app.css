@@ -118,11 +118,12 @@ a.sub-menu-active:before {
     display: inline-block;
 }
 
-.form-control {
+.form-control, .form-select {
      padding: 11px 15px 13px 20px !important; 
     border: 1px solid #e0e6f6;
     box-shadow: none !important;
 }
+
 
 .form-floating>.form-control:focus,
 .form-floating>.form-control:not(:placeholder-shown),
