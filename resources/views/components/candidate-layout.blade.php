@@ -20,7 +20,7 @@
                             <div class="me-3">
                                 {{-- <img class="rounded-circle" src="https://placehold.co/75x75"> --}}
                                 {{-- <a href="{{ route('experiencedetails.show',$item->id) }}" data-bs-toggle="modal" data-bs-target="#modalimg" >{{ $item->experience_path }}</a> --}}
-                                {{-- <img class="rounded-circle" src={{ $personaldetail->photo_path }}> --}}
+                                <img class="rounded-circle" src={{ auth()->guard('applicants')->user()->personaldetails->photo_path }}>
                             </div>
                             <div>
                                 <h5 class="">{{ auth()->guard('applicants')->user()->fullname ?? '' }}</h5>
