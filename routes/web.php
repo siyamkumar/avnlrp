@@ -20,9 +20,11 @@ use App\Http\Controllers\CandidateSessionController;
 use App\Http\Controllers\HomepageController;
 use App\Http\Controllers\JobPosting\ActiveJobPostingController;
 use App\Http\Controllers\JobPosting\AgeCriteriaController;
+use App\Http\Controllers\JobPosting\AgeRelaxationController;
 use App\Http\Controllers\JobPosting\DraftJobPostingController;
 use App\Http\Controllers\JobPosting\EducationCriteriaController;
 use App\Http\Controllers\JobPosting\ExperienceCriteriaController;
+use App\Http\Controllers\JobPosting\ReservationVacancyController;
 use App\Http\Controllers\JobPostingController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\PublicJobPostingController;
@@ -72,6 +74,9 @@ Route::middleware('auth')->group(function () {
         })->name('dashboard');
         Route::resource('jobpostings', JobPostingController::class);
         Route::resource('jobpostings.agecriteria', AgeCriteriaController::class)->only(['store', 'update']);
+        Route::resource('jobpostings.agerelaxation', AgeRelaxationController::class)->only(['store', 'update']);
+        Route::resource('jobpostings.vacancy', ReservationVacancyController::class)->only(['store', 'update']);
+
         Route::resource('jobpostings.educationcriteria', EducationCriteriaController::class)->only(['store', 'update']);
         Route::resource('jobpostings.experiencecriteria', ExperienceCriteriaController::class)->only(['store', 'update']);
         Route::get('/jobs/drafts/', DraftJobPostingController::class)->name('jobpostings.drafts');

@@ -24,4 +24,6 @@ class PersonalDetail extends Model
         'photo_path',
         'sign_path',
     ];
+
+    
 }

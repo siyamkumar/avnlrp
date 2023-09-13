@@ -24,7 +24,7 @@
                     <li>
                         <a href="{{ route('candidates.index') }}" class="nav-link text-dark">
                             <x-icons.application />
-                            Candidates
+                            Applications
                         </a>
                     </li>
 

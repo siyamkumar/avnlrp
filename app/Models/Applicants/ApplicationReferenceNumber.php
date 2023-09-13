@@ -26,6 +26,6 @@ class ApplicationReferenceNumber extends Model
         return $this->belongsTo(JobPosting::class, 'job_posting_id');
     }
     public function candidates(){
-        return $this->belongsTo(Candidate::class);
+        return $this->belongsTo(Candidate::class, 'candidate_id');
     }
 }

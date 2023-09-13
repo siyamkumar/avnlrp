@@ -109,6 +109,12 @@
 
                 <div class="tab-content" id="jobTabContent">
                     <div class="tab-pane fade show" id="tab-summary" role="tabpanel" aria-labelledby="summary-tab">
+
+                        @if ($jobposting->vacancy > 1)
+                        @include('admin.jobs.partials.vacancy')
+                        @endif
+                      
+
                         @include('admin.jobs.partials.summary')
                     </div>
 

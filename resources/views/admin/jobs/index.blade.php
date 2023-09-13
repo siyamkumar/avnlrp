@@ -20,6 +20,7 @@
                                 <th>Job Adv. #</th>
                                 <th>Job Title</th>
                                 <th>Unit</th>
+                                <th>Vacancy</th>
                                 <th>Last Date</th>
                                 <th>Status</th>
                                 <th>Created By</th>
@@ -34,6 +35,7 @@
                                         <td>{{ $jobposting->jobAdvertismentNo }}</td>
                                         <td>{{ $jobposting->jobTitle }}</td>
                                         <td>{{ $jobposting->locationunit->unit_code }}</td>
+                                        <td>{{ $jobposting->vacancy }}</td>
                                         <td>{{ $jobposting->jobPostingLastDate->format('d/M/Y') }} </td>
                                         <td><x-job-status :status="$jobposting->status" /></td>
                                         <td>{{ $jobposting->user->name }}</td>
