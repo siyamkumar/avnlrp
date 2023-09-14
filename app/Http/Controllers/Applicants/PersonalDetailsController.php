@@ -36,6 +36,7 @@ class PersonalDetailsController extends Controller
         $fileName = $file->getClientOriginalName();
   
         $upload = Storage::putFileAs("photo", $file, $fileName);
+        // dd($upload);
         $file1 = $request->file('sign_path');
     
         $fileName1 = $file1->getClientOriginalName();

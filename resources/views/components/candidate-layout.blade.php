@@ -8,19 +8,25 @@
     <div class="container mt-5 mb-3 application-container">
 
 
-
         <div class="row pt-3 ">
             <div class="col-md-3">
                 <div class="position-sticky" style="top: 12vh;">
 
                     <x-card>
-                    
 
                         <div class="bg-white d-flex align-items-center">
                             <div class="me-3">
                                 {{-- <img class="rounded-circle" src="https://placehold.co/75x75"> --}}
                                 {{-- <a href="{{ route('experiencedetails.show',$item->id) }}" data-bs-toggle="modal" data-bs-target="#modalimg" >{{ $item->experience_path }}</a> --}}
-                                <img class="rounded-circle" src={{ auth()->guard('applicants')->user()->personaldetails->photo_path }}>
+                            {{-- dd{{auth()->guard('applicants')->user()}} --}}
+
+                            @if(auth()->guard('applicants')->user()->personaldetails)
+                            
+                                <img class="rounded-circle" src="{{url('storage/public/photo/'.auth()->guard('applicants')->user()->personaldetails->photo_path ?? '') }} " width="75" height="75">
+
+                                @endif
+                                
+
                             </div>
                             <div>
                                 <h5 class="">{{ auth()->guard('applicants')->user()->fullname ?? '' }}</h5>

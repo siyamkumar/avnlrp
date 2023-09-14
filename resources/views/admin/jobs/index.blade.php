@@ -38,7 +38,9 @@
                                         <td>{{ $jobposting->vacancy }}</td>
                                         <td>{{ $jobposting->jobPostingLastDate->format('d/M/Y') }} </td>
                                         <td><x-job-status :status="$jobposting->status" /></td>
+                                            
                                         <td>{{ $jobposting->user->name }}</td>
+
                                         <td>
                                             <x-icons.open href="" />
                                             <x-icons.edit href="{{ route('jobpostings.edit', $jobposting) }}" />

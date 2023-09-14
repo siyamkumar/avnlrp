@@ -21,8 +21,6 @@ class CandidatesController extends Controller
         return view('admin.candidates.index')->with([
             'applications' => ApplicationReferenceNumber::paginate(5),
         ]);
-       
-        return view('admin.candidates.index');
     }
 
     /**
