@@ -7,6 +7,7 @@ use App\Http\Requests\ExperienceDetailFormRequest;
 use App\Models\Applicants\ExperienceDetail;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use DB;
 
 class ExperienceController extends Controller
 {
@@ -21,7 +22,10 @@ class ExperienceController extends Controller
    
     public function create()
     {
-        return view('applicants.next-steps.experience.create');
+        $expdetails= ExperienceDetail::where('candidate_id',auth()->guard('applicants')->user()->id)->get();
+        //dd($expdetails);        
+    
+            return view('applicants.next-steps.experience.create')->with(['expdetails'=>$expdetails]);
     }
 
     public function store(ExperienceDetailFormRequest $request)
@@ -31,7 +35,7 @@ class ExperienceController extends Controller
     
               $fileName = $file->getClientOriginalName();
             
-              $upload = Storage::putFileAs("storage\Temp", $file, $fileName);
+              $upload = Storage::putFileAs("certificate", $file, $fileName);
               
       
               ExperienceDetail::create (array_merge($request->all(),['experience_path'=>$fileName]));
@@ -42,7 +46,9 @@ class ExperienceController extends Controller
     }
 
     public function show(string $id)
-    {
+    {  $data=DB::table('experience_details')->where('id',$id)->first();
+        $filepath=storage_path("app/public/certificate/{$data->experience_path}");
+        return \Response::download($filepath);
      
     }
 
@@ -53,13 +59,22 @@ class ExperienceController extends Controller
     }
 
     
-    public function update(Request $request, string $id)
+    public function update(ExperienceDetailFormRequest $request, ExperienceDetail $experiencedetail)
     {
-        
+        $experiencedetail->fill($request->validated());
+        $experiencedetail->save();
+        return redirect()->route('experiencedetails.index')->with('success', 'Details Update successfully');
     }
 
-    public function destroy(string $id)
+    public function destroy(ExperienceDetail $experiencedetail)
     {
-       
+        $experiencedetail=ExperienceDetail::where('id',$experiencedetail->id)->delete();
+    }
+    public function download($id)
+    {
+
+        $data=DB::table('experience_details')->where('id',$id)->first();
+        $filepath=storage_path("app/public/certificate/{$data->experience_path}");
+        return \Response::download($filepath);
     }
 }

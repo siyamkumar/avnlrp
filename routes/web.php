@@ -140,7 +140,7 @@ Route::controller(AuthOTPController::class)->group(function () {
     Route::get('education-details', EducationController::class)->name('educationdetails');
     
     Route::resource('secondaryeducationdetails', SecondaryEducationController::class);
-    Route::resource('experiencedetails', ExperienceDetailController::class);
+    // Route::resource('experiencedetails', ExperienceDetailController::class);
 
     Route::get('higher-secondary-details', function () {
         return view('applicants.next-steps.higher-secondary-school');
