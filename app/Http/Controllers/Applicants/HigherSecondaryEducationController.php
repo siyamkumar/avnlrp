@@ -64,7 +64,7 @@ class HigherSecondaryEducationController extends Controller
     {
         $highersecondaryeducationdetail->fill($request->validated());
         $highersecondaryeducationdetail->save();
-        return redirect()->route('secondaryeducation.index')->with('success', 'Details Update successfully');
+        return redirect()->route('highersecondaryeducationdetails.index')->with('success', 'Details Update successfully');
     }
 
     /**

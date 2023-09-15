@@ -72,9 +72,13 @@ class SecondaryEducationController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(SecondaryEducationFormRequest $request, SecondaryEducationDetail $secondaryeducationdetail)
     {
-        //
+        
+        $secondaryeducationdetail->fill($request->validated());
+        $secondaryeducationdetail->save();
+        return redirect()->route('highersecondaryeducationdetails.create')->with('success', 'Details Update successfully');
+
     }
 
     /**

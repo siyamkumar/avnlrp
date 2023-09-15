@@ -50,7 +50,7 @@
                     <label for="periodTo" class="col-md-4 col-form-label">To</label>
                     <div class="col-md-8">
                         <input type="date" class="form-control  @error('periodTo') is-invalid @enderror" placeholder="To Date" aria-label="ToDate"
-                            id="periodTo" name="periodTo"  value="{{ old('periodTo', $experiencedetail->periodTo ?? '') }}">
+                            id="periodTo" name="periodTo"  value="{{ old('periodTo',  $experiencedetail->periodTo ?? '') }}">
                             @error('periodTo')
                             <div class="invalid-feedback">
                                 {{ $message }}
@@ -85,13 +85,7 @@
         </div>
         @enderror
         <label for="experience_path" class=" form-label">Experience Cerificate</label>
-        {{-- <input class="form-control  @error('experienceFile') is-invalid @enderror" 
-        type="file" id="experienceFile" name="experienceFile"  value="{{ old('experienceFile', $experiencedetail->experienceFile ?? '') }}">
-        @error('experienceFile')
-        <div class="invalid-feedback">
-            {{ $message }}
-        </div>
-        @enderror --}}
+     
 
         <input type="file" name="experience_path" class="filepond"/>
 
@@ -109,6 +103,7 @@
         </div>
         @enderror
     </div>
+    
 </div>
 
 

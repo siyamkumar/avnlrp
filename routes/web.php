@@ -13,7 +13,7 @@ use App\Http\Controllers\Applicants\NextStepsController;
 use App\Http\Controllers\Applicants\PersonalDetailsController;
 use App\Http\Controllers\Applicants\PostGraduationEducationController;
 use App\Http\Controllers\Applicants\SecondaryEducationController;
-use App\Http\Controllers\ExperienceDetailController;
+use App\Http\Controllers\Applicants\ItiDiplomaDetailsController;
 use App\Http\Controllers\Applicants\StatusController;
 use App\Http\Controllers\AuthOTPController;
 use App\Http\Controllers\CandidateSessionController;
@@ -108,6 +108,7 @@ Route::middleware('candidateAuth')->group(function () {
     Route::resource('graduationeducationdetails', GraduationEducationController::class);
     Route::resource('postgraduationeducationdetails', PostGraduationEducationController::class);
     Route::resource('experiencedetails', ExperienceController::class);
+    
     route::resource('jobapplication', JobApplicataionsController::class);
 
 
@@ -138,7 +139,7 @@ Route::controller(AuthOTPController::class)->group(function () {
         ->name('candidatelogout');
 
     Route::get('education-details', EducationController::class)->name('educationdetails');
-    
+    Route::resource('itidiplomadetails', ItiDiplomaDetailsController::class);
     Route::resource('secondaryeducationdetails', SecondaryEducationController::class);
     // Route::resource('experiencedetails', ExperienceDetailController::class);
 

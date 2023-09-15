@@ -8,6 +8,7 @@ use App\Models\Applicants\HigherSecondaryEducationDetail;
 use App\Models\Applicants\PersonalDetail;
 use App\Models\Applicants\PostGraduationEducationDetail;
 use App\Models\Applicants\SecondaryEducationDetail;
+use App\Models\Applicants\ItiDiplomaDetail;
 use Illuminate\Auth\Authenticatable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
@@ -46,7 +47,9 @@ class Candidate extends Model implements AuthorizableContract, AuthenticatableCo
     public function postgraduationeducationdetails(){
         return $this->hasOne(PostGraduationEducationDetail::class);
     }
-
+    public function ItiDiplomaDetails(){
+        return $this->hasOne(ItiDiplomaDetail::class);
+    }
     public function jobapplications(){
         return $this->hasMany(ApplicationReferenceNumber::class, 'candidate_id', 'id');
     }
