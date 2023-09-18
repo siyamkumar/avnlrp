@@ -18,8 +18,8 @@ class ItiDiplomaDetailsController extends Controller
     {
         $candidate = auth()->guard('applicants')->user();
        
-        if ($candidate->itidiplomadetail)
-            return redirect()->route('itidiplomadetails.edit',$candidate->itidiplomadetail);
+        if ($candidate->ItiDiplomaDetails)
+            return redirect()->route('itidiplomadetails.edit',$candidate->ItiDiplomaDetails);
 
         return redirect()->route('itidiplomadetails.create');
     }
@@ -29,11 +29,12 @@ class ItiDiplomaDetailsController extends Controller
      */
     public function create()
     {
+       // dd("A");
         // $candidate=auth()->guard('applicants')->user();
         // if($candidate->itidiplomadetail)
         // return redirect()->route('ItiDiplomaDetails.edit',$candidate->itidiplomadetail);
         // else
-        return view('applicants.next-steps.partials.itidiploma-details.itidiploma-create');
+        return view('applicants.next-steps.itidiploma-details');
         
         
     }
@@ -50,14 +51,14 @@ class ItiDiplomaDetailsController extends Controller
       // dd($fileName);
         $upload = Storage::putFileAs("certificate", $file, $fileName);
 
-        ItiDiplomaDetail::create (array_merge($request->all(),['marksheet_path'=>'fileName']));
+        ItiDiplomaDetail::create (array_merge($request->all(),['marksheet_path'=>$fileName]));
         return redirect()->route('itidiplomadetails.index');
         
     }
     /**
      * Display the specified resource.
      */
-    public function show(ItiDiplomaDetail $itiDiplomaDetail)
+    public function show(ItiDiplomaDetail $itidiplomadetail)
     {
         //
     }
@@ -67,7 +68,8 @@ class ItiDiplomaDetailsController extends Controller
      */
     public function edit(ItiDiplomaDetail $itidiplomadetail)
     {
-        return view('applicants.next-steps.partials.itidiploma-details.itidiploma-edit', compact('itidiplomadetail'));
+        
+        return view('applicants.next-steps.itidiploma-details', compact('itidiplomadetail'));
 
 
     }
@@ -79,13 +81,13 @@ class ItiDiplomaDetailsController extends Controller
     {
          $itidiplomadetail->fill($request->validated());
             $itidiplomadetail->save();
-        return redirect()->route('itidiplomadetails.index')->with('success','Personal Details Update successfully');
+        return redirect()->route('itidiplomadetails.index')->with('success',' Details Update successfully');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(ItiDiplomaDetail $itiDiplomaDetail)
+    public function destroy(ItiDiplomaDetail $itidiplomadetail)
     {
         //
     }

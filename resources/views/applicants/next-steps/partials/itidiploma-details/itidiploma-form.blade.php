@@ -51,6 +51,7 @@
         @enderror
     </div>
     <div class="col-md-4">
+        <label for="marksheet_path" class="form-label">Certificate Upload <span style="color:Red">*</span></label>
           <input type="file" name="marksheet_path" class="filepond" value=" " accept="iamge/*" 
           />
 

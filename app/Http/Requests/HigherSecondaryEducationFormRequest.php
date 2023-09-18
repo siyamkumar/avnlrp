@@ -22,7 +22,7 @@ class HigherSecondaryEducationFormRequest extends FormRequest
             'school_board' => 'required',
             'year_of_passing' => 'required',
             'score' => 'required',
-            'marksheet_path' => 'required|max:0.05',
+            'marksheet_path' => 'required|max:50',
         ];
     }
     protected function prepareForValidation()

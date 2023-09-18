@@ -42,16 +42,4 @@ FilePond.create(inputElement, {
 
 });
 
-const inputElement1 = document.querySelector('input[type="file"].filepond');
-
-FilePond.create(inputElement1, {
-    allowImagePreview: true,
-    allowMultiple: false,
-    labelIdle: `Drag & Drop  Image or <span class="filepond--label-action">Browse</span>`,
-    credits: false,
-    storeAsFile: true,
-    size:0.05,
-    // required:true,
-
-});
 

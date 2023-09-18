@@ -120,7 +120,6 @@ Route::middleware('candidateAuth')->group(function () {
     Route::get('education-details', EducationController::class)->name('educationdetails');
 
 
-  
 
   
 });
@@ -169,7 +168,11 @@ Route::controller(AuthOTPController::class)->group(function () {
     });
 });
 
-
+Route::get('template',function()
+{
+    return view('email-template');
+});
+  
 Route::resource('jobs', PublicJobPostingController::class)->only(['index', 'show']);
 
 require __DIR__ . '/auth.php';

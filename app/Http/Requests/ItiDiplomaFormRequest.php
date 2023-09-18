@@ -30,7 +30,7 @@ class ItiDiplomaFormRequest extends FormRequest
             'universityName' => 'required',
             'year_of_passing' => 'required',
             'score' => 'required',
-            'marksheet_path'=>'required',
+            'marksheet_path'=>'required|max:50',
         ];
     }
     protected function prepareForValidation()

@@ -36,8 +36,8 @@ class PersonalDetailsFormRequest extends FormRequest
             'city' => 'required',
             'region_state_id' => 'required',
             'pin_code' => 'required|digits:6|integer',
-            'photo_path' => 'required|max:0.05',
-            'sign_path' => 'required|max:0.02',
+            // 'photo_path' => 'required|max:50',
+            // 'sign_path' => 'required|max:20',
         ];
     }
 

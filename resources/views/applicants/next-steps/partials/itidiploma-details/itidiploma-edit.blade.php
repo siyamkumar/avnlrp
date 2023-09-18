@@ -1,11 +1,11 @@
-<form method="POST" action="{{ route('itidiplomadetails.update', $itidiplomadetail->candidate_id) }}">
+<form method="POST" action="{{ route('itidiplomadetails.update', $itidiplomadetail) }}">
     @csrf @method('PATCH')
 
     @include('applicants.next-steps.partials.itidiploma-details.itidiploma-form')
     <div class="mt-2">
 
         <button type="submit" class="btn btn-warning me-2">Update</button>
-        <a class="btn-next" href="{{ route('graduationdetails.index') }}">Next
+        <a class="btn-next" href="{{ route('graduationeducationdetails.index') }}">Next
 
             <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                

@@ -30,6 +30,7 @@ class GraduationEducationFormRequest extends FormRequest
             'university_name' => 'required',
             'year_of_passing' => 'required',
             'score' => 'required',
+            'marksheet_path' =>'required|max:50'
             
         ];
     }
