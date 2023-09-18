@@ -25,7 +25,7 @@
     </div>
 
     <div class="col-md-4">
-        <label for="marksheet_path" class="form-label"> Document Upload </label>
+        <label for="marksheet_path" class="form-label"> Certificate Upload <span style="color:red">*</span> </label>
         <input type="file" name="marksheet_path" class="filepond"   
                 accept="image/*" />
     </div>

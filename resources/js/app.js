@@ -37,7 +37,8 @@ FilePond.create(inputElement, {
     labelIdle: `Drag & Drop  Image or <span class="filepond--label-action">Browse</span>`,
     credits: false,
     storeAsFile: true,
-    required:true,
+    size:0.05,
+    // required:true,
 
 });
 
@@ -49,7 +50,8 @@ FilePond.create(inputElement1, {
     labelIdle: `Drag & Drop  Image or <span class="filepond--label-action">Browse</span>`,
     credits: false,
     storeAsFile: true,
-    required:true,
+    size:0.05,
+    // required:true,
 
 });
 

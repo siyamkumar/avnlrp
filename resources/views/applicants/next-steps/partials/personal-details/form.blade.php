@@ -161,12 +161,12 @@
         @enderror
     </div>
     <div class="col-md-6">
-        <label for="photo_path" class="form-label"> Photo Upload </label>
+        <label for="photo_path" class="form-label"> Photo Upload <span style="color:red">*</span> </label>
         <input type="file" name="photo_path" class="filepond"  value="{{ old('photo_path', $personaldetail->photo_path ?? '') }}" 
                 accept="image/*" />
     </div>
     <div class="col-md-6">
-        <label for="sign_path" class="form-label"> Signature Upload </label>
+        <label for="sign_path" class="form-label"> Signature Upload  <span style="color:red">*</span></label>
         <input type="file" name="sign_path" class="filepond"  value="{{ old('sign_path', $personaldetail->sign_path ?? '') }}" 
                 accept="image/*"/>
     </div>
