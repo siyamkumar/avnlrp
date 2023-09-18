@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\ARNController;
 use App\Http\Controllers\Admin\CandidatesController;
 use App\Http\Controllers\Admin\JobsController;
 use App\Http\Controllers\Applicants\ApplicantController;
@@ -17,6 +18,7 @@ use App\Http\Controllers\Applicants\SecondaryEducationController;
 use App\Http\Controllers\Applicants\StatusController;
 use App\Http\Controllers\AuthOTPController;
 use App\Http\Controllers\CandidateSessionController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\HomepageController;
 use App\Http\Controllers\JobPosting\ActiveJobPostingController;
 use App\Http\Controllers\JobPosting\AgeCriteriaController;
@@ -43,21 +45,13 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', HomepageController::class)->name('home');
-
 Route::get('/application-status', StatusController::class)->name('applicationstatus');
-
 Route::get('/job-openings', function () {
     return view('applicants.jobopenings');
 })->name('alljobs');
 
 
 Route::post('/job-openings/details/apply', [ApplicantController::class, 'store'])->name('applicantregister');
-
-
-
-
-
-
 Route::get('/job-updates', function () {
     return view('applicants.jobupdates');
 })->name('jobupdates');
@@ -69,19 +63,22 @@ Route::middleware('auth')->group(function () {
         return redirect()->route('dashboard');
     });
     Route::prefix('admin')->group(function () {
-        Route::get('/dashboard', function () {
-            return view('dashboard');
-        })->name('dashboard');
+        Route::get('/dashboard', DashboardController::class)->name('dashboard');
         Route::resource('jobpostings', JobPostingController::class);
         Route::resource('jobpostings.agecriteria', AgeCriteriaController::class)->only(['store', 'update']);
+        Route::get('jobpostings/{jobposting}/eligibility', function(){
+            return  view('admin.jobs.partials.eligibility');
+        })->name('jobpostings.eligibility');
         Route::resource('jobpostings.agerelaxation', AgeRelaxationController::class)->only(['store', 'update']);
         Route::resource('jobpostings.vacancy', ReservationVacancyController::class)->only(['store', 'update']);
-
         Route::resource('jobpostings.educationcriteria', EducationCriteriaController::class)->only(['store', 'update']);
         Route::resource('jobpostings.experiencecriteria', ExperienceCriteriaController::class)->only(['store', 'update']);
+
         Route::get('/jobs/drafts/', DraftJobPostingController::class)->name('jobpostings.drafts');
         Route::get('/jobs/active/', ActiveJobPostingController::class)->name('jobpostings.active');
+        
         Route::resource('candidates', CandidatesController::class);
+        Route::resource('arn',ARNController::class)->only(['show']);
     });
 
 
@@ -102,13 +99,15 @@ Route::post('candidatelogin', [CandidateSessionController::class, 'store'])->nam
 Route::middleware('candidateAuth')->group(function () {
 
     Route::get('/next-step', NextStepsController::class);
-    Route::resource('personaldetails', PersonalDetailsController::class);
-    Route::resource('secondaryeducationdetails', SecondaryEducationController::class);
-    Route::resource('highersecondaryeducationdetails', HigherSecondaryEducationController::class);
-    Route::resource('graduationeducationdetails', GraduationEducationController::class);
-    Route::resource('postgraduationeducationdetails', PostGraduationEducationController::class);
-    Route::resource('experiencedetails', ExperienceController::class);
     route::resource('jobapplication', JobApplicataionsController::class);
+    Route::resource('personaldetails', PersonalDetailsController::class);
+    Route::resource('jobapplication.secondaryeducationdetails', SecondaryEducationController::class)->except(['index', 'destroy']);
+    Route::resource('jobapplication.highersecondaryeducationdetails', HigherSecondaryEducationController::class);
+    Route::resource('jobapplication.graduationeducationdetails', GraduationEducationController::class);
+    Route::resource('jobapplication.postgraduationeducationdetails', PostGraduationEducationController::class);
+    Route::resource('jobapplication.experiencedetails', ExperienceController::class);
+    
+    
 
 
     Route::post('job-apply/{job}', JobApplyController::class)->name('jobapply');
@@ -117,11 +116,6 @@ Route::middleware('candidateAuth')->group(function () {
         ->name('candidatelogout');
 
     Route::get('education-details', EducationController::class)->name('educationdetails');
-
-
-  
-
-  
 });
 
 

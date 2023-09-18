@@ -50,18 +50,23 @@ class JobPostingController extends Controller
         return redirect()->route('jobpostings.edit', $jobposting)->with(['message' => 'Job Posting created!']);
     }
 
-    public function show(JobPosting $jobPosting)
+    public function show(JobPosting $jobposting)
     {
+        if ($jobposting->status == 'draft')
+            return redirect()->route('jobpostings.edit', compact('jobposting'));
+        return view('admin.jobs.show', compact('jobposting'));
     }
 
     public function edit(JobPosting $jobposting)
     {
-        return view('admin.jobs.edit')
-            ->with([
-                'jobposting' => $jobposting,
-                'reservationcategories' => ReservationCategory::all(),
-                
-            ]);
+        if ($jobposting->status == 'draft')
+            return view('admin.jobs.edit')
+                ->with([
+                    'jobposting' => $jobposting,
+                    'reservationcategories' => ReservationCategory::all(),
+
+                ]);
+        return redirect()->route('jobpostings.show', $jobposting);
     }
 
 

@@ -7,6 +7,7 @@ use App\Http\Requests\PersonalDetailsFormRequest;
 use App\Models\Applicants\PersonalDetail;
 use App\Models\Candidate;
 use App\Models\RegionState;
+use App\Models\ReservationCategory;
 use Illuminate\Http\Request;
 
 class PersonalDetailsController extends Controller
@@ -23,8 +24,11 @@ class PersonalDetailsController extends Controller
 
     public function create()
     {
-        $region_states = RegionState::all();
-        return view('applicants.next-steps.personal-details', compact('region_states'));
+        return view('applicants.next-steps.personal-details')->with([
+            'region_states' => RegionState::all(),
+            'reservation_categories' => ReservationCategory::all(),
+            'personaldetail' => ''
+        ]);
     }
 
     public function store(PersonalDetailsFormRequest $request)
@@ -46,7 +50,8 @@ class PersonalDetailsController extends Controller
     public function edit(PersonalDetail $personaldetail)
     {
         $region_states = RegionState::all();
-        return view('applicants.next-steps.personal-details', compact(['region_states', 'personaldetail']));
+        $reservation_categories = ReservationCategory::all();
+        return view('applicants.next-steps.personal-details', compact(['region_states', 'personaldetail', 'reservation_categories']));
     }
 
 

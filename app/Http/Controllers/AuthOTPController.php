@@ -19,7 +19,8 @@ class AuthOTPController extends Controller
     public function verification($candidate_id)
     {
         return view('applicants.verification')->with([
-            'candidate_id' => $candidate_id
+            'candidate_id' => $candidate_id,
+            'login_otp' => VerificationCode::where('candidate_id', $candidate_id)->latest()->first()
         ]);
     }
 

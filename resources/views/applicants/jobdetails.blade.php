@@ -218,82 +218,106 @@
                                                 <x-icons.tenure /> Age Limit
                                             </div>
 
-                                            < 50 Years </div>
-                                        </div>
-                                        <div class="col-12 mb-3">
-                                            <div class="d-flex align-items-center  justify-content-between">
-                                                <div class="d-flex align-items-center">
-                                                    <x-icons.vacancy />
-                                                    No of Vacancies
-                                                </div>
+                                            @if ($job->agecriteria)
 
-                                                01
+                                                @if ($job->agecriteria->minAge && $job->agecriteria->maxAge)
+                                                {{ $job->agecriteria->minAge }} - {{ $job->agecriteria->maxAge }}
+                                                @elseif ($job->agecriteria->minAge)
+                                                    <div>more than <span class="fw-bold">{{ $job->agecriteria->minAge }}</span></div>
+                                                @else
+                                                    <div>less than <span class="fw-bold">{{ $job->agecriteria->maxAge }} Years </span></div>@endif
+                                                      
+                                                @endif
+                                        </div>
+                                    </div>
+                                    <div class="col-12 mb-3">
+                                        <div class="d-flex align-items-center  justify-content-between">
+                                            <div class="d-flex align-items-center">
+                                                <x-icons.vacancy />
+                                                No of Vacancies
                                             </div>
-                                        </div>
+                                            <div>
+                                                <span class="fw-bold">{{ $job->vacancy }} </span>
 
-                                        <div class="col-12 mb-3">
-                                            <div class="d-flex align-items-center justify-content-between">
+                                                @if (count($job->reservationvacancyrelaxations) > 0)
+                                                    @foreach ($job->reservationvacancyrelaxations as $res)
+                                                        [ {{ $res->reservationcategories->code }} - {{ $res->vacancy }}
+                                                        ]
+                                                    @endforeach
 
-                                                <div class="d-flex align-items-center">
-                                                    <x-icons.renumeration />
-                                                    Renumeration
-                                                </div>
-                                                <div>
-                                                    ₹ 70,000 /-
-                                                </div>
-
+                                                @endif
 
                                             </div>
-                                        </div>
-
-                                        <div class="col-12">
-
-                                            @php
-                                                $c = auth()
-                                                    ->guard('applicants')
-                                                    ->user();
-                                                $applied = null;
-                                            @endphp
-
-                                            @php
-                                                if ($c) {
-                                                    $applied = $c
-                                                        ->jobapplications()
-                                                        ->where('job_posting_id', $job->id)
-                                                        ->exists();
-                                                }
-                                            @endphp
-
-
-
-                                            @if ($applied)
-                                                <div class="alert alert-warning" role="alert">
-                                                    You have already applied to this job.
-                                                </div>
-                                            @else
-                                                <form action="{{ route('jobapply', $job) }}" method="POST">
-                                                    @csrf
-                                                    <button name="jobposting" class="btn btn-primary w-100">Apply
-                                                        Now</button>
-
-                                                </form>
-                                            @endif
 
 
 
                                         </div>
+                                    </div>
+
+                                    <div class="col-12 mb-3">
+                                        <div class="d-flex align-items-center justify-content-between">
+
+                                            <div class="d-flex align-items-center">
+                                                <x-icons.renumeration />
+                                                Renumeration
+                                            </div>
+                                            <div>
+                                                <x-currency-format :amount="$job->renumeration" />
+
+                                            </div>
+
+
+                                        </div>
+                                    </div>
+
+                                    <div class="col-12">
+
+                                        @php
+                                            $c = auth()
+                                                ->guard('applicants')
+                                                ->user();
+                                            $applied = null;
+                                        @endphp
+
+                                        @php
+                                            if ($c) {
+                                                $applied = $c
+                                                    ->jobapplications()
+                                                    ->where('job_posting_id', $job->id)
+                                                    ->exists();
+                                            }
+                                        @endphp
+
+
+
+                                        @if ($applied)
+                                            <div class="alert alert-warning" role="alert">
+                                                You have already applied to this job.
+                                            </div>
+                                        @else
+                                            <form action="{{ route('jobapply', $job) }}" method="POST">
+                                                @csrf
+                                                <button name="jobposting" class="btn btn-primary w-100">Apply
+                                                    Now</button>
+
+                                            </form>
+                                        @endif
+
+
 
                                     </div>
+
                                 </div>
                             </div>
                         </div>
-
-
-
                     </div>
 
+
+
                 </div>
+
             </div>
+        </div>
         </div>
 
     </main>

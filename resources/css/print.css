@@ -1,0 +1,30 @@
+.page[data-size="A4"] {
+    background: white;
+    size: 21cm 29.7cm;
+    padding:20mm;
+    box-shadow: 0 0 0.5cm rgba(0,0,0,0.5);
+    font-size:12pt;
+}
+
+
+.arn-label {
+ font-size:12pt;
+}
+
+.passport-photo{
+    border: 1px solid black;
+    width: 140px;
+    height: 190px;
+}
+
+
+
+@media print {
+
+    body,
+    .page {
+        background: white;
+        margin: 0;
+        box-shadow: 0;
+    }
+}

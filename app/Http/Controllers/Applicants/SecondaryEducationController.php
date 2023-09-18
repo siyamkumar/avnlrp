@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Applicants;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\SecondaryEducationFormRequest;
+use App\Models\Applicants\ApplicationReferenceNumber;
 use App\Models\Applicants\SecondaryEducationDetail;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
@@ -26,13 +27,13 @@ class SecondaryEducationController extends Controller
      */
     public function create()
     {
-        return view('applicants.next-steps.secondary-education');
+        return view('applicants.next-steps.partials.secondary-education-details.create');
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(SecondaryEducationFormRequest $request)
+    public function store(SecondaryEducationFormRequest $request, ApplicationReferenceNumber $jobapplication)
     {
         
         if ($request->file('marksheet_document')) {
@@ -40,6 +41,7 @@ class SecondaryEducationController extends Controller
                 array_merge(
                     $request->validated(),
                     [
+                        'application_reference_number_id' => $jobapplication->id,
                         'marksheet_path' => Storage::putFileAs('documents/' . $request->candidate_id . '/secondary', $request->file('marksheet_document'), $request->file('marksheet_document')->getClientOriginalName())
                     ]
                 )
@@ -58,23 +60,25 @@ class SecondaryEducationController extends Controller
      */
     public function show(string $id)
     {
-        //
+       
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(SecondaryEducationDetail $secondaryeducationdetail)
+    public function edit(ApplicationReferenceNumber $jobapplication, SecondaryEducationDetail $secondaryeducationdetail)
     {
-        return view('applicants.next-steps.secondary-education', compact('secondaryeducationdetail'));
+        return view('applicants.next-steps.partials.secondary-education-details.edit', compact('jobapplication','secondaryeducationdetail'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(SecondaryEducationFormRequest $request, ApplicationReferenceNumber $jobapplication, SecondaryEducationDetail $secondaryeducationdetail)
     {
-        //
+        $secondaryeducationdetail->fill($request->validated());
+        $secondaryeducationdetail->save();
+        return redirect()->route('jobapplication.edit', $jobapplication);
     }
 
     /**

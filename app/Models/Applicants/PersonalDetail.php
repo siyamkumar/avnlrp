@@ -2,6 +2,7 @@
 
 namespace App\Models\Applicants;
 
+use App\Models\ReservationCategory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -13,7 +14,7 @@ class PersonalDetail extends Model
         'fatherName',
         'gender',
         'dob',
-        'category',
+        'reservation_category_id',
         'aadhaarNo',
         'pan',
         'address_line_1',
@@ -23,5 +24,12 @@ class PersonalDetail extends Model
         'pin_code',
     ];
 
+    protected $casts = [
+        'dob' => 'date'
+    ];  
+
+    public function reservationcategory(){
+        return $this->belongsTo(ReservationCategory::class, 'reservation_category_id');
+    }
     
 }

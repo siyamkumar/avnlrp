@@ -1,13 +1,12 @@
 <?php
 
-namespace App\Http\Controllers\JobPosting;
+namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\JobPosting;
-use App\Models\JobPosting\EducationCriteria;
+use App\Models\Applicants\ApplicationReferenceNumber;
 use Illuminate\Http\Request;
 
-class EducationCriteriaController extends Controller
+class ARNController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -28,24 +27,17 @@ class EducationCriteriaController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request, JobPosting $jobposting)
+    public function store(Request $request)
     {
-        if($request->reqEducation)
-                EducationCriteria::create([
-                    'job_posting_id' => $jobposting->id,
-                    'min_qualification' => $request->reqEducation,
-                    'desired_education' => $request->desiredQualification,
-                ]);
-
-        
+        //
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(ApplicationReferenceNumber $arn)
     {
-        //
+       return view('admin.candidates.show', compact('arn'));
     }
 
     /**

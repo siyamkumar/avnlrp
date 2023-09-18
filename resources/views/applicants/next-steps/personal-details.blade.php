@@ -5,7 +5,7 @@
     </x-slot>
 
 
-    @if (isset($personaldetail))
+    @if ($personaldetail !== '')
         @include('applicants.next-steps.partials.personal-details.edit')
     @else
         @include('applicants.next-steps.partials.personal-details.create')

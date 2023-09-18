@@ -4,7 +4,7 @@
         <x-toast :message="session('message')" :status="session('status')" />
     @endif
 
-    <div class="container mt-5 mb-3 application-container">
+    <div class="container mt-5 mb-3 application-container" >
 
 
 
@@ -78,7 +78,7 @@
                         </li>
 
 
-                        <li class="list-group-item nav-item mb-3 border">
+                        {{-- <li class="list-group-item nav-item mb-3 border">
                             <a href="{{ route('educationdetails') }}" class="nav-link d-flex align-items-center">
 
                                 <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"
@@ -100,9 +100,9 @@
 
                                 My Academia
                             </a>
-                        </li>
+                        </li> --}}
 
-                        <li class="list-group-item  nav-item mb-3 border rounded-0">
+                        {{-- <li class="list-group-item  nav-item mb-3 border rounded-0">
                             <a href="{{ route('experiencedetails.index') }}" class="nav-link d-flex align-items-center">
 
                                 <svg version="1.0" id="Layer_1" xmlns="http://www.w3.org/2000/svg"
@@ -123,7 +123,7 @@
 
 
                         </li>
-
+ --}}
 
 
 

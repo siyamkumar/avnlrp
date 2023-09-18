@@ -20,18 +20,17 @@ class CandidateSessionController extends Controller
 
     public function store(Request $request): RedirectResponse
     {
-        $candidate = Candidate::where(
-            'email',
-            $request->email,
-        )->first();
-
+        $candidate = Candidate::where('email', $request->email,)->first();
         if ($candidate) {
             $verificationCode = VerificationCode::create([
                 'candidate_id' => $candidate->id,
                 'otp' => rand(123456, 999999),
                 'expire_at' => Carbon::now()->addMinutes(10)
             ]);
-            return redirect()->route('otp.verification', ['candidate_id' => $verificationCode->candidate_id]);
+            return redirect()->route('otp.verification', [
+                'candidate_id' => $verificationCode->candidate_id,
+              
+            ]);
         } else {
             return redirect()->back()->withErrors(['EmailNotFound' => 'Email Not Found']);
         }

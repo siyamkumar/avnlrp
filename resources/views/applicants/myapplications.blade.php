@@ -25,6 +25,9 @@
                 <td>{{ $ja->arn }} </td>    
                 <td>{{ $ja->jobpostings->jobTitle}}</td>
                 <td>{{ $ja->status }} </td>
+                <td>
+                    <a href="{{route('jobapplication.edit', $ja)}}">Edit</a>
+                </td>
                 <td>Submit</td>
             </tr>
         @endforeach

@@ -29,24 +29,24 @@
                             href="{{ route('jobs.index') }}">Job Openings</a>
                     </li>
 
-                    <li class="nav-item">
+                    {{-- <li class="nav-item">
                         <a class="nav-link {{ request()->routeIs('jobupdates') ? 'active' : '' }}"
                             href={{ route('jobupdates') }}>Job Updates</a>
-                    </li>
+                    </li> --}}
 
-                    <li class="nav-item">
+                    {{-- <li class="nav-item">
                         <a class="nav-link {{ request()->routeIs('applicationstatus') ? 'active' : '' }}"
                             href={{ route('applicationstatus') }}>Application Status</a>
+                    </li> --}}
+
+                    <li class="nav-item">
+                        <a class="nav-link {{ request()->routeIs('applicationstatus') ? 'active' : '' }}"
+                            href="#">How to Apply?</a>
                     </li>
 
                     <li class="nav-item">
                         <a class="nav-link {{ request()->routeIs('applicationstatus') ? 'active' : '' }}"
-                            href={{ route('applicationstatus') }}>How to Apply?</a>
-                    </li>
-
-                    <li class="nav-item">
-                        <a class="nav-link {{ request()->routeIs('applicationstatus') ? 'active' : '' }}"
-                            href={{ route('applicationstatus') }}>Fraud Notice</a>
+                            href="#">Fraud Notice</a>
                     </li>
 
                     @if (auth()->guard('applicants')->user())
@@ -67,7 +67,7 @@
             </div>
         </div>
     </nav>
-    <main class="main-container">
+    <main class="main-container pb-3">
 
         @if (isset($header))
             <div class="text-center">
@@ -79,7 +79,7 @@
     </main>
 
 
-    <footer class="footer bg-light position-fixed w-100 ">
+    <footer class="footer bg-light w-100 ">
         <div class="container">
             <div class="d-flex align-items-center justify-content-between">
                 <div>

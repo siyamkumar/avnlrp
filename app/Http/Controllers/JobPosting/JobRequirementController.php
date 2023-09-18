@@ -3,11 +3,9 @@
 namespace App\Http\Controllers\JobPosting;
 
 use App\Http\Controllers\Controller;
-use App\Models\JobPosting;
-use App\Models\JobPosting\EducationCriteria;
 use Illuminate\Http\Request;
 
-class EducationCriteriaController extends Controller
+class JobRequirementController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -28,16 +26,9 @@ class EducationCriteriaController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request, JobPosting $jobposting)
+    public function store(Request $request)
     {
-        if($request->reqEducation)
-                EducationCriteria::create([
-                    'job_posting_id' => $jobposting->id,
-                    'min_qualification' => $request->reqEducation,
-                    'desired_education' => $request->desiredQualification,
-                ]);
-
-        
+        //
     }
 
     /**

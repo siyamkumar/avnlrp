@@ -56,7 +56,7 @@
                 @endforeach
             </select>
 
-            @error('job_location_id')
+            @error('location_unit_id')
                 <div class="invalid-feedback">
                     {{ $message }}
                 </div>

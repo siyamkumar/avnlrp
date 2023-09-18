@@ -2,7 +2,9 @@
 
 namespace App\Models;
 
+use App\Models\Applicants\ApplicationReferenceNumber;
 use App\Models\JobPosting\AgeCriteria;
+use App\Models\JobPosting\EducationCriteria;
 use App\Models\JobPosting\ReservationAgeRelaxation;
 use App\Models\JobPosting\ReservationVacancyRelaxation;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -42,6 +44,10 @@ class JobPosting extends Model
         return $this->hasOne(AgeCriteria::class);
     }
 
+    public function educationcriteria(){
+        return $this->hasOne(EducationCriteria::class, 'job_posting_id');
+    }
+
     public function locationunit(){
         return $this->belongsTo(LocationUnit::class, 'location_unit_id');
     }
@@ -52,5 +58,9 @@ class JobPosting extends Model
 
     public function reservationvacancyrelaxations(){
         return $this->hasMany(ReservationVacancyRelaxation::class, 'job_posting_id');
+    }
+
+    public function arns(){
+        return $this->hasMany(ApplicationReferenceNumber::class, 'job_posting_id');
     }
 }

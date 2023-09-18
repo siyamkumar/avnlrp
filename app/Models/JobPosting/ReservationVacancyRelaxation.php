@@ -2,6 +2,7 @@
 
 namespace App\Models\JobPosting;
 
+use App\Models\JobPosting;
 use App\Models\ReservationCategory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -17,7 +18,13 @@ class ReservationVacancyRelaxation extends Model
         'vacancy',
     ];
 
+    
+
     public function reservationcategories(){
         return $this->belongsTo(ReservationCategory::class, 'reservation_category_id');
+    }
+
+    public function jobpostings(){
+        return $this->belongsTo(JobPosting::class, 'job_posting_id');
     }
 }
