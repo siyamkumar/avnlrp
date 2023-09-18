@@ -45,12 +45,7 @@
                                             <x-icons.delete href="" />
                                         </td>
                                 @endforeach
-
-
-
-
                             </tbody>
-
                         </table>
                     </div>
                 </div>

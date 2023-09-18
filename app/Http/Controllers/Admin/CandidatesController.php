@@ -6,6 +6,10 @@ use App\Http\Controllers\Controller;
 use App\Models\Applicants\ApplicationReferenceNumber;
 
 use Illuminate\Http\Request;
+// use App\Http\Controllers\Controller;
+use App\Models\PersonalDetail;
+
+
 
 class CandidatesController extends Controller
 {
@@ -25,6 +29,9 @@ class CandidatesController extends Controller
     public function create()
     {
         //
+
+
+
     }
 
     /**
@@ -40,7 +47,8 @@ class CandidatesController extends Controller
      */
     public function show(string $id)
     {
-        //
+
+
     }
 
     /**

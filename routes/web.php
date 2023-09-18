@@ -14,7 +14,7 @@ use App\Http\Controllers\Applicants\NextStepsController;
 use App\Http\Controllers\Applicants\PersonalDetailsController;
 use App\Http\Controllers\Applicants\PostGraduationEducationController;
 use App\Http\Controllers\Applicants\SecondaryEducationController;
-
+use App\Http\Controllers\Applicants\ItiDiplomaDetailsController;
 use App\Http\Controllers\Applicants\StatusController;
 use App\Http\Controllers\AuthOTPController;
 use App\Http\Controllers\CandidateSessionController;
@@ -116,6 +116,10 @@ Route::middleware('candidateAuth')->group(function () {
         ->name('candidatelogout');
 
     Route::get('education-details', EducationController::class)->name('educationdetails');
+
+
+
+  
 });
 
 
@@ -127,9 +131,46 @@ Route::controller(AuthOTPController::class)->group(function () {
     Route::post('/otp/generate', 'generate')->name('otp.generate');
     Route::get('/otp/verification/{candidate_id}', 'verification')->name('otp.verification');
     Route::post('/otp/login', 'loginWithOtp')->name('otp.getlogin');
+
+    Route::post('candidate-logout', [CandidateSessionController::class, 'destroy'])
+        ->name('candidatelogout');
+
+    Route::get('education-details', EducationController::class)->name('educationdetails');
+    Route::resource('itidiplomadetails', ItiDiplomaDetailsController::class);
+    Route::resource('secondaryeducationdetails', SecondaryEducationController::class);
+    // Route::resource('experiencedetails', ExperienceDetailController::class);
+
+    Route::get('higher-secondary-details', function () {
+        return view('applicants.next-steps.higher-secondary-school');
+    });
+
+    Route::get('graduation-details', function () {
+        return view('applicants.next-steps.graduation-details');
+    });
+
+
+    Route::get('post-graduation-details', function () {
+        return view('applicants.next-steps.post-graduation-details');
+    });
+
+    Route::get('post-graduation-details', function () {
+        return view('applicants.next-steps.post-graduation-details');
+    });
+
+    Route::get('iti-details', function () {
+        return view('applicants.next-steps.iti');
+    });
+
+    Route::get('diploma-details', function () {
+        return view('applicants.next-steps.diploma-details');
+    });
 });
 
-
+Route::get('template',function()
+{
+    return view('email-template');
+});
+  
 Route::resource('jobs', PublicJobPostingController::class)->only(['index', 'show']);
 
 require __DIR__ . '/auth.php';

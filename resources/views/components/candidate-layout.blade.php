@@ -4,8 +4,7 @@
         <x-toast :message="session('message')" :status="session('status')" />
     @endif
 
-    <div class="container mt-5 mb-3 application-container" >
-
+    <div class="container mt-5 mb-3 application-container">
 
 
         <div class="row pt-3 ">
@@ -16,7 +15,15 @@
 
                         <div class="bg-white d-flex align-items-center">
                             <div class="me-3">
-                                <img class="rounded-circle" src="https://placehold.co/75x75">
+
+
+                                @if (auth()->guard('applicants')->user()->personaldetails)
+                                    <img class="rounded-circle"
+                                        src="{{ url('storage/public/photo/' .auth()->guard('applicants')->user()->personaldetails->photo_path ??'') }} "
+                                        width="75" height="75">
+                                @endif
+
+
                             </div>
                             <div>
                                 <h5 class="">{{ auth()->guard('applicants')->user()->fullname ?? '' }}</h5>
@@ -147,17 +154,17 @@
             </div>
             <div class="col-md-9">
 
-               
-                    @if (isset($candidateheader))
-                        <div class="d-flex justify-content-between pt-3 mb-3 w-100 align-items-center">
-                            
-                                {{ $candidateheader }}
-                            
 
-                        </div>
-                    @endif
+                @if (isset($candidateheader))
+                    <div class="d-flex justify-content-between pt-3 mb-3 w-100 align-items-center">
 
-               
+                        {{ $candidateheader }}
+
+
+                    </div>
+                @endif
+
+
 
                 <x-card>
                     {{ $slot }}

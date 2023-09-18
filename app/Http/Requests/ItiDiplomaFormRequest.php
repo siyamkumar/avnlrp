@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class GraduationEducationFormRequest extends FormRequest
+class ItiDiplomaFormRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -25,21 +25,19 @@ class GraduationEducationFormRequest extends FormRequest
     {
         return [
             'candidate_id' => 'required',
-            'course_name' => 'required',
-            'college_name' => 'required',
-            'university_name' => 'required',
+            'courseName' => 'required',
+            'collegeName' => 'required',
+            'universityName' => 'required',
             'year_of_passing' => 'required',
             'score' => 'required',
-            'marksheet_path' =>'required|max:50'
-            
+            'marksheet_path'=>'required|max:50',
         ];
     }
-
     protected function prepareForValidation()
     {
 
         $this->merge([
-            'candidate_id' => auth()->guard('applicants')->user()->id,
+            'candidate_id'=> auth()->guard('applicants')->user()->id,
         ]);
     }
 }

@@ -19,7 +19,8 @@
 
                 <li class="nav-item text-center" role="presentation">
                     <x-icons.checknotok />
-                    <a class="nav-link pt-0" id="qualification-tab" data-bs-toggle="tab" href="#tab-qualification"
+                    <a class="nav-link pt-0 {{ request()->routeIs('itidiplomadetails.*') ? 'active' : '' }}" id="qualification-tab" data-bs-toggle="tab" 
+                        href="{{ route('itidiplomadetails.index') }}"
                         role="tab" aria-selected="false">ITI/Diploma Education</a>
                 </li>
 

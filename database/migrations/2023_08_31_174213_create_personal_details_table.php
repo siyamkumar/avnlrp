@@ -27,6 +27,8 @@ return new class extends Migration
             $table->string('city');
             $table->foreignIdFor(RegionState::class);
             $table->string('pin_code');
+            $table->string('photo_path');
+            $table->string('sign_path');
             $table->timestamps();
             $table->softDeletes();
         });

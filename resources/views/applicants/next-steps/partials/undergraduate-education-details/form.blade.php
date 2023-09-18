@@ -31,7 +31,7 @@
     
     <div class="col-md-4">
         <label for="'marksheet_path'" class="form-label">Degree Upload</label>
-        <input class="form-control" type="file" id="'marksheet_path'" name="'marksheet_path'">
+        <input type="file" name="marksheet_path" class="filepond"/>
     </div>
 
 

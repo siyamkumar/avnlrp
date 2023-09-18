@@ -45,13 +45,14 @@
     </div>
 
     <div class="col-md-4">
-        <label for="form12thFile" class="form-label">Document Upload</label>
-        <input class="form-control  @error('marksheet_path') is-invalid @enderror" type="file" id="marksheet_path"
-            name="marksheet_path">
+        <label for="form12thFile" class="form-label">Certificate Upload <span style="color:red">*</span></label>
+        <input type="file" name="marksheet_path" class="filepond"/>
+      
         @error('marksheet_path')
             <div class="invalid-feedback">
                 {{ $message }}
             </div>
         @enderror
     </div>
+    
 </div>
