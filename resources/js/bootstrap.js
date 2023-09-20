@@ -9,6 +9,14 @@ import * as Popper from '@popperjs/core';
 import * as FilePond from 'filepond';
 
 import 'filepond/dist/filepond.min.css';
+
+import FilePondPluginImagePreview from 'filepond-plugin-image-preview';
+
+// Import the plugin styles
+import 'filepond-plugin-image-preview/dist/filepond-plugin-image-preview.css';
+
+// Register the plugin
+FilePond.registerPlugin(FilePondPluginImagePreview);
 window.Popper = Popper;
 
 // import '../../node_modules/bootstrap/dist/js/bootstrap.js';
