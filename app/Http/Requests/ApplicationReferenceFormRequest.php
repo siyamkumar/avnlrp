@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class ExperienceDetailFormRequest extends FormRequest
+class ApplicationReferenceFormRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -12,9 +12,8 @@ class ExperienceDetailFormRequest extends FormRequest
     public function authorize(): bool
     {
         if (auth()->guard('applicants')->user())
-        return true;
-    return false;
-        
+            return true;
+        return false;
     }
 
     /**
@@ -22,25 +21,17 @@ class ExperienceDetailFormRequest extends FormRequest
      *
      * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array|string>
      */
-
- 
     public function rules(): array
     {
         return [
             'candidate_id' => 'required',
-            'companyName' => 'required',
-            'postName' => 'required',
-            'periodFrom' => 'required',
-            'periodTo' => 'required|after:periodFrom',
-            'payScale' => 'required|integer',
-            'ctc' => 'required',
-           'experience_path' => 'required|max:50',
-            'jobsSummary' => 'required',
-            'jobType' => 'required',
+            'mode_of_payment' => 'required',
+            'payment_proof' => 'required|max:50',
+           
+            
         ];
     }
-          
-    
+
     protected function prepareForValidation()
     {
 

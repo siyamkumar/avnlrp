@@ -20,5 +20,6 @@ class ExperienceDetail extends Model
         'ctc' ,
         'experience_path' ,
         'jobsSummary' ,
+        'jobType',
     ];
 }

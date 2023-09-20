@@ -145,7 +145,7 @@
         <label for="aadhaarNo" class="form-label"> Aadhaar Number</label>
         <input type="text" class="form-control @error('aadhaarNo') is-invalid @enderror" id="aadhaarNo"
             name="aadhaarNo" value="{{ old('aadhaarNo', $personaldetail->aadhaarNo ?? '') }}"
-            placeholder="XXXX-XXXX-XXXX" @if($personaldetail) @if($personaldetail->aadhaarNo) disabled @endif @endif />
+            placeholder="XXXX-XXXX-XXXX" @if($personaldetail) @if($personaldetail->aadhaarNo) enabled @endif @endif />
         @error('aadhaarNo')
             <div class="invalid-feedback">
                 {{ $message }}

@@ -1,4 +1,6 @@
-<form method="POST" action="{{ route('postgraduationeducationdetails.update', $postgraduationeducationdetail) }}">
+<form method="POST" action="{{ route('postgraduationeducationdetails.update', $
+
+) }}">
 
     @csrf @method('PATCH')
 

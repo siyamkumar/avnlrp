@@ -16,6 +16,7 @@ use App\Http\Controllers\Applicants\PostGraduationEducationController;
 use App\Http\Controllers\Applicants\SecondaryEducationController;
 use App\Http\Controllers\Applicants\ItiDiplomaDetailsController;
 use App\Http\Controllers\Applicants\StatusController;
+use App\Http\Controllers\Applicants\ApplicationReferenceNumberController;
 use App\Http\Controllers\AuthOTPController;
 use App\Http\Controllers\CandidateSessionController;
 use App\Http\Controllers\DashboardController;
@@ -31,6 +32,8 @@ use App\Http\Controllers\JobPostingController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\PublicJobPostingController;
 use App\Models\Applicants\GraduationEducationDetail;
+
+
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -106,7 +109,7 @@ Route::middleware('candidateAuth')->group(function () {
     Route::resource('jobapplication.graduationeducationdetails', GraduationEducationController::class);
     Route::resource('jobapplication.postgraduationeducationdetails', PostGraduationEducationController::class);
     Route::resource('jobapplication.experiencedetails', ExperienceController::class);
-    
+    Route::resource('jobapplication.paymentdetails',ApplicationReferenceNumberController ::class);
     
 
 
