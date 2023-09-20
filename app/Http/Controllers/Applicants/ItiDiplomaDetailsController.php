@@ -8,6 +8,7 @@ use App\Http\Requests\ItiDiplomaFormRequest;
 use App\Models\Applicants\ItiDiplomaDetail;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use App\Models\Applicants\ApplicationReferenceNumber;
 
 class ItiDiplomaDetailsController extends Controller
 {
@@ -42,16 +43,26 @@ class ItiDiplomaDetailsController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(ItiDiplomaFormRequest $request)
+    public function store(ItiDiplomaFormRequest $request, ApplicationReferenceNumber $jobapplication)
     {
-        //dd($request); 
-        $file = $request->file('marksheet_path');
-//dd($file);
-        $fileName = $file->getClientOriginalName();
-      // dd($fileName);
-        $upload = Storage::putFileAs("certificate", $file, $fileName);
+        if ($request->file('marksheet_path')) {
+            $file = $request->file('marksheet_path');
+            ItiDiplomaDetail::create(
+                array_merge(
+                    $request->validated(),
+                    [
+                        'application_reference_number_id' => $jobapplication->id,
+                        'marksheet_path' => Storage::putFileAs('documents/' . $request->candidate_id . '/itidiploma', $request->file('marksheet_path'), $file->getClientOriginalName()),
+                        'file_name' => $file->getClientOriginalName(),
+                        'file_size' => $file->getSize(),
+                        'file_type' => $file->getClientOriginalExtension(),
+                    ]
+                )
+            );
+        } else {
+            ItiDiplomaDetail::create($request->validated());
+        }
 
-        ItiDiplomaDetail::create (array_merge($request->all(),['marksheet_path'=>$fileName]));
         return redirect()->route('itidiplomadetails.index');
         
     }
@@ -66,10 +77,10 @@ class ItiDiplomaDetailsController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(ItiDiplomaDetail $itidiplomadetail)
+    public function edit(ApplicationReferenceNumber $jobapplication,ItiDiplomaDetail $itidiplomadetail)
     {
         
-        return view('applicants.next-steps.itidiploma-details', compact('itidiplomadetail'));
+        return view('applicants.next-steps.itidiploma-details', compact('jobapplication','itidiplomadetail'));
 
 
     }
@@ -77,11 +88,20 @@ class ItiDiplomaDetailsController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(ItiDiplomaFormRequest $request, ItiDiplomaDetail $itidiplomadetail)
+    public function update(ItiDiplomaFormRequest $request, ApplicationReferenceNumber $jobapplication, ItiDiplomaDetail $itidiplomadetail)
     {
-         $itidiplomadetail->fill($request->validated());
-            $itidiplomadetail->save();
-        return redirect()->route('itidiplomadetails.index')->with('success',' Details Update successfully');
+        if ($request->file('filepond')) {
+            $file = $request->file('filepond');
+            $itidiplomadetail->marksheet_path = Storage::putFileAs('documents/' . $request->candidate_id . '/itidiploma', $file, $file->getClientOriginalName());
+            $itidiplomadetail->file_name = $file->getClientOriginalName();
+            $itidiplomadetail->file_size = $file->getSize();
+            $itidiplomadetail->file_type = $file->getClientOriginalExtension();
+        }
+
+        $itidiplomadetail->fill($request->validated());
+
+        $itidiplomadetail->save();
+        return redirect()->route('jobapplication.edit', $jobapplication);
     }
 
     /**

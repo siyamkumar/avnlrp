@@ -28,7 +28,7 @@ class PersonalDetailsFormRequest extends FormRequest
             'fatherName' => 'required|string',
             'gender' => 'required',
             'dob' => 'required',
-            'category' => 'required',
+            'reservation_category_id' => 'required',
             'aadhaarNo'  => 'required|digits:12',
             'pan'  => 'required|string|min:10|max:10',
             'address_line_1' => 'required',
@@ -48,4 +48,14 @@ class PersonalDetailsFormRequest extends FormRequest
             'candidate_id' => auth()->guard('applicants')->user()->id,
         ]);
     }
+
+    public function messages(): array
+{
+    return [
+        'pan.max' => 'Enter a valid PAN',
+        'pan.min' => 'Enter a valid PAN',
+        'pin_code.digits' => 'Enter a valid pincode',
+    ];
+}
+
 }

@@ -21,6 +21,9 @@ class ExperienceDetail extends Model
         'ctc' ,
         'experience_path' ,
         'jobsSummary' ,
+        'file_name',
+        'file_type',
+        'file_size'
     ];
 
     protected $casts = [

@@ -15,7 +15,7 @@
 
     <div class="col-md-4">
 
-        <label for="gender" class="form-label">Gender </label>
+        <label for="gender" class="form-label">Gender*</label>
 
         <div>
             <div class="form-check form-check-inline">
@@ -43,9 +43,10 @@
     </div>
 
     <div class="col-md-4">
+       
         <label for="dob" class="form-label">Date of Birth </label>
-        <input type="date" class="form-control @error('dob') is-invalid @enderror" id="dob" name="dob"
-            value="{{ old('dob', $personaldetail->dob ?? '') }}">
+        <input type="date" class="form-control @error('dob') is-invalid @enderror" id="dob" name="dob" 
+            value="{{ old('dob', $personaldetail ? ( $personaldetail->dob ? $personaldetail->dob->format('Y-m-d'): ''):'') }}">
 
         @error('dob')
             <div class="invalid-feedback">
@@ -55,21 +56,23 @@
     </div>
 
     <div class="col-md-4">
-        <label for="category" class="form-label">Category</label>
-        <select id="category" name="category" class="form-control @error('category') is-invalid @enderror">
-            <option value="">-Select-</option>
-            <option value="SC/ST" @if (old('category', $personaldetail->category ?? '') == 'SC/ST') selected @endif>SC/ST </option>
-            <option value="OBC" @if (old('category', $personaldetail->category ?? '') == 'OBC') selected @endif>OBC</option>
-            <option value="EWS" @if (old('category', $personaldetail->category ?? '') == 'EWS') selected @endif>EWS</option>
-            <option value="UR" @if (old('category', $personaldetail->category ?? '') == 'UR') selected @endif>UR</option>
-            <option value="PWD" @if (old('category', $personaldetail->category ?? '') == 'PWD') selected @endif>PWD</option>
+
+        <label for="" class="form-label ">Reservation Category</label>
+        <select class="form-select @error('reservation_category_id') is-invalid @enderror"
+            name="reservation_category_id">
+            <option value="">Select Category</option>
+            @foreach ($reservation_categories as $reservation_category)
+                <option value="{{ $reservation_category->id }}"
+                    {{ old('reservation_category_id', $personaldetail ? $personaldetail->reservation_category_id : '') == $reservation_category->id ? 'selected' : '' }}>
+                    {{ $reservation_category->name }} | {{ $reservation_category->code }}</option>
+            @endforeach
         </select>
-        @error('category')
+
+        @error('reservation_category_id')
             <div class="invalid-feedback">
                 {{ $message }}
             </div>
         @enderror
-
     </div>
 
     <div class="col-md-12">
@@ -114,14 +117,14 @@
     </div>
 
     <div class="col-md-4">
-        <select class="form-control @error('state') is-invalid @enderror" id="region_state_id" name="region_state_id">
+        <select class="form-control @error('region_state_id') is-invalid @enderror" id="region_state_id" name="region_state_id">
             <option value="" selected>Select State</option>
             @foreach ($region_states as $state)
-                <option value="{{ $state->id }}" @if (old('state_id', $personaldetail->region_state_id ?? '') == $state->id) selected @endif>
+                <option value="{{ $state->id }}" @if (old('region_state_id', $personaldetail->region_state_id ?? '') == $state->id) selected @endif>
                     {{ $state->state_name }}</option>
             @endforeach
         </select>
-        @error('state')
+        @error('region_state_id')
             <div class="invalid-feedback">
                 {{ $message }}
             </div>
@@ -142,7 +145,7 @@
         <label for="aadhaarNo" class="form-label"> Aadhaar Number</label>
         <input type="text" class="form-control @error('aadhaarNo') is-invalid @enderror" id="aadhaarNo"
             name="aadhaarNo" value="{{ old('aadhaarNo', $personaldetail->aadhaarNo ?? '') }}"
-            placeholder="XXXX-XXXX-XXXX">
+            placeholder="XXXX-XXXX-XXXX" @if($personaldetail) @if($personaldetail->aadhaarNo) disabled @endif @endif />
         @error('aadhaarNo')
             <div class="invalid-feedback">
                 {{ $message }}
@@ -189,4 +192,5 @@ FilePond.create(inputElement, {
         <input type="file" name="sign_path" id="sign_path" class="filepond"  value="{{ old('sign_path', $personaldetail->sign_path ?? '') }}" 
                 accept="image/*"/>
     </div>
+    </div>   
 </div>

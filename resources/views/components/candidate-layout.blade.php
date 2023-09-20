@@ -1,4 +1,3 @@
-
 <x-guest-layout>
 
     @if (session('message'))
@@ -16,16 +15,14 @@
 
                         <div class="bg-white d-flex align-items-center">
                             <div class="me-3">
-                                {{-- <img class="rounded-circle" src="https://placehold.co/75x75"> --}}
-                                {{-- <a href="{{ route('experiencedetails.show',$item->id) }}" data-bs-toggle="modal" data-bs-target="#modalimg" >{{ $item->experience_path }}</a> --}}
-                            {{-- dd{{auth()->guard('applicants')->user()}} --}}
 
-                            @if(auth()->guard('applicants')->user()->personaldetails)
-                            
-                                <img class="rounded-circle" src="{{url('storage/public/photo/'.auth()->guard('applicants')->user()->personaldetails->photo_path ?? '') }} " width="75" height="75">
 
+                                @if (auth()->guard('applicants')->user()->personaldetails)
+                                    <img class="rounded-circle"
+                                        src="{{ url('storage/public/photo/' .auth()->guard('applicants')->user()->personaldetails->photo_path ??'') }} "
+                                        width="75" height="75">
                                 @endif
-                                
+
 
                             </div>
                             <div>
@@ -88,7 +85,7 @@
                         </li>
 
 
-                        <li class="list-group-item nav-item mb-3 border">
+                        {{-- <li class="list-group-item nav-item mb-3 border">
                             <a href="{{ route('educationdetails') }}" class="nav-link d-flex align-items-center">
 
                                 <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"
@@ -110,9 +107,9 @@
 
                                 My Academia
                             </a>
-                        </li>
+                        </li> --}}
 
-                        <li class="list-group-item  nav-item mb-3 border rounded-0">
+                        {{-- <li class="list-group-item  nav-item mb-3 border rounded-0">
                             <a href="{{ route('experiencedetails.index') }}" class="nav-link d-flex align-items-center">
 
                                 <svg version="1.0" id="Layer_1" xmlns="http://www.w3.org/2000/svg"
@@ -133,7 +130,7 @@
 
 
                         </li>
-
+ --}}
 
 
 
@@ -157,17 +154,17 @@
             </div>
             <div class="col-md-9">
 
-               
-                    @if (isset($candidateheader))
-                        <div class="d-flex justify-content-between pt-3 mb-3 w-100 align-items-center">
-                            
-                                {{ $candidateheader }}
-                            
 
-                        </div>
-                    @endif
+                @if (isset($candidateheader))
+                    <div class="d-flex justify-content-between pt-3 mb-3 w-100 align-items-center">
 
-               
+                        {{ $candidateheader }}
+
+
+                    </div>
+                @endif
+
+
 
                 <x-card>
                     {{ $slot }}

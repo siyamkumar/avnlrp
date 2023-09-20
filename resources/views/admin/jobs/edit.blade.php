@@ -9,9 +9,12 @@
             </div>
 
             <div class="col-auto align-self-end">
-                <form action="">
-                    <button type="submit" class="btn btn-primary "> Publish Job Posting </button>
-                </form>
+
+                @if ($jobposting->status == 'draft')
+                    <form action="">
+                        <button type="submit" class="btn btn-primary "> Publish Job Posting </button>
+                    </form>
+                @endif
             </div>
 
 
@@ -59,6 +62,8 @@
 
             </div>
             <div class="col-md-9">
+
+
                 <div class="card shadow-none border border-300 mb-3 ">
 
                     <div class="card-body p-0">
@@ -111,9 +116,9 @@
                     <div class="tab-pane fade show" id="tab-summary" role="tabpanel" aria-labelledby="summary-tab">
 
                         @if ($jobposting->vacancy > 1)
-                        @include('admin.jobs.partials.vacancy')
+                            @include('admin.jobs.partials.vacancy')
                         @endif
-                      
+
 
                         @include('admin.jobs.partials.summary')
                     </div>
@@ -136,8 +141,7 @@
                                 <div class="row">
                                     <div class="col-md-6 mb-3">
                                         <label class="col-form-label" for="jobSpecification">Job Specification</label>
-                                        <textarea name="jobSpecification" id="jobSpecification" class="form-control" placeholder="Please enter Job Requirement">{{ old('jobSpecification') }}
-                                        </textarea>
+                                        <textarea name="jobSpecification" id="jobSpecification" class="form-control" placeholder="Please enter Job Requirement">{{ old('jobSpecification') }}</textarea>
                                     </div>
 
                                     <div class="col-md-6 mb-3">
@@ -145,8 +149,7 @@
                                         <label class="col-form-label" for="jobKnowledge">Knowledge</label>
 
                                         <textarea name="jobKnowledge" id="jobKnowledge" cols="30" class="form-control"
-                                            placeholder="Please enter Job Knowledge">{{ old('jobKnowledge') }}
-                                        </textarea>
+                                            placeholder="Please enter Job Knowledge">{{ old('jobKnowledge') }}</textarea>
                                     </div>
 
                                     <div class="col-md-6 mb-3">
@@ -154,8 +157,7 @@
                                         <label class="col-form-label" for="jobSkillCompetency">Skills</label>
 
                                         <textarea name="jobSkillCompetency" id="jobSkillCompetency" cols="30" class="form-control"
-                                            placeholder="Please enter Skill Competency">{{ old('jobSkillCompetency') }}
-                                        </textarea>
+                                            placeholder="Please enter Skill Competency">{{ old('jobSkillCompetency') }}</textarea>
                                     </div>
 
                                     <div class="col-md-12">

@@ -21,14 +21,14 @@
                         @enderror
 
                         @error('otpexpired')
-                        <div class="alert alert-danger" role="alert">
-                            <strong>{{ $message }}</strong>
-                        </div>
+                            <div class="alert alert-danger" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </div>
                         @enderror
 
                         <div class="form-group mb-3">
-
-
+{{$otp_code ?? ''}}
+                                {{ $login_otp ? $login_otp->otp : ''}}
                             <input id="otp" type="text" class="form-control @error('otp') is-invalid @enderror"
                                 name="otp" value="{{ old('otp') }}" required autocomplete="otp" autofocus
                                 placeholder="Enter OTP">

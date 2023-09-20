@@ -20,6 +20,11 @@ class ApplicationReferenceNumber extends Model
         'payment_proof',
         'status',
         'isSubmitted',
+        'submitted_at'
+    ];
+
+    protected $casts = [
+        'submitted_at' => 'date'
     ];
 
     public function jobpostings(){
@@ -27,5 +32,21 @@ class ApplicationReferenceNumber extends Model
     }
     public function candidates(){
         return $this->belongsTo(Candidate::class, 'candidate_id');
+    }
+
+     public function secondaryeducationdetails(){
+        return $this->hasOne(SecondaryEducationDetail::class);
+    }
+
+    public function highersecondaryeducationdetails(){
+        return $this->hasOne(HigherSecondaryEducationDetail::class);
+    }
+
+    public function graduationeducationdetails(){
+        return $this->hasMany(GraduationEducationDetail::class);
+    }
+
+    public function postgraduationeducationdetails(){
+        return $this->hasMany(PostGraduationEducationDetail::class);
     }
 }

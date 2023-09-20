@@ -30,7 +30,7 @@
                 <td>{{ ++$key }} </td>
                 <td>{{ $item->companyName }} </td>
                 <td>{{ $item->postName }}</td>
-                <td>{{ Carbon\Carbon::parse ($item->periodFrom)->format('M, Y') }}- {{ Carbon\Carbon::parse ($item->periodTo)->format('M, Y') }}</td>
+                <td>{{ $item->periodFrom->format('M, Y') }}- {{$item->periodTo->format('M, Y') }}</td>
                 <td>{{ $item->payScale }}</td>
                 <td>{{ $item->ctc }}</td>
                 <td>{{ $item->jobsSummary }}</td>

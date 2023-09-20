@@ -22,33 +22,32 @@
 
                             @foreach ($applications as $key => $app)
                                 <tr>
-                                    <td> {{$key+1}}</td>
+                                    <td> {{ $key + 1 }}</td>
                                     <td> {{ $app->arn }}</td>
-                                    <td> {{ $app->jobpostings->jobTitle }} </td>
-                                    <td> {{ $app->candidates->fullname }} </td>
-                                    <td> {{ $app->candidates->personaldetails->gender }}</td>
+                                    <td> {{ $app->jobpostings->jobTitle ?? '' }} </td>
+                                    <td> {{ $app->candidates->fullname ?? '' }} </td>
+                                    <td> {{ $app->candidates->personaldetails->gender ?? '' }}</td>
                                     <td>
-
+                                        {{-- 
                                         @php
                                             $date = Carbon::parse($app->candidates->personaldetails->dob);
                                             $now = Carbon::parse($app->jobpostings->jobPostingDate);
                                             
                                         @endphp
-                                        {{ $date->diffInYears($now) }}
+                                        {{ $date->diffInYears($now) }} --}}
                                     </td>
                                     <td>
-                                        {{ $app->candidates->personaldetails->category }}
+                                        {{-- {{ $app->candidates->personaldetails->category }} --}}
                                     </td>
                                     <td>
-
                                         <small
-                                        class="d-inline-flex px-2 py-1 fw-semibold text-bg-light bg-light bg-opacity-10 border border-success border-opacity-10 rounded-2">
-                                        
-                                        {{$app->status}}</small>
-                                        
+                                            class="d-inline-flex px-2 py-1 fw-semibold text-bg-light bg-light bg-opacity-10 border border-success border-opacity-10 rounded-2">
+                                            {{ $app->status }}
+                                        </small>
                                     </td>
-                                    <td>
-                                        <x-icons.verify href="" />
+                                    
+                                       <td>
+                                        <x-icons.verify href="{{ route('arn.show', $app) }} " />
                                     </td>
                                 </tr>
                             @endforeach
@@ -172,7 +171,7 @@
 
 
             {{ $applications->links() }}
-           
+
         </div>
     </div>
 </x-app-layout>

@@ -46,7 +46,7 @@ class Candidate extends Model implements AuthorizableContract, AuthenticatableCo
     public function postgraduationeducationdetails(){
         return $this->hasOne(PostGraduationEducationDetail::class);
     }
-    public function ItiDiplomaDetails(){
+    public function itidiplomadetails(){
         return $this->hasOne(ItiDiplomaDetail::class);
     }
     public function jobapplications(){

@@ -8,42 +8,43 @@
                     <label class="col-sm-3 col-form-label">Minimum
                         Education</label>
 
+
                     <div class="col-sm-8">
                         <div class="form-check form-check-inline">
                             <input class="form-check-input" type="checkbox" id="minEducation10"
-                                name="reqEducation[]" value="10th">
+                                name="reqEducation[]" value="10th" @if(in_array('10th', $jobposting->educationcriteria->min_qualification)) checked @endif>
                             <label class="form-check-label"
                                 for="minEducation10">10<sup>th</sup></label>
                         </div>
 
                         <div class="form-check form-check-inline">
                             <input class="form-check-input" type="checkbox" id="minEducation12"
-                                name="reqEducation[]" value="12th">
+                                name="reqEducation[]" value="12th" @if(in_array('12th', $jobposting->educationcriteria->min_qualification)) checked @endif>
                             <label class="form-check-label"
                                 for="minEducation12">12<sup>th</sup></label>
                         </div>
 
                         <div class="form-check form-check-inline">
                             <input class="form-check-input" type="checkbox"
-                                id="minEducationIti" name="reqEducation[]" value="ITI">
+                                id="minEducationIti" name="reqEducation[]" value="ITI" @if(in_array('ITI', $jobposting->educationcriteria->min_qualification)) checked @endif>
                             <label class="form-check-label"
                                 for="minEducationIti">ITI</sup></label>
                         </div>
 
                         <div class="form-check form-check-inline">
                             <input class="form-check-input" type="checkbox"
-                                id="minEducationDiploma" name="reqEducation[]" value="Diploma">
+                                id="minEducationDiploma" name="reqEducation[]" value="Diploma" @if(in_array('Diploma', $jobposting->educationcriteria->min_qualification)) checked @endif>
                             <label class="form-check-label"
                                 for="minEducationDiploma">Diploma</sup></label>
                         </div>
 
                         <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="checkbox" id="minEducationUg" name="reqEducation[]" value="UG">
+                            <input class="form-check-input" type="checkbox" id="minEducationUg" name="reqEducation[]" value="UG" @if(in_array('UG', $jobposting->educationcriteria->min_qualification)) checked @endif>
                             <label class="form-check-label" for="minEducationUg">UG</label>
                         </div>
 
                         <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="checkbox" id="minEducationPg" name="reqEducation[]" value="PG">
+                            <input class="form-check-input" type="checkbox" id="minEducationPg" name="reqEducation[]" value="PG" @if(in_array('PG', $jobposting->educationcriteria->min_qualification)) checked @endif>
                             <label class="form-check-label" for="minEducationPg">PG</sup></label>
                         </div>
 

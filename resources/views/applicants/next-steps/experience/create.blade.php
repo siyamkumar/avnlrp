@@ -6,22 +6,14 @@
         </h2>
     </x-slot>
 
-    {{-- //{{dd($experiencedetail)}} --}}
-    @vite('resources/js/app.js')
-    <form method="POST" action="{{ route('experiencedetails.store') }}" enctype="multipart/form-data" >
-        @csrf
-    {{--  --}}
 
-    @include('applicants.next-steps.experience.form')
-       
-   
+    <form method="POST" action="{{ route('experiencedetails.store') }}" enctype="multipart/form-data">
+        @csrf
+
+        @include('applicants.next-steps.experience.form')
+
         <div class="mt-3">
             <button type="submit" class="btn btn-primary"> Save & Continue </button>
         </div>
-
-
-
-
-
     </form>
 </x-candidate-layout>

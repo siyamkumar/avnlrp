@@ -1,4 +1,5 @@
-<form method="POST" action="{{ route('secondaryeducationdetails.update', $secondaryeducationdetail) }}" id="myForm" enctype='multipart/form-data'>
+<x-candidate-layout>
+<form method="POST" action="{{ route('jobapplication.secondaryeducationdetails.update', [$jobapplication, $secondaryeducationdetail]) }}" id="myForm" enctype='multipart/form-data'>
     @csrf @method('PATCH')
 
     @include('applicants.next-steps.partials.secondary-education-details.form')
@@ -16,3 +17,4 @@
 
     </div>
 </form>
+</x-candidate-layout>
