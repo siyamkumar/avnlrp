@@ -21,8 +21,8 @@ class PersonalDetail extends Model
         'city',
         'region_state_id',
         'pin_code',
-        // 'photo_path',
-        // 'sign_path',
+        'photo_path',
+        'sign_path',
     ];
 
     

@@ -160,7 +160,7 @@
             </div>
         @enderror
     </div>
-    {{-- <div class="col-md-6">
+    <div class="col-md-6">
         <label for="photo_path" class="form-label"> Photo Upload <span style="color:red">*</span> </label>
         <input type="file" name="photo_path" class="filepond"  value="{{ old('photo_path', $personaldetail->photo_path ?? '') }}" 
                 accept="image/*" />
@@ -168,15 +168,15 @@
 
     <script type="module">
 
-const inputElement1 = document.getElementByName('sign_path');
+const inputElement = document.getElementById('sign_path');
 
-FilePond.create(inputElement1, {
+FilePond.create(inputElement, {
     allowImagePreview: true,
     allowMultiple: false,
     labelIdle: `Drag & Drop  Image or <span class="filepond--label-action">Browse</span>`,
     credits: false,
     storeAsFile: true,
-    size:0.05,
+    
    
 
 });
@@ -185,7 +185,7 @@ FilePond.create(inputElement1, {
 
     <div class="col-md-6">
         <label for="sign_path" class="form-label"> Signature Upload  <span style="color:red">*</span></label>
-        <input type="file" name="sign_path" class="filepond"  value="{{ old('sign_path', $personaldetail->sign_path ?? '') }}" 
+        <input type="file" name="sign_path" id="sign_path" class="filepond"  value="{{ old('sign_path', $personaldetail->sign_path ?? '') }}" 
                 accept="image/*"/>
-    </div> --}}
+    </div>
 </div>
