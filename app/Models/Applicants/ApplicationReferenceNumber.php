@@ -49,4 +49,8 @@ class ApplicationReferenceNumber extends Model
     public function postgraduationeducationdetails(){
         return $this->hasMany(PostGraduationEducationDetail::class);
     }
+
+    public function experiencedetails(){
+        return $this->hasMany(ExperienceDetail::class, 'application_reference_number_id');
+    }
 }

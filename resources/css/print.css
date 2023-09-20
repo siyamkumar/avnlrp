@@ -7,10 +7,6 @@
 }
 
 
-.arn-label {
- font-size:12pt;
-}
-
 .passport-photo{
     border: 1px solid black;
     width: 140px;
@@ -27,4 +23,7 @@
         margin: 0;
         box-shadow: 0;
     }
+
+
+   
 }

@@ -78,6 +78,9 @@
         {{ $slot }}
     </main>
 
+    @if (session('message'))
+        <x-toast :message="session('message')" :status="session('status')" />
+    @endif
 
     <footer class="footer bg-light w-100 ">
         <div class="container">
@@ -89,11 +92,22 @@
 
 
                 <ul class="navbar navbar-nav">
+                   
                     <li class="nav-item">
+                        @if(!auth()->guard('applicants')->check())
                         <a href="{{ route('login') }}" class="nav-link">Admin Login</a>
+                        @endif
+
+                    </li>
+                 
+                    <li class="nav-item">
+                        <a href=""  class="nav-link">Terms & Conditions</a>
                     </li>
 
                 </ul>
+
+
+
 
 
 

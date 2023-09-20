@@ -21,6 +21,7 @@ class ExperienceDetail extends Model
         'ctc' ,
         'experience_path' ,
         'jobsSummary' ,
+        'application_reference_number_id',
     ];
 
     protected $casts = [
@@ -30,5 +31,9 @@ class ExperienceDetail extends Model
 
     public function candidates(){
         return $this->belongsTo(Candidate::class);
+    }
+
+    public function arns(){
+        return $this->belongsTo(ApplicationReferenceNumber::class);
     }
 }

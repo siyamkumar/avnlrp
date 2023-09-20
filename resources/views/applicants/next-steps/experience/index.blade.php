@@ -55,7 +55,7 @@
 </div>
 <div class="modal-body">
 
-    <img src="{{ route('experiencedetails.show' ,$item->id) }}" alt="" width="400px" height="400px">
+    <img src="{{ route('experiencedetails.show', $item->id) }}" alt="" width="400px" height="400px">
 
 </div>
 <div class="modal-footer">

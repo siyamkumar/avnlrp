@@ -166,9 +166,9 @@
 
 
 
-                <x-card>
+              
                     {{ $slot }}
-                </x-card>
+              
 
 
             </div>

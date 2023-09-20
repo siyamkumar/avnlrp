@@ -6,8 +6,8 @@
         </h2>
     </x-slot>
 
-
-    <form method="POST" action="{{ route('experiencedetails.store') }}" enctype="multipart/form-data">
+    
+    <form method="POST" action="{{ route('jobapplication.experiencedetails.store', $jobapplication) }}" enctype="multipart/form-data">
         @csrf
 
         @include('applicants.next-steps.experience.form')

@@ -4,10 +4,12 @@ namespace App\Http\Controllers\Applicants;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ExperienceDetailFormRequest;
+use App\Models\Applicants\ApplicationReferenceNumber;
 use App\Models\Applicants\ExperienceDetail;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use DB;
+use Exception;
 
 class ExperienceController extends Controller
 {
@@ -20,19 +22,33 @@ class ExperienceController extends Controller
     }
 
 
-    public function create()
+    public function create(ApplicationReferenceNumber $jobapplication)
     {
-        return view('applicants.next-steps.experience.create');
+        return view('applicants.next-steps.experience.create', compact('jobapplication'));
     }
 
-    public function store(ExperienceDetailFormRequest $request)
+    public function store(ExperienceDetailFormRequest $request, ApplicationReferenceNumber $jobapplication)
     {
 
+
+       
         $file = $request->file('experience_path');
         $fileName = $file->getClientOriginalName();
-        $upload = Storage::putFileAs("certificate", $file, $fileName);
-        ExperienceDetail::create(array_merge($request->all(), ['experience_path' => $upload]));
-        return redirect()->route('experiencedetails.index');
+        $upload = Storage::putFileAs('documents/' . $request->candidate_id . '/experience', $file, $fileName);
+        ExperienceDetail::create(array_merge($request->all(), [
+            'application_reference_number_id' => $jobapplication->id,
+            'experience_path' => $upload
+        ]));
+        return redirect()->route('jobapplication.edit', $jobapplication);
+
+        // try {
+          
+        // } catch (Exception $e) {
+        //     return redirect()->back()->with([
+        //         'status' => 'danger',
+        //         'message' => $e->getMessage()
+        //     ]);
+        // }
     }
 
     public function show(ExperienceDetail $experiencedetail)
@@ -54,15 +70,8 @@ class ExperienceController extends Controller
         return redirect()->route('experiencedetails.index')->with('success', 'Details Update successfully');
     }
 
-    public function destroy(ExperienceDetail $experiencedetail)
+    public function destroy(ApplicationReferenceNumber $jobapplication, ExperienceDetail $experiencedetail)
     {
-        $experiencedetail = ExperienceDetail::where('id', $experiencedetail->id)->delete();
-    }
-    public function download($id)
-    {
-
-        $data = DB::table('experience_details')->where('id', $id)->first();
-        $filepath = storage_path("app/public/certificate/{$data->experience_path}");
-        return \Response::download($filepath);
+        $experiencedetail->delete();
     }
 }
