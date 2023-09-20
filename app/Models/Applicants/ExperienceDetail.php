@@ -22,6 +22,9 @@ class ExperienceDetail extends Model
         'experience_path' ,
         'jobsSummary' ,
         'application_reference_number_id',
+        'file_name',
+        'file_type',
+        'file_size'
     ];
 
     protected $casts = [

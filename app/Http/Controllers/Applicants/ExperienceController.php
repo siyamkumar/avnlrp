@@ -8,6 +8,7 @@ use App\Models\Applicants\ApplicationReferenceNumber;
 use App\Models\Applicants\ExperienceDetail;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use App\Models\Applicants\ApplicationReferenceNumber;
 use DB;
 use Exception;
 
@@ -29,6 +30,26 @@ class ExperienceController extends Controller
 
     public function store(ExperienceDetailFormRequest $request, ApplicationReferenceNumber $jobapplication)
     {
+        if ($request->file('experience_path')) {
+            $file = $request->file('experience_path');
+            ExperienceDetail::create(
+                array_merge(
+                    $request->validated(),
+                    [
+                        'application_reference_number_id' => $jobapplication->id,
+                        'marksheet_path' => Storage::putFileAs('documents/' . $request->candidate_id . '/experience', $request->file('experience_path'), $file->getClientOriginalName()),
+                        'file_name' => $file->getClientOriginalName(),
+                        'file_size' => $file->getSize(),
+                        'file_type' => $file->getClientOriginalExtension(),
+                    ]
+                )
+            );
+        } else {
+            ExperienceDetail::create($request->validated());
+        }
+
+
+
 
 
        
@@ -49,6 +70,7 @@ class ExperienceController extends Controller
         //         'message' => $e->getMessage()
         //     ]);
         // }
+        return redirect()->route('experiencedetails.index');
     }
 
     public function show(ExperienceDetail $experiencedetail)
@@ -57,17 +79,26 @@ class ExperienceController extends Controller
     }
 
 
-    public function edit(ExperienceDetail $experiencedetail)
+    public function edit(ApplicationReferenceNumber $jobapplication,ExperienceDetail $experiencedetail)
     {
-        return view('applicants.next-steps.experience.edit', compact('experiencedetail'));
+        return view('applicants.next-steps.experience.edit', compact('jobapplication','experiencedetail'));
     }
 
 
-    public function update(ExperienceDetailFormRequest $request, ExperienceDetail $experiencedetail)
+    public function update(ExperienceDetailFormRequest $request, ApplicationReferenceNumber $jobapplication, ExperienceDetail $experiencedetail)
     {
+        if ($request->file('filepond')) {
+            $file = $request->file('filepond');
+            $experiencedetail->marksheet_path = Storage::putFileAs('documents/' . $request->candidate_id . '/experience', $file, $file->getClientOriginalName());
+            $experiencedetail->file_name = $file->getClientOriginalName();
+            $experiencedetail->file_size = $file->getSize();
+            $experiencedetail->file_type = $file->getClientOriginalExtension();
+        }
+
         $experiencedetail->fill($request->validated());
+
         $experiencedetail->save();
-        return redirect()->route('experiencedetails.index')->with('success', 'Details Update successfully');
+        return redirect()->route('jobapplication.edit', $jobapplication);
     }
 
     public function destroy(ApplicationReferenceNumber $jobapplication, ExperienceDetail $experiencedetail)

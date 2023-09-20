@@ -17,5 +17,8 @@ class GraduationEducationDetail extends Model
         'year_of_passing',
         'score',
         'marksheet_path',
+        'file_name',
+        'file_type',
+        'file_size'
     ];
 }

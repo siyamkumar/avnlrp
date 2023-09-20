@@ -33,7 +33,7 @@ class SecondaryEducationController extends Controller
                     $request->validated(),
                     [
                         'application_reference_number_id' => $jobapplication->id,
-                        'marksheet_path' => Storage::putFileAs('documents/' . $request->candidate_id . '/secondary', $request->file('marksheet_document'), $file->getClientOriginalName()),
+                        'marksheet_path' => Storage::putFileAs('documents/' . $request->candidate_id . '/secondary', $request->file('marksheet_path'), $file->getClientOriginalName()),
                         'file_name' => $file->getClientOriginalName(),
                         'file_size' => $file->getSize(),
                         'file_type' => $file->getClientOriginalExtension(),
