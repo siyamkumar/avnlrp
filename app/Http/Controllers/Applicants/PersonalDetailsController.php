@@ -37,10 +37,10 @@ class PersonalDetailsController extends Controller
         $file = $request->file('photo_path');    
         $fileName = $file->getClientOriginalName();  
         $upload = Storage::putFileAs("photo", $file, $fileName);      
-        $file1 = $request->file('sign_path');    
-        $fileName1 = $file1->getClientOriginalName();      
-        $upload1 = Storage::putFileAs("sign", $file1, $fileName1);
-        PersonalDetail::create (array_merge($request->all(),['photo_path'=> $upload],['sign_path'=> $upload1]));
+       // $file1 = $request->file('sign_path');    
+       // $fileName1 = $file1->getClientOriginalName();      
+       // $upload1 = Storage::putFileAs("sign", $file1, $fileName1);
+        PersonalDetail::create (array_merge($request->all(),['photo_path'=> $upload]));
         return redirect()->route('personaldetails.index')->with([
             'status' => 'success',
             'message' => 'Personal Details Updated Successfully'

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Applicants;
 use App\Http\Controllers\Controller;
 use App\Models\Applicants\ApplicationReferenceNumber;
 use App\Http\Requests\ApplicationReferenceFormRequest;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\Request;
 
 class ApplicationReferenceNumberController extends Controller
@@ -32,26 +33,26 @@ class ApplicationReferenceNumberController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(ApplicationReferenceFormRequest $request,ApplicationReferenceNumber $applicationReferenceNumber)
-    {
-        if ($request->file('marksheet_path')) {
-            $file = $request->file('marksheet_path');
-            ApplicationReferenceNumber::create(
-                array_merge(
-                    $request->validated(),
-                    [
-                        'application_reference_number_id' => $applicationReferenceNumber->id,
-                        'marksheet_path' => Storage::putFileAs('documents/' . $request->candidate_id . '/graduation', $request->file('marksheet_path'), $file->getClientOriginalName()),
-                        'file_name' => $file->getClientOriginalName(),
-                        'file_size' => $file->getSize(),
-                        'file_type' => $file->getClientOriginalExtension(),
-                    ]
-                )
-            );
-        } else {
-            ApplicationReferenceNumber::create($request->validated());
-        }
-        return redirect()->route('graduationeducationdetails.index');
+    public function store(ApplicationReferenceFormRequest $request)
+     {
+    //     if ($request->file('payment_proof')) {
+    //         $file = $request->file('payment_proof');
+    //         ApplicationReferenceNumber::create(
+    //             array_merge(
+    //                 $request->validated(),
+    //                 [
+    //                     'application_reference_number_id' => $applicationReferenceNumber->id,
+    //                     'payment_proof' => Storage::putFileAs('documents/' . $request->candidate_id . '/payments', $request->file('payment_proof'), $file->getClientOriginalName()),
+    //                     'file_name' => $file->getClientOriginalName(),
+    //                     'file_size' => $file->getSize(),
+    //                     'file_type' => $file->getClientOriginalExtension(),
+    //                 ]
+    //             )
+    //         );
+    //     } else {
+    //         ApplicationReferenceNumber::create($request->validated());
+    //     }
+    //     return redirect()->route('payments.index');
     }
 
     /**
@@ -67,7 +68,7 @@ class ApplicationReferenceNumberController extends Controller
      */
     public function edit(ApplicationReferenceNumber $applicationReferenceNumber)
     {
-        //
+        
     }
 
     /**

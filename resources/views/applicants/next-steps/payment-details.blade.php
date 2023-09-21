@@ -2,7 +2,7 @@
 
     <x-slot name="candidateheader">
         <h2 class="">
-            {{ __('Education') }} <small class="text-muted fw-light"> | Higher Secondary Details </small>
+            {{ __('Payment') }} <small class="text-muted fw-light"> |Payment Details </small>
         </h2>
     </x-slot>
 
@@ -11,9 +11,9 @@
 
 
     @if(isset($highersecondaryeducationdetail))
-        @include('applicants.next-steps.partials.higher-secondary-education-details.edit')
+        @include('applicants.next-steps.partials.payment-details.edit')
     @else
-        @include('applicants.next-steps.partials.higher-secondary-education-details.create')
+        @include('applicants.next-steps.partials.payment-details.create')
     @endisset
 
 </x-candidate-layout>

@@ -145,7 +145,7 @@
         <label for="aadhaarNo" class="form-label"> Aadhaar Number</label>
         <input type="text" class="form-control @error('aadhaarNo') is-invalid @enderror" id="aadhaarNo"
             name="aadhaarNo" value="{{ old('aadhaarNo', $personaldetail->aadhaarNo ?? '') }}"
-            placeholder="XXXX-XXXX-XXXX" @if($personaldetail) @if($personaldetail->aadhaarNo) enabled @endif @endif />
+            placeholder="XXXX-XXXX-XXXX" @if($personaldetail) @if($personaldetail->aadhaarNo) disabled @endif @endif />
         @error('aadhaarNo')
             <div class="invalid-feedback">
                 {{ $message }}
@@ -169,7 +169,7 @@
                 accept="image/*" />
     </div>
 
-    <script type="module">
+    {{-- <script type="module">
 
 const inputElement = document.getElementById('sign_path');
 
@@ -191,6 +191,6 @@ FilePond.create(inputElement, {
         <label for="sign_path" class="form-label"> Signature Upload  <span style="color:red">*</span></label>
         <input type="file" name="sign_path" id="sign_path" class="filepond"  value="{{ old('sign_path', $personaldetail->sign_path ?? '') }}" 
                 accept="image/*"/>
-    </div>
+    </div> --}}
     </div>   
 </div>

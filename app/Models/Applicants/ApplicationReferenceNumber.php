@@ -20,7 +20,10 @@ class ApplicationReferenceNumber extends Model
         'payment_proof',
         'status',
         'isSubmitted',
-        'submitted_at'
+        'submitted_at',
+        'file_name',
+        'file_type',
+        'file_size'
     ];
 
     protected $casts = [
