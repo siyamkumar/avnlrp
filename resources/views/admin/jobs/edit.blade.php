@@ -176,7 +176,7 @@
 
                     <div class="tab-pane fade show" id="tab-responsibility" role="tabpanel">
                         <x-card>
-                            <form action="" method="POST">
+                            <form action="{{ route('jobpostings.jobresponsibility.store', $jobposting) }}" method="POST">
                                 @csrf
                                 <label class="col-form-label" for="jobResponsibility">Key Responsibilities</label>
                                 <textarea name="jobResponsibility" id="jobResponsibility" class="form-control mb-3" rows="10"></textarea>
@@ -187,7 +187,7 @@
 
                     <div class="tab-pane active fade show" id="tab-terms" role="tabpanel">
                         <x-card>
-                            <form action="" method="POST">
+                            <form action="{{ route('jobpostings.termscondition.store', $jobposting) }}" method="POST">
                                 @csrf
                                 <label class="col-form-label" for="jobTerms">Terms & Condition</label>
                                 <textarea name="jobTerms" id="jobTerms" class="form-control mb-3" rows="10"></textarea>
