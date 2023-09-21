@@ -9,7 +9,7 @@
 
 
 
-    <form method="POST" action="{{ route('experiencedetails.update', $experiencedetail) }}">
+    <form method="POST" action="{{ route('jobapplication.experiencedetails.update', [$jobapplication, $experiencedetail]) }}">
         @csrf @method('put')
 
         @include('applicants.next-steps.experience.form')

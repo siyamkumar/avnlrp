@@ -33,6 +33,16 @@
     padding: 11px 11px !important;
 }
 
+.btn-dropdown, .btn-action{
+    padding:6px 6px !important;
+    font-weight: 600 !important;
+    letter-spacing: 0.005rem;
+}
+
+.btn-action:hover svg, .btn-action:hover svg g path {
+    stroke: #fff;
+}
+
 .btn-next {
     display: inline-block;
     background-color: #E0E6F7;

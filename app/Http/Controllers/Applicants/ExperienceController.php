@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Applicants;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ExperienceDetailFormRequest;
-use App\Models\Applicants\ApplicationReferenceNumber;
 use App\Models\Applicants\ExperienceDetail;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
