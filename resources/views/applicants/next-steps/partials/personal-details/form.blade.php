@@ -43,10 +43,10 @@
     </div>
 
     <div class="col-md-4">
-       
+
         <label for="dob" class="form-label">Date of Birth </label>
-        <input type="date" class="form-control @error('dob') is-invalid @enderror" id="dob" name="dob" 
-            value="{{ old('dob', $personaldetail ? ( $personaldetail->dob ? $personaldetail->dob->format('Y-m-d'): ''):'') }}">
+        <input type="date" class="form-control @error('dob') is-invalid @enderror" id="dob" name="dob"
+            value="{{ old('dob', $personaldetail ? ($personaldetail->dob ? $personaldetail->dob->format('Y-m-d') : '') : '') }}">
 
         @error('dob')
             <div class="invalid-feedback">
@@ -117,7 +117,8 @@
     </div>
 
     <div class="col-md-4">
-        <select class="form-control @error('region_state_id') is-invalid @enderror" id="region_state_id" name="region_state_id">
+        <select class="form-control @error('region_state_id') is-invalid @enderror" id="region_state_id"
+            name="region_state_id">
             <option value="" selected>Select State</option>
             @foreach ($region_states as $state)
                 <option value="{{ $state->id }}" @if (old('region_state_id', $personaldetail->region_state_id ?? '') == $state->id) selected @endif>
@@ -145,7 +146,8 @@
         <label for="aadhaarNo" class="form-label"> Aadhaar Number</label>
         <input type="text" class="form-control @error('aadhaarNo') is-invalid @enderror" id="aadhaarNo"
             name="aadhaarNo" value="{{ old('aadhaarNo', $personaldetail->aadhaarNo ?? '') }}"
-            placeholder="XXXX-XXXX-XXXX" @if($personaldetail) @if($personaldetail->aadhaarNo) disabled @endif @endif />
+            placeholder="XXXX-XXXX-XXXX"
+            @if ($personaldetail) @if ($personaldetail->aadhaarNo) disabled @endif @endif />
         @error('aadhaarNo')
             <div class="invalid-feedback">
                 {{ $message }}
@@ -165,32 +167,31 @@
     </div>
     <div class="col-md-6">
         <label for="photo_path" class="form-label"> Photo Upload <span style="color:red">*</span> </label>
-        <input type="file" name="photo_path" class="filepond"  value="{{ old('photo_path', $personaldetail->photo_path ?? '') }}" 
-                accept="image/*" />
+        <input type="file" name="photo_path" class="filepond"
+            value="{{ old('photo_path', $personaldetail->photo_path ?? '') }}" accept="image/*" />
     </div>
 
     <script type="module">
+        const inputElement = document.getElementById('sign_path');
 
-const inputElement = document.getElementById('sign_path');
+        FilePond.create(inputElement, {
+            allowImagePreview: true,
+            allowMultiple: false,
+            labelIdle: `Drag & Drop  Image or <span class="filepond--label-action">Browse</span>`,
+            credits: false,
+            storeAsFile: true,
+            allowImagePreview: true,
 
-FilePond.create(inputElement, {
-    allowImagePreview: true,
-    allowMultiple: false,
-    labelIdle: `Drag & Drop  Image or <span class="filepond--label-action">Browse</span>`,
-    credits: false,
-    storeAsFile: true,
-    allowImagePreview:true,
-    
-   
 
-});
+
+        });
     </script>
-   
+
 
     <div class="col-md-6 mb-3">
-        <label for="sign_path" class="form-label"> Signature Upload  <span style="color:red">*</span></label>
-        <input type="file" name="sign_path" id="sign_path" class="filepond"  value="{{ old('sign_path', $personaldetail->sign_path ?? '') }}" 
-                accept="image/*"/>
+        <label for="sign_path" class="form-label"> Signature Upload <span style="color:red">*</span></label>
+        <input type="file" name="sign_path" id="sign_path" class="filepond"
+            value="{{ old('sign_path', $personaldetail->sign_path ?? '') }}" accept="image/*" />
     </div>
-    </div>   
 </div>
+
