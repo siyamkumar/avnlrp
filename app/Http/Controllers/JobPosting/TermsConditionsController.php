@@ -1,16 +1,14 @@
 <?php
 
 namespace App\Http\Controllers\JobPosting;
-use App\Models\JobPosting;
-use App\Models\JobPosting\JobRequirement;
+
 use App\Http\Controllers\Controller;
+use App\Models\JobPosting;
+use App\Models\JobPosting\TermsCondition;
 use Illuminate\Http\Request;
 
-class JobRequirementController extends Controller
+class TermsConditionsController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
     {
         //
@@ -29,14 +27,11 @@ class JobRequirementController extends Controller
      */
     public function store(Request $request,JobPosting $jobposting )
     {
-       
-        if($request->jobSpecification)
-      //  dd($request);
-        JobRequirement::create([
+        if($request->jobTerms)
+        TermsCondition::create([
                     'job_posting_id' => $jobposting->id,
-                    'job_specification' => $request->jobSpecification,
-                    'knowledge' => $request->jobKnowledge,
-                    'skills' => $request->jobSkillCompetency,
+                    'job_terms' => $request->jobTerms,
+                    
                 ]);
     }
 
@@ -59,12 +54,11 @@ class JobRequirementController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, JobPosting $jobposting,JobRequirement $jobrequirement)
+    public function update(Request $request, JobPosting $jobposting,TermsCondition $jobterms)
     {
-        $jobrequirement->job_specification = $request->jobSpecification;
-        $jobrequirement->knowledge = $request->jobKnowledge;
-        $jobrequirement->skills = $request->jobSkillCompetency;
-        $jobrequirement->save();
+        $jobterms->job_terms = $request->jobTerms;
+       
+        $jobterms->save();
         return redirect()->back();
     }
 

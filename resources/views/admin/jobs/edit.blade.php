@@ -136,7 +136,7 @@
                     <div class="tab-pane fade show" id="tab-qualification" role="tabpanel"
                         aria-labelledby="qualification-tab">
                         <x-card>
-                            <form action="" method="POST">
+                            <form action="{{ route('jobpostings.jobrequirement.store', $jobposting) }} " method="POST" >
                                 @csrf
                                 <div class="row">
                                     <div class="col-md-6 mb-3">

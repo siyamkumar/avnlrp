@@ -12,12 +12,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('job_requirements', function (Blueprint $table) {
+        Schema::create('job_responsibilities', function (Blueprint $table) {
             $table->id();
             $table->foreignIdFor(JobPosting::class);
-            $table->string('job_specification');
-            $table->string('knowledge');
-            $table->string('skills');
+            $table->string('job_responsibility');
             $table->timestamps();
         });
     }
@@ -27,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('job_requirements');
+        Schema::dropIfExists('job_responsibilities');
     }
 };
