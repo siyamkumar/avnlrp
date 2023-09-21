@@ -65,17 +65,85 @@
     </div>
 
     <div class="col-md-6">
+        <label for="jobtype" class="form-label"> Type of Job</label>
+        <div>
+    <div class="form-check form-check-inline">
+        <input class="form-check-input @error('jobtype') is-invalid @enderror" type="radio" name="jobtype"
+            id="govtJob" value="GovtJob" @if (old('jobtype', $personaldetail->jobtype ?? '') == 'GovtJob') checked @endif>
+        <label class="form-check-label" for="govtJob">PSU/Govt. Job</label>
+    </div>
+    <div class="form-check form-check-inline">
+        <input class="form-check-input @error('jobtype') is-invalid @enderror" type="radio" name="jobtype"
+            id="privateJob" value="Private" @if (old('jobtype', $personaldetail->jobtype ?? '') == 'Private') checked @endif>
+        <label class="form-check-label" for="privateJob">Private</label>
+    </div>
+  
+    @error('jobtype')
+        <div class="invalid-feedback">
+            {{ $message }}
+        </div>
+    @enderror
+    </div>
+    </div>
+   
+    
+
+    <div class="col-md-6 d-none"  id="hiddenDiv">
         <label for="payScale" class="form-label"> Pay Scale(PSUs/Govt.Depts.)</label>
-        <input type="text" class="form-control  @error('payScale') is-invalid @enderror" id="payScale" name="payScale" 
-         value="{{ old('payScale', $experiencedetail->payScale ?? '') }}">
+
+
+        <select class="form-control @error('payScale') is-invalid @enderror" id="payScale" name="payScale">
+            <option value="" selected>Select PayScale</option>
+            <option value="E1">E1 </option>
+            <option value="E2">E2</option>
+            <option value="E3">E3</option>
+            <option value="E4">E4</option>
+            <option value="E5">E5</option>
+            <option value="E6">E6 </option>
+            <option value="E7">E7</option>
+            <option value="E8">E8</option>
+            <option value="E9">E9</option>
+            <option value="E10">E10</option>
+            <option value="E11">E11</option>
+        </select>
+       
         @error('payScale')
         <div class="invalid-feedback">
             {{ $message }}
         </div>
         @enderror
     </div>
+   
+    <script type="module">
+        // event
+      
+        document.getElementById('govtJob').addEventListener('click', function(e){
+           // if(e.target && e.target.matches("input[type='radio']"))
+            if ((e.target.value === 'GovtJob') ) {
+           
+                document.getElementById('hiddenDiv').classList.remove('d-none');
+                document.getElementById('hiddenDiv1').classList.add('d-none');
+              
+           
+         } 
+        });
+        document.getElementById('privateJob').addEventListener('click', function(e){
+           // if(e.target && e.target.matches("input[type='radio']"))
+            if ((e.target.value === 'Private') ) {
+           
+                document.getElementById('hiddenDiv').classList.add('d-none');
+                document.getElementById('hiddenDiv1').classList.remove('d-none');
+              
+           
+         } 
+        });
+            
 
-    <div class="col-md-6">
+           
+    </script>
+   
+
+    <div class="col-md-6 d-none" id="hiddenDiv1">
         <label for="ctc" class="form-label"> CTC</label>
         <input type="text" class="form-control  @error('ctc') is-invalid @enderror" id="ctc" name="ctc"  value="{{ old('ctc', $experiencedetail->ctc ?? '') }}">
         @error('ctc')
@@ -83,6 +151,8 @@
             {{ $message }}
         </div>
         @enderror
+    </div>
+    <div class="col-md-6">
         <label for="experience_path" class=" form-label">Experience Cerificate</label>
      
 

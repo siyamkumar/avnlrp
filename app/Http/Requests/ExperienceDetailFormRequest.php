@@ -31,11 +31,12 @@ class ExperienceDetailFormRequest extends FormRequest
             'companyName' => 'required',
             'postName' => 'required',
             'periodFrom' => 'required',
-            'periodTo' => 'required',
+            'periodTo' => 'required|after:periodFrom',
             'payScale' => 'required|integer',
             'ctc' => 'required',
            'experience_path' => 'required|max:50',
             'jobsSummary' => 'required',
+            'jobType' => 'required',
         ];
     }
           

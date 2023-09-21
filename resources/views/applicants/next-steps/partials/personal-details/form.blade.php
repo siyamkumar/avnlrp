@@ -171,8 +171,7 @@
             value="{{ old('photo_path', $personaldetail->photo_path ?? '') }}" accept="image/*" />
     </div>
 
-    <script type="module">
-        const inputElement = document.getElementById('sign_path');
+    {{-- <script type="module">
 
         FilePond.create(inputElement, {
             allowImagePreview: true,
@@ -189,9 +188,10 @@
 
 
     <div class="col-md-6 mb-3">
-        <label for="sign_path" class="form-label"> Signature Upload <span style="color:red">*</span></label>
-        <input type="file" name="sign_path" id="sign_path" class="filepond"
-            value="{{ old('sign_path', $personaldetail->sign_path ?? '') }}" accept="image/*" />
-    </div>
+        <label for="sign_path" class="form-label"> Signature Upload  <span style="color:red">*</span></label>
+        <input type="file" name="sign_path" id="sign_path" class="filepond"  value="{{ old('sign_path', $personaldetail->sign_path ?? '') }}" 
+                accept="image/*"/>
+    </div> --}}
+    </div>   
 </div>
 
