@@ -1,7 +1,7 @@
 <div class="row g-3 border-bottom pb-3">
 
     <div class="col-md-12">
-        <label for="fatherName" class="form-label">Father's/Mother's/Husband's Name </label>
+        <label for="fatherName" class="form-label">Father's/Mother's/Husband's Name*</label>
         <input type="text" class="form-control @error('fatherName')  is-invalid   @enderror" id="fatherName"
             name="fatherName" value="{{ old('fatherName', $personaldetail->fatherName ?? '') }}" />
 
@@ -193,5 +193,5 @@
                 accept="image/*"/>
     </div> --}}
     </div>   
-</div>
+
 
