@@ -13,7 +13,9 @@ class JobRequirementController extends Controller
      */
     public function index()
     {
-        //
+        return view('admin.jobs.edit')->with([
+            'locationunits' => JobRequirement::all(),
+        ]);
     }
 
     /**
@@ -27,7 +29,7 @@ class JobRequirementController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request,JobPosting $jobposting )
+    public function store(Request $request,JobPosting $jobposting, JobRequirement $jobrequirement )
     {
        
         if($request->jobSpecification)
@@ -38,6 +40,8 @@ class JobRequirementController extends Controller
                     'knowledge' => $request->jobKnowledge,
                     'skills' => $request->jobSkillCompetency,
                 ]);
+              return redirect()->back();
+             // return view('admin.jobs.partials.specification', compact('jobrequirement'));
     }
 
     /**

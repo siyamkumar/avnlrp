@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Validation\Rule;
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Validation\Rule;
+
 
 class PersonalDetailsFormRequest extends FormRequest
 {
@@ -31,7 +31,7 @@ class PersonalDetailsFormRequest extends FormRequest
             'gender' => 'required',
             'dob' => 'required',
             'reservation_category_id' => 'required',
-            'aadhaarNo'  => [['required', Rule::unique('aadhaarNo')->ignore($this->aahaarNo)], Rule::unique('aadhaarNo')->ignore($this->aadhaarNo)],
+            'aadhaarNo'  => [['required', Rule::unique('personal_details')->ignore($this->aahaarNo)]],
             'pan'  => 'required|string|min:10|max:10',
             'address_line_1' => 'required',
             'address_line_2' => 'required',
