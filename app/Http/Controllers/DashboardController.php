@@ -16,4 +16,8 @@ class DashboardController extends Controller
             'arns' => ApplicationReferenceNumber::take(10)->get(),
         ]);
     }
+
+
+
+    
 }

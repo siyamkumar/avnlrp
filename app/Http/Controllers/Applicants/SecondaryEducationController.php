@@ -27,7 +27,9 @@ class SecondaryEducationController extends Controller
     {  $candidate = auth()->guard('applicants')->user();
         $jobapplication=ApplicationReferenceNumber::where(['candidate_id' => $candidate->id])->get() ;
       // dd( $jobapplication);
-        return view('applicants.next-steps.partials.secondary-education-details.create')->with(['jobapplication' => $jobapplication]);
+       // return view('applicants.next-steps.partials.secondary-education-details.create')->with(['jobapplication' => $jobapplication]);
+       return view('applicants.next-steps.partials.secondary-education-details.create')->with([
+        'arns' => ApplicationReferenceNumber::where(['candidate_id' => $candidate->id])->get()]);
     }
     public function store(SecondaryEducationFormRequest $request, ApplicationReferenceNumber $jobapplication)
     {
