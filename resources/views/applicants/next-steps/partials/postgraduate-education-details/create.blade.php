@@ -1,4 +1,4 @@
-<form method="POST" action="{{ route('postgraduationeducationdetails.store') }}">
+<form method="POST" action="{{ route('postgraduationeducationdetails.store') }}" enctype="multipart/form-data" >
 
     @csrf
 

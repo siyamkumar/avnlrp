@@ -29,7 +29,7 @@ class SecondaryEducationController extends Controller
       // dd( $jobapplication);
        // return view('applicants.next-steps.partials.secondary-education-details.create')->with(['jobapplication' => $jobapplication]);
        return view('applicants.next-steps.partials.secondary-education-details.create')->with([
-        'arns' => ApplicationReferenceNumber::where(['candidate_id' => $candidate->id])->get()]);
+        'jobapplication' => ApplicationReferenceNumber::where(['candidate_id' => $candidate->id])->get()]);
     }
     public function store(SecondaryEducationFormRequest $request, ApplicationReferenceNumber $jobapplication)
     {

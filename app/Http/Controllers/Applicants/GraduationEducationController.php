@@ -15,8 +15,8 @@ class GraduationEducationController extends Controller
     {
         $candidate = auth()->guard('applicants')->user();
         if ($candidate->graduationeducationdetails)
-            return redirect()->route('graduationeducationdetails.edit', $candidate->graduationeducationdetails);
-        return redirect()->route('graduationeducationdetails.create');
+            return redirect()->route('jobapplication.graduationeducationdetails.edit', $candidate->graduationeducationdetails);
+        return redirect()->route('jobapplication.graduationeducationdetails.create');
     }
 
     public function create()
@@ -45,7 +45,7 @@ class GraduationEducationController extends Controller
         } else {
             GraduationEducationDetail::create($request->validated());
         }
-        return redirect()->route('graduationeducationdetails.index');
+        return redirect()->route('jobapplication.graduationeducationdetails.index');
     }
 
 

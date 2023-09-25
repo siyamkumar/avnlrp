@@ -69,12 +69,12 @@
         <div>
     <div class="form-check form-check-inline">
         <input class="form-check-input @error('jobtype') is-invalid @enderror" type="radio" name="jobtype"
-            id="govtJob" value="GovtJob" @if (old('jobtype', $personaldetail->jobtype ?? '') == 'GovtJob') checked @endif>
+            id="govtJob" value="GovtJob" @if (old('jobtype', $experiencedetail->jobtype ?? '') == 'GovtJob') checked @endif>
         <label class="form-check-label" for="govtJob">PSU/Govt. Job</label>
     </div>
     <div class="form-check form-check-inline">
         <input class="form-check-input @error('jobtype') is-invalid @enderror" type="radio" name="jobtype"
-            id="privateJob" value="Private" @if (old('jobtype', $personaldetail->jobtype ?? '') == 'Private') checked @endif>
+            id="privateJob" value="Private" @if (old('jobtype', $experiencedetail->jobtype ?? '') == 'Private') checked @endif>
         <label class="form-check-label" for="privateJob">Private</label>
     </div>
   

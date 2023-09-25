@@ -13,8 +13,8 @@
                 </li>
                 <li class="nav-item text-center" role="presentation">
                     <x-icons.checkpartial />
-                    <a class="nav-link pt-0 {{ request()->routeIs('highersecondaryeducationdetails.*') ? 'active' : '' }}"
-                        href="{{ route('highersecondaryeducationdetails.index') }}">Higher Secondary Education</a>
+                    <a class="nav-link pt-0 {{ request()->routeIs('jobapplication.highersecondaryeducationdetails.*') ? 'active' : '' }}"
+                        href="{{ route('jobapplication.highersecondaryeducationdetails.index') }}">Higher Secondary Education</a>
                 </li>
 
                 <li class="nav-item text-center" role="presentation">
@@ -26,7 +26,8 @@
 
                 <li class="nav-item text-center" role="presentation">
                     <x-icons.checknotok />
-                    <a class="nav-link pt-0 {{ request()->routeIs('graduationeducationdetails.*') ? 'active' : '' }}" href="{{ route('graduationeducationdetails.index') }}"
+                    <a class="nav-link pt-0 {{ request()->routeIs('jobapplication.graduationeducationdetails.*') ? 'active' : '' }}" href="{{ route(
+                        'jobapplication.graduationeducationdetails.index') }}"
                        >Undergraduate Education</a>
                 </li>
 

@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Applicants\ApplicationReferenceNumber;
+use App\Models\Applicants\PersonalDetail;
 use Illuminate\Http\Request;
+use DB;
 
 class DashboardController extends Controller
 {
@@ -12,12 +14,37 @@ class DashboardController extends Controller
      */
     public function __invoke(Request $request)
     {
-        return view('dashboard')->with([
-            'arns' => ApplicationReferenceNumber::take(10)->get(),
-        ]);
+       
+        
+$population = PersonalDetail::select(
+    DB::raw("gender as year"),
+    DB::raw("count(gender) as count")
+   
+  ) 
+  
+->orderBy(DB::raw("YEAR(created_at)"))
+->groupBy(DB::raw("gender"))
+->get();
+// dd($population);
+$res[] = [ 'year','count'];
+foreach ($population as $key => $val) {
+$res[++$key] = [ $val->year, (int)$val->count];
+}
+
+return view('dashboard')
+->with('population', json_encode($res));
+
+
+   }
+
     }
 
+   
 
 
-    
-}
+
+
+
+
+
+

@@ -36,7 +36,7 @@ class ExperienceDetailFormRequest extends FormRequest
             'ctc' => 'required',
            'experience_path' => 'required|max:50',
             'jobsSummary' => 'required',
-            'jobType' => 'required',
+        
         ];
     }
           

@@ -19,6 +19,7 @@
         "bootstrap": "^5.3.1",
         "echarts": "^5.4.3",
         "filepond": "^4.30.4",
-        "filepond-plugin-image-preview": "^4.6.11"
+        "filepond-plugin-image-preview": "^4.6.11",
+        "google-chart": "^0.0.1-security"
     }
 }

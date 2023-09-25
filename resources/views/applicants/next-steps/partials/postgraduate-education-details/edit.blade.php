@@ -1,6 +1,4 @@
-<form method="POST" action="{{ route('postgraduationeducationdetails.update', $
-
-) }}">
+<form method="POST" action="{{ route('postgraduationeducationdetails.update', $postgraduationeducationdetail) }}"  enctype="multipart/form-data">
 
     @csrf @method('PATCH')
 

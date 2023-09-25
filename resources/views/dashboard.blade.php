@@ -120,81 +120,100 @@
                     <div class="card-body">
 
 
-                        <div id="doughnutChart" style="width: 100%;min-height:300px;"></div>
+                        <div id="piechart" style="width: 100%;min-height:300px;"></div>
 
                     </div>
 
-                    <script type="module">
-                        var myChart = echarts.init(document.getElementById('doughnutChart'));
-                        var option = {
+                    {{-- <script type="module">
+                        $(function(){
+                       var cData = JSON.parse({{$chart_data}});
+      var ctx = $("#pie-chart");
+ 
+      //pie chart data
+      var data = {
+        labels: cData.label,
+        datasets: [
+          {
+            label: "Users Count",
+            data: cData.data,
+            backgroundColor: [
+              "#DEB887",
+              "#A9A9A9",
+              "#DC143C",
+              "#F4A460",
+              "#2E8B57",
+              "#1D7A46",
+              "#CDA776",
+            ],
+            borderColor: [
+              "#CDA776",
+              "#989898",
+              "#CB252B",
+              "#E39371",
+              "#1D7A46",
+              "#F4A460",
+              "#CDA776",
+            ],
+            borderWidth: [1, 1, 1, 1, 1,1,1]
+          }
+        ]
+      };
+ 
+      //options
+      var options = {
+        responsive: true,
+        title: {
+          display: true,
+          position: "top",
+          text: "Last Week Registered Users -  Day Wise Count",
+          fontSize: 18,
+          fontColor: "#111"
+        },
+        legend: {
+          display: true,
+          position: "bottom",
+          labels: {
+            fontColor: "#333",
+            fontSize: 16
+          }
+        }
+      };
+ 
+      //create Pie Chart class object
+      var chart1 = new Chart(ctx, {
+        type: "pie",
+        data: data,
+        options: options
+      });
+ 
+  }); --}}
 
-                            legend: {
-                                orient: 'vertical',
-                                x: 'right',
-                                y: 'middle',
-                                data: ['Un-reserved', 'OBC', 'ST', 'PWD', 'SC']
-                            },
-                            series: [{
-                                type: 'pie',
-                                radius: ['60%', '70%'],
-                                avoidLabelOverlap: false,
-                                color: [
-                                    '#37A2DA',
-                                    '#32C5E9',
-                                    '#67E0E3',
-                                    '#9FE6B8',
-                                    '#FFDB5C',
-                                    '#ff9f7f',
-                                    '#fb7293',
-                                    '#E062AE',
-                                    '#E690D1',
-                                    '#e7bcf3',
-                                    '#9d96f5',
-                                    '#8378EA',
-                                    '#96BFFF'
-                                ],
-                                label: {
-                                    show: false,
-                                    position: 'center'
-                                },
-                                labelLine: {
-                                    show: false
-                                },
-                                emphasis: {
-                                    label: {
-                                        show: true,
-                                        fontSize: '16',
-                                        fontWeight: 'bold',
+  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 
-                                    }
-                                },
-                                data: [{
-                                        value: 335,
-                                        name: 'PWD'
-                                    },
-                                    {
-                                        value: 310,
-                                        name: 'ST'
-                                    },
-                                    {
-                                        value: 234,
-                                        name: 'SC'
-                                    },
-                                    {
-                                        value: 135,
-                                        name: 'OBC'
-                                    },
-                                    {
-                                        value: 1548,
-                                        name: 'Un-reserved'
-                                    }
-                                ]
-                            }]
-                        };
+  <script type="text/javascript">
+    var population = <?php echo $population; ?>;
+   
+    console.log(population);
+    google.charts.load('current', {
+        'packages': ['corechart']
+    });
+    google.charts.setOnLoadCallback(drawChart);
+    function drawChart() {
+        var data = google.visualization.arrayToDataTable(population);
+        var options = {
+            title: 'GenderWise',
+            curveType: 'function',
+            legend: {
+                position: 'bottom'
+            }
+        };
+        var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+        chart.draw(data, options);
+    }        
+</script>
 
 
-                        myChart.setOption(option);
-                    </script>
+                
                 </div>
 
 
@@ -226,16 +245,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($arns as $arn )
-                                        <tr>
-                                            <td>{{$arn->arn ?? ''}}</td>
-                                            <td>{{ $arn->candidates->fullname ?? '' }}</td>
-                                            <td>{{ $arn->jobpostings->jobTitle}}</td>
-                                            <td>{{ $arn->created_at->format('d/M/Y')}}</td>
-                                            <td>{{$arn->candidates->personaldetails->category ?? '' }}</td>
-                                            <td>{{$arn->jobpostings->locationunit->unit_name ?? '' }}</td>
-                                        </tr>
-                                    @endforeach
+                                 
                                 </tbody>
 
                             </table>
