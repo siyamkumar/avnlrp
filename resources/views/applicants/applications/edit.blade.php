@@ -290,7 +290,7 @@
                     </thead>
                     <tbody>
 
-                        @if (in_array('10th', $jobapplication->jobpostings->educationcriteria->min_qualification))
+                        @if (in_array('10th', $jobapplication->jobpostings->educationcriteria->min_qualification ?? []))
                             @if ($jobapplication->secondaryeducationdetails)
                                 <tr>
                                     <td>
@@ -316,7 +316,7 @@
                                 <tr>
                                     <td>10th/Secondary *</td>
                                     <td colspan="4">
-                                        <a href="{{ route('jobapplication.secondaryeducationdetails.create') }}">Add
+                                        <a href="{{ route('jobapplication.secondaryeducationdetails.create',$jobapplication) }}">Add
                                             Secondary
                                             Education</a>
                                     </td>
@@ -324,7 +324,7 @@
                             @endif
                         @endif
 
-                        @if (in_array('12th', $jobapplication->jobpostings->educationcriteria->min_qualification))
+                        @if (in_array('12th', $jobapplication->jobpostings->educationcriteria->min_qualification ?? []))
 
                             @if ($jobapplication->highersecondaryeducationdetails)
                                 <tr>
@@ -350,7 +350,7 @@
                             @endif
                         @endif
 
-                        @if (in_array('UG', $jobapplication->jobpostings->educationcriteria->min_qualification))
+                        @if (in_array('UG', $jobapplication->jobpostings->educationcriteria->min_qualification ?? []))
                             @if ($jobapplication->highersecondaryeducationdetails)
                                 <tr>
                                     <td>
@@ -375,7 +375,7 @@
                             @endif
                         @endif
 
-                        @if (in_array('PG', $jobapplication->jobpostings->educationcriteria->min_qualification))
+                        @if (in_array('PG', $jobapplication->jobpostings->educationcriteria->min_qualification ?? []))
                             @if ($jobapplication->postgraduationeducationdetails)
                                 <tr>
                                     <td>

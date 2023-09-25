@@ -137,8 +137,8 @@
                         aria-labelledby="qualification-tab">
                         <x-card>
                          
-                            @if (
-                                )
+                            {{-- @if (
+                                ) --}}
                          
                             <form action="" method="POST" >
                                 @csrf
@@ -173,7 +173,7 @@
                                 </div>
                             </form>
 
-                           @else
+                           {{-- @else --}}
 
                         <form action=" {{ route('jobpostings.jobrequirement.store', $jobposting) }}  " method="POST" >
                             @csrf
@@ -207,7 +207,7 @@
 
                             </div>
                         </form>
-                     @endif
+                     {{-- @endif --}}
                         </x-card>
 
                     </div>

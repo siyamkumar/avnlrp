@@ -57,16 +57,12 @@
 
     <div class="col-md-4">
         <label for="marksheet_path" class="form-label"> Certificate Upload <span style="color:red">*</span> </label>
-        <input id="marksheet_path" type="file" name="marksheet_path"
-            class="filepond  @error('marksheet_path') is-invalid @enderror" />
-        @error('marksheet_path')
-            <div class="invalid-feedback">
-                {{ $message }}
-            </div>
-        @enderror
+        <input type="file" name="marksheet_path" class="filepond"
+        value="{{ old('marksheet_path', $secondaryeducationdetail->marksheet_path ?? '') }}" accept="image/*" />
+      
     </div>
 
-    <script type="module">
+    {{-- <script type="module">
         const inputElement = document.getElementById('marksheet_path');
         FilePond.create(inputElement, {
             allowImagePreview: true,
@@ -79,6 +75,7 @@
 
 
         });
-    </script>
+    </script> --}}
+
 
 </div>

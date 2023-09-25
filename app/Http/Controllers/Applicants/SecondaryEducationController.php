@@ -25,9 +25,10 @@ class SecondaryEducationController extends Controller
     }
     public function store(SecondaryEducationFormRequest $request, ApplicationReferenceNumber $jobapplication)
     {
-
+// dd($jobapplication);
         if ($request->file('marksheet_path')) {
             $file = $request->file('marksheet_path');
+            //dd($file);
             SecondaryEducationDetail::create(
                 array_merge(
                     $request->validated(),

@@ -1,3 +1,8 @@
+<x-candidate-layout>
+    <x-slot name="candidateheader">
+        <div class="d-flex align-items-center">
+          
+        </div>
 <form method="POST" action="{{ route('secondaryeducationdetails.store') }}" id="myForm" enctype='multipart/form-data'>
     @csrf
 
@@ -6,3 +11,4 @@
         <button type="submit" class="btn btn-primary"> Save & Continue</button>
     </div>
 </form>
+</x-candidate-layout>
