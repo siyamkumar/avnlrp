@@ -13,15 +13,21 @@ class SecondaryEducationController extends Controller
 {
     public function index()
     {
+       
         $candidate = auth()->guard('applicants')->user();
+      
+       
         if ($candidate->secondaryeducationdetails)
+       
             return redirect()->route('secondaryeducationdetails.edit', $candidate->secondaryeducationdetails);
         return redirect()->route('secondaryeducationdetails.create');
     }
 
     public function create()
-    {
-        return view('applicants.next-steps.partials.secondary-education-details.create');
+    {  $candidate = auth()->guard('applicants')->user();
+        $jobapplication=ApplicationReferenceNumber::where(['candidate_id' => $candidate->id])->get() ;
+      // dd( $jobapplication);
+        return view('applicants.next-steps.partials.secondary-education-details.create')->with(['jobapplication' => $jobapplication]);
     }
     public function store(SecondaryEducationFormRequest $request, ApplicationReferenceNumber $jobapplication)
     {

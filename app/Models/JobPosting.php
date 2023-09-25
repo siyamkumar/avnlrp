@@ -8,7 +8,7 @@ use App\Models\JobPosting\EducationCriteria;
 use App\Models\JobPosting\JobRequirement;
 use App\Models\JobPosting\ReservationAgeRelaxation;
 use App\Models\JobPosting\ReservationVacancyRelaxation;
-use App\Models\Applicants\SecondaryEducationDetail;
+
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -66,9 +66,7 @@ class JobPosting extends Model
         return $this->hasMany(ApplicationReferenceNumber::class, 'job_posting_id');
     }
 
-    public function secondaryeducationdetails(){
-        return $this->hasMany(ApplicationReferenceNumber::class, 'id');
-    }
+   
     public function jobrequirement(){
         return $this->hasMany(JobRequirement::class, 'job_posting_id');
     }
