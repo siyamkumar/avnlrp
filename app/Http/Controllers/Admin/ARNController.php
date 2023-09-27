@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 class ARNController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Display a listing of the resource. in laptop
      */
     public function index()
     {
