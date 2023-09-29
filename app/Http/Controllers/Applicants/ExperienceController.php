@@ -44,32 +44,17 @@ class ExperienceController extends Controller
                 )
             );
         } else {
-            ExperienceDetail::create($request->validated());
+            ExperienceDetail::create(
+                array_merge(
+                    $request->validated(), [ 'application_reference_number_id' => $jobapplication->id]
+                )
+                
+            );
         }
 
-
-
-
-
-       
-        $file = $request->file('experience_path');
-        $fileName = $file->getClientOriginalName();
-        $upload = Storage::putFileAs('documents/' . $request->candidate_id . '/experience', $file, $fileName);
-        ExperienceDetail::create(array_merge($request->all(), [
-            'application_reference_number_id' => $jobapplication->id,
-            'experience_path' => $upload
-        ]));
         return redirect()->route('jobapplication.edit', $jobapplication);
 
-        // try {
-          
-        // } catch (Exception $e) {
-        //     return redirect()->back()->with([
-        //         'status' => 'danger',
-        //         'message' => $e->getMessage()
-        //     ]);
-        // }
-        return redirect()->route('experiencedetails.index');
+    
     }
 
     public function show(ExperienceDetail $experiencedetail)

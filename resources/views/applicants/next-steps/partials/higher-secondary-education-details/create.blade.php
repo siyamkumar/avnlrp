@@ -1,4 +1,11 @@
-<form method="POST" action="{{ route('highersecondaryeducationdetails.store') }}">
+<x-candidate-layout>
+<x-slot name="candidateheader">
+    <h2 class="">
+        {{ __('Education') }} <small class="text-muted fw-light"> | Higher Secondary Details </small>
+    </h2>
+</x-slot>
+
+<form method="POST" action="{{ route('jobapplication.highersecondaryeducationdetails.store', $jobapplication) }}"    enctype='multipart/form-data'>
     
     
     @csrf
@@ -14,3 +21,5 @@
     
 
 </form>
+
+</x-candidate-layout>

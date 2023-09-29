@@ -29,7 +29,7 @@
 
                     <h3 class="mt-2"># {{ $arn->arn }}</h3>
 
-                    <a href="{{ route('jobapplication.index') }}" class="btn btn-primary ">Continue
+                    <a href="{{ route('jobapplication.edit', $arn) }}" class="btn btn-primary ">Continue
 
                         <svg viewBox="-3 0 32 32" version="1.1" xmlns="http://www.w3.org/2000/svg" width="36"
                             xmlns:xlink="http://www.w3.org/1999/xlink" fill="#ffffff">

@@ -144,9 +144,10 @@
 
     <div class="col-md-6">
         <label for="aadhaarNo" class="form-label"> Aadhaar Number</label>
+       
         <input type="text" class="form-control @error('aadhaarNo') is-invalid @enderror" id="aadhaarNo"
             name="aadhaarNo" value="{{ old('aadhaarNo', $personaldetail->aadhaarNo ?? '') }}"
-            placeholder="XXXX-XXXX-XXXX"
+            placeholder="XXXX-XXXX-XXXX" 
             @if ($personaldetail) @if ($personaldetail->aadhaarNo) disabled @endif @endif />
         @error('aadhaarNo')
             <div class="invalid-feedback">
@@ -166,9 +167,9 @@
         @enderror
     </div>
     <div class="col-md-6">
-        <label for="photo_path" class="form-label"> Photo Upload <span style="color:red">*</span> </label>
-        <input type="file" name="photo_path" class="filepond"
-            value="{{ old('photo_path', $personaldetail->photo_path ?? '') }}" accept="image/*" />
+        <label for="candidatePhoto" class="form-label"> Photo Upload <span style="color:red">*</span> </label>
+        <input type="file" name="candidatePhoto" class="filepond" id="candidatePhoto"
+           accept="image/*" />
     </div>
 
     {{-- <script type="module">
@@ -192,6 +193,4 @@
         <input type="file" name="sign_path" id="sign_path" class="filepond"  value="{{ old('sign_path', $personaldetail->sign_path ?? '') }}" 
                 accept="image/*"/>
     </div> --}}
-    </div>   
-
-
+</div>

@@ -12,9 +12,8 @@ class ExperienceDetailFormRequest extends FormRequest
     public function authorize(): bool
     {
         if (auth()->guard('applicants')->user())
-        return true;
-    return false;
-        
+            return true;
+        return false;
     }
 
     /**
@@ -23,7 +22,7 @@ class ExperienceDetailFormRequest extends FormRequest
      * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array|string>
      */
 
- 
+
     public function rules(): array
     {
         return [
@@ -32,15 +31,15 @@ class ExperienceDetailFormRequest extends FormRequest
             'postName' => 'required',
             'periodFrom' => 'required',
             'periodTo' => 'required|after:periodFrom',
-            'payScale' => 'required|integer',
-            'ctc' => 'required',
-           'experience_path' => 'required|max:50',
-            'jobsSummary' => 'required',
-            'jobType' => 'required',
+            'payScale' => '',
+            'ctc' => '',
+            'experience_path' => '',
+            'jobsSummary' => '',
+            'jobType' => '',
         ];
     }
-          
-    
+
+
     protected function prepareForValidation()
     {
 

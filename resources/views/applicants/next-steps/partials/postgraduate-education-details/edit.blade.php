@@ -1,6 +1,13 @@
-<form method="POST" action="{{ route('postgraduationeducationdetails.update', $
 
-) }}">
+<x-candidate-layout>
+
+    <x-slot name="candidateheader">
+        <h2 class="">
+            {{ __('Education Details') }} <small class="text-muted fw-light"> | Post Graduation Details </small>
+        </h2>
+    </x-slot>
+
+<form method="POST" action="{{ route('jobapplication.postgraduationeducationdetails.update',[$jobapplication, $postgraduationeducationdetail] ) }}"  enctype='multipart/form-data'>
 
     @csrf @method('PATCH')
 
@@ -12,3 +19,6 @@
 </div>
 
 </form>
+
+
+</x-candidate-layout>

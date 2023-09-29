@@ -26,9 +26,9 @@ class PostGraduationEducationController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create(ApplicationReferenceNumber $jobapplication)
     {
-        return view('applicants.next-steps.post-graduation-details');
+        return view('applicants.next-steps.partials.postgraduate-education-details.create', compact('jobapplication'));
 
     }
 
@@ -37,14 +37,16 @@ class PostGraduationEducationController extends Controller
      */
     public function store(PostGraduationEducationFormRequest $request,ApplicationReferenceNumber $jobapplication)
     {
-        if ($request->file('marksheet_path')) {
-            $file = $request->file('marksheet_path');
+        
+        if ($request->file('postgraduateMarksheet')) {
+            $file = $request->file('postgraduateMarksheet');
+            
             PostGraduationEducationDetail::create(
                 array_merge(
                     $request->validated(),
                     [
                         'application_reference_number_id' => $jobapplication->id,
-                        'marksheet_path' => Storage::putFileAs('documents/' . $request->candidate_id . '/postgraduation', $request->file('marksheet_path'), $file->getClientOriginalName()),
+                        'marksheet_path' => Storage::putFileAs('documents/' . $request->candidate_id . '/postgraduation', $file, $file->getClientOriginalName()),
                         'file_name' => $file->getClientOriginalName(),
                         'file_size' => $file->getSize(),
                         'file_type' => $file->getClientOriginalExtension(),
@@ -52,12 +54,16 @@ class PostGraduationEducationController extends Controller
                 )
             );
         } else {
-            PostGraduationEducationDetail::create($request->validated());
+            PostGraduationEducationDetail::create(
+                array_merge(
+                    ['application_reference_number_id' => $jobapplication->id],
+                    $request->validated()
+                )
+
+            );
         }
-
-        return redirect()->route('postgraduationeducationdetails.index');
+        return redirect()->route('jobapplication.edit', $jobapplication);
     }
-
     /**
      * Display the specified resource.
      */
@@ -71,8 +77,7 @@ class PostGraduationEducationController extends Controller
      */
     public function edit(ApplicationReferenceNumber $jobapplication, PostGraduationEducationDetail $postgraduationeducationdetail)
     {
-        return view('applicants.next-steps.post-graduation-details',  compact('jobapplication','postgraduationeducationdetail'));
-
+        return view('applicants.next-steps.partials.postgraduate-education-details.edit',  compact('jobapplication', 'postgraduationeducationdetail'));
     }
 
     /**
@@ -80,26 +85,20 @@ class PostGraduationEducationController extends Controller
      */
     public function update(PostGraduationEducationFormRequest $request, ApplicationReferenceNumber $jobapplication, PostGraduationEducationDetail $postgraduationeducationdetail)
     {
-        if ($request->file('filepond')) {
-            $file = $request->file('filepond');
-            $postgraduationeducationdetail->marksheet_path = Storage::putFileAs('documents/' . $request->candidate_id . '/postgraduation', $file, $file->getClientOriginalName());
+        if ($request->file('postgraduateMarksheet')) {
+            $file = $request->file('postgraduateMarksheet');
+            $postgraduationeducationdetail->marksheet_path = Storage::putFileAs('documents/' . $request->candidate_id . '/postgraduate', $file, $file->getClientOriginalName());
             $postgraduationeducationdetail->file_name = $file->getClientOriginalName();
             $postgraduationeducationdetail->file_size = $file->getSize();
             $postgraduationeducationdetail->file_type = $file->getClientOriginalExtension();
         }
-
         $postgraduationeducationdetail->fill($request->validated());
-
         $postgraduationeducationdetail->save();
         return redirect()->route('jobapplication.edit', $jobapplication);
 
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
     public function destroy(string $id)
     {
-        //
     }
 }

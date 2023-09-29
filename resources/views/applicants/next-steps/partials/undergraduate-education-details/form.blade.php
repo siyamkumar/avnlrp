@@ -1,6 +1,4 @@
-<div class="row mt-3 mb-3 g-3 border-bottom pb-3">
-
-         
+<div class="row mt-3 mb-3 g-3 border-bottom pb-3">         
     <div class="col-md-4">
         <label for="course_name" class="form-label">Name of Course</label>
         <input type="text" class="form-control" id="course_name" name="course_name" 
@@ -13,7 +11,7 @@
     </div>
 
     <div class="col-md-4">
-        <label for="university_name"  class="form-label">Name of University</label>
+        <label for="university_name"  class="form-label">Affiliated Institute/University</label>
         <input type="text" class="form-control" id="university_name" name="university_name"
         value = "{{ old('university_name', $graduationeducationdetail->university_name ?? '') }}">
     
@@ -30,9 +28,8 @@
     </div>
     
     <div class="col-md-4">
-        <label for="'marksheet_path'" class="form-label">Degree Upload</label>
-        <input type="file" name="marksheet_path" class="filepond"/>
+        <label for="graduateMarksheet" class="form-label">Degree Certificate Upload</label>
+        <input type="file" id="graduateMarksheet" name="graduateMarksheet"  class="filepond  @error('graduateMarksheet') is-invalid @enderror"/>
     </div>
-
-
 </div>
+

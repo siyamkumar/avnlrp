@@ -19,21 +19,22 @@ class SecondaryEducationController extends Controller
         return redirect()->route('secondaryeducationdetails.create');
     }
 
-    public function create()
+    public function create(ApplicationReferenceNumber $jobapplication)
     {
-        return view('applicants.next-steps.partials.secondary-education-details.create');
+        return view('applicants.next-steps.partials.secondary-education-details.create', compact('jobapplication'));
     }
     public function store(SecondaryEducationFormRequest $request, ApplicationReferenceNumber $jobapplication)
     {
 
-        if ($request->file('marksheet_path')) {
-            $file = $request->file('marksheet_path');
+        
+        if ($request->file('secondaryMarksheet')) {
+            $file = $request->file('secondaryMarksheet');
             SecondaryEducationDetail::create(
                 array_merge(
                     $request->validated(),
                     [
                         'application_reference_number_id' => $jobapplication->id,
-                        'marksheet_path' => Storage::putFileAs('documents/' . $request->candidate_id . '/secondary', $request->file('marksheet_path'), $file->getClientOriginalName()),
+                        'marksheet_path' => Storage::putFileAs('documents/' . $request->candidate_id . '/secondary', $file, $file->getClientOriginalName()),
                         'file_name' => $file->getClientOriginalName(),
                         'file_size' => $file->getSize(),
                         'file_type' => $file->getClientOriginalExtension(),
@@ -41,10 +42,18 @@ class SecondaryEducationController extends Controller
                 )
             );
         } else {
-            SecondaryEducationDetail::create($request->validated());
+            SecondaryEducationDetail::create(
+                array_merge(
+                    $request->validated(),
+                    [
+                        'application_reference_number_id' => $jobapplication->id,
+                    ]
+                )
+
+            );
         }
 
-        return redirect()->route('secondaryeducationdetails.index');
+        return redirect()->route('jobapplication.edit', $jobapplication);
     }
     public function show(string $id)
     {
@@ -57,16 +66,14 @@ class SecondaryEducationController extends Controller
 
     public function update(SecondaryEducationFormRequest $request, ApplicationReferenceNumber $jobapplication, SecondaryEducationDetail $secondaryeducationdetail)
     {
-        if ($request->file('filepond')) {
-            $file = $request->file('filepond');
+        if ($request->file('secondaryMarksheet')) {
+            $file = $request->file('secondaryMarksheet');
             $secondaryeducationdetail->marksheet_path = Storage::putFileAs('documents/' . $request->candidate_id . '/secondary', $file, $file->getClientOriginalName());
             $secondaryeducationdetail->file_name = $file->getClientOriginalName();
             $secondaryeducationdetail->file_size = $file->getSize();
             $secondaryeducationdetail->file_type = $file->getClientOriginalExtension();
         }
-
         $secondaryeducationdetail->fill($request->validated());
-
         $secondaryeducationdetail->save();
         return redirect()->route('jobapplication.edit', $jobapplication);
     }

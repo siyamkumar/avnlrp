@@ -13,7 +13,7 @@
     </div>
 
     <div class="col-md-4">
-        <label for="university_name"  class="form-label">Name of University</label>
+        <label for="university_name"  class="form-label">Affiliated Institute/University</label>
         <input type="text" class="form-control" id="university_name" name="university_name"
         value = "{{ old('university_name', $postgraduationeducationdetail->university_name ?? '') }}">
     
@@ -30,8 +30,8 @@
     </div>
     
     <div class="col-md-4">
-        <label for="'marksheet_path'" class="form-label">Degree Upload</label>
-        <input type="file" name="marksheet_path" class="filepond"/>
+        <label for="postgraduateMarksheet" class="form-label">Degree Upload</label>
+        <input type="file" id="postgraduateMarksheet" name="postgraduateMarksheet" class="filepond"/>
     </div>
 
 

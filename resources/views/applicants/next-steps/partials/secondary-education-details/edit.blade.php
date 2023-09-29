@@ -1,4 +1,10 @@
 <x-candidate-layout>
+    <x-slot name="candidateheader">
+        <h2 class="">
+            {{ __('Education Details') }} | <small class="text-small text-muted">Secondary Education</small>
+        </h2>
+
+    </x-slot>
     <form method="POST"
         action="{{ route('jobapplication.secondaryeducationdetails.update', [$jobapplication, $secondaryeducationdetail]) }}"
         id="myForm" enctype='multipart/form-data'>

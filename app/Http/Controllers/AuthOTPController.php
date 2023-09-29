@@ -51,7 +51,7 @@ class AuthOTPController extends Controller
 
             Auth::guard('applicants')->login($candidate);
 
-            return redirect('/next-step');
+            return redirect()->route('personaldetails.create');
         }
 
         return redirect()->route('otp.login')->with('error', 'Your Otp is not correct');

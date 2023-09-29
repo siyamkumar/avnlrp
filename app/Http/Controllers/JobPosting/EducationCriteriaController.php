@@ -30,14 +30,13 @@ class EducationCriteriaController extends Controller
      */
     public function store(Request $request, JobPosting $jobposting)
     {
-        if($request->reqEducation)
-                EducationCriteria::create([
-                    'job_posting_id' => $jobposting->id,
-                    'min_qualification' => $request->reqEducation,
-                    'desired_education' => $request->desiredQualification,
-                ]);
-
-        
+        if ($request->reqEducation)
+            EducationCriteria::create([
+                'job_posting_id' => $jobposting->id,
+                'min_qualification' => $request->reqEducation,
+                'desired_education' => $request->desiredQualification,
+            ]);
+            return redirect()->route('jobpostings.edit', $jobposting);
     }
 
     /**

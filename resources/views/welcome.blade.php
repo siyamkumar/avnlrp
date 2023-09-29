@@ -38,9 +38,9 @@
                                 <a href="{{ route('jobs.show', $jobposting) }}" class="text-decoration-none">
                                     <div class="d-flex flex-column h-100 p-5 pb-3 text-dark">
 
-                                        <b>{{ $jobposting->locationunit->unit_name }}</b>
+                                        <b>{{ $jobposting->locationunit->unit_name ?? ''}}</b>
                                         <small>{{
-                                             $jobposting->locationunit->address }}</small>
+                                             $jobposting->locationunit->address ?? ''}}</small>
     
                                         <div class="pt-3 mt-2 mb-4">
                                             @if($jobposting->isContract)
