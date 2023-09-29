@@ -24,14 +24,26 @@
             <tr>
                 <td>
                     <span class="fw-bold">{{ $ja->arn }} </span>
+                    @switch($ja->status)
+                        @case('draft')
+                            <small class="d-inline-flex px-2 py-1 fw-semibold  rounded-2 text-uppercase"
+                                style="color: #8228CF; background-color:#F2E6FF">{{ $ja->status ?? '' }}</small>
+                        @break
 
-                    <small class="d-inline-flex px-2 py-1 fw-semibold  rounded-2 text-uppercase"
-                        style="color: #8228CF; background-color:#F2E6FF">{{ $ja->status ?? '' }}</small>
+                        @case('submitted')
+                            <small class="d-inline-flex px-2 py-1 fw-semibold  rounded-2 text-uppercase"
+                                style="color: #2E6300; background-color:#ECFCCB">{{ $ja->status ?? '' }}</small>
+                        @break
+
+                        @default
+                    @endswitch
+
 
 
                 </td>
                 <td>{{ $ja->jobpostings->jobTitle }}</td>
-                <td>{{ $ja->jobpostings->jobPostingLastDate ? $ja->jobpostings->jobPostingLastDate->format('d/M/Y') :'' }}</td>
+                <td>{{ $ja->jobpostings->jobPostingLastDate ? $ja->jobpostings->jobPostingLastDate->format('d/M/Y') : '' }}
+                </td>
                 <td>
                     <a href="{{ route('jobapplication.edit', $ja) }}">Edit</a>
                 </td>

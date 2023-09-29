@@ -75,7 +75,7 @@
                         <div id="barChart" style="width: 100%;min-height:300px;"></div>
 
                     </div>
-
+                    @json($states)
                     <script type="module">
                         var myChart = echarts.init(document.getElementById('barChart'));
                         var option = {
@@ -84,7 +84,7 @@
                                 data: ['Applications']
                             },
                             xAxis: {
-                                data: ['TN', 'PB', 'KA', 'MP', 'RJ', 'TR']
+                                data: @json($states)
                             },
                             yAxis: {},
                             series: [{
@@ -165,7 +165,6 @@
                                         show: true,
                                         fontSize: '16',
                                         fontWeight: 'bold',
-
                                     }
                                 },
                                 data: [{

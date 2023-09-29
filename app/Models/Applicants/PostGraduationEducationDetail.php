@@ -19,6 +19,7 @@ class PostGraduationEducationDetail extends Model
         'marksheet_path',
         'file_name',
         'file_type',
-        'file_size'
+        'file_size',
+        'application_reference_number_id'
     ];
 }

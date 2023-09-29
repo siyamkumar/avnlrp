@@ -9,11 +9,12 @@ table {
 
 table>thead>tr {
     background: #F7F8FA !important;
+    
 }
 
 table>thead>tr>th {
     padding: 0.5em;
-    color: #858F9E;
+    color: #314044;
     font-size:1rem;
     font-weight: 600;
 }
@@ -24,4 +25,8 @@ table>tbody>tr>td{
 
 table>tbody>tr{
     border-bottom: #EDEFF4 1px solid;
+}
+
+table>tbody>tr:last-child{
+    border-bottom: none;
 }

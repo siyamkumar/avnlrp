@@ -3,7 +3,7 @@
     <div class="col-md-6">
         <label for="schoolTwelveth" class="form-label">Name of School</label>
         <input type="text" class="form-control  @error('school_name') is-invalid @enderror" id="school_name"
-            name="school_name" value="{{ old('school_name', $highersecondaryeducationdetail->school_name ?? '') }}">
+            name="school_name" value="{{ old('school_name', $highersecondaryeducationdetail->school_name ?? '') }}" placeholder="Name of the school">
         @error('school_name')
             <div class="invalid-feedback">
                 {{ $message }}
@@ -43,16 +43,18 @@
             </div>
         @enderror
     </div>
-
     <div class="col-md-4">
-        <label for="form12thFile" class="form-label">Certificate Upload <span style="color:red">*</span></label>
-        <input type="file" name="marksheet_path" class="filepond"/>
-      
-        @error('marksheet_path')
+        <label for="highersecondaryMarksheet" class="form-label"> Certificate Upload <span style="color:red">*</span> </label>
+        <input id="highersecondaryMarksheet" type="file" name="highersecondaryMarksheet"
+            class="filepond  @error('highersecondaryMarksheet') is-invalid @enderror" />
+        @error('highersecondaryMarksheet')
             <div class="invalid-feedback">
                 {{ $message }}
             </div>
         @enderror
     </div>
+
+    
+
     
 </div>

@@ -19,7 +19,7 @@
 
                                 @if (auth()->guard('applicants')->user()->personaldetails)
                                     <img class="rounded-circle"
-                                        src="{{ url('storage/public/photo/' .auth()->guard('applicants')->user()->personaldetails->photo_path ??'') }} "
+                                        src="{{ url('storage/public/' . auth()->guard('applicants')->user()->personaldetails->photo_path ??'') }} "
                                         width="75" height="75">
                                 @else
                                     <x-profile-picture/>
@@ -40,7 +40,7 @@
                     <ul class="list-group">
 
                         <li class="list-group-item nav-item mb-3 border rounded-0">
-                            <a href="{{ route('personaldetails.index') }}" class="nav-link d-flex align-items-center">
+                            <a href="{{ route('personaldetails.create') }}" class="nav-link d-flex align-items-center">
 
 
                                <x-icons.profile />

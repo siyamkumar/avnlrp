@@ -12,5 +12,5 @@
         </g>
     </svg>
     <small class="d-inline-flex px-2 py-1 fw-semibold  rounded-2 text-uppercase"
-        style="color: #003456; background-color:#E5F9FF">{{ $fromDate ?? '' }}</small>
+        style="color: #003456; background-color:#E5F9FF">{{ $toDate ?? '' }}</small>
 </div>

@@ -19,7 +19,7 @@ class CandidatesController extends Controller
     public function index()
     {
         return view('admin.candidates.index')->with([
-            'applications' => ApplicationReferenceNumber::paginate(5),
+            'applications' => ApplicationReferenceNumber::paginate(9),
         ]);
     }
 
@@ -28,10 +28,6 @@ class CandidatesController extends Controller
      */
     public function create()
     {
-        //
-
-
-
     }
 
     /**

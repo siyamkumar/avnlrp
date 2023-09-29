@@ -56,29 +56,14 @@
     </div>
 
     <div class="col-md-4">
-        <label for="marksheet_path" class="form-label"> Certificate Upload <span style="color:red">*</span> </label>
-        <input id="marksheet_path" type="file" name="marksheet_path"
-            class="filepond  @error('marksheet_path') is-invalid @enderror" />
-        @error('marksheet_path')
+        <label for="secondaryMarksheet" class="form-label"> Certificate Upload <span style="color:red">*</span> </label>
+        <input id="secondaryMarksheet" type="file" name="secondaryMarksheet"
+            class="filepond  @error('secondaryMarksheet') is-invalid @enderror" />
+        @error('secondaryMarksheet')
             <div class="invalid-feedback">
                 {{ $message }}
             </div>
         @enderror
     </div>
-
-    <script type="module">
-        const inputElement = document.getElementById('marksheet_path');
-        FilePond.create(inputElement, {
-            allowImagePreview: true,
-            allowMultiple: false,
-            labelIdle: 'Drag & Drop your scanned certificate copy or <span class="filepond--label-">Browse</span>',
-            credits: false,
-            storeAsFile: true,
-            size: 0.05,
-            allowImagePreview: true
-
-
-        });
-    </script>
 
 </div>

@@ -19,23 +19,24 @@ class GraduationEducationController extends Controller
         return redirect()->route('graduationeducationdetails.create');
     }
 
-    public function create()
+    public function create(ApplicationReferenceNumber $jobapplication)
     {
-        return view('applicants.next-steps.graduation-details');
+        return view('applicants.next-steps.partials.undergraduate-education-details.create', compact('jobapplication'));
     }
 
 
-    public function store(GraduationEducationFormRequest $request,ApplicationReferenceNumber $jobapplication)
+    public function store(GraduationEducationFormRequest $request, ApplicationReferenceNumber $jobapplication)
     {
-        
-        if ($request->file('marksheet_path')) {
-            $file = $request->file('marksheet_path');
+
+
+        if ($request->file('graduateMarksheet')) {
+            $file = $request->file('graduateMarksheet');
             GraduationEducationDetail::create(
                 array_merge(
                     $request->validated(),
                     [
                         'application_reference_number_id' => $jobapplication->id,
-                        'marksheet_path' => Storage::putFileAs('documents/' . $request->candidate_id . '/graduation', $request->file('marksheet_path'), $file->getClientOriginalName()),
+                        'marksheet_path' => Storage::putFileAs('documents/' . $request->candidate_id . '/graduation', $file, $file->getClientOriginalName()),
                         'file_name' => $file->getClientOriginalName(),
                         'file_size' => $file->getSize(),
                         'file_type' => $file->getClientOriginalExtension(),
@@ -43,9 +44,15 @@ class GraduationEducationController extends Controller
                 )
             );
         } else {
-            GraduationEducationDetail::create($request->validated());
+            GraduationEducationDetail::create(
+                array_merge(
+                    ['application_reference_number_id' => $jobapplication->id],
+                    $request->validated()
+                )
+
+            );
         }
-        return redirect()->route('graduationeducationdetails.index');
+        return redirect()->route('jobapplication.edit', $jobapplication);
     }
 
 
@@ -54,25 +61,23 @@ class GraduationEducationController extends Controller
     }
 
 
-    public function edit(ApplicationReferenceNumber $jobapplication,GraduationEducationDetail $graduationeducationdetail)
+    public function edit(ApplicationReferenceNumber $jobapplication, GraduationEducationDetail $graduationeducationdetail)
     {
-        return view('applicants.next-steps.graduation-details',  compact('jobapplication', 'graduationeducationdetail'));
+        return view('applicants.next-steps.partials.undergraduate-education-details.edit',  compact('jobapplication', 'graduationeducationdetail'));
     }
 
 
     public function update(GraduationEducationFormRequest $request, ApplicationReferenceNumber $jobapplication, GraduationEducationDetail $graduationeducationdetail)
     {
 
-        if ($request->file('filepond')) {
-            $file = $request->file('filepond');
+        if ($request->file('graduateMarksheet')) {
+            $file = $request->file('graduateMarksheet');
             $graduationeducationdetail->marksheet_path = Storage::putFileAs('documents/' . $request->candidate_id . '/graduation', $file, $file->getClientOriginalName());
             $graduationeducationdetail->file_name = $file->getClientOriginalName();
             $graduationeducationdetail->file_size = $file->getSize();
             $graduationeducationdetail->file_type = $file->getClientOriginalExtension();
         }
-
         $graduationeducationdetail->fill($request->validated());
-
         $graduationeducationdetail->save();
         return redirect()->route('jobapplication.edit', $jobapplication);
     }

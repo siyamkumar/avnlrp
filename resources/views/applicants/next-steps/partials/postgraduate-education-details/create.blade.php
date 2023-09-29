@@ -1,10 +1,20 @@
-<form method="POST" action="{{ route('postgraduationeducationdetails.store') }}">
+<x-candidate-layout>
 
-    @csrf
+    <x-slot name="candidateheader">
+        <h2 class="">
+            {{ __('Education Details') }} <small class="text-muted fw-light"> | Post Graduation Details </small>
+        </h2>
+    </x-slot>
 
- @include('applicants.next-steps.partials.postgraduate-education-details.form')
-    <div class="">
-        <button type="submit" class="btn btn-primary"> Save & Continue </button>
-    </div>
+    <form method="POST" action="{{ route('jobapplication.postgraduationeducationdetails.store', $jobapplication) }}"  enctype='multipart/form-data'>
 
-</form>
+        @csrf
+
+        @include('applicants.next-steps.partials.postgraduate-education-details.form')
+        <div class="">
+            <button type="submit" class="btn btn-primary"> Save & Continue </button>
+        </div>
+
+    </form>
+
+</x-candidate-layout>

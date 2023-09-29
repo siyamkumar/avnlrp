@@ -15,21 +15,16 @@ class HigherSecondaryEducationDetail extends Model
         'school_board',
         'year_of_passing',
         'score',
-        'marksheet_path' => 'mimes:png,jpg,jpeg,csv,txt,pdf|max:50',
+        'marksheet_path',
         'file_name',
         'file_type',
-        'file_size'
+        'file_size',
+        'application_reference_number_id'
     ];
 
     // protected $dates = [
     //     'year_of_passing' => 'datetime:Y'
     // ];
-    // protected function prepareForValidation()
-    // {
-      
-    //    $this->merge([
-    //         'candidate_id' => auth()->guard('applicants')->user()->id,
-    //     ]);
-    // }
+    
 
 }

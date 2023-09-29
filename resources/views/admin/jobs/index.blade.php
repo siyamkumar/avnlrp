@@ -32,13 +32,13 @@
                                     <tr id="{{ $key }}">
                                         <td>{{ $key + 1 }}</td>
                                         <td>{{ $jobposting->jobPostingDate->format('d/M/Y') }}</td>
-                                        <td>{{ $jobposting->jobAdvertismentNo }}</td>
-                                        <td>{{ $jobposting->jobTitle }}</td>
-                                        <td>{{ $jobposting->locationunit->unit_code }}</td>
-                                        <td>{{ $jobposting->vacancy }}</td>
+                                        <td>{{ $jobposting->jobAdvertismentNo ?? '' }}</td>
+                                        <td>{{ $jobposting->jobTitle ?? ''}}</td>
+                                        <td>{{ $jobposting->locationunit->unit_code ?? ''}}</td>
+                                        <td>{{ $jobposting->vacancy ??'' }}</td>
                                         <td>{{ $jobposting->jobPostingLastDate->format('d/M/Y') }} </td>
                                         <td><x-job-status :status="$jobposting->status" /></td>
-                                        <td>{{ $jobposting->user->name }}</td>
+                                        <td>{{ $jobposting->user->name ??'' }}</td>
                                         <td>
                                             <x-icons.open href="" />
                                             <x-icons.edit href="{{ route('jobpostings.edit', $jobposting) }}" />

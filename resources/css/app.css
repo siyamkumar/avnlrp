@@ -4,7 +4,7 @@
 @import "table.css";
 @import "print.css";
 @import "form.css";
-
+@import "arn.css";
 
 .home-page-header {
 
@@ -31,6 +31,10 @@
 .btn {
     border-radius: 0 !important;
     padding: 11px 11px !important;
+}
+
+.btn-icon{
+    padding: 6px 6px !important;
 }
 
 .btn-dropdown, .btn-action{

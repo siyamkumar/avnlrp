@@ -50,12 +50,34 @@
                     </li>
 
                     @if (auth()->guard('applicants')->user())
-                        <li class="nav-item">
-                            <form id="frm-logout" action="{{ route('candidatelogout') }}" method="POST">
-                                @csrf
-                                <button type="submit" class="nav-link">Log out</button>
+                        <li class="nav-item dropdown">
+                            <a href="#" id="profileDropdown"
+                                class="d-block link-body-emphasis text-decoration-none dropdown-toggle show"
+                                data-bs-toggle="dropdown" aria-expanded="true">
+                                <div
+                                    class="rounded-circle profile-container d-flex align-items-center justify-content-center fw-bold text-white">
+                                    {{ auth()->guard('applicants')->user()->fullname[0] }}
+                                </div>
 
-                            </form>
+                            </a>
+                            <ul class="dropdown-menu text-small"
+                                style="position: absolute; inset: 0px 0px auto auto; margin: 0px; transform: translate(0px, 34px);"
+                                data-popper-placement="bottom-start">
+                                <li><a class="dropdown-item" href="{{ route('candidateprofile') }}">My Profile</a></li>
+                                <li>
+                                    <hr class="dropdown-divider">
+                                </li>
+                                <li>
+                                    <div class="" href="#">
+
+                                        <form id="frm-logout" action="{{ route('candidatelogout') }}" method="POST">
+                                            @csrf
+                                            <button type="submit" class="dropdown-item">Log out</button>
+
+                                        </form>
+                                    </div>
+                                </li>
+                            </ul>
                         </li>
                     @else
                         <li class="nav-item">
@@ -82,39 +104,30 @@
         <x-toast :message="session('message')" :status="session('status')" />
     @endif
 
-    <footer class="footer bg-light w-100 ">
-        <div class="container">
-            <div class="d-flex align-items-center justify-content-between">
-                <div>
-                    Copyright &copy; {{ date('Y') }}. All rights Reserved - Official Website of Armoured Vehicles
-                    Nigam Limited.
-                </div>
 
+    <div class="bg-light w-100">
+        <footer class="footer d-flex flex-wrap justify-content-between align-items-center py-3 container">
 
-                <ul class="navbar navbar-nav">
-                   
-                    <li class="nav-item">
-                        @if(!auth()->guard('applicants')->check())
-                        <a href="{{ route('login') }}" class="nav-link">Admin Login</a>
-                        @endif
+            <div class="col-md-6 d-flex align-items-center">
 
-                    </li>
-                 
-                    <li class="nav-item">
-                        <a href=""  class="nav-link">Terms & Conditions</a>
-                    </li>
-
-                </ul>
-
-
-
-
-
-
+                <span class="text-muted"> Copyright &copy; {{ date('Y') }}. All rights Reserved - Official Website
+                    of Armoured Vehicles
+                    Nigam Limited.</span>
             </div>
-        </div>
 
-    </footer>
+            <ul class="nav col-md-4 justify-content-end list-unstyled d-flex">
+                <li class="ms-3">
+                    @if (!auth()->guard('applicants')->check())
+                        <a href="{{ route('login') }}" class="text-muted">Admin Login</a>
+                    @endif
+                </li>
+                <li class="ms-3"><a class="text-muted" href="#">Terms & Conditions</a></li>
+            </ul>
+        </footer>
+
+    </div>
+
+
 </body>
 
 </html>

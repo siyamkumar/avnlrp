@@ -1,0 +1,36 @@
+
+#arn-sidebar > .nav-item {
+   width: 100%;
+    transition: 0.2s;
+}
+
+
+#arn-sidebar>.nav-item > .nav-link{
+    
+    border-left : white 3px solid;
+    text-decoration: none;
+    color: inherit;
+}
+
+#arn-sidebar > .nav-item:hover .nav-link, #arn-sidebar > .nav-item > .active{
+    border-left: #9400A3 3px solid;
+    background-color: #FCFCFD;
+  
+}
+
+ #arn-sidebar > .nav-item > .active > div > .arn-title{
+    color: #9400A3;
+}
+
+.arn-content::-webkit-scrollbar, .arn-sidebar::-webkit-scrollbar {
+    width: 0.3em;
+}
+  
+  .arn-content::-webkit-scrollbar-track {
+      /* box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3); */
+    }
+  
+  .arn-content::-webkit-scrollbar-thumb, .arn-sidebar::-webkit-scrollbar-thumb {
+      background-color: darkgrey;
+      
+    }
