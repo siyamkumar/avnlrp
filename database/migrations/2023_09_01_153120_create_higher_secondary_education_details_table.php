@@ -12,15 +12,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('graduation_education_details', function (Blueprint $table) {
+        Schema::create('higher_secondary_education_details', function (Blueprint $table) {
             $table->id();
             $table->foreignIdFor(Candidate::class);
-            $table->string('course_name')->nullable();
-            $table->string('college_name')->nullable();
-            $table->string('university_name')->nullable();
-            $table->year('year_of_passing')->nullable();
-            $table->integer('score')->nullable();
-            $table->string('marksheet_path')->nullable();
+            $table->string('school_name');
+            $table->string('school_board');
+            $table->year('year_of_passing');
+            $table->integer('score');
+            $table->string('marksheet_path');
             $table->timestamps();
         });
     }
@@ -30,6 +29,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('graduation_education_details');
+        Schema::dropIfExists('higher_secondary_education_details');
     }
 };

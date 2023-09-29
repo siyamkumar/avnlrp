@@ -15,11 +15,11 @@ return new class extends Migration
         Schema::create('secondary_education_details', function (Blueprint $table) {
             $table->id();
             $table->foreignIdFor(Candidate::class);
-            $table->string('school_name');
-            $table->string('school_board');
-            $table->year('year_of_passing');
-            $table->integer('score');
-            $table->string('marksheet_path');
+            $table->string('school_name')->nullable();
+            $table->string('school_board')->nullable();
+            $table->year('year_of_passing')->nullable();
+            $table->integer('score')->nullable();
+            $table->string('marksheet_path')->nullable();
             $table->timestamps();
         });
     }
