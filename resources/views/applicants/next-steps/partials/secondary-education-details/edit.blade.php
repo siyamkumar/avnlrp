@@ -1,6 +1,6 @@
 <x-candidate-layout>
     <form method="POST"
-        action="{{ route('jobapplication.secondaryeducationdetails.update', ['jobapplication'=>$secondaryeducationdetail,
+        action="{{ route('jobapplication.secondaryeducationdetails.update', ['jobapplication'=>$secondaryeducationdetail->id,
          'secondaryeducationdetail'=> $secondaryeducationdetail]) }}"
         id="myForm" enctype='multipart/form-data'>
         @csrf @method('PATCH')

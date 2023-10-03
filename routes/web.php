@@ -110,7 +110,7 @@ Route::middleware('candidateAuth')->group(function () {
     Route::get('/next-step', NextStepsController::class);
     route::resource('jobapplication', JobApplicataionsController::class);
     Route::resource('personaldetails', PersonalDetailsController::class);
-    Route::resource('jobapplication.secondaryeducationdetails', SecondaryEducationController::class)->except(['index', 'destroy']);
+    Route::resource('jobapplication.secondaryeducationdetails', SecondaryEducationController::class)->except([ 'destroy']);
     Route::resource('jobapplication.highersecondaryeducationdetails', HigherSecondaryEducationController::class);
     Route::resource('jobapplication.graduationeducationdetails', GraduationEducationController::class);
     Route::resource('jobapplication.postgraduationeducationdetails', PostGraduationEducationController::class);

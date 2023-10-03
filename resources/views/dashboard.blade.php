@@ -71,34 +71,13 @@
                     </div>
 
 
-                    <div class="card-body">
-                        <div id="barChart" style="width: 100%;min-height:300px;"></div>
+                    <div class="card-body" style="height: 328px">
+
+                        <canvas id="barChart" style="width:50%;height:100px"></canvas>
+                       
 
                     </div>
 
-                    <script type="module">
-                        var myChart = echarts.init(document.getElementById('barChart'));
-                        var option = {
-                            tooltip: {},
-                            legend: {
-                                data: ['Applications']
-                            },
-                            xAxis: {
-                                data: ['TN', 'PB', 'KA', 'MP', 'RJ', 'TR']
-                            },
-                            yAxis: {},
-                            series: [{
-                                name: 'sales',
-                                type: 'bar',
-                                data: [125, 600, 241, 361, 420, 50],
-                                barWidth: '20%',
-                                color: '#FF0054'
-                            }]
-                        };
-
-
-                        myChart.setOption(option);
-                    </script>
                 </div>
 
 
@@ -117,101 +96,160 @@
                     </div>
 
 
-                    <div class="card-body">
+                    <div class="card-body" style="height: 328px">
 
-
-                        <div id="piechart" style="width: 100%;min-height:300px;"></div>
+                        <canvas id="myChart"></canvas>
+                       
 
                     </div>
 
-                    {{-- <script type="module">
-                        $(function(){
-                       var cData = JSON.parse({{$chart_data}});
-      var ctx = $("#pie-chart");
+           
  
-      //pie chart data
-      var data = {
-        labels: cData.label,
-        datasets: [
-          {
-            label: "Users Count",
-            data: cData.data,
-            backgroundColor: [
-              "#DEB887",
-              "#A9A9A9",
-              "#DC143C",
-              "#F4A460",
-              "#2E8B57",
-              "#1D7A46",
-              "#CDA776",
-            ],
-            borderColor: [
-              "#CDA776",
-              "#989898",
-              "#CB252B",
-              "#E39371",
-              "#1D7A46",
-              "#F4A460",
-              "#CDA776",
-            ],
-            borderWidth: [1, 1, 1, 1, 1,1,1]
-          }
-        ]
-      };
- 
-      //options
-      var options = {
-        responsive: true,
-        title: {
-          display: true,
-          position: "top",
-          text: "Last Week Registered Users -  Day Wise Count",
-          fontSize: 18,
-          fontColor: "#111"
-        },
-        legend: {
-          display: true,
-          position: "bottom",
-          labels: {
-            fontColor: "#333",
-            fontSize: 16
-          }
-        }
-      };
- 
-      //create Pie Chart class object
-      var chart1 = new Chart(ctx, {
-        type: "pie",
-        data: data,
-        options: options
-      });
- 
-  }); --}}
+  
+  <script src="{{ asset('node_modules/chart.js/dist/Chart.min.js') }}"></script>
+  
 
-  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" ></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/chartjs-plugin-datalabels/2.2.0/chartjs-plugin-datalabels.min.js" integrity="sha512-JPcRR8yFa8mmCsfrw4TNte1ZvF1e3+1SdGMslZvmrzDYxS69J7J49vkFL8u6u8PlPJK+H3voElBtUCzaXj+6ig==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="https://unpkg.com/chart.js-plugin-labels-dv/dist/chartjs-plugin-labels.min.js"></script>
   <script type="text/javascript">
-    var population = <?php echo $population; ?>;
-   
-    console.log(population);
-    google.charts.load('current', {
-        'packages': ['corechart']
-    });
-    google.charts.setOnLoadCallback(drawChart);
-    function drawChart() {
-        var data = google.visualization.arrayToDataTable(population);
-        var options = {
-            title: 'GenderWise',
-            curveType: 'function',
-            legend: {
-                position: 'bottom'
-            }
-        };
-        var chart = new google.visualization.PieChart(document.getElementById('piechart'));
-        chart.draw(data, options);
-    }        
+    
+    var labels1 =  {{ Js::from($filtered) }};
+    var users1 =  {{ Js::from($filteredcount) }};
+  
+    const data1 = {
+         labels: labels1,
+     
+        datasets: [{
+            label: 'StateWise',
+            backgroundColor: [
+              '#37A2DA',
+'#32C5E9',
+'#67E0E3',
+'#9FE6B8',
+'#FFDB5C',
+'#ff9f7f',
+'#fb7293',
+'#E062AE',
+'#E690D1',
+'#e7bcf3',
+'#9d96f5',
+'#8378EA',
+'#96BFFF'
+          ],
+            borderColor: '#E5E4E2',
+            data: users1,
+        }]
+    };
+  
+    const config1 = {
+        type: 'bar',
+        data: data1,
+        options: {aspectRatio: 2}
+    };
+  
+    const myChart1 = new Chart(
+        document.getElementById('barChart'),
+        config1
+    );
+  
 </script>
 
+    
+  <script type="text/javascript">
+    
+      var labels =  {{ Js::from($count1) }};
+      var users =  {{ Js::from($count) }};
+    
+      const data = {
+          labels: labels,
+          
+//         labels: {
+//     render: 'labels',
+//     fontColor: function (data) {
+//       var rgb = hexToRgb(data.dataset.backgroundColor[data.index]);
+//       var threshold = 140;
+//       var luminance = 0.299 * rgb.r + 0.587 * rgb.g + 0.114 * rgb.b;
+//       return luminance > threshold ? 'black' : 'white';
+//     },
+//     precision: 2
+//   },
+          datasets: [{
+              label: 'CategoryWise',
+              backgroundColor: [
+                'rgb(255, 99, 132)',
+      'rgb(75, 192, 192)',
+      'rgb(255, 205, 86)',
+      '#e7bcf3',
+      'rgb(54, 162, 235)',
+      '#67E0E3'
+            ],
+              borderColor:  [
+                'rgb(255, 99, 132)',
+      'rgb(75, 192, 192)',
+      'rgb(255, 205, 86)',
+      '#e7bcf3',
+      'rgb(54, 162, 235)',
+      '#67E0E3'
+            ],
+              data: users,
+          }]
+      };
+    
+      const config = {
+          type: 'doughnut',
+          data: data,
+          
+          options: {
+            layout:{
+                padding:5,
+            },
+           
+        plugins:{
+            legend:{
+                display:true,
+                position:'right',
+                ltr:true,
+                align:'center',
+                padding:20,
+                fullSize:true,
+                title: {
+          display: true,
+          text: 'Category Wise',
+        }
+            },
+            labels:{
+                render:'percentage',
+                fontColor:data.datasets[0].borderColor,
+                fontStyle:'bolder',
+                position:'outside',
+                textMargin:2
+            }
+        },
+        aspectRatio:2.1,
+           
+      },
+
+      plugins:[ChartDataLabels]
+     
+  };
+
+    
+      const myChart = new Chart(
+          document.getElementById('myChart'),
+          config
+      );
+    
+  </script>
+ 
+  
+  
+  
+  
+  
+  
 
                 
                 </div>
