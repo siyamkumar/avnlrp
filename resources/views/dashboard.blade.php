@@ -75,7 +75,7 @@
                         <div id="barChart" style="width: 100%;min-height:300px;"></div>
 
                     </div>
-                    @json($states)
+                   
                     <script type="module">
                         var myChart = echarts.init(document.getElementById('barChart'));
                         var option = {
@@ -211,7 +211,7 @@
 
                     <div class="card-body">
                         <div class="table-responsive">
-                         
+
                             <table class="table table-hover table-nowrap">
                                 <thead class="table-light">
                                     <tr>
@@ -225,14 +225,15 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($arns as $arn )
+                                    @foreach ($arns as $arn)
                                         <tr>
-                                            <td>{{$arn->arn ?? ''}}</td>
+                                            <td>{{ $arn->arn ?? '' }}</td>
                                             <td>{{ $arn->candidates->fullname ?? '' }}</td>
-                                            <td>{{ $arn->jobpostings->jobTitle}}</td>
-                                            <td>{{ $arn->created_at->format('d/M/Y')}}</td>
-                                            <td>{{$arn->candidates->personaldetails->category ?? '' }}</td>
-                                            <td>{{$arn->jobpostings->locationunit->unit_name ?? '' }}</td>
+                                            <td>{{ $arn->jobpostings->jobTitle }}</td>
+                                            <td>{{ $arn->created_at->format('d/M/Y') }}</td>
+                                            <td>{{ $arn->candidates->personaldetails->reservationcategory ? $arn->candidates->personaldetails->reservationcategory->code : '' }}
+                                            </td>
+                                            <td>{{ $arn->jobpostings->locationunit->unit_name ?? '' }}</td>
                                         </tr>
                                     @endforeach
                                 </tbody>

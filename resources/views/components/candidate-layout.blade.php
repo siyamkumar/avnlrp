@@ -18,11 +18,15 @@
 
 
                                 @if (auth()->guard('applicants')->user()->personaldetails)
-                                    <img class="rounded-circle"
-                                        src="{{ url('storage/public/' . auth()->guard('applicants')->user()->personaldetails->photo_path ??'') }} "
-                                        width="75" height="75">
+
+                                    @if (auth()->guard('applicants')->user()->personaldetails->photo_path)
+                                        <img class="rounded-circle"
+                                            src="{{ url('storage/public/' .auth()->guard('applicants')->user()->personaldetails->photo_path ??'') }} "
+                                            width="75" height="75">
+                                            @else<x-profile-picture />
+                                    @endif
                                 @else
-                                    <x-profile-picture/>
+                                    <x-profile-picture />
                                 @endif
 
 
@@ -43,7 +47,7 @@
                             <a href="{{ route('personaldetails.create') }}" class="nav-link d-flex align-items-center">
 
 
-                               <x-icons.profile />
+                                <x-icons.profile />
                                 My Profile
                             </a>
                         </li>

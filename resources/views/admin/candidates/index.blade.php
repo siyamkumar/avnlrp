@@ -17,9 +17,33 @@
                                         <a class="nav-link @if ($loop->first) active @endif"
                                             id="{{ $key }}" data-bs-toggle="tab" href="#{{ $app->arn }}"
                                             role="tab" aria-controls="tab-home">
-                                            <div class="py-2">
-                                                <h6 class="arn-title"># {{ $app->arn }}</h6>
-                                                {{ $app->jobpostings->jobTitle }}
+                                            <div class="">
+                                                <small>{{ $app->jobpostings->locationunit->unit_code }}</small>
+                                                <div class="d-flex align-items-center gap-2">
+                                                    <h6 class="arn-title mb-0"># {{ $app->arn }}</h6>
+                                                    @switch($app->status)
+                                                        @case('draft')
+                                                            <small
+                                                                class="d-inline-flex px-2 py-1 fw-semibold  rounded-2 text-uppercase"
+                                                                style="color: #8228CF; background-color:#F2E6FF; font-size:10px">{{ $app->status ?? '' }}</small>
+                                                        @break
+    
+                                                        @case('submitted')
+                                                            <small
+                                                                class="d-inline-flex px-2 py-1 fw-semibold  rounded-2 text-uppercase"
+                                                                style="color: #2E6300; background-color:#ECFCCB; font-size:10px">{{ $app->status ?? '' }}</small>
+                                                        @break
+    
+                                                        @default
+                                                    @endswitch
+                                                </div>
+                                               
+                                                <div>
+                                                    {{ $app->jobpostings->jobTitle }}
+
+
+                                                </div>
+
                                             </div>
 
 
@@ -602,7 +626,7 @@
                                             <x-card>
 
                                                 <div class="d-flex align-items-center">
-                                                    
+
                                                     <div
                                                         class="border rounded-circle d-flex justify-center align-items-center me-3 p-3 bg-light">
                                                         <svg fill="#5B626F" width="30" viewBox="0 0 512 512">
@@ -615,8 +639,8 @@
                                                     </div>
 
                                                     <h3>Fee Details</h3>
-                                                    
-                                                     
+
+
                                                 </div>
 
                                                 <div class="row mt-3 mb-3 g-3 border-bottom pb-3">
@@ -668,7 +692,7 @@
                                                                 Valid
                                                             </button>
                                                         </div>
-                                                    
+
                                                     </div>
 
 
