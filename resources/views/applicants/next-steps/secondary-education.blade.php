@@ -3,7 +3,7 @@
     <x-slot name="candidateheader">
 
         <h2 class="">
-            {{ __('Education') }} <small class="text-muted fw-light"> | Secondary Details </small>
+            {{ __('Education') }} <small class="text-muted fw-light">  Secondary Details </small>
         </h2>
 
         

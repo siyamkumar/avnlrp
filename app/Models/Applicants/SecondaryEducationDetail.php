@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Models\Applicants;
-
+use App\Models\Applicants\ApplicationReferenceNumber;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -24,5 +24,8 @@ class SecondaryEducationDetail extends Model
     // protected $casts = [
     //     'year_of_passing' => 'datetime:Y'
     // ];
+    public function jobapplication(){
+        return $this->belongsTo(ApplicationReferenceNumber::class);
+    }
 
 }

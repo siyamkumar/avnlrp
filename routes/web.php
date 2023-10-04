@@ -29,7 +29,13 @@ use App\Http\Controllers\JobPosting\DraftJobPostingController;
 use App\Http\Controllers\JobPosting\EducationCriteriaController;
 use App\Http\Controllers\JobPosting\ExperienceCriteriaController;
 use App\Http\Controllers\JobPosting\ReservationVacancyController;
+use App\Http\Controllers\JobPosting\JobRequirementController;
+use App\Http\Controllers\JobPosting\JobResponsibilityController;
+use App\Http\Controllers\JobPosting\TermsConditionsController;
 use App\Http\Controllers\JobPostingController;
+
+
+
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\PublicJobPostingController;
 use App\Models\Applicants\GraduationEducationDetail;
@@ -75,7 +81,9 @@ Route::middleware('auth')->group(function () {
         Route::resource('jobpostings.vacancy', ReservationVacancyController::class)->only(['store', 'update']);
         Route::resource('jobpostings.educationcriteria', EducationCriteriaController::class)->only(['store', 'update']);
         Route::resource('jobpostings.experiencecriteria', ExperienceCriteriaController::class)->only(['store', 'update']);
-
+        Route::resource('jobpostings.jobrequirement', JobRequirementController::class)->only(['store', 'update']);
+        Route::resource('jobpostings.jobresponsibility', JobResponsibilityController::class)->only(['store', 'update']);
+        Route::resource('jobpostings.termscondition', TermsConditionsController::class)->only(['store', 'update']);
         Route::get('/jobs/drafts/', DraftJobPostingController::class)->name('jobpostings.drafts');
         Route::get('/jobs/active/', ActiveJobPostingController::class)->name('jobpostings.active');
 

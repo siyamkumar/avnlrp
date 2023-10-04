@@ -15,8 +15,8 @@ class GraduationEducationController extends Controller
     {
         $candidate = auth()->guard('applicants')->user();
         if ($candidate->graduationeducationdetails)
-            return redirect()->route('graduationeducationdetails.edit', $candidate->graduationeducationdetails);
-        return redirect()->route('graduationeducationdetails.create');
+            return redirect()->route('jobapplication.graduationeducationdetails.edit', $candidate->graduationeducationdetails);
+        return redirect()->route('jobapplication.graduationeducationdetails.create');
     }
 
     public function create(ApplicationReferenceNumber $jobapplication)

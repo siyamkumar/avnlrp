@@ -7,33 +7,34 @@
                 <li class="nav-item text-center" role="presentation">
 
                     <x-icons.checkok />
-                    <a class="nav-link pt-0 {{ request()->routeIs('secondaryeducationdetails.*') ? 'active' : '' }}"
-                        href="{{ route('secondaryeducationdetails.index') }}">Secondary Education</a>
+                    <a class="nav-link pt-0 {{ request()->routeIs('jobapplication.secondaryeducationdetails.*') ? 'active' : '' }}"
+                        href="{{ route('jobapplication.secondaryeducationdetails.index',$jobapplication->id) }}">Secondary Education</a>
 
                 </li>
                 <li class="nav-item text-center" role="presentation">
                     <x-icons.checkpartial />
-                    <a class="nav-link pt-0 {{ request()->routeIs('highersecondaryeducationdetails.*') ? 'active' : '' }}"
-                        href="{{ route('highersecondaryeducationdetails.index') }}">Higher Secondary Education</a>
+                    <a class="nav-link pt-0 {{ request()->routeIs('jobapplication.highersecondaryeducationdetails.*') ? 'active' : '' }}"
+                        href="{{ route('jobapplication.highersecondaryeducationdetails.index',$jobapplication->id) }}">Higher Secondary Education</a>
                 </li>
 
                 <li class="nav-item text-center" role="presentation">
                     <x-icons.checknotok />
                     <a class="nav-link pt-0 {{ request()->routeIs('itidiplomadetails.*') ? 'active' : '' }}" id="qualification-tab" data-bs-toggle="tab" 
-                        href="{{ route('itidiplomadetails.index') }}"
+                        href="{{ route('itidiplomadetails.index' ,$jobapplication->id) }}"
                         role="tab" aria-selected="false">ITI/Diploma Education</a>
                 </li>
 
                 <li class="nav-item text-center" role="presentation">
                     <x-icons.checknotok />
-                    <a class="nav-link pt-0 {{ request()->routeIs('graduationeducationdetails.*') ? 'active' : '' }}" href="{{ route('graduationeducationdetails.index') }}"
+                    <a class="nav-link pt-0 {{ request()->routeIs('jobapplication.graduationeducationdetails.*') ? 'active' : '' }}" href="{{ route(
+                        'jobapplication.graduationeducationdetails.index',$jobapplication->id) }}"
                        >Undergraduate Education</a>
                 </li>
 
                 <li class="nav-item text-center" >
                     <x-icons.checknotok />
-                    <a class="nav-link pt-0 {{ request()->routeIs('postgraduationeducationdetails.*') ? 'active' : '' }}"  
-                        href="{{ route('postgraduationeducationdetails.index') }}" >Postgraduate Education</a>
+                    <a class="nav-link pt-0 {{ request()->routeIs('jobapplication.postgraduationeducationdetails.*') ? 'active' : '' }}"  
+                        href="{{ route('jobapplication.postgraduationeducationdetails.index',$jobapplication->id) }}" >Postgraduate Education</a>
 
 
             </ul>
