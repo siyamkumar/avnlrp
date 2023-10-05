@@ -27,7 +27,8 @@ class ApplicationReferenceNumber extends Model
     ];
 
     protected $casts = [
-        'submitted_at' => 'date'
+        'submitted_at' => 'date',
+        'declaration_date' => 'date'
     ];
 
     public function jobpostings(){

@@ -33,9 +33,9 @@
 
             <div class="col-md-4">
                 <label for="fee_details" class="form-label">Transaction ID</label>
-                <input type="text" class="form-control  @error('fee_details') is-invalid @enderror"
-                    id="fee_details" name="fee_details" placeholder="Trans. ID" value="XXXXAYYDDD999999"
-                    disabled value="{{ old('fee_details', $paymentdetail->fee_details ?? '') }}">
+                <input type="text" class="form-control  @error('fee_details') is-invalid @enderror" id="fee_details"
+                    name="fee_details" placeholder="Trans. ID" value="XXXXAYYDDD999999" disabled
+                    value="{{ old('fee_details', $paymentdetail->fee_details ?? '') }}">
                 @error('fee_details')
                     <div class="invalid-feedback">
                         {{ $message }}
@@ -45,8 +45,8 @@
 
 
             <div class="col-md-4">
-                <label for="payment_proof" class="form-label">Payment Proof <span
-                        style="color:red">*</span></label> <br />
+                <label for="payment_proof" class="form-label">Payment Proof <span style="color:red">*</span></label>
+                <br />
                 <a href="#">Payment Proof.jpg </a>
             </div>
 
@@ -85,20 +85,20 @@
         <div class="row mb-3">
             <div class="col-md-4">
                 <label for="" class="form-label">Date</label> <br>
-                <span class="fw-bold"> 25/Sep/2023</span>
+                <span class="fw-bold"> {{ $jobapplication->declaration_date ? $jobapplication->declaration_date->format('d/m/Y') : '' }}</span>
             </div>
             <div class="col-md-4">
                 <label for="" class="form-label ">Place</label> <br />
-                <span class="fw-bold">{{ $jobapplication->candidates->personaldetails->city }} </span>
+                <span class="fw-bold">{{ $jobapplication->place }} </span>
             </div>
             <div class="col-md-4">
 
-                <img src="{{ asset('images/signature.png') }}" alt="">
+                <img src="{{ url('storage/public/' .$jobapplication->signature_path ) }}" alt="" width="75">
             </div>
         </div>
     </x-card>
 @else
-    <form action={{ route('jobapplication.update', $jobapplication) }} method="POST">
+    <form action={{ route('jobapplication.update', $jobapplication) }} method="POST" enctype='multipart/form-data'>
         @csrf @method('PATCH')
         <x-card>
 
@@ -133,8 +133,7 @@
                 </div>
 
                 <div class="col-md-4">
-                    <label for="fee_details" class="form-label">Transaction ID <span
-                            style="color:red">*</span></label>
+                    <label for="fee_details" class="form-label">Transaction ID <span style="color:red">*</span></label>
                     <input type="text" class="form-control  @error('fee_details') is-invalid @enderror"
                         id="fee_details" name="fee_details" placeholder="Trans. ID"
                         value="{{ old('fee_details', $paymentdetail->fee_details ?? '') }}">
@@ -172,8 +171,7 @@
 
             <div class="d-flex align-items-center">
                 <div class="border rounded-circle d-flex justify-center align-items-center me-3 p-3 bg-light">
-                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"
-                        width="30">
+                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" width="30">
                         <g>
                             <path
                                 d="M2 12C2 16.714 2 19.0711 3.46447 20.5355C4.92893 22 7.28595 22 12 22C16.714 22 19.0711 22 20.5355 20.5355C22 19.0711 22 16.714 22 12V10.5M13.5 2H12C7.28595 2 4.92893 2 3.46447 3.46447C2.49073 4.43821 2.16444 5.80655 2.0551 8"
@@ -205,15 +203,15 @@
             <div class="row mb-3">
                 <div class="col-md-4">
                     <label for="" class="form-label">Date</label>
-                    <input type="date" class="form-control" />
+                    <input type="date" class="form-control" name="declaration_date" />
                 </div>
                 <div class="col-md-4">
                     <label for="" class="form-label">Place</label>
-                    <input type="text" class="form-control" />
+                    <input type="text" class="form-control" name="place"/>
                 </div>
                 <div class="col-md-4">
                     <label for="" class="form-label">Signature</label>
-                    <input type="file" name="signature" id="signature" class="filepond" />
+                    <input type="file" name="declarationSignature" id="signature" class="filepond" />
                 </div>
             </div>
 

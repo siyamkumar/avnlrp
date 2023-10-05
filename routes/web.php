@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\Admin\ARN\RejectController;
+use App\Http\Controllers\Admin\ARN\ShortlistController;
 use App\Http\Controllers\Admin\ARNController;
 use App\Http\Controllers\Admin\CandidatesController;
 use App\Http\Controllers\Admin\JobsController;
@@ -88,6 +90,8 @@ Route::middleware('auth')->group(function () {
         Route::get('/jobs/active/', ActiveJobPostingController::class)->name('jobpostings.active');
 
         Route::resource('candidates', CandidatesController::class);
+        Route::post('shortlist/{arn}', ShortlistController::class)->name('candidateshortlist');
+        Route::post('reject/{arn}', RejectController::class)->name('candidatereject');
         Route::resource('arn', ARNController::class)->only(['show']);
         Route::get('/reports', ReportController::class)->name('reports');
     });

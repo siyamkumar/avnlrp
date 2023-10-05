@@ -49,7 +49,7 @@
 
         </div>
 
-        <table class="mt-3">
+        <table class="w-100 mt-3">
             <thead>
                 <tr>
                     <th>Qualifications</th>
@@ -76,6 +76,12 @@
                                 target="_blank">{{ $jobapplication->secondaryeducationdetails->file_name }}</a>
 
 
+                        </td>
+                        <td>
+                            @if (!$jobapplication->isSubmitted)
+                            <a
+                                href="{{ route('jobapplication.secondaryeducationdetails.edit', [$jobapplication, $jobapplication->secondaryeducationdetails]) }}">Edit</a>
+                        @endif
                         </td>
                     @else
                     <tr>
@@ -172,7 +178,7 @@
                             </tr>
                         @endif
                     @else
-                        dsafd
+                    
                         @foreach ($jobapplication->graduationeducationdetails as $ged)
                             <tr>
                                 <td>UG</td>
