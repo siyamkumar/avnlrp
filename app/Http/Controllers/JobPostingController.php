@@ -3,11 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\JobPostingFormRequest;
+use App\Models\Applicants\ApplicationReferenceNumber;
 use App\Models\JobPosting;
 use App\Models\LocationUnit;
 use App\Models\ReservationCategory;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Arr;
 
 class JobPostingController extends Controller
 {
@@ -52,9 +54,49 @@ class JobPostingController extends Controller
 
     public function show(JobPosting $jobposting)
     {
+        $names = $jobposting->arns->map(function (ApplicationReferenceNumber $arn) {
+            return $arn->candidates->personaldetails  ? $arn->candidates->personaldetails->reservationcategory :  '';
+          })->groupBy('name');
+      
+          
+          $labels = $names->keys();
+          $data = $names->values();
+          $count1 = [];
+          foreach ($labels as $d) {
+            array_push($count1, $d);
+          }
+      
+          $count = [];
+          foreach ($data as $d) {
+            array_push($count, count($d));
+          }
+      
+      
+          // Statewise chart
+          $statenames = $jobposting->arns->map(function (ApplicationReferenceNumber $arn) {
+            return $arn->candidates->personaldetails  ? $arn->candidates->personaldetails->regionstate :  '';
+          })->groupBy('state_name');
+      
+          $labels = $statenames->keys();
+          $data = $statenames->values();
+      
+          $sname = [];
+      
+          foreach ($labels as $d) {
+            array_push($sname, $d);
+            $filtered = Arr::whereNotNull($sname);
+          }
+      
+          $statecount = [];
+          foreach ($data as $d) {
+            array_push($statecount,   count($d));
+            $filteredcount = Arr::whereNotNull($statecount);
+          }
+
+          
         if ($jobposting->status == 'draft')
             return redirect()->route('jobpostings.edit', compact('jobposting'));
-        return view('admin.jobs.show', compact('jobposting'));
+        return view('admin.jobs.show', compact('jobposting', 'filtered', 'filteredcount','count','count1'));
     }
 
     public function edit(JobPosting $jobposting)

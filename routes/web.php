@@ -4,6 +4,7 @@ use App\Http\Controllers\Admin\ARN\RejectController;
 use App\Http\Controllers\Admin\ARN\ShortlistController;
 use App\Http\Controllers\Admin\ARNController;
 use App\Http\Controllers\Admin\CandidatesController;
+use App\Http\Controllers\Admin\JobPostingArnController;
 use App\Http\Controllers\Admin\JobsController;
 use App\Http\Controllers\Admin\ReportController;
 use App\Http\Controllers\Applicants\ApplicantController;
@@ -86,6 +87,7 @@ Route::middleware('auth')->group(function () {
         Route::resource('jobpostings.jobrequirement', JobRequirementController::class)->only(['store', 'update']);
         Route::resource('jobpostings.jobresponsibility', JobResponsibilityController::class)->only(['store', 'update']);
         Route::resource('jobpostings.termscondition', TermsConditionsController::class)->only(['store', 'update']);
+        Route::resource('jobpostings.applications', JobPostingArnController::class)->only(['index', 'update']);
         Route::get('/jobs/drafts/', DraftJobPostingController::class)->name('jobpostings.drafts');
         Route::get('/jobs/active/', ActiveJobPostingController::class)->name('jobpostings.active');
 

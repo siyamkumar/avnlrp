@@ -140,7 +140,7 @@
             <div class="row mb-3">
                 <div class="col-5">DATE OF RETIREMENT/ SEPARATION FROM
                     THE LAST EMPLOYMENT </div>
-                <div class="col-6 fw-bold text-uppercase"> NA </div>
+            <div class="col-6 fw-bold text-uppercase"> {{ $lastDate ? $lastDate->periodTo->format('d/m/y') : 'NA' }}</div>
             </div>
 
         </div>

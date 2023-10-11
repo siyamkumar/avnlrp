@@ -79,9 +79,9 @@
                         </td>
                         <td>
                             @if (!$jobapplication->isSubmitted)
-                            <a
-                                href="{{ route('jobapplication.secondaryeducationdetails.edit', [$jobapplication, $jobapplication->secondaryeducationdetails]) }}">Edit</a>
-                        @endif
+                                <a
+                                    href="{{ route('jobapplication.secondaryeducationdetails.edit', [$jobapplication, $jobapplication->secondaryeducationdetails]) }}">Edit</a>
+                            @endif
                         </td>
                     @else
                     <tr>
@@ -94,43 +94,40 @@
                     </tr>
                 @endif
 
+                @if ($jobapplication->highersecondaryeducationdetails)
+                    <tr>
+                        <td>
+                            12th/Higher Secondary
+                        </td>
+                        <td>{{ $jobapplication->highersecondaryeducationdetails->score }}</td>
+                        <td>{{ $jobapplication->highersecondaryeducationdetails->year_of_passing }}
+                        </td>
+                        <td>{{ $jobapplication->highersecondaryeducationdetails->school_name }}</td>
+                        <td>{{ $jobapplication->highersecondaryeducationdetails->school_board }}</td>
+                        <td>
+                            <a href="{{ url('storage/public/' . $jobapplication->highersecondaryeducationdetails->marksheet_path ?? '') }}"
+                                target="_blank">{{ $jobapplication->highersecondaryeducationdetails->file_name }}</a>
+
+                        </td>
+                        <td>
+                            @if (!$jobapplication->isSubmitted)
+                                <a
+                                    href="{{ route('jobapplication.highersecondaryeducationdetails.edit', [$jobapplication, $jobapplication->highersecondaryeducationdetails]) }}">Edit</a>
+                            @endif
+                        </td>
+                    </tr>
+                @else
+                    <tr>
+                        <td>12th/Secondary*</td>
+                        <td colspan="6">
+                            <a
+                                href="{{ route('jobapplication.highersecondaryeducationdetails.create', $jobapplication) }}">Add
+                                Higher Secondary Education</a>
+                        </td>
+                    </tr>
+                @endif
+
                 @if ($jobapplication->jobpostings->educationcriteria)
-
-                    @if (in_array('12th', $jobapplication->jobpostings->educationcriteria->min_qualification))
-
-                        @if ($jobapplication->highersecondaryeducationdetails)
-                            <tr>
-                                <td>
-                                    12th/Higher Secondary
-                                </td>
-                                <td>{{ $jobapplication->highersecondaryeducationdetails->score }}</td>
-                                <td>{{ $jobapplication->highersecondaryeducationdetails->year_of_passing }}
-                                </td>
-                                <td>{{ $jobapplication->highersecondaryeducationdetails->school_name }}</td>
-                                <td>{{ $jobapplication->highersecondaryeducationdetails->school_board }}</td>
-                                <td>
-                                    <a href="{{ url('storage/public/' . $jobapplication->highersecondaryeducationdetails->marksheet_path ?? '') }}"
-                                        target="_blank">{{ $jobapplication->highersecondaryeducationdetails->file_name }}</a>
-
-                                </td>
-                                <td>
-                                    @if (!$jobapplication->isSubmitted)
-                                        <a
-                                            href="{{ route('jobapplication.highersecondaryeducationdetails.edit', [$jobapplication, $jobapplication->highersecondaryeducationdetails]) }}">Edit</a>
-                                    @endif
-                                </td>
-                            </tr>
-                        @else
-                            <tr>
-                                <td>12th/Secondary*</td>
-                                <td colspan="6">
-                                    <a
-                                        href="{{ route('jobapplication.highersecondaryeducationdetails.create', $jobapplication) }}">Add
-                                        Higher Secondary Education</a>
-                                </td>
-                            </tr>
-                        @endif
-                    @endif
 
                     @if (in_array('UG', $jobapplication->jobpostings->educationcriteria->min_qualification))
                         @if ($jobapplication->graduationeducationdetails)
@@ -178,7 +175,6 @@
                             </tr>
                         @endif
                     @else
-                    
                         @foreach ($jobapplication->graduationeducationdetails as $ged)
                             <tr>
                                 <td>UG</td>

@@ -61,14 +61,6 @@
                         </div>
                     </div>
 
-                    <div class="col">
-                        <div class="card shadow-sm border-0">
-                            <div class="card-body">
-                                <h1>2k</h1>
-                                Viewed this Job
-                            </div>
-                        </div>
-                    </div>
 
                     <div class="col">
                         <div class="card shadow-sm border-0">
@@ -79,53 +71,83 @@
                         </div>
                     </div>
 
+                    <div class="col">
+                        <div class="card shadow-sm border-0">
+                            <div class="card-body">
+                                <h1>10</h1>
+                                Rejected Applications
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
 
                 <div class="row mb-3">
                     <div class="col-xxl-6">
-                        <div id="barChart" style="width: 100%;min-height:300px;"></div>
+                        <canvas id="polarChart"></canvas>
                         <script type="module">
-                            var myChart = echarts.init(document.getElementById('barChart'));
-                            var option = {
-                                tooltip: {},
-                                legend: {
-                                    data: ['Applications']
-                                },
-                                tooltip: {
-                                    trigger: 'axis',
-                                    axisPointer: {
-                                        type: 'shadow'
-                                    }
-                                },
-                                grid: {
-                                    left: '3%',
-                                    right: '4%',
-                                    bottom: '3%',
-                                    containLabel: true
-                                },
-                                xAxis: {},
-                                yAxis: {
-                                    type: 'category',
-                                    data: ['TN', 'PB', 'KA', 'MP', 'RJ', 'TR']
-                                },
-                                series: [{
-                                    name: '2011',
-                                    type: 'bar',
-                                    data: [182, 234, 290, 104, 131, 630]
+                            var labels1 = @json($filtered);
+                            var users1 = @json($filteredcount);
+
+                            const data1 = {
+                                labels: labels1,
+
+                                datasets: [{
+                                    
+                                    backgroundColor: [
+                                        '#37A2DA',
+                                        '#32C5E9',
+                                        '#67E0E3',
+                                        '#9FE6B8',
+                                        '#FFDB5C',
+                                        '#ff9f7f',
+                                        '#fb7293',
+                                        '#E062AE',
+                                        '#E690D1',
+                                        '#e7bcf3',
+                                        '#9d96f5',
+                                        '#8378EA',
+                                        '#96BFFF'
+                                    ],
+                                    borderColor: '#E5E4E2',
+                                    data: users1,
                                 }]
                             };
 
+                            const config1 = {
+                                type: 'polarArea',
+                                data: data1,
+                                options: {
+                                    aspectRatio: 2,
+                                    scales: {
+                                        r: {
+                                            ticks: {
+                                                precision: 0
+                                            }
+                                        }
+                                    }
+                                }
+                            };
 
-                            myChart.setOption(option);
+                            const myChart1 = new Chart(
+                                document.getElementById('polarChart'),
+                                config1
+                            );
                         </script>
+
+
                     </div>
                 </div>
 
 
                 <div class="card shadow-sm border-0 mb-3">
                     <div class="card-body">
-                        <h6 class="border-bottom pb-3">Recent Applications</h6>
-                        <table class="table table-hover mb-4" id="example5" role="grid">
+                        <div class="d-flex justify-content-between border-bottom align-items-center pb-3">
+                            <h6 class="">Recent Applications</h6>
+                            <a class="btn btn-sm btn-outline-success" href="{{ route('jobpostings.applications.index', $jobposting) }}">Scrutinize</a>
+                        </div>
+                       
+                        <table class="table table-hover mb-4">
                             <thead>
                                 <tr role="row">
                                     {{-- <th >
@@ -143,12 +165,12 @@
                                     <th>Gender</th>
                                     <th>Email</th>
                                     <th>Phone No</th>
-                                    <th>Actions</th>
-
+                                  
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($jobposting->arns as $key => $arn)
+                                
+                                @foreach ($jobposting->arns()->where('isSubmitted', true)->where('isShortlisted', null)->get()  as $key => $arn)
                                     {{-- @if ($arn->isSubmitted) --}}
                                     <tr class="align-middle">
                                         {{-- 
@@ -170,12 +192,7 @@
                                         <td> {{ $arn->candidates->email ?? '' }} </td>
                                         <td> {{ $arn->candidates->phone_no ?? '' }} </td>
 
-                                        <td>
-                                            <div class="d-flex align-items-center">
-                                                <a class="btn btn-sm btn-outline-success rounded p-2"
-                                                    href="#">View</a>
-                                            </div>
-                                        </td>
+                                    
                                     </tr>
                                     {{-- @endif --}}
                                 @endforeach

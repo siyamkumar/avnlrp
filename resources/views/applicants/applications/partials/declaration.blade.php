@@ -47,7 +47,8 @@
             <div class="col-md-4">
                 <label for="payment_proof" class="form-label">Payment Proof <span style="color:red">*</span></label>
                 <br />
-                <a href="#">Payment Proof.jpg </a>
+                <a href="{{ url('storage/public/' . $jobapplication->payment_proof ?? '') }}"
+                    target="_blank">Payment Proof</a>
             </div>
 
 
@@ -85,7 +86,8 @@
         <div class="row mb-3">
             <div class="col-md-4">
                 <label for="" class="form-label">Date</label> <br>
-                <span class="fw-bold"> {{ $jobapplication->declaration_date ? $jobapplication->declaration_date->format('d/m/Y') : '' }}</span>
+                <span class="fw-bold">
+                    {{ $jobapplication->declaration_date ? $jobapplication->declaration_date->format('d/m/Y') : '' }}</span>
             </div>
             <div class="col-md-4">
                 <label for="" class="form-label ">Place</label> <br />
@@ -93,7 +95,7 @@
             </div>
             <div class="col-md-4">
 
-                <img src="{{ url('storage/public/' .$jobapplication->signature_path ) }}" alt="" width="75">
+                <img src="{{ url('storage/public/' . $jobapplication->signature_path) }}" alt="" width="75">
             </div>
         </div>
     </x-card>
@@ -136,7 +138,10 @@
                     <label for="fee_details" class="form-label">Transaction ID <span style="color:red">*</span></label>
                     <input type="text" class="form-control  @error('fee_details') is-invalid @enderror"
                         id="fee_details" name="fee_details" placeholder="Trans. ID"
-                        value="{{ old('fee_details', $paymentdetail->fee_details ?? '') }}">
+                        value="{{ old('fee_details', $paymentdetail->fee_details ?? '') }}"
+                        @if ($jobapplication->candidates->personaldetails->gender == 'female') disabled
+                        @elseif(in_array($jobapplication->candidates->personaldetails->reservationcategory->code, ['SC', 'ST'])) 
+                        disabled @endif>
                     @error('fee_details')
                         <div class="invalid-feedback">
                             {{ $message }}
@@ -144,18 +149,22 @@
                     @enderror
                 </div>
 
+                @if ($jobapplication->candidates->personaldetails->gender == 'female')
+                @elseif(in_array($jobapplication->candidates->personaldetails->reservationcategory->code, ['SC', 'ST']))
+                @else
+                    <div class="col-md-4">
+                        <label for="payment_proof" class="form-label">Payment Proof
+                            <span style="color:red">*</span></label>
+                        <input type="file" name="payment_proof" id="payment_proof" class="filepond" />
 
-                <div class="col-md-4">
-                    <label for="payment_proof" class="form-label">Payment Proof
-                        <span style="color:red">*</span></label>
-                    <input type="file" name="payment_proof" id="payment_proof" class="filepond" />
+                        @error('payment_proof')
+                            <div class="invalid-feedback">
+                                {{ $message }}
+                            </div>
+                        @enderror
+                    </div>
+                @endif
 
-                    @error('payment_proof')
-                        <div class="invalid-feedback">
-                            {{ $message }}
-                        </div>
-                    @enderror
-                </div>
 
                 <div class="col-12">
                     <p class="" style="line-height:1.8">SC/ST/PwD/Ex-SM/Female candidates are exempted
@@ -207,17 +216,74 @@
                 </div>
                 <div class="col-md-4">
                     <label for="" class="form-label">Place</label>
-                    <input type="text" class="form-control" name="place"/>
+                    <input type="text" class="form-control" name="place" />
                 </div>
                 <div class="col-md-4">
-                    <label for="" class="form-label">Signature</label>
-                    <input type="file" name="declarationSignature" id="signature" class="filepond" />
+                    @if ($jobapplication->signature_path)
+                        <img src="{{ url('storage/public/' . $jobapplication->signature_path) }}" alt=""
+                            width="150">
+                    @else
+                        <label for="" class="form-label">Signature</label>
+                        <input type="file" name="declarationSignature" id="signature" class="filepond" />
+                    @endif
                 </div>
             </div>
 
+
             <input type="hidden" name="isSubmitted" value="true" />
-            <button type="submit" class="btn btn-primary rounded-3 text-center" value="true"
-                name="isSubmitted">Submit Application</button>
+
+
+            <!-- Button trigger modal -->
+            <button type="button" class="btn btn-primary rounded-3 text-center" data-bs-toggle="modal"
+                data-bs-target="#submitApplication">
+                Submit Application
+            </button>
+
+            <!-- Modal -->
+            <div class="modal fade" id="submitApplication" style="z-index: 99999999999" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Are you sure?</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+
+                            {{-- @if (auth()->guard('applicants')->user()->personaldetails->photo_path)
+                                <div class="alert alert-success">
+                                    Passport Photo Affixed
+                                </div>
+                            @else
+                                <div class="alert alert-danger">
+                                    Please Upload Photo
+                                </div>
+                            @endif
+
+                            @if (count($jobapplication->experiencedetails) > 0)
+                                <div class="alert alert-danger">
+                                    Experience Details Uploaded
+                                </div>
+                            @else
+                                <div class="alert alert-success">
+                                    Upload atleast 1 experience
+                                </div>
+                            @endif --}}
+
+                            Please make sure all the required details are filled in the application. Any data mismatch
+                            or insufficient data will lead to application rejection.
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-danger rounded-3"
+                                data-bs-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-success rounded-3 text-center" value="true"
+                                name="isSubmitted">Submit Application</button>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
 
 
 

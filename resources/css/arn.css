@@ -1,36 +1,91 @@
-
-#arn-sidebar > .nav-item {
-   width: 100%;
+#arn-sidebar>.nav-item {
+    width: 100%;
     transition: 0.2s;
 }
 
 
-#arn-sidebar>.nav-item > .nav-link{
-    
-    border-left : white 3px solid;
+#arn-sidebar>.nav-item>.nav-link {
+
+    border-left: white 3px solid;
     text-decoration: none;
     color: inherit;
 }
 
-#arn-sidebar > .nav-item:hover .nav-link, #arn-sidebar > .nav-item > .active{
+#arn-sidebar>.nav-item:hover .nav-link,
+#arn-sidebar>.nav-item>.active {
     border-left: #9400A3 3px solid;
     background-color: #FCFCFD;
-  
+
 }
 
- #arn-sidebar > .nav-item > .active > div > .arn-title{
+#arn-sidebar>.nav-item>.active>div>.arn-title {
     color: #9400A3;
 }
 
-.arn-content::-webkit-scrollbar, .arn-sidebar::-webkit-scrollbar {
+.arn-content::-webkit-scrollbar,
+.arn-sidebar::-webkit-scrollbar {
     width: 0.3em;
 }
-  
-  .arn-content::-webkit-scrollbar-track {
-      /* box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3); */
-    }
-  
-  .arn-content::-webkit-scrollbar-thumb, .arn-sidebar::-webkit-scrollbar-thumb {
-      background-color: darkgrey;
-      
-    }
+
+.arn-content::-webkit-scrollbar-track {
+    /* box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3); */
+}
+
+.arn-content::-webkit-scrollbar-thumb,
+.arn-sidebar::-webkit-scrollbar-thumb {
+    background-color: darkgrey;
+
+}
+.arn-status{
+    font-size: 10px;
+}
+.draft-status {
+    color: #8228CF;
+    background-color: #F2E6FF;
+    
+}
+
+.submitted-status {
+    color: #2E6300;
+    background-color: #ECFCCB;
+   }
+
+.shortlisted-status{
+    color:#437F5B; background-color:#D1FADF; font-size:10px
+}
+
+.rejected-status {
+    color: #912452;
+    background-color: #FBE9F1;
+   
+}
+
+.passport-photo{
+    border: 1px solid black;
+    width: 140px;
+    height: 190px;
+}
+
+
+.passport-photo img{
+    width: 138px;height: 188px; object-fit: cover
+}
+
+.offcanvas{
+    width: 50% !important;
+    z-index: 999999999 !important;
+}
+
+.offcanvas-backdrop{
+    z-index: 999999 !important;
+}
+
+
+.bg-success-transparent{
+    background-color: #DBF3EA;
+    color: #28BF94 !important;
+}
+.bg-danger-transparent{
+    background-color: #FEEEEC;
+    color: #E6533C !important;
+}

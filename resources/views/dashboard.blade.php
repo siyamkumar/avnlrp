@@ -116,8 +116,8 @@
 
 
                     <script type="module">
-                        var labels1 = {{ Js::from($filtered) }};
-                        var users1 = {{ Js::from($filteredcount) }};
+                        var labels1 = @json( $filtered);
+                        var users1 = @json($filteredcount);
 
                         const data1 = {
                             labels: labels1,

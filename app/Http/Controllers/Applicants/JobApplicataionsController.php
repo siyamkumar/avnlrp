@@ -34,6 +34,7 @@ class JobApplicataionsController extends Controller
     }
     public function edit(ApplicationReferenceNumber $jobapplication)
     {
+        
         $candidate = auth()->guard('applicants')->user();
         if ($candidate->personaldetails) {
             $exp = ExperienceDetail::where('application_reference_number_id', $jobapplication->id)->get();
@@ -46,7 +47,8 @@ class JobApplicataionsController extends Controller
 
             return view('applicants.applications.edit')->with([
                 'jobapplication' => $jobapplication,
-                'totalexperience' => round($expyears / 365, 1)
+                'totalexperience' => round($expyears / 365, 1),
+                'lastDate' => $jobapplication->experiencedetails()->orderBy('periodTo', 'DESC')->first()
             ]);
         } else
             return redirect()->route('personaldetails.create')->with('jobapplication', $jobapplication);
