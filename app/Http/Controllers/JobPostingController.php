@@ -45,6 +45,7 @@ class JobPostingController extends Controller
             array_merge(
                 $request->validated(),
                 [
+                    'isContract' =>true,
                     'jobPostingLastDate' => $lastDate->format('Y-m-d')
                 ]
             )

@@ -92,8 +92,7 @@ Route::middleware('auth')->group(function () {
         Route::get('/jobs/active/', ActiveJobPostingController::class)->name('jobpostings.active');
 
         Route::resource('candidates', CandidatesController::class);
-        Route::post('shortlist/{arn}', ShortlistController::class)->name('candidateshortlist');
-        Route::post('reject/{arn}', RejectController::class)->name('candidatereject');
+       
         Route::resource('arn', ARNController::class)->only(['show']);
         Route::get('/reports', ReportController::class)->name('reports');
     });

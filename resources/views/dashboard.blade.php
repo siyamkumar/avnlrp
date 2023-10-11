@@ -148,7 +148,12 @@
                             type: 'bar',
                             data: data1,
                             options: {
-                                aspectRatio: 2
+                                aspectRatio: 2,
+                                y: {
+                                            ticks: {
+                                                precision: 0
+                                            }
+                                        }
                             }
                         };
 
@@ -219,6 +224,11 @@
                                     }
                                 },
                                 aspectRatio: 2.1,
+                                y: {
+                                            ticks: {
+                                                precision: 0
+                                            }
+                                        }
 
                             },
 

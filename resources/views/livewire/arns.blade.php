@@ -1,40 +1,5 @@
 <div>
-
-    <script type="module">
-        // window.addEventListener('alert', event => {
-        //     toastr[event.detail.type](event.detail.message,
-        //         event.detail.title ?? ''), toastr.options = {
-        //         "closeButton": true,
-        //         "progressBar": true,
-        //     }
-        // });
-
-        // const toast = new bootstrap.Toast(toastLiveExample)
-        // window.addEventListener('alert', event => {
-        //     const toastLiveExample = document.getElementById('liveToast2');
-        //     const toast = new bootstrap.Toast(toastLiveExample);
-        //     toast.show()
-        // });
-
-        // const toastTrigger = window.addEventListener('alert');
-        // const toastLiveExample = document.getElementById('liveToast')
-        // if (toastTrigger) {
-        //     toastTrigger.addEventListener('click', () => {
-        //         const toast = new bootstrap.Toast(toastLiveExample)
-
-        //         toast.show()
-        //     })
-        // }
-
-        // document.addEventListener('livewire:initialized', () => {
-        //     @this.on('alert', (event) => {
-        //         const toast = new bootstrap.Toast(toastLiveExample)
-
-        //         toast.show()
-        //     });
-        // });
-    </script>
-
+    
 
     <div class="p-2 top-0 bg-white shadow-sm" style="z-index: 99">
         <div class="d-flex align-items-center justify-content-between w-100">
@@ -384,12 +349,12 @@
                         </thead>
                         <tbody>
 
-                            <livewire:secondary-education-validation :secondaryeducationdetail="$arn->secondaryeducationdetails" />
-
+                            @if ($arn->secondaryeducationdetails)
+                                <livewire:secondary-education-validation :secondaryeducationdetail="$arn->secondaryeducationdetails" />
+                            @endif
 
                             @if ($arn->highersecondaryeducationdetails)
-                                
-                            <livewire:admin.higher-secondary-education-validation :highersecondaryeducationdetail="$arn->highersecondaryeducationdetails" />
+                                <livewire:admin.higher-secondary-education-validation :highersecondaryeducationdetail="$arn->highersecondaryeducationdetails" />
                             @endif
 
 
@@ -401,7 +366,8 @@
 
 
                             @foreach ($arn->postgraduationeducationdetails as $ged)
-                            <livewire:admin.post-graduate-education-validation :postgraduationeducationdetail="$ged" wire:key="$ged->id" />
+                                <livewire:admin.post-graduate-education-validation :postgraduationeducationdetail="$ged"
+                                    wire:key="$ged->id" />
                             @endforeach
 
                         </tbody>
@@ -465,9 +431,7 @@
                             <tbody>
 
                                 @foreach ($arn->experiencedetails as $key => $item)
-
-                                     <livewire:admin.experience-validation :experiencedetail="$item"  />
-                            
+                                    <livewire:admin.experience-validation :experiencedetail="$item" />
                                 @endforeach
                             </tbody>
                         </table>
@@ -529,7 +493,8 @@
                     <div class="col-md-3">
                         <label for="payment_proof" class="form-label">Payment Proof
                             <span style="color:red">*</span></label> <br />
-                        <a href="#">Payment Proof.jpg </a>
+                        <a href="{{ url('storage/public/' . $arn->payment_proof ?? '') }}" target="_blank">Payment
+                            Proof</a>
                     </div>
 
                     <div class="col-md-3">

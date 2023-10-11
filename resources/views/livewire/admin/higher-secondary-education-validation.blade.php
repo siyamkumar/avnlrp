@@ -10,7 +10,7 @@
 
 
             @if (isset($highersecondaryeducationdetail->isValid))
-                <x-valid-status :highersecondaryeducationdetail="$education->isValid" />
+                <x-valid-status :highersecondaryeducationdetail="$highersecondaryeducationdetail->isValid" />
 
             @else<a class="btn btn-sm btn-secondary" data-bs-toggle="offcanvas" href="#secondaryRecord" role="button"
                     aria-controls="offcanvasExample">
