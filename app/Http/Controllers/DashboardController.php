@@ -50,6 +50,8 @@ class DashboardController extends Controller
     $data = $statenames->values();
 
     $sname = [];
+    $filtered=[];
+    $filteredcount =[];
 
     foreach ($labels as $d) {
       array_push($sname, $d);
