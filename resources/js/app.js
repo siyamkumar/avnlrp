@@ -1,3 +1,4 @@
+
 import './bootstrap';
 import './bootstrap/';
 import '../../node_modules/bootstrap/dist/css/bootstrap.css';
@@ -12,7 +13,7 @@ const FPOPTIONS = {
     labelIdle: `Drag & Drop  image or <span class="filepond--label-action">Browse</span>`,
     credits: false,
     storeAsFile: true,
-    size:0.05,
+    size: 0.05,
     // required:true,
 
 };
@@ -42,3 +43,15 @@ FilePond.create(declarationSignature, FPOPTIONS);
 
 const candidatePhoto = document.getElementById('candidatePhoto');
 FilePond.create(candidatePhoto, FPOPTIONS);
+
+window.onload = () => {
+    const TOAST = new bootstrap.Toast(document.getElementById('alertToast'));
+    document.addEventListener('alert', (alert) => {
+        console.log(alert);
+        document.getElementById("status").innerHTML = alert.detail[0].status ?? '';
+        document.getElementById("status").classList.add('text-'+alert.detail[0].status);
+
+        document.getElementById("message").innerHTML = alert.detail[0].message
+        TOAST.show();
+    });
+};

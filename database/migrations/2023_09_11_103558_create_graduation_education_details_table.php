@@ -15,11 +15,11 @@ return new class extends Migration
         Schema::create('graduation_education_details', function (Blueprint $table) {
             $table->id();
             $table->foreignIdFor(Candidate::class);
-            $table->string('course_name');
-            $table->string('college_name');
-            $table->string('university_name');
-            $table->year('year_of_passing');
-            $table->integer('score');
+            $table->string('course_name')->nullable();
+            $table->string('college_name')->nullable();
+            $table->string('university_name')->nullable();
+            $table->year('year_of_passing')->nullable();
+            $table->integer('score')->nullable();
             $table->string('marksheet_path')->nullable();
             $table->timestamps();
         });

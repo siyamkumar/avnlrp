@@ -35,7 +35,9 @@
 
 
         </div>
-        <div class="col-3 mb-3"> <label for="" class="form-label">Category</label>
+
+        
+        {{-- <div class="col-3 mb-3"> <label for="" class="form-label">Category</label>
             <input type="text" class="form-control @error('category') is-invalid @enderror" id=""
                 placeholder="" name="category">
             @error('category')
@@ -43,7 +45,7 @@
                     {{ $message }}
                 </div>
             @enderror
-        </div>
+        </div> --}}
 
         <div class="col-3 mb-3">
             <label for="" class="form-label ">Location</label>
@@ -101,7 +103,9 @@
 
         <div class="col-12 mb-3">
             <label for="" class="form-label">Job Summary </label>
-            <textarea class="form-control  @error('summary') is-invalid @enderror" name="summary"  id="summary" rows="3"></textarea>
+            <textarea class="form-control  @error('summary') is-invalid @enderror" name="summary" id="summary" rows="3">
+                {{ old('summary') }}
+            </textarea>
             @error('summary')
                 <div class="invalid-feedback">
                     {{ $message }}

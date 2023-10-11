@@ -6,7 +6,7 @@
 
     </x-slot>
     <form method="POST"
-        action="{{ route('jobapplication.secondaryeducationdetails.update', [$jobapplication, $secondaryeducationdetail]) }}"
+        action="{{ route('jobapplication.secondaryeducationdetails.update', [$jobapplication, $secondaryeducationdetail] }}"
         id="myForm" enctype='multipart/form-data'>
         @csrf @method('PATCH')
 

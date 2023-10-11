@@ -29,7 +29,7 @@ class JobPostingFormRequest extends FormRequest
             'jobAdvertismentNo' => 'sometimes|required|string',
             'location_unit_id' => 'sometimes|required',
             'jobTitle' => 'sometimes|required',
-            'category' => 'sometimes|required',
+            'category' => '',
             'vacancy' => 'sometimes|required|integer',
             'status' => 'sometimes|string',        
             'tenure' => 'sometimes|required|integer',

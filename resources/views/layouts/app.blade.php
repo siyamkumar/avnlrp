@@ -52,6 +52,8 @@
         </div>
 
     </footer>
+
+    <x-toast-alert />
 </body>
 
 </html>

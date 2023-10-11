@@ -23,11 +23,20 @@ class ApplicationReferenceNumber extends Model
         'submitted_at',
         'file_name',
         'file_type',
-        'file_size'
+        'file_size',
+        
+        'declaration_date',
+        'isShortlisted',
+        'place',
+        'signature_path',
+        'shortlist_remarks',
+        'reject_remarks',
+
     ];
 
     protected $casts = [
-        'submitted_at' => 'date'
+        'submitted_at' => 'date',
+        'declaration_date' => 'date'
     ];
 
     public function jobpostings(){

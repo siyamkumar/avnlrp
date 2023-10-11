@@ -16,6 +16,7 @@
             <th>ARN</th>
             <th>Job Title</th>
             <th>Last Date to Apply</th>
+            <th>Status</th>
             <th></th>
 
         </tr>
@@ -24,28 +25,21 @@
             <tr>
                 <td>
                     <span class="fw-bold">{{ $ja->arn }} </span>
-                    @switch($ja->status)
-                        @case('draft')
-                            <small class="d-inline-flex px-2 py-1 fw-semibold  rounded-2 text-uppercase"
-                                style="color: #8228CF; background-color:#F2E6FF">{{ $ja->status ?? '' }}</small>
-                        @break
-
-                        @case('submitted')
-                            <small class="d-inline-flex px-2 py-1 fw-semibold  rounded-2 text-uppercase"
-                                style="color: #2E6300; background-color:#ECFCCB">{{ $ja->status ?? '' }}</small>
-                        @break
-
-                        @default
-                    @endswitch
-
+                    
 
 
                 </td>
                 <td>{{ $ja->jobpostings->jobTitle }}</td>
                 <td>{{ $ja->jobpostings->jobPostingLastDate ? $ja->jobpostings->jobPostingLastDate->format('d/M/Y') : '' }}
                 </td>
+                <td><x-arnstatus-regular :status="$ja->status" />
+                </td>
                 <td>
+                    @if(!$ja->isSubmitted)
                     <a href="{{ route('jobapplication.edit', $ja) }}">Edit</a>
+                    @else
+                    <a href="">View Application</a>
+                    @endif
                 </td>
 
             </tr>

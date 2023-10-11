@@ -25,6 +25,9 @@ window.Popper = Popper;
 
 import * as bootstrap from '../../node_modules/bootstrap/dist/js/bootstrap.esm.js';
 import 'filepond-plugin-image-preview/dist/filepond-plugin-image-preview.css';
+import  Chart  from 'chart.js/auto';
+import ChartDataLabels from 'chartjs-plugin-datalabels';
+
 
 window.axios = axios;
 window.bootstrap = bootstrap;
@@ -33,9 +36,8 @@ window.FilePond = FilePond;
 window.FilePond = FilePond;
 
 window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
-
-import * as echarts from 'echarts';
-window.echarts = echarts;
+window.Chart = Chart;
+window.ChartDataLabels = ChartDataLabels;
 
 
 FilePond.registerPlugin(

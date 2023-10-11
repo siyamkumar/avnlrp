@@ -2,7 +2,9 @@
 
 namespace App\Models\Applicants;
 
+use App\Models\RegionState;
 use App\Models\ReservationCategory;
+
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -33,5 +35,7 @@ class PersonalDetail extends Model
     public function reservationcategory(){
         return $this->belongsTo(ReservationCategory::class, 'reservation_category_id');
     }
-    
+    public function regionstate(){
+        return $this->belongsTo(RegionState::class, 'region_state_id');
+    }
 }

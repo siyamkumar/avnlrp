@@ -7,6 +7,7 @@ use App\Models\Applicants\ApplicationReferenceNumber;
 use App\Models\Applicants\ExperienceDetail;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class JobApplicataionsController extends Controller
 {
@@ -33,6 +34,7 @@ class JobApplicataionsController extends Controller
     }
     public function edit(ApplicationReferenceNumber $jobapplication)
     {
+        
         $candidate = auth()->guard('applicants')->user();
         if ($candidate->personaldetails) {
             $exp = ExperienceDetail::where('application_reference_number_id', $jobapplication->id)->get();
@@ -45,24 +47,30 @@ class JobApplicataionsController extends Controller
 
             return view('applicants.applications.edit')->with([
                 'jobapplication' => $jobapplication,
-                'totalexperience' => round($expyears / 365, 1)
+                'totalexperience' => round($expyears / 365, 1),
+                'lastDate' => $jobapplication->experiencedetails()->orderBy('periodTo', 'DESC')->first()
             ]);
         } else
             return redirect()->route('personaldetails.create')->with('jobapplication', $jobapplication);
     }
     public function update(Request $request, ApplicationReferenceNumber $jobapplication)
     {
-      
-        if ($request->isSubmitted){
+        $candidate = auth()->guard('applicants')->user();
+        if ($request->isSubmitted) {
+            $jobapplication->declaration_date = $request->declaration_date;
+            $jobapplication->place = $request->place;
+            if ($request->file('declarationSignature')) {
+                $file = $request->file('declarationSignature');
+                $jobapplication->signature_path = Storage::putFileAs('documents/' . $candidate->id . '/declaration', $file, $file->getClientOriginalName());
+            }
             $jobapplication->isSubmitted = true;
             $jobapplication->status = 'submitted';
+            $jobapplication->save();
+            return redirect()->route('jobapplication.edit', $jobapplication)->with([
+                'status' => 'success',
+                'message' => 'Congratulations! Your application has been submitted successfuly.'
+            ]);
         }
-            
-        $jobapplication->save();
-        return redirect()->route('jobapplication.edit', $jobapplication)->with([
-            'status'=>'success',
-            'message' => 'Congratulations! Your application has been submitted successfuly.'
-        ]);
     }
 
     public function destroy(string $id)
