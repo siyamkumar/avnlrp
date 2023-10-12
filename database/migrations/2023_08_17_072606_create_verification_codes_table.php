@@ -15,7 +15,7 @@ return new class extends Migration
         Schema::create('verification_codes', function (Blueprint $table) {
             $table->id();
             $table->foreignIdFor(Candidate::class);
-            $table->string('otp');
+            $table->string('otp')->nullable();
             $table->timestamp('expire_at')->nullable();
             $table->timestamps();
         });
