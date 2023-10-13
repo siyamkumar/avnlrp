@@ -3,11 +3,15 @@
 namespace App\Livewire\Admin\Jobs;
 
 use App\Models\JobPosting;
+use App\Models\JobPosting\AgeCriteria;
 use Livewire\Component;
 
 class Edit extends Component
 {
     public JobPosting $jobposting;
+    public AgeCriteria $agecriteria;
+    
+    public $minAge, $maxAge;
     public $summary;
     public function render()
     {
@@ -29,5 +33,16 @@ class Edit extends Component
                 'alert',
                 ['status' => 'error', 'message' => '']
             );
+    }
+
+    public function updateAgeCriteria(){
+        AgeCriteria::updateOrCreate(
+            ['job_posting_id' => $this->jobposting->id],
+            ['minAge' => $this->minAge, 'maxAge' => $this->maxAge]
+        );
+        return $this->dispatch(
+            'alert',
+            ['status' => 'success',  'message' => '<b>Age Criteria</b> for the jobposting <b>'. $this->jobposting->jobTitle. '</b> has been updated successfully!']
+        );
     }
 }

@@ -66,17 +66,17 @@
                 
 
                 <div class="tab-content" id="jobTabContent2">
-                    <div class="tab-pane fade show" id="tab-summary" role="tabpanel" aria-labelledby="summary-tab">
+                    <div class="tab-pane fade show" id="tab-summary2" role="tabpanel" aria-labelledby="summary-tab">
 
                         {{-- @if ($jobposting->vacancy > 1)
                             @include('admin.jobs.partials.vacancy')
                         @endif
 
 
-                        @include('admin.jobs.partials.summ  ary') --}}
+                        @include('admin.jobs.partials.summary') --}}
                     </div>
 
-                    <div class="tab-pane  fade show" id="tab-criteria" role="tabpanel" aria-labelledby="criteria-tab">
+                    <div class="tab-pane  fade show" id="tab-criteria2" role="tabpanel" aria-labelledby="criteria-tab">
 
                         @include('admin.jobs.partials.criteria.agecriteria')
 
