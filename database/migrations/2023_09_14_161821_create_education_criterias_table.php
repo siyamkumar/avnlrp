@@ -15,6 +15,7 @@ return new class extends Migration
         Schema::create('education_criterias', function (Blueprint $table) {
             $table->id();
             $table->foreignIdFor(JobPosting::class);
+            $table->json('min_qualification');
             $table->text('desired_education');
             $table->timestamps();
         });

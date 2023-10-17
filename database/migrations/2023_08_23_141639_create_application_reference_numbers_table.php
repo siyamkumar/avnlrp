@@ -24,6 +24,15 @@ return new class extends Migration
             $table->string('status');            
             $table->boolean('isSubmitted')->default(false);
             $table->dateTime('submitted_at')->nullable();
+            $table->string('file_name')->nullable();
+            $table->string('file_type')->nullable();
+            $table->unsignedBigInteger('file_size')->nullable();
+            $table->date('declaration_date')->nullable();
+            $table->string('place')->nullable();
+            $table->string('signature_path')->nullable();
+            $table->boolean('isShortlisted')->nullable();
+            $table->string('shortlist_remarks')->nullable();
+            $table->string('reject_remarks')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });
