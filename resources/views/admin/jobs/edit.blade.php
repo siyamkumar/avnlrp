@@ -66,7 +66,7 @@
                 
 
                 <div class="tab-content" id="jobTabContent2">
-                    <div class="tab-pane fade show" id="tab-summary2" role="tabpanel" aria-labelledby="summary-tab">
+                    <div class="tab-pane fade" id="tab-summary2" role="tabpanel" aria-labelledby="summary-tab">
 
                         {{-- @if ($jobposting->vacancy > 1)
                             @include('admin.jobs.partials.vacancy')
@@ -76,17 +76,17 @@
                         @include('admin.jobs.partials.summary') --}}
                     </div>
 
-                    <div class="tab-pane  fade show" id="tab-criteria2" role="tabpanel" aria-labelledby="criteria-tab">
+                    <div class="tab-pane  fade" id="tab-criteria2" role="tabpanel" aria-labelledby="criteria-tab">
 
-                        @include('admin.jobs.partials.criteria.agecriteria')
+                        {{-- @include('admin.jobs.partials.criteria.agecriteria')
 
                         @include('admin.jobs.partials.criteria.educationcriteria')
 
-                        @include('admin.jobs.partials.criteria.experiencecriteria')
+                        @include('admin.jobs.partials.criteria.experiencecriteria') --}}
                     </div>
 
 
-                    <div class="tab-pane fade show" id="tab-qualification" role="tabpanel"
+                    <div class="tab-pane fade " id="tab-qualification2" role="tabpanel"
                         aria-labelledby="qualification-tab">
                         <x-card>
                          
@@ -165,7 +165,7 @@
 
                     </div>
 
-                    <div class="tab-pane fade show" id="tab-responsibility" role="tabpanel">
+                    <div class="tab-pane fade " id="tab-responsibility2" role="tabpanel">
                         <x-card>
                             <form action="{{ route('jobpostings.jobresponsibility.store', $jobposting) }}" method="POST">
                                 @csrf
@@ -176,7 +176,7 @@
                         </x-card>
                     </div>
 
-                    <div class="tab-pane active fade show" id="tab-terms" role="tabpanel">
+                    <div class="tab-pane  fade " id="tab-terms2" role="tabpanel">
                         <x-card>
                             <form action="{{ route('jobpostings.termscondition.store', $jobposting) }}" method="POST">
                                 @csrf

@@ -13,7 +13,7 @@
 
     <div class="container">
 
-        
+
 
         <div class="row g-4 pt-3">
 
@@ -101,7 +101,7 @@
                     </div>
 
 
-                    <div class="card-body" style="height: 328px">
+                    <div class="card-body " style="height: 328px">
 
                         <canvas id="myChart"></canvas>
 
@@ -116,7 +116,7 @@
 
 
                     <script type="module">
-                        var labels1 = @json( $filtered);
+                        var labels1 = @json($filtered);
                         var users1 = @json($filteredcount);
 
                         const data1 = {
@@ -150,10 +150,10 @@
                             options: {
                                 aspectRatio: 2,
                                 y: {
-                                            ticks: {
-                                                precision: 0
-                                            }
-                                        }
+                                    ticks: {
+                                        precision: 0
+                                    }
+                                }
                             }
                         };
 
@@ -225,10 +225,10 @@
                                 },
                                 aspectRatio: 2.1,
                                 y: {
-                                            ticks: {
-                                                precision: 0
-                                            }
-                                        }
+                                    ticks: {
+                                        precision: 0
+                                    }
+                                }
 
                             },
 
