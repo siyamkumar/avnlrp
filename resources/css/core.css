@@ -71,3 +71,7 @@ body {
     background-color:rgba(142, 84, 233, 0.1) !important;
     color: rgb(142, 84, 233) !important;
 }
+
+.toast-body{
+    font-size: 1rem;
+}
