@@ -36,7 +36,7 @@ class ExperienceController extends Controller
                     $request->validated(),
                     [
                         'application_reference_number_id' => $jobapplication->id,
-                        'marksheet_path' => Storage::putFileAs('documents/' . $request->candidate_id . '/experience', $request->file('experience_path'), $file->getClientOriginalName()),
+                        'experience_path' => Storage::putFileAs('documents/' . $request->candidate_id . '/experience', $request->file('experience_path'), $file->getClientOriginalName()),
                         'file_name' => $file->getClientOriginalName(),
                         'file_size' => $file->getSize(),
                         'file_type' => $file->getClientOriginalExtension(),

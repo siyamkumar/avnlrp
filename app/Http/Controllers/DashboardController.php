@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+
 use Illuminate\Support\Arr;
 use App\Models\Applicants\ApplicationReferenceNumber;
 use App\Models\Candidate;
+use App\Models\Applicants\PersonalDetail;
 use App\Models\JobPosting;
 use App\Models\RegionState;
 use App\Models\User;
@@ -23,9 +25,10 @@ class DashboardController extends Controller
 
     //chart.js 
     //Reservation category chart
-
+// dd(ApplicationReferenceNumber::all());
     $names = ApplicationReferenceNumber::all()->map(function (ApplicationReferenceNumber $arn) {
-      return $arn->candidates->personaldetails  ? $arn->candidates->personaldetails->reservationcategory :  '';
+      // dd( $arn->candidates->personaldetails);
+      return $arn->candidates->personaldetails ? $arn->candidates->personaldetails->reservationcategory :  '';
     })->groupBy('name');
 
     $labels = $names->keys();

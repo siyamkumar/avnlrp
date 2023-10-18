@@ -1,5 +1,5 @@
 <x-guest-layout>
-    <main class="job-single pt-3">
+    <main class="job-single pt-3" style="text-align:justify">
         <div class="p-4 p-md-5 mb-4 rounded text-body-emphasis ">
             <div class="">
                 <h1 class="display-6 fw-bold text-center">Job Details</h1>
@@ -194,8 +194,9 @@
                             <div class="card-body p-4">
                                 <div class="row align-items-center">
                                     <div class="col-12 mb-3">
-                                        <div class="d-flex align-items-center  justify-content-between">
-                                            <div class="d-flex align-items-center">
+                                        <div class="d-flex align-items-center 
+                                         justify-content-between" >
+                                            <div class="d-flex align-items-right">
                                                 <x-icons.tenure /> Tenure
                                             </div>
 
@@ -205,7 +206,7 @@
                                     <div class="col-12 mb-3">
                                         <div class="d-flex align-items-center  justify-content-between">
 
-                                            <div class="d-flex align-items-center">
+                                            <div class="d-flex align-items-right">
                                                 <x-icons.experience />
                                                 Experience
                                             </div>
@@ -214,7 +215,7 @@
                                     </div>
                                     <div class="col-12 mb-3">
                                         <div class="d-flex align-items-center  justify-content-between">
-                                            <div class="d-flex align-items-center">
+                                            <div class="d-flex align-items-right">
                                                 <x-icons.tenure /> Age Limit
                                             </div>
 
@@ -232,7 +233,7 @@
                                     </div>
                                     <div class="col-12 mb-3">
                                         <div class="d-flex align-items-center  justify-content-between">
-                                            <div class="d-flex align-items-center">
+                                            <div class="d-flex align-items-right">
                                                 <x-icons.vacancy />
                                                 No of Vacancies
                                             </div>
@@ -257,7 +258,7 @@
                                     <div class="col-12 mb-3">
                                         <div class="d-flex align-items-center justify-content-between">
 
-                                            <div class="d-flex align-items-center">
+                                            <div class="d-flex align-items-right">
                                                 <x-icons.renumeration />
                                                 Renumeration
                                             </div>

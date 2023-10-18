@@ -74,37 +74,44 @@
                                     @if ($jobposting->summary)
                                         <x-icons.checkok />
                                     @endif
-                                    <a class="nav-link pt-0" id="summary-tab" data-bs-toggle="tab" href="#tab-summary"
-                                        role="tab" aria-controls="tab-home" aria-selected="true">
+                                    <a class="nav-link pt-0 active" id="summary-tab" data-bs-toggle="tab" href="#tab-summary"
+                                        role="tab" aria-controls="tab-summary" aria-selected="true">
                                         Summary
                                     </a>
                                 </li>
                                 <li class="nav-item text-center" role="presentation">
                                     <x-icons.checkpartial />
                                     <a class="nav-link pt-0" id="criteria-tab" data-bs-toggle="tab" href="#tab-criteria"
-                                        role="tab" aria-controls="tab-profile" aria-selected="false">
+                                        role="tab" aria-controls="tab-criteria" aria-selected="false">
                                         Eligibility Criteria</a>
                                 </li>
 
                                 <li class="nav-item text-center" role="presentation">
-                                    <x-icons.checknotok />
+                                <x-icons.checkpartial />
                                     <a class="nav-link pt-0" id="qualification-tab" data-bs-toggle="tab"
-                                        href="#tab-qualification" role="tab" aria-selected="false">Job
+                                        href="#tab-qualification" role="tab" aria-selected="false" aria-controls="tab-qualification">Job
                                         Requirement</a>
                                 </li>
 
                                 <li class="nav-item text-center" role="presentation">
-                                    <x-icons.checknotok />
+                                <x-icons.checkpartial />
                                     <a class="nav-link pt-0" id="responsibility-tab" data-bs-toggle="tab"
-                                        href="#tab-responsibility" role="tab" aria-selected="false">Job
+                                        href="#tab-responsibility" role="tab" aria-selected="false" aria-controls="tab-responsibility">Job
                                         Responsibilities</a>
                                 </li>
 
                                 <li class="nav-item text-center" role="presentation">
-                                    <x-icons.checknotok />
-                                    <a class="nav-link pt-0 active" id="terms-tab" data-bs-toggle="tab"
-                                        href="#tab-terms" role="tab" aria-selected="false">Terms &
+                                <x-icons.checkpartial />
+                                    <a class="nav-link pt-0" id="terms-tab" data-bs-toggle="tab"
+                                        href="#tab-terms" role="tab" aria-selected="false" aria-controls="tab-terms">Terms &
                                         Conditions</a>
+</li>
+
+<li class="nav-item text-center" role="presentation">
+<x-icons.checkpartial />
+                                    <a class="nav-link pt-0" id="ad-tab" data-bs-toggle="tab"
+                                        href="#tab-ad" role="tab" aria-selected="false" aria-controls="tab-ad">Upload Advertisement</a>
+</li>
 
 
                             </ul>
@@ -137,43 +144,7 @@
                         aria-labelledby="qualification-tab">
                         <x-card>
                          
-                            {{-- @if (
-                                ) --}}
                          
-                            <form action="" method="POST" >
-                                @csrf
-                               
-                                <div class="row">
-                                  
-                                    <div class="col-md-6 mb-3">
-                                        <label class="col-form-label" for="jobSpecification">Job Specification</label>
-                                        <textarea name="jobSpecification" id="jobSpecification" class="form-control" placeholder="Please enter Job Requirement">{{ old('job_specification',$jobrequirement->job_specification ?? '') }}</textarea>
-                                    </div>
-    
-                                    <div class="col-md-6 mb-3">
-    
-                                        <label class="col-form-label" for="jobKnowledge">Knowledge</label>
-    
-                                        <textarea name="jobKnowledge" id="jobKnowledge" cols="30" class="form-control"
-                                            placeholder="Please enter Job Knowledge">{{ old('knowledge',$jobrequirement->knowledge ?? '') }}</textarea>
-                                    </div>
-    
-                                    <div class="col-md-6 mb-3">
-    
-                                        <label class="col-form-label" for="jobSkillCompetency">Skills</label>
-    
-                                        <textarea name="jobSkillCompetency" id="jobSkillCompetency" cols="30" class="form-control"
-                                            placeholder="Please enter Skill Competency">{{old('skills',$jobrequirement->skills ?? '') }}</textarea>
-                                    </div>
-    
-                                    <div class="col-md-12">
-                                        <button type="submit" class="btn btn-warning">Update</button>
-                                    </div>
-    
-                                </div>
-                            </form>
-
-                           {{-- @else --}}
 
                         <form action=" {{ route('jobpostings.jobrequirement.store', $jobposting) }}  " method="POST" >
                             @csrf
@@ -207,14 +178,14 @@
 
                             </div>
                         </form>
-                     {{-- @endif --}}
+                  
                         </x-card>
 
                     </div>
 
                     <div class="tab-pane fade show" id="tab-responsibility" role="tabpanel">
                         <x-card>
-                            <form action="{{ route('jobpostings.jobresponsibility.store', $jobposting) }}" method="POST">
+                            <form id="f2" action="{{ route('jobpostings.jobresponsibility.store', $jobposting) }}" method="POST">
                                 @csrf
                                 <label class="col-form-label" for="jobResponsibility">Key Responsibilities</label>
                                 <textarea name="jobResponsibility" id="jobResponsibility" class="form-control mb-3" rows="10"></textarea>
@@ -223,7 +194,7 @@
                         </x-card>
                     </div>
 
-                    <div class="tab-pane active fade show" id="tab-terms" role="tabpanel">
+                    <div class="tab-pane  fade show" id="tab-terms" role="tabpanel">
                         <x-card>
                             <form action="{{ route('jobpostings.termscondition.store', $jobposting) }}" method="POST">
                                 @csrf
@@ -233,6 +204,24 @@
                             </form>
                         </x-card>
                     </div>
+                    <div class="tab-pane  fade show" id="tab-ad" role="tabpanel">
+                        <x-card>
+                            <form action="{{ route('jobpostings.termscondition.store', $jobposting) }}" method="POST" enctype='multipart/form-data'>
+                                @csrf
+                                <label class="col-form-label" for="jobAdvertisement">Upload Advertisement</label>
+                                <div class="row">
+                                <div class="col-md-6 mb-3">
+                                <input type="file" id="advertisementupload" name="advertisementupload" class="filepond"/>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <button type="submit" class="btn btn-primary">Save</button>
+                            </div>
+                            </div>
+                                
+                            </form>
+                        </x-card>
+                    </div>
+
 
                 </div>
 

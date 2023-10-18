@@ -170,7 +170,16 @@
         <label for="candidatePhoto" class="form-label"> Photo Upload <span style="color:red">*</span> </label>
         <input type="file" name="candidatePhoto" class="filepond" id="candidatePhoto"
            accept="image/*" />
-    </div>
+
+</div>
+           <div class="col-md-6">
+                <img src="{{ url('storage/public/' .auth()->guard('applicants')->user()->personaldetails->photo_path ??'') }} "
+                    style="width: 138px;
+                height: 188px; object-fit: cover">
+
+                {{-- <img src="" alt=""> --}}
+            </div>
+   
 
     {{-- <script type="module">
 

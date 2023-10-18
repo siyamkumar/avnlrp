@@ -44,6 +44,9 @@ FilePond.create(declarationSignature, FPOPTIONS);
 const candidatePhoto = document.getElementById('candidatePhoto');
 FilePond.create(candidatePhoto, FPOPTIONS);
 
+const advertisementupload = document.getElementById('advertisementupload');
+FilePond.create(advertisementupload, FPOPTIONS);
+
 window.onload = () => {
     const TOAST = new bootstrap.Toast(document.getElementById('alertToast'));
     document.addEventListener('alert', (alert) => {

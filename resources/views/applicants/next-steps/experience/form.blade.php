@@ -156,6 +156,7 @@
             </div>
         @enderror
     </div>
+    
     <div class="col-md-6">
         <label for="expCertificate" class=" form-label">Experience Cerificate <span style="color:Red">*</span></label>
 
@@ -164,7 +165,15 @@
 
     </div>
 
+    <div class="col-md-6">
 
+    
+
+    </div>
+
+
+
+  
 
     <div class="col-md-6">
         <label for="jobsSummary" class="form-label"> Jobs Summary</label>
