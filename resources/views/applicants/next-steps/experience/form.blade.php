@@ -157,7 +157,7 @@
         @enderror
     </div>
     <div class="col-md-6">
-        <label for="expCertificate" class=" form-label">Experience Cerificate</label>
+        <label for="expCertificate" class=" form-label">Experience Cerificate <span style="color:Red">*</span></label>
 
 
         <input id="expCertificate" type="file" name="expCertificate" class="filepond" />
