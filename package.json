@@ -17,6 +17,7 @@
     },
     "dependencies": {
         "bootstrap": "^5.3.1",
+        "boxicons": "^2.1.4",
         "chart.js": "^4.4.0",
         "chartjs-plugin-datalabels": "^2.2.0",
         "filepond": "^4.30.4",

@@ -8,6 +8,12 @@ use Illuminate\Database\Eloquent\Model;
 class LocationUnit extends Model
 {
     use HasFactory;
+    protected $fillable = [
+        'unit_code',
+        'unit_name',
+        'address',
+        'about',
+        ];
 
     public function jobpostings(){
         return $this->hasMany(JobPosting::class);

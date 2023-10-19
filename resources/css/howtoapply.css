@@ -1,0 +1,53 @@
+.container{
+     
+    width: 300px;
+   
+    padding: 50px;
+   
+    text-align: justify;
+ 
+  }
+.p{
+    font-size:20px;
+}
+.head{
+    font-size:15px;
+    line-height: 200%;
+    margin-left:50px;
+    margin-top:20px;
+    margin-right:50px;
+    margin-bottom:20px;
+}
+.note{
+   
+    font-size:15px;
+    line-height: 200%;
+    margin-left:50px;
+    margin-top:20px;
+    margin-right:50px;
+    margin-bottom:20px;
+}
+.para3{
+    font-size:15px;
+    line-height: 200%;
+    margin-left:50px;
+    margin-top:20px;
+    margin-right:50px;
+    margin-bottom:20px;
+}
+.para4{
+    font-size:15px;
+    line-height: 200%;
+    margin-left:50px;
+    margin-top:20px;
+    margin-right:50px;
+    margin-bottom:20px;
+}
+.para5{
+    font-size:15px;
+    line-height: 200%;
+    margin-left:50px;
+    margin-top:20px;
+    margin-right:50px;
+    margin-bottom:20px;
+}
