@@ -7,6 +7,7 @@ import '../../node_modules/bootstrap/dist/css/bootstrap.css';
 
 
 
+
 const FPOPTIONS = {
     allowImagePreview: true,
     allowMultiple: false,

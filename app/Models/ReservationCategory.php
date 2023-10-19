@@ -8,7 +8,13 @@ use Illuminate\Database\Eloquent\Model;
 
 class ReservationCategory extends Model
 {
+    
     use HasFactory;
+    protected $fillable = [
+       'code',
+       'name',
+       ];
+
     public function personaldetails(){
         return $this->hasMany(PersonalDetail::class);
     }
