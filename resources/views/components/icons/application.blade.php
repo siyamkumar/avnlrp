@@ -2,8 +2,7 @@
     <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
     <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
     <g id="SVGRepo_iconCarrier">
-        <rect x="5" y="8" width="11" height="13" rx="2" fill="#f6fa00"
-            fill-opacity="0.24"></rect>
+        <rect id="secondary" x="5" y="8" width="11" height="13" rx="2" ></rect>
         <path d="M8 14L14 14" stroke="#222222" stroke-width="1.2" stroke-linecap="round"></path>
         <path d="M8 11L12 11" stroke="#222222" stroke-width="1.2" stroke-linecap="round"></path>
         <path d="M8 17L12 17" stroke="#222222" stroke-width="1.2" stroke-linecap="round"></path>

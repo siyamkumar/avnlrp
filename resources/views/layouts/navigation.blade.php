@@ -8,20 +8,20 @@
                    <img src={{ asset('images/avnllogo.jpg') }} />
                 </a>
 
-                <ul class="nav col-12 col-lg-auto my-2 justify-content-center my-md-0 text-small me-5">
-                    <li class="nav-item">
+                <ul id="app-menu" class="nav col-12 col-lg-auto my-2 justify-content-center my-md-0 text-small me-5">
+                    <li class="nav-item {{ request()->routeIs('dashboard') ? 'active' : '' }}">
                         <a href="{{ route('dashboard') }}" class="nav-link text-dark">
                             <x-icons.dashboard />
                             Dashboard
                         </a>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item {{ request()->routeIs('jobpostings.*') ? 'active' : '' }}">
                         <a href="{{ route('jobpostings.index') }}" class="nav-link text-dark">
                             <x-icons.job />
                             Jobs
                         </a>
                     </li>
-                    <li>
+                    <li  class="nav-item {{ request()->routeIs('candidates.*') ? 'active' : '' }}">
                         <a href="{{ route('candidates.index') }}" class="nav-link text-dark">
                             <x-icons.application />
                             Applications
@@ -29,8 +29,8 @@
                     </li>
 
 
-                    <li>
-                        <a href="#" class="nav-link text-dark">
+                    <li  class="nav-item {{ request()->routeIs('reports') ? 'active' : '' }}">
+                        <a href="{{ route('reports') }}" class="nav-link text-dark">
                             <x-icons.report />
                             Reports
                         </a>

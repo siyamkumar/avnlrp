@@ -20,7 +20,7 @@
                         <div class="form-group mb-3">
 
                             <label for="fullname" class="form-label">Full Name*</label>
-                            <input class="form-control @error('email') is-invalid @enderror" id="fullname"
+                            <input class="form-control @error('fullname') is-invalid @enderror" id="fullname"
                                 type="text" name="fullname" placeholder="Full Name" value="{{ old('fullname') }}">
                             @error('fullname')
                                 <div class="invalid-feedback">

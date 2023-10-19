@@ -5,13 +5,10 @@ body {
     font-size: 14px;
 }
 
-
-
 .app-wrapper {
     min-height: 80vh;
     background-color: #F3F6F9;
 }
-
 
 #profileDropdown::after {
     display: none;
@@ -34,8 +31,6 @@ body {
     display: inline-block;
     background-color: grey;
 }
-
-
 
 .main-container {
     margin-top: 10vh;
@@ -74,4 +69,23 @@ body {
 
 .toast-body{
     font-size: 1rem;
+}
+
+/* MENU */
+
+#app-menu > li.active > a{
+    font-weight: 900;
+}
+#app-menu > li > a > svg > g > path#secondary, #app-menu > li > a > svg > g > rect{
+    fill : #FDFEC2;
+    stroke-width:1.224;
+}
+
+#app-menu > li.active > a > svg > g > path#secondary,
+#app-menu > li.active > a > svg > g > rect{
+   fill:#FF9F1C;
+}
+
+#app-menu > li.active > a > svg{
+    /* fill : #000000; */
 }
