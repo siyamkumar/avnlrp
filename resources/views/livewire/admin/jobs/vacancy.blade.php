@@ -19,7 +19,7 @@
                  <label for="vacancy" class="form-label">No of Vacancy</label>
 
                  <input type="number" class="form-control mb-2" id="vacancy" wire:model="vacancyalloted"
-                     placeholder="" value="" max={{ $vacancyleft }} @if(!$canAdd) disabled @endif />
+                     placeholder="" value="" min="1" max={{ $vacancyleft }} @if(!$canAdd) disabled @endif />
 
 
              </div>

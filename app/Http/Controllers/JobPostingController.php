@@ -109,18 +109,30 @@ class JobPostingController extends Controller
                     'reservationcategories' => ReservationCategory::all(),
 
                 ]);
-        return redirect()->route('jobpostings.show', $jobposting);
+     
     }
 
 
     public function update(JobPostingFormRequest $request, JobPosting $jobposting)
     {
 
+        if($request->publish){
+            $jobposting->status = "active";
+            $jobposting->save();
+            return redirect()->route('jobpostings.index')->with([
+                'status' => 'success',
+                'message' => 'Job Posting - <b>' . $jobposting->jobAdvertismentNo .  '</b> has been published Successfully and its ready to receive job applications.'
+            ]);
+        }
         $jobposting->update($request->validated());
         return redirect()->back()->with([
             'status' => 'success',
             'message' => 'Job Posting Updated Successfully'
         ]);
+
+       
+
+        
     }
 
     public function destroy(JobPosting $jobPosting)

@@ -20,9 +20,10 @@
 
 
                 @if ($jobposting->status == 'draft')
-                    <form action="">
-                        <button type="submit" class="btn btn-primary " @if ($disabled) disabled @endif>
-                            Publish Job Posting </button>
+                    <form action="{{route('jobpostings.update', $jobposting)}}" method="POST">
+                    @csrf @method('patch')
+                        <button type="submit" class="btn btn-primary " name="publish" @if ($disabled) disabled @endif value=true>
+                             Publish Job Posting </button>
                     </form>
                 @endif
             </div>
