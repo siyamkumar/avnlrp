@@ -38,7 +38,7 @@
                     @if(!$ja->isSubmitted)
                     <a href="{{ route('jobapplication.edit', $ja) }}">Edit</a>
                     @else
-                    <a href="">View Application</a>
+                    <a href="{{ route('jobapplication.edit', $ja) }}">View Application</a>
                     @endif
                 </td>
 

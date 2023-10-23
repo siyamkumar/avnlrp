@@ -15,8 +15,10 @@ class ReservationCategoryController extends Controller
      */
     public function index()
     {
-        return view('admin.settings.reservationcategory.index',['reservationcategorys'=>ReservationCategory::all()]);
-
+        return view(
+            'admin.settings.reservationcategory.index',
+            ['reservationcategories' => ReservationCategory::paginate(10)]
+        );
     }
 
     /**
@@ -27,34 +29,35 @@ class ReservationCategoryController extends Controller
         return view('admin.settings.reservationcategory.create');
     }
 
-     /**
+    /**
      * Handle an incoming registration request.
      *
      * @throws \Illuminate\Validation\ValidationException
      */
     public function store(Request $request)
     {
-    
+
         // validation convert to uppercase
         // $request['code'] = Str::upper($request['code']);
         // $request['name'] = Str::upper($request['name']);
 
-        $request->validate([
-            'code' =>['required','unique:'.ReservationCategory::class],
-            'name' =>'required',
-        ],
+        $request->validate(
+            [
+                'code' => ['required', 'unique:' . ReservationCategory::class],
+                'name' => 'required',
+            ],
 
             [
                 'code' => 'reservaion code already exists',
-                'name'=> 'reservation name already exists',
-                ]
-                );
-               
-         Reservationcategory::create([
+                'name' => 'reservation name already exists',
+            ]
+        );
+
+        Reservationcategory::create([
             'code' => strtoupper($request->code),
-            'name'=> $request->name
-         ]);
-   
+            'name' => $request->name
+        ]);
+
         return view('admin.settings.reservationcategory.create');
     }
 
@@ -64,7 +67,7 @@ class ReservationCategoryController extends Controller
     public function show($id)
     {
         $reservationcategory = ReservationCategory::where('id', $id)->first();
-        
+
         return view('admin.settings.reservationcategory.show', [
             'reservationcategory' => $reservationcategory,
         ]);
@@ -73,10 +76,10 @@ class ReservationCategoryController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit( $id)
+    public function edit($id)
     {
         $reservationcategory = ReservationCategory::where('id', $id)->first();
-      
+
         return view('admin.settings.reservationcategory.edit', [
             'reservationcategory' => $reservationcategory,
         ]);
@@ -90,18 +93,19 @@ class ReservationCategoryController extends Controller
         $request['code'] = Str::upper($request['code']);
         $request['name'] = Str::upper($request['name']);
         $request->validate([
-            'code' =>'required',
-            'name' =>'required',
-          
-            ] );  
+            'code' => 'required',
+            'name' => 'required',
 
-            ReservationCategory::where('id', $id)->update(['code'=> $request->code,
-            'name' => $request->name,
-            
         ]);
-        
+
+        ReservationCategory::where('id', $id)->update([
+            'code' => $request->code,
+            'name' => $request->name,
+
+        ]);
+
         $reservationcategory = ReservationCategory::where('id', $id)->first();
-        
+
         return view('admin.settings.reservationcategory.edit', [
             'reservationcategory' => $reservationcategory,
 

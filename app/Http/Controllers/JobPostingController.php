@@ -45,7 +45,7 @@ class JobPostingController extends Controller
             array_merge(
                 $request->validated(),
                 [
-                    'isContract' =>true,
+                    'isContract' => true,
                     'jobPostingLastDate' => $lastDate->format('Y-m-d')
                 ]
             )
@@ -55,49 +55,48 @@ class JobPostingController extends Controller
 
     public function show(JobPosting $jobposting)
     {
-        $names = $jobposting->arns->map(function (ApplicationReferenceNumber $arn) {
-            return $arn->candidates->personaldetails  ? $arn->candidates->personaldetails->reservationcategory :  '';
-          })->groupBy('name');
-      
-          
-          $labels = $names->keys();
-          $data = $names->values();
-          $count1 = [];
-          foreach ($labels as $d) {
-            array_push($count1, $d);
-          }
-      
-          $count = [];
-          foreach ($data as $d) {
-            array_push($count, count($d));
-          }
-      
-      
-          // Statewise chart
-          $statenames = $jobposting->arns->map(function (ApplicationReferenceNumber $arn) {
+        $filtered = '';
+        $filteredcount = '';
+
+        // Statewise chart
+        $statenames = $jobposting->arns->map(function (ApplicationReferenceNumber $arn) {
             return $arn->candidates->personaldetails  ? $arn->candidates->personaldetails->regionstate :  '';
-          })->groupBy('state_name');
-      
-          $labels = $statenames->keys();
-          $data = $statenames->values();
-      
-          $sname = [];
-      
-          foreach ($labels as $d) {
+        })->groupBy('state_name');
+
+        $labels = $statenames->keys();
+        $data = $statenames->values();
+
+        $sname = [];
+
+        foreach ($labels as $d) {
             array_push($sname, $d);
             $filtered = Arr::whereNotNull($sname);
-          }
-      
-          $statecount = [];
-          foreach ($data as $d) {
+        }
+
+        $statecount = [];
+        foreach ($data as $d) {
             array_push($statecount,   count($d));
             $filteredcount = Arr::whereNotNull($statecount);
-          }
+        }
 
-          
+
         if ($jobposting->status == 'draft')
             return redirect()->route('jobpostings.edit', compact('jobposting'));
-        return view('admin.jobs.show', compact('jobposting', 'filtered', 'filteredcount','count','count1'));
+
+        return view('admin.jobs.show')->with([
+            'jobposting' => $jobposting,
+            'filtered' => $filtered,
+            'filteredcount' => $filteredcount,
+            'shortlistedArn' => ApplicationReferenceNumber::where([
+                'status' => 'shortlisted',
+                'job_posting_id' => $jobposting->id
+            ])->count(),
+
+            'rejectedArn' => ApplicationReferenceNumber::where([
+                'status' => 'rejected',
+                'job_posting_id' => $jobposting->id
+            ])->count(),
+        ]);
     }
 
     public function edit(JobPosting $jobposting)
@@ -109,16 +108,17 @@ class JobPostingController extends Controller
                     'reservationcategories' => ReservationCategory::all(),
 
                 ]);
-     
+        return redirect()->route('jobpostings.show', $jobposting);
     }
 
 
     public function update(JobPostingFormRequest $request, JobPosting $jobposting)
     {
 
-        if($request->publish){
-            $jobposting->status = "active";
-            $jobposting->save();
+        if ($request->publish) {
+            $jobposting->update([
+                'status' => 'active'
+            ]);
             return redirect()->route('jobpostings.index')->with([
                 'status' => 'success',
                 'message' => 'Job Posting - <b>' . $jobposting->jobAdvertismentNo .  '</b> has been published Successfully and its ready to receive job applications.'
@@ -129,10 +129,6 @@ class JobPostingController extends Controller
             'status' => 'success',
             'message' => 'Job Posting Updated Successfully'
         ]);
-
-       
-
-        
     }
 
     public function destroy(JobPosting $jobPosting)

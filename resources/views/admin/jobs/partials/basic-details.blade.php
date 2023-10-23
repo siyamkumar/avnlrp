@@ -36,16 +36,8 @@
 
         </div>
 
-        
-        {{-- <div class="col-3 mb-3"> <label for="" class="form-label">Category</label>
-            <input type="text" class="form-control @error('category') is-invalid @enderror" id=""
-                placeholder="" name="category">
-            @error('category')
-                <div class="invalid-feedback">
-                    {{ $message }}
-                </div>
-            @enderror
-        </div> --}}
+
+
 
         <div class="col-3 mb-3">
             <label for="" class="form-label ">Location</label>
@@ -66,9 +58,10 @@
         </div>
 
         <div class="col-3 mb-3">
-            <label for="" class="form-label">Number of Vacancy</label>
-            <input type="number" name="vacancy" class="form-control @error('vacancy') is-invalid @enderror"
-                id="" placeholder="" value={{ old('vacancy') }}>
+            <label for="vacancy" class="form-label">Number of Vacancy</label>
+            <input type="number" id="vacancy" name="vacancy"
+                class="form-control @error('vacancy') is-invalid @enderror" placeholder=""
+                value={{ old('vacancy') }}>
             @error('vacancy')
                 <div class="invalid-feedback">
                     {{ $message }}

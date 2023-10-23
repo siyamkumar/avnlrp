@@ -40,13 +40,13 @@
                     </li> --}}
 
                     <li class="nav-item">
-                        <a class="nav-link {{ request()->routeIs('applicationstatus') ? 'active' : '' }}"
-                            href="#">How to Apply?</a>
+                        <a class="nav-link {{ request()->routeIs('howtoapply') ? 'active' : '' }}"
+                            href="{{ route('howtoapply') }}">How to Apply?</a>
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link {{ request()->routeIs('applicationstatus') ? 'active' : '' }}"
-                            href="#">Fraud Notice</a>
+                        <a class="nav-link {{ request()->routeIs('fraudnotice') ? 'active' : '' }}"
+                            href="{{ route('fraudnotice')}}">Fraud Notice</a>
                     </li>
 
                     @if (auth()->guard('applicants')->user())

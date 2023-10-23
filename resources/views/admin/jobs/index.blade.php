@@ -40,11 +40,15 @@
                                         <td><x-job-status :status="$jobposting->status" /></td>
                                         <td>{{ $jobposting->user->name ?? '' }}</td>
                                         <td>
-                                            <x-icons.open href="{{ route('jobs.show', $jobposting) }}" target="_blank" />
-                                            @if ($jobposting->status == 'draft')
-                                                <x-icons.edit href="{{ route('jobpostings.edit', $jobposting) }}" />
-                                            @endif
-                                            <x-icons.delete href="" />
+                                            <div class="d-flex">
+                                                <x-icons.open href="{{ route('jobs.show', $jobposting) }}"
+                                                    target="_blank" />
+                                              
+                                                    <x-icons.edit href="{{ route('jobpostings.edit', $jobposting) }}" />
+                                              
+                                                <x-icons.delete href="" />
+                                            </div>
+
                                         </td>
                                 @endforeach
                             </tbody>

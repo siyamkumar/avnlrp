@@ -1,4 +1,4 @@
-<header class="sticky-top bg-white" >
+<header class="sticky-top bg-white">
     <div class="px-3 py-2 border-bottom">
         <div class="container">
             <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
@@ -36,7 +36,7 @@
                         </a>
                     </li>
 
-                    <li> <a href="#" class="nav-link text-dark">
+                    <li  class="nav-item {{ request()->routeIs('adminsettings') ? 'active' : '' }}"> <a href="{{ route('adminsettings') }}" class="nav-link text-dark">
                         <x-icons.settings/> Settings </a>
                     </li>
 

@@ -11,7 +11,7 @@ class PublicJobPostingController extends Controller
 {
     public function index()
     {
-        $jobs = JobPosting::all();
+        $jobs = JobPosting::where('status', 'active')->paginate(10);
         return view('applicants.jobopenings')->with([
             'jobs' => $jobs,
             'locations' => LocationUnit::all(),

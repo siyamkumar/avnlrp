@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin\Settings;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\LocationUnitFormRequest;
 use Illuminate\Http\Request;
 use App\Models\LocationUnit;
 use Illuminate\Support\Str;
@@ -16,7 +17,10 @@ class LocationUnitController extends Controller
      */
     public function index()
     {
-        return view('admin.settings.locationunit.index', ['locationunits' => LocationUnit::all()]);
+        return view(
+            'admin.settings.locationunit.index',
+            ['locationunits' => LocationUnit::paginate(10)]
+        );
     }
 
     /**
@@ -27,44 +31,32 @@ class LocationUnitController extends Controller
         return view('admin.settings.locationunit.create');
     }
 
-      /**
+    /**
      * Handle an incoming registration request.
      *
      * @throws \Illuminate\Validation\ValidationException
      */
-    public function store(Request $request)
+    public function store(LocationUnitFormRequest $request)
     {
-        
-   
-        $request->validate([
-            'unit_code' =>['required','unique:'.LocationUnit::class],
-            'unit_name' =>'required',
-            'address'=> 'required',
-            'about'=> 'required|max:600',
-        ],
-       [
-             'unit_code' => 'unit code already exists',
-             
-             ]
-     );
-                  
-     LocationUnit::create([
-        'unit_code' => strtoupper($request->unit_code),
-        'unit_name'=> strtoupper($request->unit_code),
-        'address'=>$request->address,
-        'about'=>$request->about
-     ]);
-        return view('admin.settings.locationunit.create');
+
+        $LocationUnit = LocationUnit::create([
+            'unit_code' => strtoupper($request->unit_code),
+            'unit_name' => strtoupper($request->unit_code),
+            'address' => $request->address,
+            'about' => $request->about
+        ]);
+
+        return redirect()->route('locationunit.index')->with([
+            'status' => 'success',
+            'message' => 'Location Unit - <b>' . $LocationUnit->unit_name .  '</b> has been added Successfully',
+        ]);
     }
 
     /**
      * Display the specified resource.
      */
-    public function show( $id)
+    public function show(LocationUnit $locationunit)
     {
-        
-        $locationunit = LocationUnit::where('id', $id)->first();
-       
         return view('admin.settings.locationunit.show', [
             'locationunit' => $locationunit,
         ]);
@@ -73,41 +65,25 @@ class LocationUnitController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit($id)
+    public function edit(LocationUnit $locationunit)
     {
-        $locationunit = LocationUnit::where('id', $id)->first();
-       
         return view('admin.settings.locationunit.edit', [
             'locationunit' => $locationunit,
         ]);
     }
 
-   /**
+    /**
      * Handle an incoming registration request.
      *
      * @throws \Illuminate\Validation\ValidationException
      */
-    public function update(Request $request, $id)
+    public function update(LocationUnitFormRequest $request, LocationUnit $locationunit)
     {
         
-        $request->validate([
-            'unit_code' =>['required','unique:'.LocationUnit::class],
-            'unit_name' =>'required',
-            'address' => 'required',
-            'about'=> 'required|max:600'
-            ] );  
-
-        LocationUnit::where('id', $id)->update(['unit_code' => $request->unit_code,
-            'unit_name' => $request->unit_name,
-            'address' => $request->address,
-            'about' => $request->about,
-        ]);
-        
-        $locationunit = locationunit::where('id', $id)->first();
-       
-        return view('admin.settings.locationunit.edit', [
-            'locationunit' => $locationunit,
-
+        $locationunit->update($request->validated());
+        return redirect()->route('locationunit.index')->with([
+            'status' => 'success',
+            'message' => 'Location Unit - <b>' . $locationunit->unit_name .  '</b> has been updated Successfully',
         ]);
     }
 
@@ -117,7 +93,9 @@ class LocationUnitController extends Controller
     public function destroy(LocationUnit $locationunit)
     {
         $locationunit->delete();
-
-        return redirect()->route('locationunit.index')->with('success', 'category deleted successfully');
+        return redirect()->route('locationunit.index')->with([
+            'status' => 'success',
+            'message' => 'Location Unit - <b>' . $locationunit->unit_name .  '</b> has been deleted Successfully',
+        ]);
     }
 }

@@ -34,11 +34,10 @@
             <div class="col-md-3">
                 <div class="card rounded-0 border rounded-start border-end-0">
                     <div class="card-body p-0">
-                        <div class="arn-sidebar" style="height: 69vh; 
+                        <div class="arn-sidebar" style="height: 74vh; 
                         overflow-y: auto;">
 
                             <ul class="nav" id="arn-sidebar">
-
                                 @foreach ($applications as $key => $app)
                                     <li class="nav-item" role="presentation" height="">
                                         <a class="nav-link @if ($loop->first) active @endif"
@@ -89,7 +88,7 @@
                 <div class="rounded-0 border rounded-end">
                     <div class="px-0 py-0">
 
-                        <div class="tab-content arn-content" style="height: 74vh; overflow-y: auto;">
+                        <div class="tab-content arn-content" style="height: 79vh; overflow-y: auto;">
 
                             @foreach ($applications as $key => $app)
                                 <div class="tab-pane fade @if ($loop->first) active show @endif"
@@ -97,9 +96,9 @@
 
                                     <livewire:arns :arn="$app" />
 
-                                    
 
-                                 
+
+
                                 </div>
                             @endforeach
                         </div>

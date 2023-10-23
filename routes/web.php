@@ -60,6 +60,15 @@ Route::get('/job-updates', function () {
     return view('applicants.jobupdates');
 })->name('jobupdates');
 
+Route::get('/how-to-apply', function () {
+    return view('pages.how-to-apply');
+})->name('howtoapply');
+Route::get('/fraud-notice', function () {
+
+    return view('pages.fraud-notice');
+})->name('fraudnotice');
+
+
 // ->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
@@ -91,14 +100,10 @@ Route::middleware('auth')->group(function () {
             // return 'settings';
             return view('admin.settings.index');
         });
-        Route::get('/howtoapply', function () {
-      
-            return view('admin.howtoapply.howtoapplyform');
-        });
-        Route::get('/notice', function () {
-      
-            return view('admin.fraudnotice.fraudnoticeform');
-        });
+       
+        Route::get('/settings', function(){
+            return view('admin.settings.index');
+        })->name('adminsettings');
         Route::prefix('settings')->group(function () {
             Route::resource('locationunit', LocationUnitController::class);
             Route::resource('reservationcategory', ReservationCategoryController::class);
