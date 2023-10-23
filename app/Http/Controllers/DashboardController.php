@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+
 use Illuminate\Support\Arr;
 use App\Models\Applicants\ApplicationReferenceNumber;
 use App\Models\Candidate;
+use App\Models\Applicants\PersonalDetail;
 use App\Models\JobPosting;
 use App\Models\RegionState;
 use App\Models\User;
@@ -27,7 +29,8 @@ class DashboardController extends Controller
     $filtered = [];
     $filteredcount = [];
     $names = ApplicationReferenceNumber::all()->map(function (ApplicationReferenceNumber $arn) {
-      return $arn->candidates->personaldetails  ? $arn->candidates->personaldetails->reservationcategory :  '';
+      // dd( $arn->candidates->personaldetails);
+      return $arn->candidates->personaldetails ? $arn->candidates->personaldetails->reservationcategory :  '';
     })->groupBy('name');
 
     $labels = $names->keys();
@@ -52,6 +55,8 @@ class DashboardController extends Controller
     $data = $statenames->values();
 
     $sname = [];
+    $filtered=[];
+    $filteredcount =[];
 
     foreach ($labels as $d) {
       array_push($sname, $d);

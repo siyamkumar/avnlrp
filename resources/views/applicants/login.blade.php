@@ -10,7 +10,7 @@
             <div class="col-lg-4 col-md-6 col-sm-12 mx-auto">
                 <x-card class="border-0 rounded-0 p-3">
                     @error('EmailNotFound')
-                        <div class="alert alert-secondary" role="alert">
+                        <div class="alert alert-danger" role="alert">
                             {{ $message }}
                         </div>
                     @enderror
@@ -29,9 +29,9 @@
                         </div>
                         <button class="btn btn-primary btn-login w-100 mb-3" type="submit">Next</button>
 
-                        <div class="text-muted text-center">Not yet registered? <a
+                        <div class="text-muted text-center">Click here for  <a
                                 href="{{ route('candidateregister') }}"
-                                class="text-decoration-none fw-bold text-dark">Register Now</a></div>
+                                class="text-decoration-none fw-bold text-dark">New Registration</a></div>
                     </form>
                 </x-card>
             </div>

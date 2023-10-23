@@ -108,3 +108,11 @@ body {
 #app-menu>li.active>a>svg {
     /* fill : #000000; */
 }
+
+.list-group > .list-group-item.active > .nav-link > #profileIcon {
+    fill : #ffffff;
+}
+
+.list-group > .list-group-item.active > .nav-link > svg > g > path {
+    stroke : #ffffff;
+}

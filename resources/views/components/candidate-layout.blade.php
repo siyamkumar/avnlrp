@@ -23,7 +23,7 @@
                                         <img class="rounded-circle"
                                             src="{{ url('storage/public/' .auth()->guard('applicants')->user()->personaldetails->photo_path ??'') }} "
                                             width="75" height="75">
-                                            @else<x-profile-picture />
+                                    @else<x-profile-picture />
                                     @endif
                                 @else
                                     <x-profile-picture />
@@ -43,22 +43,22 @@
 
                     <ul class="list-group">
 
-                        <li class="list-group-item nav-item mb-3 border rounded-0">
-                            <a href="{{ route('personaldetails.create') }}" class="nav-link d-flex align-items-center">
-
+                        <li
+                            class="list-group-item  nav-item mb-3 border rounded-0  {{ request()->routeIs('personaldetails.*') ? 'active' : '' }}">
+                            <a href="{{ route('personaldetails.create') }}" class="nav-link d-flex align-items-center ">
 
                                 <x-icons.profile />
                                 My Profile
                             </a>
                         </li>
 
-                        <li class="list-group-item nav-item mb-3 border">
+                        <li
+                            class="list-group-item nav-item mb-3 border {{ request()->routeIs('jobapplication.*') ? 'active' : '' }}">
                             <a href="{{ route('jobapplication.index') }}" class="nav-link d-flex align-items-center">
 
                                 <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"
                                     width="20" class="me-2">
-
-                                    <g id="SVGRepo_iconCarrier">
+                                    <g>
                                         <path
                                             d="M22 10.5V12C22 16.714 22 19.0711 20.5355 20.5355C19.0711 22 16.714 22 12 22C7.28595 22 4.92893 22 3.46447 20.5355C2 19.0711 2 16.714 2 12C2 7.28595 2 4.92893 3.46447 3.46447C4.92893 2 7.28595 2 12 2H13.5"
                                             stroke="#66789C" stroke-width="1" stroke-linecap="round"></path>

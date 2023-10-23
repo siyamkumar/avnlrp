@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Validation\Rule;
 use Illuminate\Foundation\Http\FormRequest;
-
+use Carbon\Carbon;
 
 class PersonalDetailsFormRequest extends FormRequest
 {
@@ -27,9 +27,9 @@ class PersonalDetailsFormRequest extends FormRequest
     {
         return [
             'candidate_id' => 'required',
-            'fatherName' => 'required|string',
+            'fatherName' => 'required|alpha_spaces|max:100|min:3',
             'gender' => 'required',
-            'dob' => 'required',
+            'dob' => 'required|date|before:'.Carbon::now()->subYears(18), // TM-DOB min 18 years
             'reservation_category_id' => 'required',
             'aadhaarNo'  => [Rule::unique('personal_details', 'aadhaarNo')->ignore($this->aadhaarNo), 'required','sometimes', 'digits:12' ],
             'pan'  => 'required|string|min:10|max:10',
