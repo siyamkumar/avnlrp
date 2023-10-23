@@ -33,6 +33,7 @@
 
                 <div class="col-md-3">
                     <button type="submit" class="btn btn-warning">Update</button>
+                </div>
         </form>
         @include('admin.jobs.partials.criteria.agerelaxation')
         </div>

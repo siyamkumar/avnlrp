@@ -25,7 +25,9 @@ class DashboardController extends Controller
 
     //chart.js 
     //Reservation category chart
-// dd(ApplicationReferenceNumber::all());
+
+    $filtered = [];
+    $filteredcount = [];
     $names = ApplicationReferenceNumber::all()->map(function (ApplicationReferenceNumber $arn) {
       // dd( $arn->candidates->personaldetails);
       return $arn->candidates->personaldetails ? $arn->candidates->personaldetails->reservationcategory :  '';

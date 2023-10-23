@@ -2,6 +2,7 @@
 
 use App\Models\Candidate;
 use App\Models\RegionState;
+use App\Models\ReservationCategory;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -16,6 +17,7 @@ return new class extends Migration
         Schema::create('personal_details', function (Blueprint $table) {
             $table->id();
             $table->foreignIdFor(Candidate::class);
+            $table->foreignIdFor(ReservationCategory::class);
             $table->string('fatherName');
             $table->string('gender')->nullable();
             $table->date('dob')->nullable();
