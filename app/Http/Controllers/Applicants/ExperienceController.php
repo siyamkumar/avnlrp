@@ -31,19 +31,22 @@ class ExperienceController extends Controller
     {
         if ($request->file('experience_path')) {
             $file = $request->file('experience_path');
+           
             ExperienceDetail::create(
                 array_merge(
                     $request->validated(),
                     [
                         'application_reference_number_id' => $jobapplication->id,
-                        'experience_path' => Storage::putFileAs('documents/' . $request->candidate_id . '/experience', $request->file('experience_path'), $file->getClientOriginalName()),
+                        'experience_path' => Storage::putFileAs("documents/" . $request->candidate_id . '/experience', $request->file('experience_path'), $file->getClientOriginalName()),
                         'file_name' => $file->getClientOriginalName(),
                         'file_size' => $file->getSize(),
                         'file_type' => $file->getClientOriginalExtension(),
                     ]
                 )
             );
-        } else {
+        } 
+        else 
+        {
             ExperienceDetail::create(
                 array_merge(
                     $request->validated(), [ 'application_reference_number_id' => $jobapplication->id]

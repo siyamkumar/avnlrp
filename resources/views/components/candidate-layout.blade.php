@@ -43,8 +43,10 @@
 
                     <ul class="list-group">
 
-                        <li class="list-group-item nav-item mb-3 border rounded-0">
-                            <a href="{{ route('personaldetails.create') }}" class="nav-link d-flex align-items-center">
+                        <li class="list-group-item  nav-item mb-3 border rounded-0">
+                            <a href="
+                            
+                            {{ route('personaldetails.create') }}" class="nav-link d-flex align-items-center">
 
 
                                 <x-icons.profile />

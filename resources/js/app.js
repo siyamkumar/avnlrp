@@ -32,7 +32,7 @@ FilePond.create(graduateMarksheet, FPOPTIONS);
 const postgraduateMarksheet = document.getElementById('postgraduateMarksheet');
 FilePond.create(postgraduateMarksheet, FPOPTIONS);
 
-const expCertificate = document.getElementById('expCertificate');
+const expCertificate = document.getElementById('experience_path');
 FilePond.create(expCertificate, FPOPTIONS);
 
 const paymentProof = document.getElementById('payment_proof');
