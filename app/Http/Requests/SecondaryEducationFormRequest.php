@@ -28,7 +28,7 @@ class SecondaryEducationFormRequest extends FormRequest
             'school_name' => 'required',
             'school_board' => 'required',
             'year_of_passing' => 'required|numeric|digits:4',
-            'score' => 'required',
+            'score' => 'required|numeric|between:10,99.99',
             'marksheet_path' => '',
            
         ];
