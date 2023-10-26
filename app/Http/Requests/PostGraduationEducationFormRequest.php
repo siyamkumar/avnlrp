@@ -29,7 +29,7 @@ class PostGraduationEducationFormRequest extends FormRequest
             'college_name' => 'required',
             'university_name' => 'required',
             'year_of_passing' => 'required|numeric|digits:4',
-            'score' => 'required',
+            'score' => 'required|numeric|between:10,99.99',
             // 'marksheet_path' =>'required|max:50'
             
         ];

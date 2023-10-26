@@ -19,7 +19,7 @@ class CandidatesController extends Controller
     public function index()
     {
         return view('admin.candidates.index')->with([
-            'applications' => ApplicationReferenceNumber::paginate(9),
+            'applications' => ApplicationReferenceNumber::where('status', 'submitted')->paginate(9),
         ]);
     }
 
