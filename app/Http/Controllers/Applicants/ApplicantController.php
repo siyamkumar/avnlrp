@@ -23,7 +23,7 @@ class ApplicantController extends Controller
     public function store(Request $request): RedirectResponse
     {
        $request->validate([
-        'fullname' => 'string',
+        'fullname' => 'string|required|alpha_spaces|max:100|min:3',
         'email' => 'unique:candidates',
         'phone_no' => 'unique:candidates'
        ],

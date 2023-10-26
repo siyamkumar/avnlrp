@@ -63,6 +63,10 @@ class JobApplicataionsController extends Controller
                 $file = $request->file('declarationSignature');
                 $jobapplication->signature_path = Storage::putFileAs('documents/' . $candidate->id . '/declaration', $file, $file->getClientOriginalName());
             }
+            if ($request->file('payment_proof')) {
+                $file = $request->file('payment_proof');
+                $jobapplication->payment_proof = Storage::putFileAs('documents/' . $candidate->id . '/payment', $file, $file->getClientOriginalName());
+            }
             $jobapplication->isSubmitted = true;
             $jobapplication->status = 'submitted';
             $jobapplication->save();
