@@ -122,7 +122,7 @@
 
                                             @if ($app->isSubmitted && $app->status == 'submitted')
                                                 <div class="">
-                                                  
+
                                                 </div>
                                             @endif
 
@@ -219,7 +219,7 @@
                                                                 @php
                                                                     $date = Carbon::parse($app->candidates->personaldetails->dob);
                                                                     $now = Carbon::parse($app->jobpostings->jobPostingDate);
-                                                                    
+
                                                                 @endphp
 
                                                                 {{ $date->diff($now)->format('%y years & %m months') }}

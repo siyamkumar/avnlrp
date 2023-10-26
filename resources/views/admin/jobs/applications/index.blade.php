@@ -8,22 +8,24 @@
             <div class="">
                 <ul id="job-menu" class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link  {{ request()->routeIs('candidates.index') ? 'active' : '' }}"
-                            aria-current="page" href="{{ route('jobpostings.index') }}">All Candidates</a>
+                        <a class="nav-link  @if($shortlisted || $rejected)  @else active @endif"
+                            aria-current="page" href="{{ route('jobpostings.applications.index', $jobposting) }}">All
+                            Candidates</a>
                     </li>
 
 
-                    <li class="nav-item"><a class="nav-link" href="#">Shortlisted Candidates</a></li>
-                    <li class="nav-item"><a href="#" class="nav-link">Rejected Candidates</a></li>
+                    <li class="nav-item"><a class="nav-link   @if($shortlisted) active @endif  }}" 
+                            href="{{ route('jobpostings.applications.index', [$jobposting, 'shortlisted=true']) }}">Shortlisted
+                            Candidates</a></li>
+                    <li class="nav-item"><a
+                            href="{{ route('jobpostings.applications.index', [$jobposting, 'rejected=true']) }}"
+                            class="nav-link  @if($rejected) active @endif }}">Rejected Candidates</a></li>
 
 
                 </ul>
 
             </div>
-            <form class="d-flex" role="search">
-                <input class="form-control" type="search" placeholder="Search Jobs" aria-label="Search">
-
-            </form>
+         
         </div>
     </nav>
 

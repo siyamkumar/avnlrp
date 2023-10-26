@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\Arn\ShortlistedArnController;
 use App\Http\Controllers\Admin\ARNController;
 use App\Http\Controllers\Admin\CandidatesController;
 use App\Http\Controllers\Admin\JobPostingArnController;
@@ -72,7 +73,9 @@ Route::get('/fraud-notice', function () {
 // ->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
-    Route::get('/admin', function () {return redirect()->route('dashboard');});
+    Route::get('/admin', function () {
+        return redirect()->route('dashboard');
+    });
     Route::prefix('admin')->group(function () {
         Route::get('/dashboard', DashboardController::class)->name('dashboard');
         Route::resource('jobpostings', JobPostingController::class);
@@ -87,7 +90,9 @@ Route::middleware('auth')->group(function () {
         Route::resource('jobpostings.jobrequirement', JobRequirementController::class)->only(['store', 'update']);
         Route::resource('jobpostings.jobresponsibility', JobResponsibilityController::class)->only(['store', 'update']);
         Route::resource('jobpostings.termscondition', TermsConditionsController::class)->only(['store', 'update']);
+        
         Route::resource('jobpostings.applications', JobPostingArnController::class)->only(['index', 'update']);
+
         Route::get('/jobs/drafts/', DraftJobPostingController::class)->name('jobpostings.drafts');
         Route::get('/jobs/active/', ActiveJobPostingController::class)->name('jobpostings.active');
 
@@ -100,16 +105,14 @@ Route::middleware('auth')->group(function () {
             // return 'settings';
             return view('admin.settings.index');
         });
-       
-        Route::get('/settings', function(){
+
+        Route::get('/settings', function () {
             return view('admin.settings.index');
         })->name('adminsettings');
         Route::prefix('settings')->group(function () {
             Route::resource('locationunit', LocationUnitController::class);
             Route::resource('reservationcategory', ReservationCategoryController::class);
-
         });
-
     });
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');

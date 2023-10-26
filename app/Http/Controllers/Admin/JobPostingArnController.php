@@ -11,10 +11,19 @@ class JobPostingArnController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index(JobPosting $jobposting)
+    public function index(Request $request, JobPosting $jobposting)
     {
+
+        $applications = $jobposting->arns()->paginate(9);
+        if ($request->shortlisted)
+            $applications = $jobposting->arns()->where('status', 'shortlisted')->paginate(9);
+        if ($request->rejected)
+            $applications = $jobposting->arns()->where('status', 'rejected')->paginate(9);
         return view('admin.jobs.applications.index')->with([
-            'applications' => $jobposting->arns()->paginate(9),
+            'jobposting' => $jobposting,
+            'applications' => $applications,
+            'shortlisted' => $request->shortlisted ?? null,
+            'rejected' => $request->rejected ?? null
         ]);
     }
 
@@ -31,6 +40,8 @@ class JobPostingArnController extends Controller
      */
     public function store(Request $request)
     {
+
+
         //
     }
 
