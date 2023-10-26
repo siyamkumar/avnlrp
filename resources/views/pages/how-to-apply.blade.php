@@ -139,7 +139,7 @@
                         </p>
 
                         <p class="text-justify mb-2">
-                            >If you ever have questions or need help, don't hesitate to reach out to our support team .
+                            If you ever have questions or need help, don't hesitate to reach out to our support team .
                             We're here
                             to support you on your job-seeking journey.
                         </p>

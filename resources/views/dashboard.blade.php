@@ -21,8 +21,11 @@
                 <div class="card border-0 shadow-sm p-3">
                     <div class="card-body d-flex justify-content-between">
                         <div class="card-menu">
-                            <span>Total Job Posting</span>
+
+                        <a  class="text-decoration-none"  href="{{ route('jobpostings.index') }}">
+                            <span> Total Job Posting   </span>
                             <h2 class="mb-0">{{ $jobpostings_count ?? '' }}</h2>
+                            </a>
                         </div>
 
                     </div>
@@ -33,8 +36,10 @@
                 <div class="card border-0 shadow-sm p-3">
                     <div class="card-body d-flex justify-content-between">
                         <div class="card-menu">
+                        <a  class="text-decoration-none" href="{{ route('candidates.index') }}">
                             <span>Total Applications</span>
                             <h2 class="mb-0">{{ $arns_count ?? '' }}</h2>
+                            </a>
                         </div>
 
                     </div>
