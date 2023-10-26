@@ -119,6 +119,7 @@ class ReservationCategoryController extends Controller
     {
         $reservationcategory->delete();
 
-        return redirect()->route('reservationcategory.index')->with('success', 'category deleted successfully');
+        return redirect()->route('reservationcategory.index')->with(['status' => 'success',
+        'message' => 'Reservation category - <b>' . $reservationcategory->unit_name .  '</b> has been deleted Successfully']);
     }
 }
