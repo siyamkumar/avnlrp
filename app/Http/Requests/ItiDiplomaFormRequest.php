@@ -28,7 +28,7 @@ class ItiDiplomaFormRequest extends FormRequest
             'courseName' => 'required',
             'collegeName' => 'required',
             'universityName' => 'required',
-            'year_of_passing' => 'required',
+            'year_of_passing' => 'required|numeric|digits:4',
             'score' => 'required',
             'marksheet_path'=>'required|max:50',
         ];

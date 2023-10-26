@@ -8,20 +8,20 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-4 col-md-6 col-sm-12 mx-auto">
-                <x-card class="border-0 rounded-0 p-3">
-                    @error('EmailNotFound')
-                        <div class="alert alert-danger" role="alert">
-                            {{ $message }}
-                        </div>
-                    @enderror
+                <x-card class="border-0 rounded-0 p-3">                
                     <form method="POST" action="{{ route('candidatelogin') }}">
                         @csrf
                         <div class="form-group mb-3">
                             <label for="email" class="form-label">Enter your registered Email address*</label>
-                            <input class="form-control @error('email') is-invalid @enderror" id="email"
+                            <input class="form-control @error('email') is-invalid @enderror @error('EmailNotFound') is-invalid @enderror " id="email"
                                 type="email" name="email" placeholder="yourname@email.com"
                                 value="{{ old('email') }}">
-                            @error('email')
+                            @error('email') 
+                                <div class="invalid-feedback">
+                                    <span>{{ $message }}</span>
+                                </div>
+                            @enderror
+                             @error('EmailNotFound') 
                                 <div class="invalid-feedback">
                                     <span>{{ $message }}</span>
                                 </div>

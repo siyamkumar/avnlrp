@@ -33,6 +33,10 @@
             <div class="alert alert-success border-0" role="alert">
                 You have submitted the application on . Please wait for further updates
             </div>
+        @elseif($jobapplication->jobpostings->jobPostingLastDate->isPast())
+             <div class="alert alert-warning border-0 fw-bold" role="alert">
+                You cannot submit this application after the last date of submission.
+            </div>
         @endif
 
         @include('applicants.applications.partials.details')
@@ -42,7 +46,7 @@
         @include('applicants.applications.partials.experience')
 
         @include('applicants.applications.partials.declaration')
-       
+
 
     </div>
 

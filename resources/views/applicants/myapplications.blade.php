@@ -25,7 +25,7 @@
             <tr>
                 <td>
                     <span class="fw-bold">{{ $ja->arn }} </span>
-                    
+
 
 
                 </td>
@@ -35,10 +35,14 @@
                 <td><x-arnstatus-regular :status="$ja->status" />
                 </td>
                 <td>
-                    @if(!$ja->isSubmitted)
-                    <a href="{{ route('jobapplication.edit', $ja) }}">Edit</a>
+                    @if (!$ja->isSubmitted)
+                        @if ($ja->jobpostings->jobPostingLastDate->isPast())
+                            <span class="text-danger">Cannot edit/submit this application</span>
+                        @else
+                            <a href="{{ route('jobapplication.edit', $ja) }}">Edit</a>
+                        @endif
                     @else
-                    <a href="{{ route('jobapplication.edit', $ja) }}">View Application</a>
+                        <a href="{{ route('jobapplication.edit', $ja) }}">View Application</a>
                     @endif
                 </td>
 

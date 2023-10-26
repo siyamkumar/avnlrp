@@ -5,13 +5,14 @@ namespace App\Http\Controllers;
 use App\Models\JobPosting;
 use App\Models\LocationUnit;
 use App\Models\ReservationCategory;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class PublicJobPostingController extends Controller
 {
     public function index()
     {
-        $jobs = JobPosting::where('status', 'active')->paginate(10);
+        $jobs = JobPosting::where('status', 'active')->where('jobPostingLastDate', '>=', Carbon::today())->paginate(10);
         return view('applicants.jobopenings')->with([
             'jobs' => $jobs,
             'locations' => LocationUnit::all(),

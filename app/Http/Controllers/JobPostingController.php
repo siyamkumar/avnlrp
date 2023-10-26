@@ -131,7 +131,12 @@ class JobPostingController extends Controller
         ]);
     }
 
-    public function destroy(JobPosting $jobPosting)
+    public function destroy(JobPosting $jobposting)
     {
+        $jobposting->delete();
+        return redirect()->back()->with([
+            'status' => 'success',
+            'message' => 'Job Posting Updated Successfully'
+        ]);
     }
 }

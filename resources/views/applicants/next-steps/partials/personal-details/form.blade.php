@@ -173,7 +173,7 @@
     </div>
     <div class="col-md-6">
 
-        @if (auth()->guard('applicants')->user()->personaldetails->photo_path)
+        @if (auth()->guard('applicants')->user()->personaldetails)
         <div class="passport-photo">
             <img src="{{ url('storage/public/' .auth()->guard('applicants')->user()->personaldetails->photo_path ??'') }} "
                 style="width: 138px; height: 188px; object-fit: cover">

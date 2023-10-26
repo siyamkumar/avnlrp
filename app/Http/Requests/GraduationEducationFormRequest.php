@@ -28,7 +28,7 @@ class GraduationEducationFormRequest extends FormRequest
             'course_name' => 'required',
             'college_name' => 'required',
             'university_name' => 'required',
-            'year_of_passing' => 'required',
+            'year_of_passing' => 'required|numeric|digits:4',
             'score' => 'required',
             
             

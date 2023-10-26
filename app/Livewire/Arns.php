@@ -18,14 +18,14 @@ class Arns extends Component
     public function reject()
     {
 
-        // $this->arn->status = 'rejected';
-        // $this->arn->reject_remarks = $this->reject_summary;
-        // $this->arn->isShortlisted = false;
-        // $this->arn->save();
-        // return back()->with([
-        //     'status' => 'success',
-        //     'message' => 'Candidate has been ' . $this->arn->status
-        // ]);
+        $this->arn->status = 'rejected';
+        $this->arn->reject_remarks = $this->reject_summary;
+        $this->arn->isShortlisted = false;
+        $this->arn->save();
+        return back()->with([
+            'status' => 'success',
+            'message' => 'Candidate has been ' . $this->arn->status
+        ]);
 
     
         $this->dispatch(
@@ -37,7 +37,7 @@ class Arns extends Component
     public function shortlist()
     {
         $this->arn->status = 'shortlisted';
-        $this->arn->shortlist_summary = $this->shortlist_summary;
+        $this->arn->shortlist_remarks = $this->shortlist_summary;
         $this->arn->isShortlisted = true;
         $this->arn->save();
         return back()->with([

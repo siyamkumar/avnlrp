@@ -46,7 +46,7 @@
                                               
                                                     <x-icons.edit href="{{ route('jobpostings.edit', $jobposting) }}" />
                                               
-                                                <x-icons.delete href="" />
+                                                <x-icons.delete action="{{route('jobpostings.destroy', $jobposting)}}" />
                                             </div>
 
                                         </td>

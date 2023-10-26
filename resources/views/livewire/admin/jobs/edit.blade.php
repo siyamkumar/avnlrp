@@ -89,7 +89,7 @@
 
     <div class="tab-content" id="jobTabContent">
         {{-- JOB SUMMARY TAB --}}
-        <div class="tab-pane active fade show" id="tab-summary" role="tabpanel" aria-labelledby="summary-tab"
+        <div class="tab-pane fade show" id="tab-summary" role="tabpanel" aria-labelledby="summary-tab"
             wire:ignore.self>
             @if ($jobposting->vacancy > 1)
                <livewire:admin.jobs.vacancy :$jobposting>
