@@ -1,9 +1,17 @@
+@php
+    $user =
+        auth()
+            ->guard('applicants')
+            ->user() ?? null;
+@endphp
 <x-guest-layout>
+
+
+
     <main class="main-container container mt-3">
         <div class="p-4 p-md-5 mb-4 rounded text-body-emphasis ">
             <div class="">
                 <h1 class="display-6 fw-bold text-center">Job Openings</h1>
-
             </div>
         </div>
 
@@ -123,21 +131,37 @@
             <div class="col-md-9">
 
                 @foreach ($jobs as $job)
+                    {{-- @if ($user->arns) --}}
                     <div class="card bg-light border-0 rounded-3 mb-4 job-list-card">
                         <a href="{{ route('jobs.show', $job) }}" class="job-list-card-link">
                             <div class="card-body p-4">
 
-                                <div class="d-flex align-items-center gap-2">
-                                    <div>
-                                        <x-icons.location />
+                                <div class="d-flex justify-content-between align-items-center gap-2">
+                                    <div class="d-flex align-items-center gap-2">
+                                        <div>
+                                            <x-icons.location />
 
-                                        {{ $job->locationunit->unit_name }}
+                                            {{ $job->locationunit->unit_name }}
+                                        </div>
+
+                                        @if ($job->isContract)
+                                            <div class="border p-1 rounded-3 border-primary"><small>Fixed
+                                                    Contract</small>
+                                            </div>
+                                        @endif
                                     </div>
 
-                                    @if ($job->isContract)
-                                        <div class="border p-1 rounded-3 border-primary"><small>Fixed Contract</small>
-                                        </div>
-                                    @endif
+                                    <div>
+                                        @if ($user)
+                                            @if (array_search($job->id, array_column($user->jobapplications->toArray(), 'job_posting_id')))
+                                                <small
+                                                    class="d-inline-flex  px-2 py-1 fw-semibold text-success-emphasis bg-success-subtle border border-success-subtle rounded-2">You
+                                                    already applied for this job.</small>
+                                            @endif
+                                        @endif
+                                    </div>
+
+
                                 </div>
 
                                 <div class="row ">

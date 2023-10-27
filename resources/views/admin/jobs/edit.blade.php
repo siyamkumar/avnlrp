@@ -8,25 +8,7 @@
                     :status="$jobposting->status" />
             </div>
 
-            <div class="col-auto align-self-end">
-
-                @php
-                    $disabled = true;
-                    if ($jobposting->summary && $jobposting->educationcriteria && $jobposting->experiencecriteria && $jobposting->agecriteria) {
-                        $disabled = false;
-                    }
-
-                @endphp
-
-
-                @if ($jobposting->status == 'draft')
-                    <form action="{{route('jobpostings.update', $jobposting)}}" method="POST">
-                    @csrf @method('patch')
-                        <button type="submit" class="btn btn-primary " name="publish" @if ($disabled) disabled @endif value=true>
-                             Publish Job Posting </button>
-                    </form>
-                @endif
-            </div>
+         
 
 
 
@@ -74,12 +56,11 @@
 
             <livewire:admin.jobs.edit :jobposting="$jobposting" />
 
-            {{-- @if ($jobposting->vacancy > 1)
-                            @include('admin.jobs.partials.vacancy')
-                        @endif
-                        --}}
+
 
         </div>
+
+        
     </div>
-    
+
 </x-app-layout>

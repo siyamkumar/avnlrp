@@ -90,7 +90,7 @@ Route::middleware('auth')->group(function () {
         Route::resource('jobpostings.jobrequirement', JobRequirementController::class)->only(['store', 'update']);
         Route::resource('jobpostings.jobresponsibility', JobResponsibilityController::class)->only(['store', 'update']);
         Route::resource('jobpostings.termscondition', TermsConditionsController::class)->only(['store', 'update']);
-        
+
         Route::resource('jobpostings.applications', JobPostingArnController::class)->only(['index', 'update']);
 
         Route::get('/jobs/drafts/', DraftJobPostingController::class)->name('jobpostings.drafts');

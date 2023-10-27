@@ -22,7 +22,8 @@
                         aria-label="Close"></button>
                 </div>
                 <div class="offcanvas-body">
-                    {{ $postgraduationeducationdetail }}
+                     <img src="{{ url('storage/public/' . $postgraduationeducationdetail->marksheet_path ?? '') }}"
+                            alt="" height="100%">
                 </div>
                 <div class="offcanvas-footer p-2">
                     <div class="d-flex">

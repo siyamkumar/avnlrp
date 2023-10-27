@@ -29,7 +29,7 @@ class GraduationEducationFormRequest extends FormRequest
             'college_name' => 'required',
             'university_name' => 'required',
             'year_of_passing' => 'required|numeric|digits:4',
-            'score' => 'required|numeric|between:10,99.99',
+            'score' => 'required|numeric|between:1,99.99',
             
             
         ];
