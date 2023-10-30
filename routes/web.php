@@ -7,6 +7,7 @@ use App\Http\Controllers\Admin\JobPostingArnController;
 use App\Http\Controllers\Admin\ReportController;
 use App\Http\Controllers\Admin\Settings\LocationUnitController;
 use App\Http\Controllers\Admin\Settings\ReservationCategoryController;
+use App\Http\Controllers\Admin\Settings\UserController;
 use App\Http\Controllers\Applicants\ApplicantController;
 use App\Http\Controllers\Applicants\ApplicationReferenceNumberController;
 use App\Http\Controllers\Applicants\EducationController;
@@ -100,6 +101,7 @@ Route::middleware('auth')->group(function () {
 
         Route::resource('arn', ARNController::class)->only(['show']);
         Route::get('/reports', ReportController::class)->name('reports');
+      
 
         Route::get('/settings', function () {
             // return 'settings';
@@ -109,9 +111,12 @@ Route::middleware('auth')->group(function () {
         Route::get('/settings', function () {
             return view('admin.settings.index');
         })->name('adminsettings');
+        
         Route::prefix('settings')->group(function () {
             Route::resource('locationunit', LocationUnitController::class);
             Route::resource('reservationcategory', ReservationCategoryController::class);
+            Route::resource('user', UserController::class);
+            
         });
     });
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

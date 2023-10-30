@@ -29,7 +29,7 @@
                                     <x-icons.edit
                                         href="{{ route('reservationcategory.edit', $reservationcategory) }}" />
                                     <x-icons.delete
-                                        href="{{ route('reservationcategory.destroy', $reservationcategory) }}" />
+                                        action="{{ route('reservationcategory.destroy', $reservationcategory) }}" />
                                 </div>
                             </td>
 
