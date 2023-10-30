@@ -78,8 +78,7 @@
                 <div class="card border-0 shadow-sm p-3">
                     <div class="card-header border-0 bg-white">
                         <h3 class="pt-3">Applicants By State</h3>
-                        <p style="width:90%;">Lorem ipsum dolor sit amet, consectetur adipiscing elit Lorem ipsum dolor
-                            sit amet, consectetur adipiscing elit.dolor sit amet, consectetur adipiscing elit</p>
+                        <p style="width:90%;"></p>
 
                     </div>
 
@@ -106,8 +105,7 @@
                 <div class="card border-0 shadow-sm p-3">
                     <div class="card-header border-0 bg-white">
                         <h3 class="pt-3">By Reservation Category</h3>
-                        <p style="width:90%;">Lorem ipsum dolor sit amet, consectetur adipiscing elit Lorem ipsum dolor
-                            sit amet, consectetur adipiscing elit.dolor sit amet, consectetur adipiscing elit</p>
+                        <p style="width:90%;"></p>
                     </div>
 
 
