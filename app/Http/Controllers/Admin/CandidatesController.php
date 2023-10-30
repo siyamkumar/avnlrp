@@ -16,10 +16,17 @@ class CandidatesController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
+        $applications = ApplicationReferenceNumber::where('status', '!=', 'draft')->paginate(9);
+        if ($request->shortlisted)
+            $applications =  ApplicationReferenceNumber::where('status', 'shortlisted')->paginate(9);
+        if ($request->rejected)
+            $applications = ApplicationReferenceNumber::where('status', 'rejected')->paginate(9);
         return view('admin.candidates.index')->with([
-            'applications' => ApplicationReferenceNumber::paginate(9),
+            'applications' => $applications,
+            'shortlisted' => $request->shortlisted ?? null,
+            'rejected' => $request->rejected ?? null
         ]);
     }
 
@@ -43,8 +50,6 @@ class CandidatesController extends Controller
      */
     public function show(string $id)
     {
-
-
     }
 
     /**

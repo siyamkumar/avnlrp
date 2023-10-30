@@ -1,5 +1,5 @@
 <div>
-    
+
 
     <div class="p-2 top-0 bg-white shadow-sm" style="z-index: 99">
         <div class="d-flex align-items-center justify-content-between w-100">
@@ -181,7 +181,7 @@
                                 @php
                                     $date = Carbon::parse($arn->candidates->personaldetails->dob);
                                     $now = Carbon::parse($arn->jobpostings->jobPostingDate);
-                                    
+
                                 @endphp
 
                                 {{ $date->diff($now)->format('%y years & %m months') }}
@@ -480,8 +480,8 @@
                         <label for="fee_details" class="form-label">Transaction
                             ID</label>
                         <input type="text" class="form-control  @error('fee_details') is-invalid @enderror"
-                            id="fee_details" name="fee_details" placeholder="Trans. ID" value="XXXXAYYDDD999999"
-                            disabled value="{{ old('fee_details', $paymentdetail->fee_details ?? '') }}">
+                            id="fee_details" name="fee_details" placeholder="Trans. ID"
+                            value="{{ $arn->fee_details ?? 'NA' }}" disabled>
                         @error('fee_details')
                             <div class="invalid-feedback">
                                 {{ $message }}
@@ -491,13 +491,31 @@
 
 
                     <div class="col-md-3">
-                        <label for="payment_proof" class="form-label">Payment Proof
-                            <span style="color:red">*</span></label> <br />
-                        <a href="{{ url('storage/public/' . $arn->payment_proof ?? '') }}" target="_blank">Payment
-                            Proof</a>
+                        <label for="payment_proof" class="form-label">Payment Proof<span
+                                class="text-danger">*</span></label> <br />
+
+                        <a class="" data-bs-toggle="offcanvas" href="#pp-{{ $arn->id }}" role="button">
+                            Payment Proof
+                        </a>
+
+                        <div class="offcanvas offcanvas-end" tabindex="-1" id="pp-{{ $arn->id }}">
+
+                            <div class="offcanvas-header">
+                                <h5 class="offcanvas-title">Payment Proof</h5>
+                                <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas"
+                                    aria-label="Close"></button>
+                            </div>
+                            <div class="offcanvas-body">
+                                <img src="{{ url('storage/public/' . $arn->payment_proof ?? '') }}" alt=""
+                                    height="100%">
+                            </div>
+
+                        </div>
+
+
                     </div>
 
-                    <div class="col-md-3">
+                    {{-- <div class="col-md-3">
                         <div class="d-flex">
                             <button class="btn btn-icon btn-danger me-2">
                                 Invalid
@@ -507,7 +525,7 @@
                             </button>
                         </div>
 
-                    </div>
+                    </div> --}}
 
 
                 </div>

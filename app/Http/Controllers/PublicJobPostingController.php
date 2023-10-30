@@ -10,9 +10,15 @@ use Illuminate\Http\Request;
 
 class PublicJobPostingController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
+
+        $search = strip_tags($request->search);
         $jobs = JobPosting::where('status', 'active')->where('jobPostingLastDate', '>=', Carbon::today())->paginate(10);
+        if ($search) {
+            $jobs = JobPosting::where('status', 'active')->where('jobPostingLastDate', '>=', Carbon::today())->where('jobTitle', 'like', "%{$search}")->paginate(10);
+        }
+        
         return view('applicants.jobopenings')->with([
             'jobs' => $jobs,
             'locations' => LocationUnit::all(),

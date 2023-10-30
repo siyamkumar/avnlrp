@@ -80,19 +80,36 @@
 
                         <a class="nav-link pt-0" id="terms-tab" data-bs-toggle="tab" href="#tab-terms" role="tab"
                             wire:ignore>Terms & Conditions</a>
+                    </li>
+                    <li class="ms-auto">
+                        @php
+                            $disabled = true;
+                            if ($jobposting->summary && $jobposting->educationcriteria && $jobposting->experiencecriteria && $jobposting->agecriteria && $jobposting->jobrequirement && $jobposting->jobresponsibility) {
+                                $disabled = false;
+                            }
+                        @endphp
+
+
+
+                        @if ($jobposting->status == 'draft')
+                            <button wire:click="publishJobPosting" class="btn btn-primary"
+                                @if ($disabled) disabled @endif>Publish Job
+                                Posting </button>
+                        @endif
+                    </li>
 
 
                 </ul>
+
             </div>
         </div>
     </div>
 
     <div class="tab-content" id="jobTabContent">
         {{-- JOB SUMMARY TAB --}}
-        <div class="tab-pane fade show" id="tab-summary" role="tabpanel" aria-labelledby="summary-tab"
-            wire:ignore.self>
+        <div class="tab-pane fade show" id="tab-summary" role="tabpanel" aria-labelledby="summary-tab" wire:ignore.self>
             @if ($jobposting->vacancy > 1)
-               <livewire:admin.jobs.vacancy :$jobposting>
+                <livewire:admin.jobs.vacancy :$jobposting>
             @endif
             <x-card>
                 <h4>Job Summary</h4>

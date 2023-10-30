@@ -10,8 +10,7 @@ use App\Models\Applicants\PersonalDetail;
 use App\Models\JobPosting;
 use App\Models\RegionState;
 use App\Models\User;
-
-
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 
@@ -23,6 +22,7 @@ class DashboardController extends Controller
   public function __invoke(Request $request)
   {
 
+   
     //chart.js 
     //Reservation category chart
 

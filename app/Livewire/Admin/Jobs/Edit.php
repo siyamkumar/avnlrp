@@ -54,7 +54,7 @@ class Edit extends Component
         if ($this->jobposting->jobresponsibility) {
             $this->jobResponsibility = $this->jobposting->jobresponsibility->job_responsibility;
         }
-        if($this->jobposting->termscondition){
+        if ($this->jobposting->termscondition) {
             $this->terms = $this->jobposting->termscondition->job_terms;
         }
 
@@ -150,7 +150,6 @@ class Edit extends Component
             'alert',
             ['status' => 'success',  'message' => '<b>Job Responsibility</b> for the jobposting <b>' . $this->jobposting->jobTitle . '</b> has been updated successfully!']
         );
-        
     }
 
     public function updateTerms()
@@ -164,5 +163,17 @@ class Edit extends Component
             'alert',
             ['status' => 'success',  'message' => '<b>Job Terms & Condition</b> for the jobposting <b>' . $this->jobposting->jobTitle . '</b> has been updated successfully!']
         );
+    }
+
+    public function publishJobPosting()
+    {
+        $this->jobposting->update([
+            'status' => 'active'
+        ]);
+
+        return redirect()->route('jobpostings.index')->with([
+            'status' => 'success',
+            'message' => 'Job Posting - <b>' . $this->jobposting->jobAdvertismentNo .  '</b> has been published Successfully and its ready to receive job applications.'
+        ]);
     }
 }

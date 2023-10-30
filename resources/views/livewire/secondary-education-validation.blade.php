@@ -4,7 +4,7 @@
     <td>{{ $secondaryeducationdetail->year_of_passing ?? '' }}</td>
     <td>{{ $secondaryeducationdetail->school_name ?? '' }}</td>
     <td>{{ $secondaryeducationdetail->school_board ?? '' }}</td>
-   
+
     <td>
 
 
@@ -25,7 +25,7 @@
                 </div>
                 <div class="offcanvas-body">
                     <img src="{{ url('storage/public/' . $secondaryeducationdetail->marksheet_path ?? '') }}"
-                        alt="">
+                        alt="" height="100%">
                 </div>
                 <div class="offcanvas-footer p-2">
                     <div class="d-flex">
@@ -38,11 +38,11 @@
                     </div>
                 </div>
             </div>
-    
+
         @endempty
 
 
-       
+
 
 </td>
 

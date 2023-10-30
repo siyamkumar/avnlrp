@@ -18,43 +18,48 @@
         <div class="row g-4 pt-3">
 
             <div class="col-xl-3 col-sm-6">
-                <div class="card border-0 shadow-sm p-3">
-                    <div class="card-body d-flex justify-content-between">
-                        <div class="card-menu">
+                <a class="text-decoration-none card-link" href="{{ route('jobpostings.index') }}">
+                    <div class="card border-0 shadow-sm p-3">
+                        <div class="card-body d-flex justify-content-between">
+                            <div class="card-menu">
 
-                        <a  class="text-decoration-none"  href="{{ route('jobpostings.index') }}">
-                            <span> Total Job Posting   </span>
-                            <h2 class="mb-0">{{ $jobpostings_count ?? '' }}</h2>
-                            </a>
+
+                                <span> Total Job Posting </span>
+                                <h2 class="mb-0">{{ $jobpostings_count ?? '' }}</h2>
+
+                            </div>
+
                         </div>
-
                     </div>
-                </div>
+                </a>
             </div>
 
             <div class="col-xl-3 col-sm-6">
-                <div class="card border-0 shadow-sm p-3">
-                    <div class="card-body d-flex justify-content-between">
-                        <div class="card-menu">
-                        <a  class="text-decoration-none" href="{{ route('candidates.index') }}">
-                            <span>Total Applications</span>
-                            <h2 class="mb-0">{{ $arns_count ?? '' }}</h2>
-                            </a>
-                        </div>
+                <a class="text-decoration-none card-link " href="{{ route('candidates.index') }}">
+                    <div class="card border-0 shadow-sm p-3">
+                        <div class="card-body d-flex justify-content-between">
+                            <div class="card-menu">
+                                <span>Total Applications</span>
+                                <h2 class="mb-0">{{ $arns_count ?? '' }}</h2>
+                            </div>
 
+                        </div>
                     </div>
-                </div>
+                </a>
             </div>
 
             <div class="col-xl-3 col-sm-6">
-                <div class="card border-0 shadow-sm p-3">
-                    <div class="card-body d-flex justify-content-between">
-                        <div class="card-menu">
-                            <span>Shortlisted Applications</span>
-                            <h2 class="mb-0">{{ $shortlisted_count ?? '' }}</h2>
+                <a href="{{ route('candidates.index', 'shortlisted=true') }}" class="card-link text-decoration-none">
+
+                    <div class="card border-0 shadow-sm p-3">
+                        <div class="card-body d-flex justify-content-between">
+                            <div class="card-menu">
+                                <span>Shortlisted Applications</span>
+                                <h2 class="mb-0">{{ $shortlisted_count ?? '' }}</h2>
+                            </div>
                         </div>
                     </div>
-                </div>
+                </a>
             </div>
 
             <div class="col-xl-3 col-sm-6">
