@@ -13,9 +13,6 @@ class JobFilter extends Component
 {
     use WithPagination;
     protected $paginationTheme = 'bootstrap';
-    // public $jobs2;
-
-
     public $locationFilter = [];
     public $educationFilter = [];
     public $locations, $reservationcategories;
