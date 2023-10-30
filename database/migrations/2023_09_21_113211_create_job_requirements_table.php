@@ -15,9 +15,9 @@ return new class extends Migration
         Schema::create('job_requirements', function (Blueprint $table) {
             $table->id();
             $table->foreignIdFor(JobPosting::class);
-            $table->string('job_specification');
-            $table->string('knowledge');
-            $table->string('skills');
+            $table->longText('job_specification');
+            $table->longText('knowledge');
+            $table->longText('skills');
             $table->timestamps();
         });
     }

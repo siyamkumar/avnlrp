@@ -71,7 +71,7 @@
 
                     <li class="nav-item text-center" role="presentation" wire:ignore.self>
 
-                        @if ($jobposting->summary)
+                        @if ($jobposting->termscondition)
                             <x-icons.checkok />
                         @else
                             <x-icons.checknotok />
@@ -400,7 +400,7 @@
             </x-card>
         </div>
         {{-- TERMS & CONDITION --}}
-        <div class="tab-pane fade " id="tab-terms" role="tabpanel" wire:ignore.self>
+        <div class="tab-pane fade" id="tab-terms" role="tabpanel" wire:ignore.self>
             <x-card>
                 <form wire:submit = "updateTerms">
                     @csrf

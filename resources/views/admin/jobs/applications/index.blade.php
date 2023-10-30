@@ -8,24 +8,25 @@
             <div class="">
                 <ul id="job-menu" class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link  @if($shortlisted || $rejected)  @else active @endif"
-                            aria-current="page" href="{{ route('jobpostings.applications.index', $jobposting) }}">All
+                        <a class="nav-link  @if ($shortlisted || $rejected) @else active @endif" aria-current="page"
+                            href="{{ route('jobpostings.applications.index', $jobposting) }}">All
                             Candidates</a>
                     </li>
 
 
-                    <li class="nav-item"><a class="nav-link   @if($shortlisted) active @endif  }}" 
+                    <li class="nav-item"><a class="nav-link   @if ($shortlisted) active @endif  }}"
                             href="{{ route('jobpostings.applications.index', [$jobposting, 'shortlisted=true']) }}">Shortlisted
                             Candidates</a></li>
                     <li class="nav-item"><a
                             href="{{ route('jobpostings.applications.index', [$jobposting, 'rejected=true']) }}"
-                            class="nav-link  @if($rejected) active @endif }}">Rejected Candidates</a></li>
+                            class="nav-link  @if ($rejected) active @endif }}">Rejected Candidates</a>
+                    </li>
 
 
                 </ul>
 
             </div>
-         
+
         </div>
     </nav>
 
@@ -38,7 +39,6 @@
                     <div class="card-body p-0">
                         <div class="arn-sidebar" style="height: 74vh; 
                         overflow-y: auto;">
-
                             <ul class="nav" id="arn-sidebar">
                                 @foreach ($applications as $key => $app)
                                     <li class="nav-item" role="presentation" height="">

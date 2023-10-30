@@ -4,6 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 use App\Models\JobPosting;
+
 return new class extends Migration
 {
     /**
@@ -14,7 +15,7 @@ return new class extends Migration
         Schema::create('terms_conditions', function (Blueprint $table) {
             $table->id();
             $table->foreignIdFor(JobPosting::class);
-            $table->string('job_terms');
+            $table->longText('job_terms');
             $table->timestamps();
         });
     }

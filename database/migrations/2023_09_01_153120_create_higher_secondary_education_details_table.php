@@ -23,9 +23,9 @@ return new class extends Migration
             $table->integer('score');
             $table->string('marksheet_path');
             $table->string('file_name')->nullable();
-           $table->string('file_type')->nullable();
-           $table->unsignedBigInteger('file_size')->nullable();
-           $table->boolean('isValid')->nullable();
+            $table->string('file_type')->nullable();
+            $table->unsignedBigInteger('file_size')->nullable();
+            $table->boolean('isValid')->nullable();
             $table->longText('valid_remarks')->nullable();
             $table->longText('invalid_remarks')->nullable();
             $table->timestamps();

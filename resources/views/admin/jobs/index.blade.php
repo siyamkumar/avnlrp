@@ -29,8 +29,8 @@
 
                             <tbody>
                                 @foreach ($jobpostings as $key => $jobposting)
-                                    <tr id="{{ $key }}">
-                                        <td>{{ $key + 1 }}</td>
+                                    <tr id="{{ $jobpostings->firstItem() + $key }}">
+                                        <td>{{ $jobpostings->firstItem() + $key }}</td>
                                         <td>{{ $jobposting->jobPostingDate->format('d/M/Y') }}</td>
                                         <td>{{ $jobposting->jobAdvertismentNo ?? '' }}</td>
                                         <td>{{ $jobposting->jobTitle ?? '' }}</td>
