@@ -101,6 +101,9 @@ Route::middleware('auth')->group(function () {
 
         Route::resource('arn', ARNController::class)->only(['show']);
         Route::get('/reports', ReportController::class)->name('reports');
+        Route::get('/statewisereport', function () {
+            return view('admin.reports.statewiseindex');
+        });
       
 
         Route::get('/settings', function () {
@@ -111,7 +114,7 @@ Route::middleware('auth')->group(function () {
         Route::get('/settings', function () {
             return view('admin.settings.index');
         })->name('adminsettings');
-        
+
         Route::prefix('settings')->group(function () {
             Route::resource('locationunit', LocationUnitController::class);
             Route::resource('reservationcategory', ReservationCategoryController::class);
