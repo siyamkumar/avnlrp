@@ -16,9 +16,11 @@ class JobFilter extends Component
     public $locationFilter = [];
     public $educationFilter = [];
     public $locations, $reservationcategories;
+    public $search;
     public function render()
     {
         $jobs = JobPosting::where('status', 'active')->where('jobPostingLastDate', '>=', Carbon::today())
+            ->where('jobTitle', 'like', "%{$this->search}")
             ->whereHas('locationunit', function ($q) {
                 if (!empty($this->locationFilter)) {
                     $q->wherein('id', $this->locationFilter);
@@ -36,12 +38,13 @@ class JobFilter extends Component
 
         $this->locations = LocationUnit::all();
         $this->reservationcategories = ReservationCategory::orderBy('name', 'asc')->get();
+
         return view('livewire.job-filter', compact('jobs'));
     }
 
-    public function updated()
+    public function clearSearch()
     {
-        $this->resetPage();
+        $this->reset();
     }
 
     public function processFilter()

@@ -21,6 +21,7 @@ class PublicJobPostingController extends Controller
         
         return view('applicants.jobopenings')->with([
             'jobs' => $jobs,
+            'search' => strip_tags($request->search),
             'locations' => LocationUnit::all(),
             'reservationcategories' => ReservationCategory::orderBy('name', 'asc')->get(),
         ]);

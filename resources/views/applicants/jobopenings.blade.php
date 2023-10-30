@@ -1,19 +1,12 @@
-
 <x-guest-layout>
 
+   
+   
 
+        @livewireStyles
 
-    <main class="main-container container mt-3">
-        <div class="p-4 p-md-5 mb-4 rounded text-body-emphasis ">
-            <div class="">
-                <h1 class="display-6 fw-bold text-center">Job Openings</h1>
-            </div>
-        </div>
+        <livewire:job-filter :$search />
 
-       @livewireStyles
-
-        <livewire:job-filter />
-
-       @livewireScripts
-    </main>
+        @livewireScripts
+    
 </x-guest-layout>
