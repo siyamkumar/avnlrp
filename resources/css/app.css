@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700&display=swap');
 @import "core.css";
+@import "joblisting.css";
 @import "login.css";
 @import "table.css";
 @import "print.css";
@@ -165,29 +166,6 @@ a.sub-menu-active:before {
     border-color: #b4c0e0 !important;
 }
 
-
-.job-list-card {
-    cursor: pointer;
-    transition: box-shadow .3s;
-}
-
-.job-list-card-link {
-    text-decoration: none;
-    color: inherit;
-}
-
-.job-list-card-link:hover {
-    text-decoration: none;
-    color: inherit;
-}
-
-.job-list-card:hover {
-    box-shadow: 0 0 11px rgba(33, 33, 33, .2);
-}
-
-.job-single {
-    background-image: linear-gradient(120deg, #fdfbfb 0%, #ebedee 100%);
-}
 
 /* TIMELINE */
 .timeline {

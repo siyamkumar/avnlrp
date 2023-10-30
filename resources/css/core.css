@@ -51,7 +51,7 @@ body {
 .main-container {
     margin-top: 10vh;
     min-height: 84.5vh;
-    background-color: #F3F6F9;
+    background-color: #F2F2F2;
 }
 
 .job-card {
@@ -125,7 +125,12 @@ body {
     cursor: pointer;
 }
 
+
 .card-link:hover .card {
     transform: scale(1.05);
     box-shadow: 0 10px 20px rgba(0, 0, 0, .12), 0 4px 8px rgba(0, 0, 0, .06);
 }
+
+
+
+

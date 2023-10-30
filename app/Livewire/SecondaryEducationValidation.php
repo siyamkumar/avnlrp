@@ -21,7 +21,7 @@ class SecondaryEducationValidation extends Component
         $this->secondaryeducationdetail->save();
         return $this->dispatch(
             'alert',
-            ['status' => 'success',  'message' => $this->secondaryeducationdetail . 'has been validated successfully for this application']
+            ['status' => 'success',  'message' => 'Secondary Education details has been validated successfully for this application']
         );
     }
 
@@ -31,7 +31,7 @@ class SecondaryEducationValidation extends Component
         $this->secondaryeducationdetail->save();
         return $this->dispatch(
             'alert',
-            ['status' => 'success',   'message' => $this->secondaryeducationdetail . 'has been validated successfully for this application']
+            ['status' => 'success',   'message' => 'Secondary Education details has been validated successfully for this application']
         );
     }
 }

@@ -1,14 +1,6 @@
  <main class="main-container container mt-3">
 
-     <div wire:loading>
-         <div class="loader">
-             <div class="position-absolute top-50 start-50 ">
-                 <div class="spinner-border" role="status">
 
-                 </div>
-             </div>
-         </div>
-     </div>
 
      <div class="p-4 p-md-5 mb-4 rounded text-body-emphasis ">
          <div class="">
@@ -25,20 +17,27 @@
          @endphp
 
 
-
          <div class="col-md-3 mb-3">
              <div class="position-sticky" style="top: 11vh;">
-                 <h4 class="fw-bold border-bottom pb-3">Job Filters</h4>
-                 <div class="py-2 mb-2 border-bottom">
-                     <h5 class="">Location</h5>
+                 {{-- <h4 class="fw-bold">Job Filters</h4> --}}
+                 <div class="filter-card p-3 mb-3">
+                     <h5 class="border-bottom pb-3">Location</h5>
 
                      @foreach ($locations as $location)
-                         <div class="form-check">
-                             <input class="form-check-input" type="checkbox" value="{{ $location->id }}"
-                                 wire:model.live="locationFilter" id="{{ $location->unit_code }}">
-                             <label class="form-check-label" for="{{ $location->unit_code }}">
-                                 {{ $location->unit_name }}, {{ $location->address }}
-                             </label>
+                         <div class="d-flex justify-content-between">
+                             <div class="form-check">
+                                 <input class="form-check-input" type="checkbox" value="{{ $location->id }}"
+                                     wire:model.live="locationFilter" id="{{ $location->unit_code }}">
+                                 <label class="form-check-label" for="{{ $location->unit_code }}">
+                                     {{ $location->unit_name }}, {{ $location->address }}
+                                 </label>
+
+                             </div>
+                             <div>
+                                 <span class="badge badge-ultra-violet">
+                                     {{ count($location->jobpostings()->where('status', 'active')->where('jobPostingLastDate', '>=', Carbon::today())->get()) }}
+                                 </span>
+                             </div>
                          </div>
                      @endforeach
 
@@ -48,12 +47,12 @@
                  </div>
 
 
-                 <div class="py-2 mb-2 border-bottom">
-                     <h5 class="">Reservation Category</h5>
+                 <div class="filter-card p-3 mb-3">
+                     <h5 class="border-bottom pb-3">Reservation Category</h5>
                      @foreach ($reservationcategories as $reservationcategory)
                          <div class="form-check">
-                             <input class="form-check-input" type="checkbox" value=""
-                                 id="{{ $reservationcategory->id }}">
+                             <input class="form-check-input" type="checkbox" value="{{ $reservationcategory->id }}"
+                                 wire:model.live='reservationFilter' id="{{ $reservationcategory->id }}">
                              <label class="form-check-label" for="{{ $reservationcategory->id }}">
                                  {{ $reservationcategory->name }} ({{ $reservationcategory->code }})
                              </label>
@@ -65,8 +64,8 @@
 
                  </div>
 
-                 <div class="py-2 mb-2 border-bottom">
-                     <h5 class="">Education</h5>
+                 <div class="filter-card p-3 mb-3">
+                     <h5 class="border-bottom pb-3">Education</h5>
                      <div class="form-check">
                          <input class="form-check-input" type="checkbox" value="" id="education1"
                              wire:model.live="educationFilter">
@@ -100,41 +99,16 @@
 
                  </div>
 
-                 <div class="py-2 mb-2 border-bottom">
-                     <h5 class="">Experience</h5>
-                     <div class="form-check">
-                         <input class="form-check-input" type="checkbox" value="" id="education1">
-                         <label class="form-check-label" for="experience1">
-                             0 - 1 Years
-                         </label>
-                     </div>
-                     <div class="form-check">
-                         <input class="form-check-input" type="checkbox" value="" id="education2">
-                         <label class="form-check-label" for="experience2">
-                             1 - 3 Years
-                         </label>
+                 <div class="filter-card p-3">
+                     <h5 class="pb-3">Experience</h5>
+                     <div class="d-flex align-items-center gap-3">
+
+                         <input class="form-control" wire:model.live="experienceMin" type="number" placeholder="Min"
+                             min=0>
+                         - <input type="number" class="form-control" wire:model.live="experienceMax" placeholder="Max"
+                             min=0>
                      </div>
 
-                     <div class="form-check">
-                         <input class="form-check-input" type="checkbox" value="" id="education3">
-                         <label class="form-check-label" for="experience3">
-                             3 - 5 Years
-                         </label>
-                     </div>
-
-                     <div class="form-check">
-                         <input class="form-check-input" type="checkbox" value="" id="education4">
-                         <label class="form-check-label" for="experience4">
-                             5 - 15 Years
-                         </label>
-                     </div>
-
-                     <div class="form-check">
-                         <input class="form-check-input" type="checkbox" value="" id="education4">
-                         <label class="form-check-label" for="experience4">
-                             20+ Years
-                         </label>
-                     </div>
 
                  </div>
 
@@ -142,11 +116,48 @@
              </div>
          </div>
          <div class="col-md-9">
+             <div wire:loading>
+                 <div class="loader ">
+                     <div class="position-absolute top-50 start-50  ">
+                         <div class="spinner-border" role="status">
+
+                         </div>
+                     </div>
+                 </div>
+             </div>
+
+             @foreach ($locations as $location)
+                 @if (in_array($location->id, $locationFilter))
+                     <div
+                         class="d-inline-flex mb-3 px-2 py-1 fw-semibold text-success-emphasis bg-success-subtle border border-success-subtle rounded-0 filter-checkbox">
+                         <label for="{{ $location->unit_code }}">
+
+                             {{ $location->unit_name }} <span class="ms-2 btn-close"></span></label>
+                         <input type="checkbox" wire:model.live='locationFilter' value="{{ $location->id }}"
+                             class="" id="{{ $location->unit_code }}">
+                     </div>
+                 @endif
+             @endforeach
+
+             @foreach ($reservationcategories as $reservationcategory)
+                 @if (in_array($reservationcategory->id, $reservationFilter))
+                     <div
+                         class="d-inline-flex mb-3 px-2 py-1 fw-semibold text-info-emphasis bg-info-subtle border border-success-subtle rounded-0 filter-checkbox">
+                         <label for="{{ $reservationcategory->id }}">
+
+                             {{ $reservationcategory->code }} <span class="ms-2 btn-close"></span></label>
+                         <input type="checkbox" wire:model.live='reservationFilter' class=""
+                             id="{{ $reservationcategory->id }}">
+                     </div>
+                 @endif
+             @endforeach
+
+
 
              @if (count($jobs) > 0)
                  @foreach ($jobs as $job)
                      {{-- @if ($user->arns) --}}
-                     <div class="card bg-light border-0 rounded-3 mb-4 job-list-card">
+                     <div class="card bg-light border-0 mb-4 job-list-card rounded-0">
                          <a href="{{ route('jobs.show', $job) }}" class="job-list-card-link">
                              <div class="card-body p-4">
 
@@ -180,7 +191,7 @@
 
                                  <div class="row ">
                                      <div class="col-12">
-                                         <h2>
+                                         <h2 class="job-title">
                                              {{ $job->jobTitle }}
                                          </h2>
                                          <p>
@@ -238,7 +249,12 @@
                                                          </g>
                                                      </svg>
 
-                                                     Experience : 5+ Yrs
+                                                     Experience : @if ($job->experiencecriteria)
+                                                         {{ $job->experiencecriteria->minExp }} -
+                                                         {{ $job->experiencecriteria->maxExp }} Years
+                                                     @else
+                                                         <span class="text-muted">Not defined</span>
+                                                     @endif
                                                  </div>
                                              </div>
                                              <div class="col-6 mb-3">
