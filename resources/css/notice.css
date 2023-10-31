@@ -1,0 +1,38 @@
+.container{
+     
+    width: 300px;
+   
+    padding: 50px;
+   
+    text-align: justify;
+ 
+  }
+
+.para1{
+    font-size:18px;
+    line-height: 200%;
+    margin-left:50px;
+    margin-top:20px;
+    margin-right:50px;
+    margin-bottom:20px;
+}
+.para2{
+    font-size:18px;
+    line-height: 200%;
+    margin-left:50px;
+    margin-top:20px;
+    margin-right:50px;
+    margin-bottom:20px;
+}
+.ol{
+    font-weight: bold;
+    text-indent:1.5em;
+}
+.head
+{
+    margin-left:50px;
+    margin-top:20px;
+    margin-right:50px;
+    margin-bottom:20px;
+}
+

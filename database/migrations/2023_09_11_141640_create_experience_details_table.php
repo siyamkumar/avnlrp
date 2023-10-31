@@ -26,14 +26,13 @@ return new class extends Migration
             $table->string('jobType')->nullable();
             $table->string('ctc')->nullable();
             $table->string('experience_path')->nullable();
-            
-            $table->string('jobsSummary')->nullable();
+            $table->longText('jobsSummary')->nullable();
             $table->string('file_name')->nullable();
             $table->string('file_type')->nullable();
             $table->unsignedBigInteger('file_size')->nullable();
             $table->boolean('isValid')->nullable();
             $table->longText('valid_remarks')->nullable();
-            $table->longText('invalid_remarks')->nullable();   
+            $table->longText('invalid_remarks')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

@@ -34,7 +34,8 @@
                     aria-label="Close"></button>
             </div>
             <div class="offcanvas-body">
-                {{ $experiencedetail }}
+                 <img src="{{ url('storage/public/' . $experiencedetail->experience_path ?? '') }}"
+                            alt="" height="100%">
             </div>
             <div class="offcanvas-footer p-2">
                 <div class="d-flex">

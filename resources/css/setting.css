@@ -1,0 +1,18 @@
+.custom-card {
+  pointer-events: auto;
+  transform: scale(1);
+  transition: all 0.4s;
+}
+
+.custom-card :hover {
+  opacity: 1;
+  transform: scale(1.02);
+}
+.custom-card{
+  background: linear-gradient(0,rgb(254 239 195 / 10%),rgb(254 239 195 / 100%));
+  border-style: solid;
+  border-color: red;
+  border-radius: 20px;
+  box-shadow: 10px 10px 15px -15px rgba(0,0,0,0.62);  
+ 
+}

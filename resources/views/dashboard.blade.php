@@ -13,43 +13,53 @@
 
     <div class="container">
 
-        
+
 
         <div class="row g-4 pt-3">
 
             <div class="col-xl-3 col-sm-6">
-                <div class="card border-0 shadow-sm p-3">
-                    <div class="card-body d-flex justify-content-between">
-                        <div class="card-menu">
-                            <span>Total Job Posting</span>
-                            <h2 class="mb-0">{{ $jobpostings_count ?? '' }}</h2>
-                        </div>
+                <a class="text-decoration-none card-link" href="{{ route('jobpostings.index') }}">
+                    <div class="card border-0 shadow-sm p-3">
+                        <div class="card-body d-flex justify-content-between">
+                            <div class="card-menu">
 
+
+                                <span> Total Job Posting </span>
+                                <h2 class="mb-0">{{ $jobpostings_count ?? '' }}</h2>
+
+                            </div>
+
+                        </div>
                     </div>
-                </div>
+                </a>
             </div>
 
             <div class="col-xl-3 col-sm-6">
-                <div class="card border-0 shadow-sm p-3">
-                    <div class="card-body d-flex justify-content-between">
-                        <div class="card-menu">
-                            <span>Total Applications</span>
-                            <h2 class="mb-0">{{ $arns_count ?? '' }}</h2>
-                        </div>
+                <a class="text-decoration-none card-link " href="{{ route('candidates.index') }}">
+                    <div class="card border-0 shadow-sm p-3">
+                        <div class="card-body d-flex justify-content-between">
+                            <div class="card-menu">
+                                <span>Total Applications</span>
+                                <h2 class="mb-0">{{ $arns_count ?? '' }}</h2>
+                            </div>
 
+                        </div>
                     </div>
-                </div>
+                </a>
             </div>
 
             <div class="col-xl-3 col-sm-6">
-                <div class="card border-0 shadow-sm p-3">
-                    <div class="card-body d-flex justify-content-between">
-                        <div class="card-menu">
-                            <span>Shortlisted Applications</span>
-                            <h2 class="mb-0">{{ $shortlisted_count ?? '' }}</h2>
+                <a href="{{ route('candidates.index', 'shortlisted=true') }}" class="card-link text-decoration-none">
+
+                    <div class="card border-0 shadow-sm p-3">
+                        <div class="card-body d-flex justify-content-between">
+                            <div class="card-menu">
+                                <span>Shortlisted Applications</span>
+                                <h2 class="mb-0">{{ $shortlisted_count ?? '' }}</h2>
+                            </div>
                         </div>
                     </div>
-                </div>
+                </a>
             </div>
 
             <div class="col-xl-3 col-sm-6">
@@ -68,8 +78,7 @@
                 <div class="card border-0 shadow-sm p-3">
                     <div class="card-header border-0 bg-white">
                         <h3 class="pt-3">Applicants By State</h3>
-                        <p style="width:90%;">Lorem ipsum dolor sit amet, consectetur adipiscing elit Lorem ipsum dolor
-                            sit amet, consectetur adipiscing elit.dolor sit amet, consectetur adipiscing elit</p>
+                        <p style="width:90%;"></p>
 
                     </div>
 
@@ -96,12 +105,11 @@
                 <div class="card border-0 shadow-sm p-3">
                     <div class="card-header border-0 bg-white">
                         <h3 class="pt-3">By Reservation Category</h3>
-                        <p style="width:90%;">Lorem ipsum dolor sit amet, consectetur adipiscing elit Lorem ipsum dolor
-                            sit amet, consectetur adipiscing elit.dolor sit amet, consectetur adipiscing elit</p>
+                        <p style="width:90%;"></p>
                     </div>
 
 
-                    <div class="card-body" style="height: 328px">
+                    <div class="card-body " style="height: 328px">
 
                         <canvas id="myChart"></canvas>
 
@@ -116,7 +124,7 @@
 
 
                     <script type="module">
-                        var labels1 = @json( $filtered);
+                        var labels1 = @json($filtered);
                         var users1 = @json($filteredcount);
 
                         const data1 = {
@@ -150,10 +158,10 @@
                             options: {
                                 aspectRatio: 2,
                                 y: {
-                                            ticks: {
-                                                precision: 0
-                                            }
-                                        }
+                                    ticks: {
+                                        precision: 0
+                                    }
+                                }
                             }
                         };
 
@@ -225,10 +233,10 @@
                                 },
                                 aspectRatio: 2.1,
                                 y: {
-                                            ticks: {
-                                                precision: 0
-                                            }
-                                        }
+                                    ticks: {
+                                        precision: 0
+                                    }
+                                }
 
                             },
 

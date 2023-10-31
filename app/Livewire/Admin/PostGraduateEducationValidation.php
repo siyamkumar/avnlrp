@@ -18,7 +18,7 @@ class PostGraduateEducationValidation extends Component
         $this->postgraduationeducationdetail->save();
         return $this->dispatch(
             'alert',
-            ['status' => 'success',  'message' => 'User Created Successfully!']
+            ['status' => 'success',  'message' => $this->postgraduationeducationdetail . 'has been validated successfully for this application']
         );
     }
     public function invalid(){
@@ -26,7 +26,7 @@ class PostGraduateEducationValidation extends Component
         $this->postgraduationeducationdetail->save();
         return $this->dispatch(
             'alert',
-            ['status' => 'success',  'message' => 'User Created Successfully!']
+            ['status' => 'success',  'message' => $this->postgraduationeducationdetail . 'has been validated successfully for this application']
         );
     }
 }

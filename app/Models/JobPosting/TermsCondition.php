@@ -12,6 +12,7 @@ class TermsCondition extends Model
     protected $fillable = [
         'job_posting_id',
        'job_terms',
+       
       
     ];
     public function jobpostings(){

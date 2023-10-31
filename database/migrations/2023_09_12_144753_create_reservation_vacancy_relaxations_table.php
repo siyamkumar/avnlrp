@@ -18,7 +18,6 @@ return new class extends Migration
             $table->foreignIdFor(JobPosting::class);
             $table->foreignIdFor(ReservationCategory::class);
             $table->integer('vacancy');
-            
             $table->timestamps();
         });
     }

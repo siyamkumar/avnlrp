@@ -1,15 +1,28 @@
 html,
+
 body {
     font-family: 'Plus Jakarta Sans', sans-serif !important;
     font-weight: 500;
     font-size: 14px;
+    background-color: #F3F6F9;
+}
+
+.app-wrapper {
+    background-color: #F3F6F9;
+}
+
+.static-page {
+    font-size: 16px;
 }
 
 
+.text-justify {
+    text-align: justify;
+}
 
-.app-wrapper {
-    min-height: 80vh;
-    background-color: #F3F6F9;
+.btn-delete {
+    border: 0;
+    background: none;
 }
 
 
@@ -35,12 +48,10 @@ body {
     background-color: grey;
 }
 
-
-
 .main-container {
     margin-top: 10vh;
     min-height: 84.5vh;
-    background-color: #F3F6F9;
+    background-color: #F2F2F2;
 }
 
 .job-card {
@@ -60,18 +71,66 @@ body {
     color: #212529 !important;
 }
 
-#guestMenu>.navbar-nav>.nav-item>.nav-link:hover, #guestMenu>.navbar-nav>.nav-item>.nav-link.active {
+#guestMenu>.navbar-nav>.nav-item>.nav-link:hover,
+#guestMenu>.navbar-nav>.nav-item>.nav-link.active {
     font-weight: 700 !important;
     font-size: 14px !important;
     line-height: 18px;
     color: #3C65F5 !important;
     transition: 0.3s;
 }
-.bg-primary-transparent{
-    background-color:rgba(142, 84, 233, 0.1) !important;
+
+.bg-primary-transparent {
+    background-color: rgba(142, 84, 233, 0.1) !important;
     color: rgb(142, 84, 233) !important;
 }
 
-.toast-body{
+.toast-body {
     font-size: 1rem;
 }
+
+/* MENU */
+
+#app-menu>li.active>a {
+    font-weight: 900;
+}
+
+#app-menu>li>a>svg>g>path#secondary,
+#app-menu>li>a>svg>g>rect {
+    fill: #FDFEC2;
+    stroke-width: 1.224;
+}
+
+#app-menu>li.active>a>svg>g>path#secondary,
+#app-menu>li.active>a>svg>g>rect {
+    fill: #FF9F1C;
+}
+
+#app-menu>li.active>a>svg {
+    /* fill : #000000; */
+}
+
+.list-group>.list-group-item.active>.nav-link>#profileIcon {
+    fill: #ffffff;
+}
+
+.list-group>.list-group-item.active>.nav-link>svg>g>path {
+    stroke: #ffffff;
+}
+
+.card-link .card {
+    box-shadow: 0 6px 10px rgba(0, 0, 0, .08), 0 0 6px rgba(0, 0, 0, .05);
+    transition: .3s transform cubic-bezier(.155, 1.105, .295, 1.12), .3s box-shadow, .3s -webkit-transform cubic-bezier(.155, 1.105, .295, 1.12);
+    padding: 14px 80px 18px 36px;
+    cursor: pointer;
+}
+
+
+.card-link:hover .card {
+    transform: scale(1.05);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, .12), 0 4px 8px rgba(0, 0, 0, .06);
+}
+
+
+
+

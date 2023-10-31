@@ -65,7 +65,7 @@
                     <div class="col">
                         <div class="card shadow-sm border-0">
                             <div class="card-body">
-                                <h1>10</h1>
+                                <h1>{{$shortlistedArn}}</h1>
                                 Shortlisted Applications
                             </div>
                         </div>
@@ -74,7 +74,7 @@
                     <div class="col">
                         <div class="card shadow-sm border-0">
                             <div class="card-body">
-                                <h1>10</h1>
+                                <h1>{{$rejectedArn}}</h1>
                                 Rejected Applications
                             </div>
                         </div>

@@ -10,13 +10,17 @@
                 has five (05) constituent production units and has around 12,000 employees. AVNL offers a great work
                 environment and challenging opportunities for the
                 professionals to prove their mettle.</p>
-            <div class="d-grid gap-2 d-sm-flex justify-content-sm-center form-search-container">
-                <input class="form-control form-search" type="text" placeholder="Search Job Openings...">
-                <button type="button" class="btn d-flex align-items-center form-search-button">
-                    <x-icons.search width="26" /> Search
-                </button>
+            <form action="{{ route('jobs.index') }}">
+                <div class="d-grid gap-2 d-sm-flex justify-content-sm-center form-search-container">
 
-            </div>
+                    <input class="form-control form-search" type="text" placeholder="Search Job Openings..."
+                        name="search">
+                    <button type="submit" class="btn d-flex align-items-center form-search-button">
+                        <x-icons.search width="26" /> Search
+                    </button>
+
+                </div>
+            </form>
         </div>
     </div>
 
@@ -32,24 +36,24 @@
                 @if (count($jobpostings) > 0)
                     @foreach ($jobpostings as $jobposting)
                         <div class="col job-card">
-                            
+
                             <div class="card card-cover h-100 overflow-hidden border-0 rounded-4"
                                 style="background-image: linear-gradient(-225deg, #FFFEFF 0%, #D7FFFE 100%);">
                                 <a href="{{ route('jobs.show', $jobposting) }}" class="text-decoration-none">
                                     <div class="d-flex flex-column h-100 p-5 pb-3 text-dark">
 
-                                        <b>{{ $jobposting->locationunit->unit_name ?? ''}}</b>
-                                        <small>{{
-                                             $jobposting->locationunit->address ?? ''}}</small>
-    
+                                        <b>{{ $jobposting->locationunit->unit_name ?? '' }}</b>
+                                        <small>{{ $jobposting->locationunit->address ?? '' }}</small>
+
                                         <div class="pt-3 mt-2 mb-4">
-                                            @if($jobposting->isContract)
-                                            <small>Engagement of Professional <br />on fixed term contract basis</small>
+                                            @if ($jobposting->isContract)
+                                                <small>Engagement of Professional <br />on fixed term contract
+                                                    basis</small>
                                             @endif
                                             <h3 class="pt-1 display-6 lh-1 fw-bold">{{ $jobposting->jobTitle }}</h3>
                                         </div>
-    
-    
+
+
                                         <ul class="d-flex list-unstyled mt-auto">
                                             <li class="me-auto">
                                                 No. of Vacancies
@@ -57,20 +61,20 @@
                                             <li class="d-flex align-items-center me-3">
                                                 <h6> {{ $jobposting->vacancy }} </h6>
                                             </li>
-    
+
                                         </ul>
                                     </div>
                                 </a>
-                               
+
                             </div>
                         </div>
                     @endforeach
 
                 @endif
-               
-                
 
-               
+
+
+
 
 
 

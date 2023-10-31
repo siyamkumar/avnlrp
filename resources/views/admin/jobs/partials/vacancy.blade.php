@@ -2,7 +2,6 @@
 
 <h4>Vacancy</h4>
 
-
 <table class="table">
     <tr>
         <th>Category</th>

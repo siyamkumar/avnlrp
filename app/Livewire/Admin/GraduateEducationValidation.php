@@ -19,7 +19,7 @@ class GraduateEducationValidation extends Component
         $this->graduationeducationdetail->save();
         return $this->dispatch(
             'alert',
-            ['status' => 'success',  'message' => 'User Created Successfully!']
+            ['status' => 'success',  'message' => $this->graduationeducationdetail . 'has been validated successfully for this application']
         );
     }
     public function invalid(){
@@ -27,7 +27,7 @@ class GraduateEducationValidation extends Component
         $this->graduationeducationdetail->save();
         return $this->dispatch(
             'alert',
-            ['status' => 'success',  'message' => 'User Created Successfully!']
+            ['status' => 'success',  'message' => $this->graduationeducationdetail . 'has been validated successfully for this application']
         );
     }
 }

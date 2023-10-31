@@ -1,13 +1,15 @@
 <?php
 
-use App\Http\Controllers\Admin\ARN\RejectController;
-use App\Http\Controllers\Admin\ARN\ShortlistController;
+use App\Http\Controllers\Admin\Arn\ShortlistedArnController;
 use App\Http\Controllers\Admin\ARNController;
 use App\Http\Controllers\Admin\CandidatesController;
 use App\Http\Controllers\Admin\JobPostingArnController;
-use App\Http\Controllers\Admin\JobsController;
 use App\Http\Controllers\Admin\ReportController;
+use App\Http\Controllers\Admin\Settings\LocationUnitController;
+use App\Http\Controllers\Admin\Settings\ReservationCategoryController;
+use App\Http\Controllers\Admin\Settings\UserController;
 use App\Http\Controllers\Applicants\ApplicantController;
+use App\Http\Controllers\Applicants\ApplicationReferenceNumberController;
 use App\Http\Controllers\Applicants\EducationController;
 use App\Http\Controllers\Applicants\ExperienceController;
 use App\Http\Controllers\Applicants\GraduationEducationController;
@@ -18,32 +20,24 @@ use App\Http\Controllers\Applicants\NextStepsController;
 use App\Http\Controllers\Applicants\PersonalDetailsController;
 use App\Http\Controllers\Applicants\PostGraduationEducationController;
 use App\Http\Controllers\Applicants\SecondaryEducationController;
-use App\Http\Controllers\Applicants\ItiDiplomaDetailsController;
 use App\Http\Controllers\Applicants\StatusController;
-use App\Http\Controllers\Applicants\ApplicationReferenceNumberController;
 use App\Http\Controllers\AuthOTPController;
 use App\Http\Controllers\CandidateSessionController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\HomepageController;
+use App\Http\Controllers\JobPostingController;
 use App\Http\Controllers\JobPosting\ActiveJobPostingController;
 use App\Http\Controllers\JobPosting\AgeCriteriaController;
 use App\Http\Controllers\JobPosting\AgeRelaxationController;
 use App\Http\Controllers\JobPosting\DraftJobPostingController;
 use App\Http\Controllers\JobPosting\EducationCriteriaController;
 use App\Http\Controllers\JobPosting\ExperienceCriteriaController;
-use App\Http\Controllers\JobPosting\ReservationVacancyController;
 use App\Http\Controllers\JobPosting\JobRequirementController;
 use App\Http\Controllers\JobPosting\JobResponsibilityController;
+use App\Http\Controllers\JobPosting\ReservationVacancyController;
 use App\Http\Controllers\JobPosting\TermsConditionsController;
-use App\Http\Controllers\JobPostingController;
-
-
-
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\PublicJobPostingController;
-use App\Models\Applicants\GraduationEducationDetail;
-
-
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -55,7 +49,7 @@ use Illuminate\Support\Facades\Route;
 | routes are loaded by the RouteServiceProvider and all of them will
 | be assigned to the "web" middleware group. Make something great!
 |
-*/
+ */
 
 Route::get('/', HomepageController::class)->name('home');
 Route::get('/application-status', StatusController::class)->name('applicationstatus');
@@ -63,22 +57,32 @@ Route::get('/job-openings', function () {
     return view('applicants.jobopenings');
 })->name('alljobs');
 
-
 Route::post('/job-openings/details/apply', [ApplicantController::class, 'store'])->name('applicantregister');
 Route::get('/job-updates', function () {
     return view('applicants.jobupdates');
 })->name('jobupdates');
 
+Route::get('/how-to-apply', function () {
+    return view('pages.how-to-apply');
+})->name('howtoapply');
+Route::get('/fraud-notice', function () {
+
+    return view('pages.fraud-notice');
+})->name('fraudnotice');
+
+
 // ->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
-    Route::get('/admin', function () { return redirect()->route('dashboard'); });
+    Route::get('/admin', function () {
+        return redirect()->route('dashboard');
+    });
     Route::prefix('admin')->group(function () {
         Route::get('/dashboard', DashboardController::class)->name('dashboard');
         Route::resource('jobpostings', JobPostingController::class);
         Route::resource('jobpostings.agecriteria', AgeCriteriaController::class)->only(['store', 'update']);
         Route::get('jobpostings/{jobposting}/eligibility', function () {
-            return  view('admin.jobs.partials.eligibility');
+            return view('admin.jobs.partials.eligibility');
         })->name('jobpostings.eligibility');
         Route::resource('jobpostings.agerelaxation', AgeRelaxationController::class)->only(['store', 'update']);
         Route::resource('jobpostings.vacancy', ReservationVacancyController::class)->only(['store', 'update']);
@@ -87,20 +91,41 @@ Route::middleware('auth')->group(function () {
         Route::resource('jobpostings.jobrequirement', JobRequirementController::class)->only(['store', 'update']);
         Route::resource('jobpostings.jobresponsibility', JobResponsibilityController::class)->only(['store', 'update']);
         Route::resource('jobpostings.termscondition', TermsConditionsController::class)->only(['store', 'update']);
+
         Route::resource('jobpostings.applications', JobPostingArnController::class)->only(['index', 'update']);
+
         Route::get('/jobs/drafts/', DraftJobPostingController::class)->name('jobpostings.drafts');
         Route::get('/jobs/active/', ActiveJobPostingController::class)->name('jobpostings.active');
 
         Route::resource('candidates', CandidatesController::class);
-       
+
         Route::resource('arn', ARNController::class)->only(['show']);
         Route::get('/reports', ReportController::class)->name('reports');
+        Route::get('/statewisereport', function () {
+            return view('admin.reports.statewiseindex');
+        });
+      
+
+        Route::get('/settings', function () {
+            // return 'settings';
+            return view('admin.settings.index');
+        });
+
+        Route::get('/settings', function () {
+            return view('admin.settings.index');
+        })->name('adminsettings');
+
+        Route::prefix('settings')->group(function () {
+            Route::resource('locationunit', LocationUnitController::class);
+            Route::resource('reservationcategory', ReservationCategoryController::class);
+            Route::resource('user', UserController::class);
+            
+        });
     });
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
-
 
 // CANDIDATE LOGINS
 Route::get('/candidate-register', function () {
@@ -108,7 +133,6 @@ Route::get('/candidate-register', function () {
 })->name('candidateregister');
 Route::get('/candidate-login', [CandidateSessionController::class, 'create'])->name('candidateLogin');
 Route::post('candidatelogin', [CandidateSessionController::class, 'store'])->name('candidatelogin');
-
 
 Route::middleware('candidateAuth')->group(function () {
 

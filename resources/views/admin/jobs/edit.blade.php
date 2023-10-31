@@ -8,14 +8,7 @@
                     :status="$jobposting->status" />
             </div>
 
-            <div class="col-auto align-self-end">
-
-                @if ($jobposting->status == 'draft')
-                    <form action="">
-                        <button type="submit" class="btn btn-primary "> Publish Job Posting </button>
-                    </form>
-                @endif
-            </div>
+         
 
 
 
@@ -60,144 +53,14 @@
 
 
             </div>
-           
-                <livewire:admin.jobs.edit :jobposting="$jobposting"/>
 
-                
-
-                <div class="tab-content" id="jobTabContent2">
-                    <div class="tab-pane fade show" id="tab-summary2" role="tabpanel" aria-labelledby="summary-tab">
-
-                        {{-- @if ($jobposting->vacancy > 1)
-                            @include('admin.jobs.partials.vacancy')
-                        @endif
-
-
-                        @include('admin.jobs.partials.summary') --}}
-                    </div>
-
-                    <div class="tab-pane  fade show" id="tab-criteria2" role="tabpanel" aria-labelledby="criteria-tab">
-
-                        @include('admin.jobs.partials.criteria.agecriteria')
-
-                        @include('admin.jobs.partials.criteria.educationcriteria')
-
-                        @include('admin.jobs.partials.criteria.experiencecriteria')
-                    </div>
-
-
-                    <div class="tab-pane fade show" id="tab-qualification" role="tabpanel"
-                        aria-labelledby="qualification-tab">
-                        <x-card>
-                         
-                            {{-- @if (
-                                ) --}}
-                         
-                            <form action="" method="POST" >
-                                @csrf
-                               
-                                <div class="row">
-                                  
-                                    <div class="col-md-6 mb-3">
-                                        <label class="col-form-label" for="jobSpecification">Job Specification</label>
-                                        <textarea name="jobSpecification" id="jobSpecification" class="form-control" placeholder="Please enter Job Requirement">{{ old('job_specification',$jobrequirement->job_specification ?? '') }}</textarea>
-                                    </div>
-    
-                                    <div class="col-md-6 mb-3">
-    
-                                        <label class="col-form-label" for="jobKnowledge">Knowledge</label>
-    
-                                        <textarea name="jobKnowledge" id="jobKnowledge" cols="30" class="form-control"
-                                            placeholder="Please enter Job Knowledge">{{ old('knowledge',$jobrequirement->knowledge ?? '') }}</textarea>
-                                    </div>
-    
-                                    <div class="col-md-6 mb-3">
-    
-                                        <label class="col-form-label" for="jobSkillCompetency">Skills</label>
-    
-                                        <textarea name="jobSkillCompetency" id="jobSkillCompetency" cols="30" class="form-control"
-                                            placeholder="Please enter Skill Competency">{{old('skills',$jobrequirement->skills ?? '') }}</textarea>
-                                    </div>
-    
-                                    <div class="col-md-12">
-                                        <button type="submit" class="btn btn-warning">Update</button>
-                                    </div>
-    
-                                </div>
-                            </form>
-
-                           {{-- @else --}}
-
-                        <form action=" {{ route('jobpostings.jobrequirement.store', $jobposting) }}  " method="POST" >
-                            @csrf
-                           
-                            <div class="row">
-                              
-                                <div class="col-md-6 mb-3">
-                                    <label class="col-form-label" for="jobSpecification">Job Specification</label>
-                                    <textarea name="jobSpecification" id="jobSpecification" class="form-control" placeholder="Please enter Job Requirement">{{ old('jobSpecification') }}</textarea>
-                                </div>
-
-                                <div class="col-md-6 mb-3">
-
-                                    <label class="col-form-label" for="jobKnowledge">Knowledge</label>
-
-                                    <textarea name="jobKnowledge" id="jobKnowledge" cols="30" class="form-control"
-                                        placeholder="Please enter Job Knowledge">{{ old('jobKnowledge') }}</textarea>
-                                </div>
-
-                                <div class="col-md-6 mb-3">
-
-                                    <label class="col-form-label" for="jobSkillCompetency">Skills</label>
-
-                                    <textarea name="jobSkillCompetency" id="jobSkillCompetency" cols="30" class="form-control"
-                                        placeholder="Please enter Skill Competency">{{ old('jobSkillCompetency') }}</textarea>
-                                </div>
-
-                                <div class="col-md-12">
-                                    <button type="submit" class="btn btn-primary">Save</button>
-                                </div>
-
-                            </div>
-                        </form>
-                     {{-- @endif --}}
-                        </x-card>
-
-                    </div>
-
-                    <div class="tab-pane fade show" id="tab-responsibility" role="tabpanel">
-                        <x-card>
-                            <form action="{{ route('jobpostings.jobresponsibility.store', $jobposting) }}" method="POST">
-                                @csrf
-                                <label class="col-form-label" for="jobResponsibility">Key Responsibilities</label>
-                                <textarea name="jobResponsibility" id="jobResponsibility" class="form-control mb-3" rows="10"></textarea>
-                                <button type="submit" class="btn btn-primary">Save</button>
-                            </form>
-                        </x-card>
-                    </div>
-
-                    <div class="tab-pane active fade show" id="tab-terms" role="tabpanel">
-                        <x-card>
-                            <form action="{{ route('jobpostings.termscondition.store', $jobposting) }}" method="POST">
-                                @csrf
-                                <label class="col-form-label" for="jobTerms">Terms & Condition</label>
-                                <textarea name="jobTerms" id="jobTerms" class="form-control mb-3" rows="10"></textarea>
-                                <button type="submit" class="btn btn-primary">Save</button>
-                            </form>
-                        </x-card>
-                    </div>
-
-                </div>
-
-            </div>
+            <livewire:admin.jobs.edit :jobposting="$jobposting" />
 
 
 
         </div>
 
-
-
-
+        
     </div>
 
 </x-app-layout>

@@ -1,5 +1,5 @@
 <div class="row mt-3 mb-3 g-3 border-bottom pb-3">
-{{ $errors }}
+<!-- {{ $errors }} -->
     <div class="col-md-8">
         <div class="row">
             <div class="col-md-6 mb-3">

@@ -22,7 +22,14 @@ class ApplicantController extends Controller
 
     public function store(Request $request): RedirectResponse
     {
-       
+       $request->validate([
+        'fullname' => 'string|required|alpha_spaces|max:100|min:3',
+        'email' => 'unique:candidates',
+        'phone_no' => 'unique:candidates'
+       ],
+       ['email' => 'User with same email  has been registered. Try logging with email', 
+       'phone_no' =>'User with same phone no has been registered. Try logging with phone']
+    );
         $candidate = Candidate::create([
             'fullname' => $request->fullname,
             'email' => $request->email,

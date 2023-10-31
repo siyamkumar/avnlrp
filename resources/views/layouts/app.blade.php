@@ -39,7 +39,7 @@
         <x-toast :message="session('message')" :status="session('status')" />
     @endif
 
-
+{{-- 
     <footer class="footer py-3 bg-light ">
         <div class="container py-1">
             <div class="d-flex align-items-center">
@@ -51,7 +51,7 @@
             </div>
         </div>
 
-    </footer>
+    </footer> --}}
 
     <x-toast-alert />
 </body>

@@ -1,5 +1,5 @@
 <svg viewBox="0 0 1024 1024" class="icon me-2" version="1.1" xmlns="http://www.w3.org/2000/svg" fill="#000000"
-    width="32">
+    width="26">
     <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
     <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
     <g id="SVGRepo_iconCarrier">

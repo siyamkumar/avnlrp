@@ -156,15 +156,31 @@
             </div>
         @enderror
     </div>
+    
     <div class="col-md-6">
-        <label for="expCertificate" class=" form-label">Experience Cerificate</label>
+        <label for="expCertificate" class=" form-label">Experience Cerificate <span style="color:Red">*</span></label>
 
 
         <input id="expCertificate" type="file" name="expCertificate" class="filepond" />
 
     </div>
 
+    <div class="col-md-6">
 
+    <!-- <div class="col-md-6">
+                <img src="{{ url('storage/public/' .auth()->guard('applicants')->user()->personaldetails->photo_path ??'') }} "
+                    style="width: 138px;
+                height: 188px; object-fit: cover">
+
+                {{-- <img src="" alt=""> --}}
+            </div> -->
+   
+
+    </div>
+
+
+
+  
 
     <div class="col-md-6">
         <label for="jobsSummary" class="form-label"> Jobs Summary</label>

@@ -25,7 +25,7 @@
                     </div>
                     <div class="offcanvas-body">
                         <img src="{{ url('storage/public/' . $highersecondaryeducationdetail->marksheet_path ?? '') }}"
-                            alt="">
+                            alt="" height="100%">
                     </div>
                     <div class="offcanvas-footer p-2">
                         <div class="d-flex">

@@ -19,8 +19,8 @@
 
                         <div class="form-group mb-3">
 
-                            <label for="fullname" class="form-label">Full Name*</label>
-                            <input class="form-control @error('email') is-invalid @enderror" id="fullname"
+                            <label for="fullname" class="form-label">Full Name<span class="text-danger">*</span></label>
+                            <input class="form-control @error('fullname') is-invalid @enderror" id="fullname"
                                 type="text" name="fullname" placeholder="Full Name" value="{{ old('fullname') }}">
                             @error('fullname')
                                 <div class="invalid-feedback">
@@ -34,7 +34,7 @@
 
 
                         <div class="form-group mb-3">
-                            <label for="email" class="form-label">Email address*</label>
+                            <label for="email" class="form-label">Email address<span class="text-danger">*</span></label>
                             <input class="form-control @error('email') is-invalid @enderror" id="email"
                                 type="email" name="email" placeholder="yourname@email.com"
                                 value="{{ old('email') }}">
@@ -45,9 +45,9 @@
                             @enderror
                         </div>
 
-                        
+
                         <div class="form-group mb-3">
-                            <label for="phone_no" class="form-label">Phone No*</label>
+                            <label for="phone_no" class="form-label">Phone No<span class="text-danger">*</span></label>
                             <input class="form-control @error('phone_no') is-invalid @enderror" id="phone_no"
                                 type="text" name="phone_no" placeholder="+91 99999 99999"
                                 value="{{ old('phone_no') }}">
@@ -61,9 +61,10 @@
 
 
 
-                     
+
                         <button class="btn btn-primary btn-login w-100 mb-3" type="submit">Next</button>
-                        <div class="text-muted text-center">Already registered? <a href="/candidate-login" class="text-decoration-none fw-bold text-dark">Login Now</a></div>
+                        <div class="text-muted text-center">Already registered? <a href="/candidate-login"
+                                class="text-decoration-none fw-bold text-dark">Login Now</a></div>
 
                     </form>
                 </x-card>

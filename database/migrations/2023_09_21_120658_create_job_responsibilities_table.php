@@ -15,7 +15,7 @@ return new class extends Migration
         Schema::create('job_responsibilities', function (Blueprint $table) {
             $table->id();
             $table->foreignIdFor(JobPosting::class);
-            $table->string('job_responsibility');
+            $table->longText('job_responsibility');
             $table->timestamps();
         });
     }

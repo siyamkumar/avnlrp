@@ -144,10 +144,10 @@
 
     <div class="col-md-6">
         <label for="aadhaarNo" class="form-label"> Aadhaar Number</label>
-       
+
         <input type="text" class="form-control @error('aadhaarNo') is-invalid @enderror" id="aadhaarNo"
             name="aadhaarNo" value="{{ old('aadhaarNo', $personaldetail->aadhaarNo ?? '') }}"
-            placeholder="XXXX-XXXX-XXXX" 
+            placeholder="XXXX-XXXX-XXXX"
             @if ($personaldetail) @if ($personaldetail->aadhaarNo) disabled @endif @endif />
         @error('aadhaarNo')
             <div class="invalid-feedback">
@@ -168,29 +168,20 @@
     </div>
     <div class="col-md-6">
         <label for="candidatePhoto" class="form-label"> Photo Upload <span style="color:red">*</span> </label>
-        <input type="file" name="candidatePhoto" class="filepond" id="candidatePhoto"
-           accept="image/*" />
+        <input type="file" name="candidatePhoto" class="filepond" id="candidatePhoto" accept="image/*" />
+
+    </div>
+    <div class="col-md-6">
+
+        @if (auth()->guard('applicants')->user()->personaldetails)
+        <div class="passport-photo">
+            <img src="{{ url('storage/public/' .auth()->guard('applicants')->user()->personaldetails->photo_path ??'') }} "
+                style="width: 138px; height: 188px; object-fit: cover">
+        </div>
+        
+
+        @endif
+
     </div>
 
-    {{-- <script type="module">
-
-        FilePond.create(inputElement, {
-            allowImagePreview: true,
-            allowMultiple: false,
-            labelIdle: `Drag & Drop  Image or <span class="filepond--label-action">Browse</span>`,
-            credits: false,
-            storeAsFile: true,
-            allowImagePreview: true,
-
-
-
-        });
-    </script>
-
-
-    <div class="col-md-6 mb-3">
-        <label for="sign_path" class="form-label"> Signature Upload  <span style="color:red">*</span></label>
-        <input type="file" name="sign_path" id="sign_path" class="filepond"  value="{{ old('sign_path', $personaldetail->sign_path ?? '') }}" 
-                accept="image/*"/>
-    </div> --}}
 </div>

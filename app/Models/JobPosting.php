@@ -5,10 +5,12 @@ namespace App\Models;
 use App\Models\Applicants\ApplicationReferenceNumber;
 use App\Models\JobPosting\AgeCriteria;
 use App\Models\JobPosting\EducationCriteria;
+use App\Models\JobPosting\ExperienceCriteria;
 use App\Models\JobPosting\JobRequirement;
+use App\Models\JobPosting\JobResponsibility;
 use App\Models\JobPosting\ReservationAgeRelaxation;
 use App\Models\JobPosting\ReservationVacancyRelaxation;
-
+use App\Models\JobPosting\TermsCondition;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -50,6 +52,11 @@ class JobPosting extends Model
         return $this->hasOne(EducationCriteria::class, 'job_posting_id');
     }
 
+
+    public function experiencecriteria(){
+        return $this->hasOne(ExperienceCriteria::class, 'job_posting_id');
+    }
+
     public function locationunit(){
         return $this->belongsTo(LocationUnit::class, 'location_unit_id');
     }
@@ -68,6 +75,14 @@ class JobPosting extends Model
 
    
     public function jobrequirement(){
-        return $this->hasMany(JobRequirement::class, 'job_posting_id');
+        return $this->hasOne(JobRequirement::class, 'job_posting_id');
+    }
+
+    public function jobresponsibility(){
+        return $this->hasOne(JobResponsibility::class, 'job_posting_id');
+    }
+
+    public function termscondition(){
+        return $this->hasOne(TermsCondition::class, 'job_posting_id');
     }
 }
