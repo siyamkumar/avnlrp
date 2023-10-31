@@ -12,9 +12,7 @@ use Illuminate\Validation\Rules;
 
 class UserController extends Controller
 {
-    // public function __construct(){
-    //     $this->authorizeResource(User::class, 'user');
-    // }fsfshfsuifhs fgdfgedgd fgdggfgffghgv
+    
 
     public function index()
     {
