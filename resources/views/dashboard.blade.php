@@ -149,12 +149,19 @@
                                 ],
                                 borderColor: '#E5E4E2',
                                 data: users1,
+                                datalabels:
+                                {
+                                    color:'blue',
+                                  anchor:'end',
+                                  align:'top'
+                                }
                             }]
                         };
 
                         const config1 = {
                             type: 'bar',
                             data: data1,
+                            plugins: [ChartDataLabels],
                             options: {
                                 aspectRatio: 2,
                                 y: {
