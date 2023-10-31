@@ -70,6 +70,13 @@ INSERT INTO `experience_criterias` (`id`, `job_posting_id`, `minExp`, `maxExp`, 
 (7, 12, 5, 10, NULL, '2023-10-26 09:10:04', '2023-10-26 09:10:04');
 
 --
+-- Table structure for table `experience_details`
+--
+
+--
+-- Dumping data for table `experience_details`
+--
+
 INSERT INTO `experience_details` (`id`, `application_reference_number_id`, `candidate_id`, `companyName`, `postName`, `periodFrom`, `periodTo`, `payScale`, `jobType`, `ctc`, `experience_path`, `jobsSummary`, `file_name`, `file_type`, `file_size`, `isValid`, `valid_remarks`, `invalid_remarks`, `created_at`, `updated_at`, `deleted_at`) VALUES
 (1, 2, 1, 'ssww', 'eerar', '2019-12-30 00:00:00', '2023-10-11 00:00:00', NULL, 'GovtJob', '50000', 'documents/1/experience/Blank.jpg', 'asda sd adadsds a', 'Blank.jpg', 'jpg', 2275, NULL, NULL, NULL, '2023-10-23 05:13:37', '2023-10-23 05:13:37', NULL),
 (2, 3, 4, 'Rodriquez and Price Co', 'Isaiah Weeks', '2013-06-20 00:00:00', '2016-05-04 00:00:00', NULL, 'Private', '66666', 'documents/4/experience/marksheet.jpg', 'Ut corrupti aute ne', 'marksheet.jpg', 'jpg', 765164, NULL, NULL, NULL, '2023-10-23 06:44:24', '2023-10-23 06:44:24', NULL),
