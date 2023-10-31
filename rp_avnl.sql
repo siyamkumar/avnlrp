@@ -162,28 +162,6 @@ CREATE TABLE `iti_diploma_details` (
 -- Table structure for table `job_postings`
 --
 
-CREATE TABLE `job_postings` (
-  `id` bigint(20) UNSIGNED NOT NULL,
-  `location_unit_id` bigint(20) UNSIGNED NOT NULL,
-  `jobPostingDate` date DEFAULT NULL,
-  `jobPostingLastDate` date DEFAULT NULL,
-  `jobAdvertismentNo` varchar(255) DEFAULT NULL,
-  `jobTitle` varchar(255) DEFAULT NULL,
-  `category` varchar(255) DEFAULT NULL,
-  `jobLocation` varchar(255) DEFAULT NULL,
-  `vacancy` int(11) DEFAULT NULL,
-  `tenure` int(11) DEFAULT NULL,
-  `renumeration` bigint(20) DEFAULT NULL,
-  `user_id` bigint(20) UNSIGNED DEFAULT NULL,
-  `status` varchar(255) DEFAULT 'draft',
-  `summary` longtext DEFAULT NULL,
-  `isContract` tinyint(1) DEFAULT NULL,
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL,
-  `deleted_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
 -- Dumping data for table `job_postings`
 --
 
