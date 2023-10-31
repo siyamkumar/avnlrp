@@ -13,7 +13,8 @@
             <form action="{{ route('jobs.index') }}">
                 <div class="d-grid gap-2 d-sm-flex justify-content-sm-center form-search-container">
 
-                    <input class="form-control form-search" type="text" placeholder="Search Job Openings..." name="search" >
+                    <input class="form-control form-search" type="text" placeholder="Search Job Openings..."
+                        name="search">
                     <button type="submit" class="btn d-flex align-items-center form-search-button">
                         <x-icons.search width="26" /> Search
                     </button>
