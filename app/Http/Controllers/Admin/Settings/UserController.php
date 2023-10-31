@@ -14,7 +14,7 @@ class UserController extends Controller
 {
     // public function __construct(){
     //     $this->authorizeResource(User::class, 'user');
-    // }fsfshfsuifhs fgdfgedgd fgdggfgffghgv
+    // }fsfshfsuifhs fgdfgedgd fgdggfgffghgv  fdbsjkdsjdhskdjnxcmzn
 
     public function index()
     {
