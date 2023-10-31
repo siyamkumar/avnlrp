@@ -61,18 +61,6 @@ INSERT INTO `candidates` (`id`, `fullname`, `email`, `phone_no`, `created_at`, `
 -- Table structure for table `education_criterias`
 --
 
-CREATE TABLE `education_criterias` (
-  `id` bigint(20) UNSIGNED NOT NULL,
-  `job_posting_id` bigint(20) UNSIGNED NOT NULL,
-  `min_qualification` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL CHECK (json_valid(`min_qualification`)),
-  `desired_education` text DEFAULT NULL,
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Dumping data for table `education_criterias`
---
 
 INSERT INTO `education_criterias` (`id`, `job_posting_id`, `min_qualification`, `desired_education`, `created_at`, `updated_at`) VALUES
 (5, 6, '[\"10th\",\"10th\",\"UG\",\"PG\",\"12th\"]', 'asda dassd f sdfsd', '2023-10-17 06:44:40', '2023-10-17 09:56:50'),
@@ -83,21 +71,6 @@ INSERT INTO `education_criterias` (`id`, `job_posting_id`, `min_qualification`, 
 
 -- --------------------------------------------------------
 
---
--- Table structure for table `experience_criterias`
---
-
-CREATE TABLE `experience_criterias` (
-  `id` bigint(20) UNSIGNED NOT NULL,
-  `job_posting_id` bigint(20) UNSIGNED NOT NULL,
-  `minExp` int(11) DEFAULT NULL,
-  `maxExp` int(11) DEFAULT NULL,
-  `desiredExperience` varchar(255) DEFAULT NULL,
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
 -- Dumping data for table `experience_criterias`
 --
 
