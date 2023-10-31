@@ -120,8 +120,7 @@
 
 
 
-
-
+<!-- bar chart/TM -->
 
                     <script type="module">
                         var labels1 = @json($filtered);
