@@ -176,7 +176,7 @@
                             config1
                         );
                     </script>
-
+<!-- Doughnut chart/TM -->
 
                     <script type="module">
                         var labels = {{ Js::from($count1) }};
