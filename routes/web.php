@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\ARNController;
 use App\Http\Controllers\Admin\CandidatesController;
 use App\Http\Controllers\Admin\JobPostingArnController;
 use App\Http\Controllers\Admin\ReportController;
+use App\Http\Controllers\Admin\RegisteredCandidateController;
 use App\Http\Controllers\Admin\Settings\LocationUnitController;
 use App\Http\Controllers\Admin\Settings\ReservationCategoryController;
 use App\Http\Controllers\Admin\Settings\UserController;
@@ -93,7 +94,7 @@ Route::middleware('auth')->group(function () {
         Route::resource('jobpostings.termscondition', TermsConditionsController::class)->only(['store', 'update']);
 
         Route::resource('jobpostings.applications', JobPostingArnController::class)->only(['index', 'update']);
-
+        Route::get('/registered-candidates', RegisteredCandidateController::class)->name('registeredcandidates');
         Route::get('/jobs/drafts/', DraftJobPostingController::class)->name('jobpostings.drafts');
         Route::get('/jobs/active/', ActiveJobPostingController::class)->name('jobpostings.active');
 
