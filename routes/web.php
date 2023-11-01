@@ -102,10 +102,14 @@ Route::middleware('auth')->group(function () {
 
         Route::resource('arn', ARNController::class)->only(['show']);
         Route::get('/reports', ReportController::class)->name('reports');
+
         Route::get('/statewisereport', function () {
             return view('admin.reports.statewiseindex');
+           
         });
-      
+        Route::get('/unitwisereport', function () {
+            return view('admin.reports.unitwise-index');
+        });
 
         Route::get('/settings', function () {
             // return 'settings';

@@ -89,12 +89,12 @@
 
         <div class="row mb-3">
             <div class="col-md-4">
-                <label for="" class="form-label">Date</label> <br>
+                <label for="" class="form-label">Date :</label> <br>
                 <span class="fw-bold">
                     {{ $jobapplication->declaration_date ? $jobapplication->declaration_date->format('d/m/Y') : '' }}</span>
             </div>
             <div class="col-md-4">
-                <label for="" class="form-label ">Place</label> <br />
+                <label for="" class="form-label ">Place :</label> <br />
                 <span class="fw-bold">{{ $jobapplication->place }} </span>
             </div>
             <div class="col-md-4">

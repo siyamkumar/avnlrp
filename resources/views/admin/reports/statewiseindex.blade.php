@@ -18,11 +18,13 @@
      
         <thead>
                   <tr>
-                     <th rowspan="2">total no of application</th>
-                     <th rowspan="2">state</th>
+                  
+                     <th rowspan="2">Post</th>
+                     <th rowspan="2">Total no of application</th>
+                     <th rowspan="2">State</th>
                     
-                     <th colspan="3">obc</th>
-                     <th colspan="3">sc</th>
+                     <th colspan="3">OBC</th>
+                     <th colspan="3">SC</th>
                      <th colspan="3">ST</th>
                      <th colspan="3">GEN</th>
                      <th colspan="3">NCL</th>

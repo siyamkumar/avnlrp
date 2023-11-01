@@ -1,7 +1,8 @@
 <x-card>
 
     <div class="d-flex align-items-center mb-3">
-        <x-icons.app-details />
+        <x-icons
+        .app-details />
         <h3>Application Details</h3>
     </div>
 
