@@ -4,6 +4,8 @@
             {{ __('Jobs') }}
         </h2>
     </x-slot> --}}
+<!-- 
+    {{$applications }} -->
 
 
 
@@ -105,3 +107,4 @@
     </div>
 
 </x-app-layout>
+

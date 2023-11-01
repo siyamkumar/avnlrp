@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Applicants\ApplicationReferenceNumber;
+use App\Models\JobPosting;
+use App\Models\RegionState;
 use Illuminate\Http\Request;
 
 class ReportController extends Controller
@@ -13,6 +15,9 @@ class ReportController extends Controller
      */
     public function __invoke(Request $request)
     {
+       
+
+
         return view('admin.reports.index')->with([
             'applications' => ApplicationReferenceNumber::where('status', 'shortlisted')->get(),
         ]);
