@@ -140,7 +140,7 @@
                 <h4 class="border-bottom pb-3 mb-3">Age</h4>
                 <form wire:submit="updateAgeCriteria">
                     <div class="row">
-                        <div class="col-md-9">
+                        <div class="col-md-10">
                             <div class="row mb-3">
                                 <div class="col-md-6">
                                     <div class="row">
@@ -165,7 +165,7 @@
                             </div>
                         </div>
 
-                        <div class="col-md-3">
+                        <div class="col-md-2">
 
                             <div class="d-flex align-items-center">
                                 <button type="submit" class="btn btn-warning me-3">Update</button>
@@ -255,7 +255,7 @@
                                     <label for="desiredQualification">Desired Qualification</label>
                                 </div>
                             </div>
-                            <div class="col-md-2 align-self-end">
+                            <div class="col-md-2">
                                 <div class="d-flex align-items-center">
                                     <button type="submit" class="btn btn-warning me-3">Update</button>
 
@@ -307,7 +307,7 @@
 
                             </div>
                             <div class="row">
-                                <div class="col-12">
+                                <div class="col-md-10">
                                     <div class="form-floating">
 
                                         <input type="text" class="form-control" wire:model = "desiredExperience"

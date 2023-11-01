@@ -26,8 +26,7 @@ class DashboardController extends Controller
     //chart.js 
     //Reservation category chart
 
-    $filtered = [];
-    $filteredcount = [];
+  
     $names = ApplicationReferenceNumber::all()->map(function (ApplicationReferenceNumber $arn) {
       // dd( $arn->candidates->personaldetails);
       return $arn->candidates->personaldetails ? $arn->candidates->personaldetails->reservationcategory :  '';
@@ -73,7 +72,7 @@ class DashboardController extends Controller
 
     return view('dashboard', 
     compact('count1', 'count', 'filtered', 'filteredcount', ))->with([
-      'jobpostings_count' => JobPosting::count(),
+      'jobpostings_count' => JobPosting::where('status', 'Active')->count(),
       'arns_count' => ApplicationReferenceNumber::count(),
       'candidates_count' => Candidate::count(),
       'shortlisted_count' => ApplicationReferenceNumber::where('status', 'shortlisted')->count(),

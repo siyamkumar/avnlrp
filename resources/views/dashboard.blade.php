@@ -63,6 +63,7 @@
             </div>
 
             <div class="col-xl-3 col-sm-6">
+            <a href="{{ route('registeredcandidates') }}" class="card-link text-decoration-none">
                 <div class="card border-0 shadow-sm p-3">
                     <div class="card-body d-flex justify-content-between">
                         <div class="card-menu">
@@ -71,6 +72,7 @@
                         </div>
                     </div>
                 </div>
+    </a>
             </div>
 
             <div class="col-xl-6 col-sm-6">

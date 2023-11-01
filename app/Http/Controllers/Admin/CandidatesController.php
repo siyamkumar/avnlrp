@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Applicants\ApplicationReferenceNumber;
+use App\Models\Candidate;
 
 use Illuminate\Http\Request;
 // use App\Http\Controllers\Controller;
@@ -23,18 +24,25 @@ class CandidatesController extends Controller
             $applications =  ApplicationReferenceNumber::where('status', 'shortlisted')->paginate(9);
         if ($request->rejected)
             $applications = ApplicationReferenceNumber::where('status', 'rejected')->paginate(9);
+            if ($request->submitted)
+            $applications = ApplicationReferenceNumber::where('status', 'submitted')->paginate(9);
         return view('admin.candidates.index')->with([
             'applications' => $applications,
             'shortlisted' => $request->shortlisted ?? null,
-            'rejected' => $request->rejected ?? null
+            'rejected' => $request->rejected ?? null,
+            'submitted' => $request->submitted ?? null
         ]);
     }
 
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create(Request $request)
     {
+
+       
+
+      
     }
 
     /**

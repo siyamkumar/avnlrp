@@ -32,7 +32,7 @@ class JobPostingFormRequest extends FormRequest
             'reservation_category_id' => '',
             'vacancy' => 'sometimes|required|integer|min:1',
             'status' => 'sometimes|string',        
-            'tenure' => 'sometimes|required|integer|min:1',
+            'tenure' => 'sometimes|required|integer|min:1|max:50',
             'renumeration' => 'sometimes|required|integer|min:1',
             'user_id' => 'exists:App\Models\User,id',
             'summary' => 'sometimes|string',
