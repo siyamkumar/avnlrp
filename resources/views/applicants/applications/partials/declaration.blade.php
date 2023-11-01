@@ -1,3 +1,7 @@
+@php
+    $canSubmit = false;
+    $submitErrors = [];
+@endphp
 @if ($jobapplication->isSubmitted)
     <x-card>
 
@@ -34,8 +38,8 @@
             <div class="col-md-4">
                 <label for="fee_details" class="form-label">Transaction ID</label>
                 <input type="text" class="form-control  @error('fee_details') is-invalid @enderror" id="fee_details"
-                    name="fee_details" placeholder="Trans. ID" value="XXXXAYYDDD999999" disabled
-                    value="{{ old('fee_details', $paymentdetail->fee_details ?? '') }}">
+                    name="fee_details" placeholder="Trans. ID" disabled
+                    value="{{ old('fee_details', $jobapplication->fee_details ?? '') }}">
                 @error('fee_details')
                     <div class="invalid-feedback">
                         {{ $message }}
@@ -47,7 +51,7 @@
             <div class="col-md-4">
                 <label for="payment_proof" class="form-label">Payment Proof <span style="color:red">*</span></label>
                 <br />
-                <a href="{{ url('storage/public/' . $jobapplication->payment_proof ?? '') }}" target="_blank">Payment
+                <a href="{{ url('storage/' . $jobapplication->payment_proof ?? '') }}" target="_blank">Payment
                     Proof</a>
             </div>
 
@@ -95,7 +99,7 @@
             </div>
             <div class="col-md-4">
 
-                <img src="{{ url('storage/public/' . $jobapplication->signature_path) }}" alt="" width="75">
+                <img src="{{ url('storage/' . $jobapplication->signature_path) }}" alt="" width="75">
             </div>
         </div>
     </x-card>
@@ -142,7 +146,7 @@
                                 style="color:red">*</span></label>
                         <input type="text" class="form-control  @error('fee_details') is-invalid @enderror"
                             id="fee_details" name="fee_details" placeholder="Trans. ID"
-                            value="{{ old('fee_details', $paymentdetail->fee_details ?? '') }}"
+                            value="{{ old('fee_details', $jobapplication->fee_details ?? '') }}"
                             @if ($jobapplication->candidates->personaldetails->gender == 'female') disabled
                         @elseif(in_array($jobapplication->candidates->personaldetails->reservationcategory->code, ['SC', 'ST'])) 
                         disabled @endif>
@@ -254,35 +258,70 @@
                             </div>
                             <div class="modal-body">
 
-                                {{-- @if (auth()->guard('applicants')->user()->personaldetails->photo_path)
-                                <div class="alert alert-success">
-                                    Passport Photo Affixed
-                                </div>
-                            @else
-                                <div class="alert alert-danger">
-                                    Please Upload Photo
-                                </div>
-                            @endif
 
-                            @if (count($jobapplication->experiencedetails) > 0)
-                                <div class="alert alert-danger">
-                                    Experience Details Uploaded
-                                </div>
-                            @else
-                                <div class="alert alert-success">
-                                    Upload atleast 1 experience
-                                </div>
-                            @endif --}}
+
+                                @if (!$jobapplication->secondaryeducationdetails)
+                                    @php
+                                        array_push($submitErrors, 'Please fill secondary education details');
+                                    @endphp
+                                @else
+                                    @php
+                                        $canSubmit = true;
+                                    @endphp
+                                @endif
+
+                                @if (!$jobapplication->highersecondaryeducationdetails)
+                                    @php array_push($submitErrors, 'Please fill higher secondary education details')  @endphp
+                                @else
+                                    @php
+                                        $canSubmit = true;
+                                    @endphp
+                                @endif
+
+                                @if ($jobapplication->jobpostings->educationcriteria)
+                                    @if (in_array('UG', $jobapplication->jobpostings->educationcriteria->min_qualification))
+                                        @if (count($jobapplication->graduationeducationdetails) < 1)
+                                            @php array_push($submitErrors, 'Please fill graduation education details') @endphp
+                                        @else
+                                            @php
+                                                $canSubmit = true;
+                                            @endphp
+                                        @endif
+                                    @endif
+
+                                    @if (in_array('PG', $jobapplication->jobpostings->educationcriteria->min_qualification))
+                                        @if (count($jobapplication->graduationeducationdetails) < 1)
+                                            @php array_push($submitErrors, 'Please fill graduation education details') @endphp
+                                        @else
+                                            @php
+                                                $canSubmit = true;
+                                            @endphp
+                                        @endif
+                                    @endif
+                                @endif
+
+
+
+
+                                @if (!$canSubmit)
+                                    <div class="alert alert-danger">
+                                        <ul>
+                                            @foreach ($submitErrors as $e)
+                                                <li>{{ $e }}</li>
+                                            @endforeach
+                                        </ul>
+                                    </div>
+                                @endif
 
                                 Please make sure all the required details are filled in the application. Any data
-                                mismatch
-                                or insufficient data will lead to application rejection.
+                                mismatch or insufficient data will lead to application rejection.
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-danger rounded-3"
                                     data-bs-dismiss="modal">Close</button>
                                 <button type="submit" class="btn btn-success rounded-3 text-center" value="true"
-                                    name="isSubmitted">Submit Application</button>
+                                    name="isSubmitted" @if (!$canSubmit) disabled @endif>Submit
+                                    Application</button>
 
                             </div>
                         </div>

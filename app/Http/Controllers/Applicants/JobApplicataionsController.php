@@ -58,6 +58,7 @@ class JobApplicataionsController extends Controller
         $candidate = auth()->guard('applicants')->user();
         if ($request->isSubmitted) {
             $jobapplication->declaration_date = $request->declaration_date;
+            $jobapplication->fee_details = $request->fee_details;
             $jobapplication->place = $request->place;
             if ($request->file('declarationSignature')) {
                 $file = $request->file('declarationSignature');

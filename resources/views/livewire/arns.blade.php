@@ -15,77 +15,67 @@
             </div>
 
             @if ($arn->isSubmitted && $arn->status == 'submitted')
-                <div>
+             <div>
+    <button type="button" class="btn btn-icon btn-danger me-2" data-bs-toggle="modal"
+        data-bs-target="#rejectModal-{{ $arn->id }}">
+        <x-icons.thumbsdown />
+    </button>
 
-                    <button type="button" class="btn btn-icon btn-danger me-2" data-bs-toggle="modal"
-                        data-bs-target="#rejectModal">
-                        <x-icons.thumbsdown />
-                    </button>
-
-                    <!-- Modal -->
-                    <div class="modal fade" id="rejectModal" tabindex="-1">
-                        <div class="modal-dialog">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h1 class="modal-title fs-5" id="exampleModalLabel">Reject Application</h1>
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                        aria-label="Close"></button>
-                                </div>
-                                <div class="modal-body">
-                                    <label for="reject_summary">Reason/Remarks for rejection</label>
-                                    <textarea id="reject_summary" type="text" class="form-control" wire:model="reject_summary"></textarea>
-
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary"
-                                        data-bs-dismiss="modal">Close</button>
-                                    <button class="btn btn-danger me-2" wire:click="reject">
-                                        Reject
-                                    </button>
-
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <button type="button" class="btn btn-icon btn-success" data-bs-toggle="modal"
-                        data-bs-target="#shortlistModal">
-                        <x-icons.thumbsup />
-                    </button>
-
-                    <!-- Modal -->
-                    <div class="modal fade" id="shortlistModal" tabindex="-1">
-                        <div class="modal-dialog">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h1 class="modal-title fs-5" id="exampleModalLabel">Shorlist Application</h1>
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                        aria-label="Close"></button>
-                                </div>
-                                <div class="modal-body">
-                                    <label for="reject_summary">Summary/Remarks</label>
-                                    <textarea id="reject_summary" type="text" class="form-control" wire:model="reject_summary"></textarea>
-
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary"
-                                        data-bs-dismiss="modal">Close</button>
-                                    <button class="btn btn-success me-2" wire:click="shortlist">
-                                        Shortlist
-                                    </button>
-
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-
-
-
-
-
+    <!-- Reject Modal -->
+    <div wire:ignore.self class="modal fade" id="rejectModal-{{ $arn->id }}" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Reject Application</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <label for="reject_summary">Reason/Remarks for rejection</label>
+                    <textarea id="reject_summary" type="text" class="form-control" wire:model="reject_summary"></textarea>
 
                 </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button class="btn btn-danger me-2" wire:click="reject" data-bs-dismiss="modal">
+                        Reject
+                    </button>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <button type="button" class="btn btn-icon btn-success" data-bs-toggle="modal"
+        data-bs-target="#shortlistModal-{{ $arn->id }}">
+        <x-icons.thumbsup />
+    </button>
+
+    <!-- Shortlist Modal -->
+    <div wire:ignore.self class="modal fade" id="shortlistModal-{{ $arn->id }}" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Shorlist Application</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <label for="reject_summary">Summary/Remarks</label>
+                    <textarea id="reject_summary" type="text" class="form-control" wire:model="reject_summary"></textarea>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button class="btn btn-success me-2" wire:click="shortlist" data-bs-dismiss="modal">
+                        Shortlist
+                    </button>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
             @endif
 
         </div>
@@ -93,19 +83,12 @@
 
 
     <div class="container">
-
-
-
         <div class="mt-3 pb-3">
-
-
             <x-card>
-
                 <div class="d-flex align-items-center mb-3">
                     <x-icons.app-details />
                     <h3>Application Details</h3>
                 </div>
-
 
                 <div class="row g-3 row-cols-4">
                     <div class="">
@@ -116,20 +99,20 @@
                     <div class="">
                         <div class="arn-label">Advertisement No</div>
                         <div class="fw-bold">
-                            {{ $arn->jobPostings->jobAdvertismentNo }}</div>
+                            {{ $arn->jobPostings->jobAdvertismentNo ?? '' }}</div>
                     </div>
 
                     <div class="">
                         <div class="arn-label">Advertisement Date </div>
                         <div class="fw-bold">
-                            {{ $arn->jobPostings->jobPostingDate->format('d, M/Y') }}
+                            {{ $arn->jobPostings ? $arn->jobPostings->jobPostingDate->format('d, M/Y') : '' }}
                         </div>
                     </div>
 
                     <div class="">
                         <div class="arn-label">Application For</div>
                         <div class="fw-bold">
-                            {{ $arn->jobPostings->jobTitle }}</div>
+                            {{ $arn->jobPostings->jobTitle ?? '' }}</div>
                     </div>
                 </div>
             </x-card>
@@ -180,7 +163,12 @@
                             <div class="col-5 fw-bold ">
                                 @php
                                     $date = Carbon::parse($arn->candidates->personaldetails->dob);
-                                    $now = Carbon::parse($arn->jobpostings->jobPostingDate);
+                                    $now = Carbon::today();
+                                    if ($arn->jobpostings) {
+                                        if ($arn->jobpostings->jobPostingDate) {
+                                            $now = Carbon::parse($arn->jobpostings->jobPostingDate);
+                                        }
+                                    }
 
                                 @endphp
 
@@ -294,7 +282,7 @@
                     </div>
                     <div class="col-2">
                         <div class="passport-photo">
-                            <img src="{{ url('storage/public/' . $arn->candidates->personaldetails->photo_path ?? '') }} "
+                            <img src="{{ url('storage/' . $arn->candidates->personaldetails->photo_path ?? '') }} "
                                 style="">
                         </div>
                     </div>

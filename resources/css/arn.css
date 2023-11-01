@@ -73,7 +73,7 @@
 
 .offcanvas{
     width: 50% !important;
-    z-index: 999999999 !important;
+    z-index: 99999999999 !important;
 }
 
 .offcanvas-backdrop{

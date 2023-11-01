@@ -14,7 +14,7 @@ class Arns extends Component
     public $reject_summary = '';
     public $shortlist_summary = '';
 
-    
+
     public function reject()
     {
 
@@ -22,15 +22,9 @@ class Arns extends Component
         $this->arn->reject_remarks = $this->reject_summary;
         $this->arn->isShortlisted = false;
         $this->arn->save();
-        return back()->with([
-            'status' => 'success',
-            'message' => 'Candidate has been ' . $this->arn->status
-        ]);
-
-    
-        $this->dispatch(
+        return $this->dispatch(
             'alert',
-            ['status' => 'success',  'message' => 'User Created Successfully!']
+            ['status' => 'success',  'message' => 'Candidate has been ' . $this->arn->status]
         );
     }
 
@@ -40,13 +34,13 @@ class Arns extends Component
         $this->arn->shortlist_remarks = $this->shortlist_summary;
         $this->arn->isShortlisted = true;
         $this->arn->save();
-        return back()->with([
-            'status' => 'success',
-            'message' => 'Candidate has been ' . $this->arn->status
-        ]);
+        return $this->dispatch(
+            'alert',
+            ['status' => 'success',  'message' => 'Candidate has been ' . $this->arn->status]
+        );
     }
 
-    
+
 
     public function highersecondaryValid()
     {

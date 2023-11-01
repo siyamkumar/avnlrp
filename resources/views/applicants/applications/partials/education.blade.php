@@ -127,54 +127,9 @@
                     </tr>
                 @endif
 
-                @if ($jobapplication->jobpostings->educationcriteria)
 
-                    @if (in_array('UG', $jobapplication->jobpostings->educationcriteria->min_qualification))
-                        @if ($jobapplication->graduationeducationdetails)
-
-                            @if (count($jobapplication->graduationeducationdetails) > 0)
-                                @foreach ($jobapplication->graduationeducationdetails as $ged)
-                                    <tr>
-                                        <td>UG</td>
-                                        <td>{{ $ged->score }}</td>
-                                        <td>{{ $ged->year_of_passing }}</td>
-                                        <td>{{ $ged->college_name }}</td>
-                                        <td>{{ $ged->university_name }}</td>
-                                        <td>
-                                            <a href="{{ url('storage/public/' . $ged->marksheet_path ?? '') }}"
-                                                target="_blank">{{ $ged->file_name ?? '' }}</a>
-
-                                        </td>
-                                        <td>
-                                            @if (!$jobapplication->isSubmitted)
-                                                <a
-                                                    href="{{ route('jobapplication.graduationeducationdetails.edit', [$jobapplication, $jobapplication->highersecondaryeducationdetails]) }}">Edit</a>
-                                            @endif
-                                        </td>
-                                    </tr>
-                                @endforeach
-                            @else
-                                <tr>
-                                    <td>UG*</td>
-                                    <td colspan="6">
-                                        <a
-                                            href="{{ route('jobapplication.graduationeducationdetails.create', $jobapplication) }}">Add
-                                            UG Education</a>
-                                    </td>
-                                </tr>
-
-                            @endif
-                        @else
-                            <tr>
-                                <td>UG*</td>
-                                <td colspan="6">
-                                    <a
-                                        href="{{ route('jobapplication.graduationeducationdetails.create', $jobapplication) }}">Add
-                                        UG Education</a>
-                                </td>
-                            </tr>
-                        @endif
-                    @else
+                @if ($jobapplication->graduationeducationdetails)
+                    @if (count($jobapplication->graduationeducationdetails) > 0)
                         @foreach ($jobapplication->graduationeducationdetails as $ged)
                             <tr>
                                 <td>UG</td>
@@ -190,12 +145,55 @@
                                 <td>
                                     @if (!$jobapplication->isSubmitted)
                                         <a
-                                            href="{{ route('jobapplication.graduationeducationdetails.edit', [$jobapplication, $jobapplication->highersecondaryeducationdetails]) }}">Edit</a>
+                                            href="{{ route('jobapplication.graduationeducationdetails.edit', [$jobapplication, $ged]) }}">Edit</a>
                                     @endif
                                 </td>
                             </tr>
                         @endforeach
+                    @endif
+                @endif
 
+
+                @if ($jobapplication->postgraduationeducationdetails)
+                    @if (count($jobapplication->postgraduationeducationdetails) > 0)
+                        @foreach ($jobapplication->postgraduationeducationdetails as $ged)
+                            <tr>
+                                <td>UG</td>
+                                <td>{{ $ged->score }}</td>
+                                <td>{{ $ged->year_of_passing }}</td>
+                                <td>{{ $ged->college_name }}</td>
+                                <td>{{ $ged->university_name }}</td>
+                                <td>
+                                    <a href="{{ url('storage/public/' . $ged->marksheet_path ?? '') }}"
+                                        target="_blank">{{ $ged->file_name ?? '' }}</a>
+
+                                </td>
+                                <td>
+                                    @if (!$jobapplication->isSubmitted)
+                                        <a
+                                            href="{{ route('jobapplication.postgraduationeducationdetails.edit', [$jobapplication, $ged]) }}">Edit</a>
+                                    @endif
+                                </td>
+                            </tr>
+                        @endforeach
+                    @endif
+                @endif
+
+                @if ($jobapplication->jobpostings->educationcriteria)
+
+                    @if (in_array('UG', $jobapplication->jobpostings->educationcriteria->min_qualification))
+                        @if ($jobapplication->graduationeducationdetails)
+                            @if (count($jobapplication->graduationeducationdetails) <= 0)
+                                <tr>
+                                    <td>UG*</td>
+                                    <td colspan="6">
+                                        <a
+                                            href="{{ route('jobapplication.graduationeducationdetails.create', $jobapplication) }}">Add
+                                            UG Education</a>
+                                    </td>
+                                </tr>
+                            @endif
+                        @endif
                     @endif
 
                     @if (in_array('PG', $jobapplication->jobpostings->educationcriteria->min_qualification))
@@ -249,24 +247,7 @@
 
                 @endif
 
-                @foreach ($jobapplication->graduationeducationdetails as $ged)
-                    <tr>
-                        <td>UG</td>
-                        <td>{{ $ged->score }}</td>
-                        <td>{{ $ged->year_of_passing }}</td>
-                        <td>{{ $ged->college_name }}</td>
-                        <td>{{ $ged->university_name }}</td>
-                        <td><a href="{{ url('storage/public/' . $ged->marksheet_path ?? '') }}"
-                                target="_blank">{{ $ged->file_name ?? '' }}</a>
-                        </td>
-                        <td>
-                            @if (!$jobapplication->isSubmitted)
-                                <a
-                                    href="{{ route('jobapplication.graduationeducationdetails.edit', [$jobapplication, $ged]) }}">Edit</a>
-                            @endif
-                        </td>
-                    </tr>
-                @endforeach
+
 
             </tbody>
         </table>

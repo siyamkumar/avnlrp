@@ -5,18 +5,18 @@
         <td>{{ $highersecondaryeducationdetail->year_of_passing ?? '' }}</td>
         <td>{{ $highersecondaryeducationdetail->school_name ?? '' }}</td>
         <td>{{ $highersecondaryeducationdetail->school_board ?? '' }}</td>
-     
+
         <td>
 
 
             @if (isset($highersecondaryeducationdetail->isValid))
-                <x-valid-status :highersecondaryeducationdetail="$highersecondaryeducationdetail->isValid" />
+                <x-valid-status :validity="$highersecondaryeducationdetail->isValid" />
 
-            @else<a class="btn btn-sm btn-secondary" data-bs-toggle="offcanvas" href="#secondaryRecord" role="button"
+            @else<a class="btn btn-sm btn-secondary" data-bs-toggle="offcanvas" href="#highersecondaryRecord" role="button"
                     aria-controls="offcanvasExample">
                     Validate
                 </a>
-                <div class="offcanvas offcanvas-end" tabindex="-1" id="secondaryRecord">
+                <div class="offcanvas offcanvas-end" tabindex="-1" id="highersecondaryRecord">
 
                     <div class="offcanvas-header">
                         <h5 class="offcanvas-title">Higher Secondary Education Details</h5>

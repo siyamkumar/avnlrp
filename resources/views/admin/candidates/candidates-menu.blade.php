@@ -3,12 +3,12 @@
         <div class="" >
             <ul id="job-menu" class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item">
-                    <a class="nav-link  {{ request()->routeIs('candidates.index') ? 'active' : '' }}" aria-current="page" href="{{ route('candidates.index')}}">All Candidates</a>
+                    <a class="nav-link  {{ request()->routeIs('candidates.index') ? 'active' : '' }}" aria-current="page" href="{{ route('candidates.index')}}">All Applications</a>
                 </li>
                
 
-                <li class="nav-item"><a class="nav-link" href="#">Shortlisted Candidates</a></li>
-                <li class="nav-item"><a href="#" class="nav-link">Rejected Candidates</a></li>
+                <li class="nav-item"><a class="nav-link" href="#">Shortlisted Applications</a></li>
+                <li class="nav-item"><a href="#" class="nav-link">Rejected Applications</a></li>
                 
 
             </ul>

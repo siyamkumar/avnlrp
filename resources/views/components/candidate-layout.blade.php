@@ -21,9 +21,10 @@
 
                                     @if (auth()->guard('applicants')->user()->personaldetails->photo_path)
                                         <img class="rounded-circle"
-                                            src="{{ url('storage/public/' .auth()->guard('applicants')->user()->personaldetails->photo_path ??'') }} "
+                                            src="{{ url('storage/' .auth()->guard('applicants')->user()->personaldetails->photo_path ??'') }} "
                                             width="75" height="75">
-                                    @else<x-profile-picture />
+                                    @else
+                                        <x-profile-picture />
                                     @endif
                                 @else
                                     <x-profile-picture />

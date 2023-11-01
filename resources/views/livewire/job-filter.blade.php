@@ -177,8 +177,11 @@
                                      </div>
 
                                      <div>
+
+
+
                                          @if ($user)
-                                             @if (array_search($job->id, array_column($user->jobapplications->toArray(), 'job_posting_id')))
+                                             @if (array_search($job->id, array_column($user->jobapplications->toArray(), 'job_posting_id')) != '')
                                                  <small
                                                      class="d-inline-flex  px-2 py-1 fw-semibold text-success-emphasis bg-success-subtle border border-success-subtle rounded-2">You
                                                      already applied for this job.</small>

@@ -132,5 +132,8 @@ body {
 }
 
 
-
+.cursor-text{
+    cursor: text !important;
+    
+}
 

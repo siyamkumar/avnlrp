@@ -13,20 +13,22 @@ class PostGraduateEducationValidation extends Component
         return view('livewire.admin.post-graduate-education-validation');
     }
 
-    public function valid(){
+    public function valid()
+    {
         $this->postgraduationeducationdetail->isValid = true;
         $this->postgraduationeducationdetail->save();
         return $this->dispatch(
             'alert',
-            ['status' => 'success',  'message' => $this->postgraduationeducationdetail . 'has been validated successfully for this application']
+            ['status' => 'success',  'message' => 'Post graduation details has been validated successfully for this application']
         );
     }
-    public function invalid(){
+    public function invalid()
+    {
         $this->postgraduationeducationdetail->isValid = false;
         $this->postgraduationeducationdetail->save();
         return $this->dispatch(
             'alert',
-            ['status' => 'success',  'message' => $this->postgraduationeducationdetail . 'has been validated successfully for this application']
+            ['status' => 'success',  'message' => 'Post graduation details has been validated successfully for this application']
         );
     }
 }

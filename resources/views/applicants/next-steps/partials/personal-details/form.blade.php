@@ -175,7 +175,7 @@
 
         @if (auth()->guard('applicants')->user()->personaldetails)
         <div class="passport-photo">
-            <img src="{{ url('storage/public/' .auth()->guard('applicants')->user()->personaldetails->photo_path ??'') }} "
+            <img src="{{ url('storage/' .auth()->guard('applicants')->user()->personaldetails->photo_path ??'') }} "
                 style="width: 138px; height: 188px; object-fit: cover">
         </div>
         

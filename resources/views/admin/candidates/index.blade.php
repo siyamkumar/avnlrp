@@ -8,18 +8,48 @@
             <div class="">
                 <ul id="job-menu" class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link  @if ($shortlisted || $rejected) @else active @endif" aria-current="page"
-                            href="{{ route('candidates.index') }}">All
-                            Candidates</a>
+                        @if ($shortlisted || $rejected)
+                            <a class="nav-link" aria-current="page" href="{{ route('candidates.index') }}">All
+                                Applications</a>
+                        @else
+                            <span class="nav-link active">
+                                All
+                                Applications
+                            </span>
+                        @endif
+
                     </li>
 
 
-                    <li class="nav-item"><a class="nav-link   @if ($shortlisted) active @endif  }}"
-                            href="{{ route('candidates.index', 'shortlisted=true') }}">Shortlisted
-                            Candidates</a></li>
-                    <li class="nav-item"><a
-                            href="{{ route('candidates.index', 'rejected=true') }}"
-                            class="nav-link  @if ($rejected) active @endif }}">Rejected Candidates</a>
+                    <li class="nav-item">
+
+                        @if ($shortlisted)
+                            <span class="nav-link active">
+                                Shortlisted
+                                Applications
+                            </span>
+                        @else
+                            <a class="nav-link" href="{{ route('candidates.index', 'shortlisted=true') }}">Shortlisted
+                                Applications</a>
+                        @endif
+
+
+                    </li>
+                    <li class="nav-item">
+
+
+                        @if ($rejected)
+                            <span class="nav-link active">
+                                Rejected
+                                Applications
+                            </span>
+                        @else
+                            <a href="{{ route('candidates.index', 'rejected=true') }}"
+                                class="nav-link  @if ($rejected) active @endif }}">Rejected
+                                Applications</a>
+                        @endif
+
+
                     </li>
 
 
@@ -47,7 +77,7 @@
                                             id="{{ $key }}" data-bs-toggle="tab" href="#{{ $app->arn }}"
                                             role="tab" aria-controls="tab-home">
                                             <div class="">
-                                                <small>{{ $app->jobpostings->locationunit->unit_code }}</small>
+                                                <small>{{ $app->jobpostings->locationunit->unit_code ?? '' }}</small>
                                                 <div class="d-flex align-items-center gap-2">
                                                     <h6 class="arn-title mb-0"># {{ $app->arn }}</h6>
                                                     <x-arnstatus :status="$app->status" />
@@ -55,7 +85,7 @@
                                                 </div>
 
                                                 <div>
-                                                    {{ $app->jobpostings->jobTitle }}
+                                                    {{ $app->jobpostings->jobTitle ?? '' }}
 
 
                                                 </div>
