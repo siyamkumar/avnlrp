@@ -18,9 +18,9 @@ class UserController extends Controller
 
     public function index()
     {
-       
+     $user = User::orderBy('name', 'ASC');
         return view('admin.settings.users.index',
-         ['users'=> User::paginate(10)]);
+         ['users'=> User::paginate(5)]);
     }
 
     /**
@@ -29,7 +29,7 @@ class UserController extends Controller
     public function create()
     {
         // $divisions = Division::all();
-        // $permissionsList = Permission::orderBy('name', 'ASC')->get()->groupBy('model');
+         
         return view('admin.settings.users.create');
     }
 
@@ -39,6 +39,13 @@ class UserController extends Controller
     public function store(Request $request)
     {
          // ]);
+         $request->validate(
+            [
+                'email' => ['required', 'unique:' . User::class],
+                'name' => ['required','unique:' . User::class],
+            ]
+
+        );
          $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
