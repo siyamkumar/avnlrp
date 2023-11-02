@@ -6,7 +6,7 @@
     </x-slot> --}}
 
  
-
+ <!-- registered candidate report -->
     @if (count($candidates) > 0)
 
         <div class="container">
