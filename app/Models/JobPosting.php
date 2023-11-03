@@ -9,6 +9,7 @@ use App\Models\JobPosting\ExperienceCriteria;
 use App\Models\JobPosting\JobRequirement;
 use App\Models\JobPosting\JobResponsibility;
 use App\Models\JobPosting\ReservationAgeRelaxation;
+use App\Models\RegionState;
 use App\Models\JobPosting\ReservationVacancyRelaxation;
 use App\Models\JobPosting\TermsCondition;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -63,6 +64,10 @@ class JobPosting extends Model
         return $this->belongsTo(LocationUnit::class, 'location_unit_id');
     }
 
+    
+    public function regionstate(){
+        return $this->belongsTo(RegionState::class, 'region_state_id');
+    }
     public function reservationagerelaxations(){
         return $this->hasMany(ReservationAgeRelaxation::class, 'job_posting_id');
     }

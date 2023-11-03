@@ -77,7 +77,7 @@ class UnitWiseReportController extends Controller
                 return [
                     'Location' => $job->locationunit->unit_name,
                     'Job Posting' => $job->jobTitle,
-                    'Total Application' => $job->arns->count(),
+                    'Total Application' => $job->personaldetails->arns->count(),
                     'Shortlisted' => $job->arns()->where('status', 'shortlisted')->get()->count(),
                     'Rejected' => $job->arns()->where('status', 'rejected')->get()->count(),
                     'Category' =>

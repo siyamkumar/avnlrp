@@ -7,6 +7,7 @@ use App\Http\Controllers\Admin\JobPostingArnController;
 use App\Http\Controllers\Admin\ReportController;
 use App\Http\Controllers\Admin\RegisteredCandidateController;
 use App\Http\Controllers\Admin\Reports\UnitWiseReportController;
+use App\Http\Controllers\Admin\Reports\StateWiseReportController;
 use App\Http\Controllers\Admin\Settings\LocationUnitController;
 use App\Http\Controllers\Admin\Settings\ReservationCategoryController;
 use App\Http\Controllers\Admin\Settings\UserController;
@@ -106,11 +107,9 @@ Route::middleware('auth')->group(function () {
         Route::get('/reports', ReportController::class)->name('reports');
         Route::prefix('reports')->group(
             function () {
-                Route::get('/state-wise-report', function () {
-                    return view('admin.reports.statewiseindex');
-                });
+                Route::get('/state-wise-report', StateWiseReportController::class );
 
-                Route::get('    ', UnitWiseReportController::class );
+                Route::get('/unit-wise-report', UnitWiseReportController::class );
             }
         );
 
