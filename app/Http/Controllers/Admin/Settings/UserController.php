@@ -45,7 +45,7 @@ class UserController extends Controller
                 'email' => ['required', 'unique:' . User::class],
                 'name' => ['required','unique:' . User::class],
                 'password' => 'min:6|required_with:password_confirmation|same:password_confirmation',
-                // 'password_confirmation' => 'min:6|required_with:password_confirmation|same:password_confirmation',
+                'password_confirmation' => 'min:6|required_with:pasword|same:pasword',
             ],
            
 
@@ -73,9 +73,7 @@ class UserController extends Controller
      */
     public function edit(User $user)
     {
-        return view('admin.settings.users.edit', [
-            'user' => $user,
-        ]);
+        return view('admin.settings.users.edit',compact('user'));
     }
 
     /**
@@ -86,7 +84,7 @@ class UserController extends Controller
         $request->validate(
             [
                 'email' => ['required', 'unique:' . User::class],
-                'name' => ['required','unique:' . User::class],
+                // 'name' => ['required','unique:' . User::class],
                 'password' => 'min:6|required_with:password_confirmation|same:password_confirmation',
                 'password_confirmation' => 'min:6'
             ],
