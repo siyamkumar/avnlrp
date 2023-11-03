@@ -63,16 +63,16 @@
             </div>
 
             <div class="col-xl-3 col-sm-6">
-            <a href="{{ route('registeredcandidates') }}" class="card-link text-decoration-none">
-                <div class="card border-0 shadow-sm p-3">
-                    <div class="card-body d-flex justify-content-between">
-                        <div class="card-menu">
-                            <span>Registered Candidates</span>
-                            <h2 class="mb-0">{{ $candidates_count ?? '' }}</h2>
+                <a href="{{ route('registeredcandidates') }}" class="card-link text-decoration-none">
+                    <div class="card border-0 shadow-sm p-3">
+                        <div class="card-body d-flex justify-content-between">
+                            <div class="card-menu">
+                                <span>Registered Candidates</span>
+                                <h2 class="mb-0">{{ $candidates_count ?? '' }}</h2>
+                            </div>
                         </div>
                     </div>
-                </div>
-    </a>
+                </a>
             </div>
 
             <div class="col-xl-6 col-sm-6">
@@ -122,7 +122,7 @@
 
 
 
-<!-- bar chart/TM -->
+                    <!-- bar chart/TM -->
 
                     <script type="module">
                         var labels1 = @json($filtered);
@@ -150,11 +150,10 @@
                                 ],
                                 borderColor: '#E5E4E2',
                                 data: users1,
-                                datalabels:
-                                {
-                                    color:'blue',
-                                  anchor:'end',
-                                  align:'top'
+                                datalabels: {
+                                    color: 'blue',
+                                    anchor: 'end',
+                                    align: 'top'
                                 }
                             }]
                         };
@@ -178,7 +177,7 @@
                             config1
                         );
                     </script>
-<!-- Doughnut chart/TM -->
+                    <!-- Doughnut chart/TM -->
 
                     <script type="module">
                         var labels = {{ Js::from($count1) }};
@@ -302,7 +301,7 @@
                                         <tr>
                                             <td>{{ $arn->arn ?? '' }}</td>
                                             <td>{{ $arn->candidates->fullname ?? '' }}</td>
-                                            <td>{{ $arn->jobpostings->jobTitle }}</td>
+                                            <td>{{ $arn->jobpostings->jobTitle ?? '' }}</td>
                                             <td>{{ $arn->created_at->format('d/M/Y') }}</td>
                                             <td>{{ $arn->candidates->personaldetails->reservationcategory ? $arn->candidates->personaldetails->reservationcategory->code : '' }}
                                             </td>

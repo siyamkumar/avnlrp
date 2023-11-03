@@ -1,8 +1,7 @@
 <x-card>
 
     <div class="d-flex align-items-center mb-3">
-        <x-icons
-        .app-details />
+        <x-icons.app-details />
         <h3>Application Details</h3>
     </div>
 
@@ -147,7 +146,7 @@
         </div>
         <div class="col-2">
             <div class="passport-photo">
-                <img src="{{ url('storage/public/' .auth()->guard('applicants')->user()->personaldetails->photo_path ??'') }} "
+                <img src="{{ url('storage/' .auth()->guard('applicants')->user()->personaldetails->photo_path ??'') }} "
                     style="width: 138px;
                 height: 188px; object-fit: cover">
 

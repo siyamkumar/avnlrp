@@ -132,7 +132,7 @@
                     @if (count($jobapplication->graduationeducationdetails) > 0)
                         @foreach ($jobapplication->graduationeducationdetails as $ged)
                             <tr>
-                                <td>UG</td>
+                                <td>UG - {{ $ged->course_name }}</td>
                                 <td>{{ $ged->score }}</td>
                                 <td>{{ $ged->year_of_passing }}</td>
                                 <td>{{ $ged->college_name }}</td>
@@ -158,7 +158,7 @@
                     @if (count($jobapplication->postgraduationeducationdetails) > 0)
                         @foreach ($jobapplication->postgraduationeducationdetails as $ged)
                             <tr>
-                                <td>UG</td>
+                                <td>PG - {{ $ged->course_name }}</td>
                                 <td>{{ $ged->score }}</td>
                                 <td>{{ $ged->year_of_passing }}</td>
                                 <td>{{ $ged->college_name }}</td>
@@ -194,54 +194,23 @@
                                 </tr>
                             @endif
                         @endif
-                    @endif
 
-                    @if (in_array('PG', $jobapplication->jobpostings->educationcriteria->min_qualification))
-                        @if ($jobapplication->postgraduationeducationdetails)
-
-                            @if (count($jobapplication->postgraduationeducationdetails) > 0)
-                                @foreach ($jobapplication->postgraduationeducationdetails as $ged)
+                        @if (in_array('PG', $jobapplication->jobpostings->educationcriteria->min_qualification))
+                            @if ($jobapplication->postgraduationeducationdetails)
+                                @if (count($jobapplication->graduationeducationdetails) <= 0)
                                     <tr>
-                                        <td>PG</td>
-                                        <td>{{ $ged->score }}</td>
-                                        <td>{{ $ged->year_of_passing }}</td>
-                                        <td>{{ $ged->college_name }}</td>
-                                        <td>{{ $ged->university_name }}</td>
-                                        <td>
-                                            <a href="{{ url('storage/public/' . $ged->marksheet_path ?? '') }}"
-                                                target="_blank">{{ $ged->file_name ?? '' }}</a>
-
-                                        </td>
-                                        <td>
-                                            @if (!$jobapplication->isSubmitted)
-                                                <a
-                                                    href="{{ route('jobapplication.postgraduationeducationdetails.edit', [$jobapplication, $ged]) }}">Edit</a>
-                                            @endif
+                                        <td>PG*</td>
+                                        <td colspan="6">
+                                            <a
+                                                href="{{ route('jobapplication.postgraduationeducationdetails.create', $jobapplication) }}">Add
+                                                UG Education</a>
                                         </td>
                                     </tr>
-                                @endforeach
-                            @else
-                                <tr>
-                                    <td>PG*</td>
-                                    <td colspan="6">
-                                        <a
-                                            href="{{ route('jobapplication.postgraduationeducationdetails.create', $jobapplication) }}">Add
-                                            PG Education</a>
-                                    </td>
-                                </tr>
-
+                                @endif
                             @endif
-                        @else
-                            <tr>
-                                <td>PG*</td>
-                                <td colspan="6">
-                                    <a
-                                        href="{{ route('jobapplication.postgraduationeducationdetails.create', $jobapplication) }}">Add
-                                        PG Education</a>
-                                </td>
-                            </tr>
                         @endif
                     @endif
+
 
 
 

@@ -1,32 +1,4 @@
-<x-app-layout>
-    {{-- <x-slot name="header">
-        <h2 class="">
-            {{ __('Jobs') }}
-        </h2>
-    </x-slot> --}}
-
-
-
-
-    <div class="container-fluid">
-        <h2 class="pt-3">
-            {{ __('Unitwise Report') }}
-        </h2>
-
-
-<form action="{{route('/unit-wise-report')}}" method="Get">
-
- <label for="fromperiod">From Date</label>
-          <input type="date" id="fromperiod" name="fromperiod">
-          <label for="toperiod">To Date</label>
-          <input type="date" id="toperiod" name="toperiod">
-
-</form>
-
-
-
-
-        <table class="table table-hover table-responsive table-bordered">
+ <table class="table table-hover table-responsive table-bordered">
 
             @php $count = 0; @endphp
             @foreach ($jobpostings as $j => $jobposting)
@@ -114,8 +86,3 @@
             @endforeach
 
         </table>
-
-
-    </div>
-
-</x-app-layout>

@@ -271,7 +271,8 @@
                                 @endif
 
                                 @if (!$jobapplication->highersecondaryeducationdetails)
-                                    @php array_push($submitErrors, 'Please fill higher secondary education details')  @endphp
+                                    @php array_push($submitErrors, 'Please fill higher secondary education details');
+                                     $canSubmit = false;  @endphp
                                 @else
                                     @php
                                         $canSubmit = true;
@@ -281,7 +282,8 @@
                                 @if ($jobapplication->jobpostings->educationcriteria)
                                     @if (in_array('UG', $jobapplication->jobpostings->educationcriteria->min_qualification))
                                         @if (count($jobapplication->graduationeducationdetails) < 1)
-                                            @php array_push($submitErrors, 'Please fill graduation education details') @endphp
+                                            @php array_push($submitErrors, 'Please fill graduation education details');
+                                            $canSubmit = false;  @endphp
                                         @else
                                             @php
                                                 $canSubmit = true;
@@ -291,7 +293,9 @@
 
                                     @if (in_array('PG', $jobapplication->jobpostings->educationcriteria->min_qualification))
                                         @if (count($jobapplication->graduationeducationdetails) < 1)
-                                            @php array_push($submitErrors, 'Please fill graduation education details') @endphp
+                                            @php array_push($submitErrors, 'Please <fil>    </fil>l graduation education details');
+                                            $canSubmit = false; 
+                                             @endphp
                                         @else
                                             @php
                                                 $canSubmit = true;

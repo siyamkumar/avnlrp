@@ -28,9 +28,11 @@ class JobPosting extends Model
         'status',        
         'tenure',
         'renumeration',
+        'fees',
         'summary',
         'user_id',
-        'isContract'
+        'isContract',
+        
     ];
 
 

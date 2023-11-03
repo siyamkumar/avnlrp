@@ -10,6 +10,8 @@ use App\Models\JobPosting\JobRequirement;
 use App\Models\JobPosting\JobResponsibility;
 use App\Models\JobPosting\TermsCondition;
 use Livewire\Component;
+use Livewire\Attributes\Rule;
+
 
 class Edit extends Component
 {
@@ -20,10 +22,23 @@ class Edit extends Component
     public JobRequirement $jobrequirement;
     public JobResponsibility $jobresponsibility;
     public TermsCondition $termscondition;
+    #[Rule('string', message: 'Job summary is required')]
+    public $summary;
+    #[Rule('required', message: 'Min Age is required')]
+    #[Rule('numeric', message: 'Minimum Age cannot be a string')]
+    #[Rule('min:21', message: 'Minimum Age cannot be less than 21')]
+    public $minAge = '';
 
-    public $summary, $minAge, $maxAge, $desiredQualification,
-        $minExp, $maxExp, $desiredExperience,
-        $jobSpecification, $knowledge, $skills,
+    #[Rule('numeric', message: 'Maximum Age cannot be a string')]
+    #[Rule('max:65', message: 'Maximum Age cannot be more than 65')]
+    public $maxAge ='';
+
+
+    #[Rule('string', message: 'Desired Qualification is required')]
+    public $desiredQualification =''; 
+        
+    public $minExp, $maxExp, $desiredExperience,
+        $jobSpecification, $knowledge, $skills, 
         $jobResponsibility, $terms;
     public $reqEducation = [];
 
@@ -80,6 +95,8 @@ class Edit extends Component
 
     public function updateAgeCriteria()
     {
+        $this->validate();
+        
         AgeCriteria::updateOrCreate(
             ['job_posting_id' => $this->jobposting->id],
             ['minAge' => $this->minAge, 'maxAge' => $this->maxAge]

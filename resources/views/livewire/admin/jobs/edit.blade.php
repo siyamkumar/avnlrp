@@ -133,6 +133,8 @@
             </x-card>
         </div>
 
+        {{ $errors }}
+
         {{-- CRITERIA TAB --}}
         <div class="tab-pane fade show" id="tab-criteria" wire:ignore.self>
             {{-- AGE CRITERIA --}}
@@ -147,8 +149,19 @@
                                         <label for="minAge" class="col-sm-4 col-form-label">Minimum
                                             Age</label>
                                         <div class="col-sm-6">
-                                            <input type="number" class="form-control" wire:model = 'minAge'
-                                                id="minAge" value="{{ $jobposting->agecriteria->minAge ?? '' }}" />
+                                            <input type="number"
+                                                class="form-control  @error('minAge') is-invalid @enderror"
+                                                wire:model = 'minAge' id="minAge"
+                                                value="{{ $jobposting->agecriteria->minAge ?? '' }}" />
+
+                                            @error('minAge')
+                                                <div class="invalid-feedback">
+                                                    {{ $message }}
+                                                </div>
+                                            @enderror
+                                        </div>
+                                        <div>
+
                                         </div>
                                     </div>
                                 </div>
@@ -156,9 +169,14 @@
                                     <div class="row">
                                         <label for="maxAge" class="col-sm-4 col-form-label">Maximum Age</label>
                                         <div class="col-sm-6">
-                                            <input type="number" class="form-control" id="maxAge"
-                                                wire:model = 'maxAge'
+                                            <input type="number" class="form-control @error('maxAge') is-invalid @enderror" id="maxAge"
+                                                wire:model = 'maxAge' 
                                                 value="{{ $jobposting->agecriteria->maxAge ?? '' }}">
+                                            @error('maxAge')
+                                                <div class="invalid-feedback">
+                                                    {{ $message }}
+                                                </div>
+                                            @enderror
                                         </div>
                                     </div>
                                 </div>
@@ -243,26 +261,23 @@
                                 </div>
                             </div>
                         </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-10">
+                            <div class="form-floating">
 
-
-
-                        <div class="row">
-                            <div class="col-md-10">
-                                <div class="form-floating">
-
-                                    <input type="text" class="form-control" wire:model="desiredQualification"
-                                        id="desiredQualification" />
-                                    <label for="desiredQualification">Desired Qualification</label>
-                                </div>
+                                <input type="text" class="form-control" wire:model="desiredQualification"
+                                    id="desiredQualification" />
+                                <label for="desiredQualification">Desired Qualification</label>
                             </div>
-                            <div class="col-md-2">
-                                <div class="d-flex align-items-center">
-                                    <button type="submit" class="btn btn-warning me-3">Update</button>
+                        </div>
+                        <div class="col-md-2 ms-auto">
+                            <div class="d-flex align-items-center">
+                                <button type="submit" class="btn btn-warning me-3">Update</button>
 
-                                    <div wire:loading wire:target="updateEducationCriteria">
-                                        <div class="spinner-border text-primary" role="status">
-                                            <span class="visually-hidden">Loading...</span>
-                                        </div>
+                                <div wire:loading wire:target="updateEducationCriteria">
+                                    <div class="spinner-border text-primary" role="status">
+                                        <span class="visually-hidden">Loading...</span>
                                     </div>
                                 </div>
                             </div>
@@ -306,20 +321,21 @@
 
 
                             </div>
-                            <div class="row">
-                                <div class="col-md-10">
-                                    <div class="form-floating">
 
-                                        <input type="text" class="form-control" wire:model = "desiredExperience"
-                                            id="desiredExperience" placeholder="" />
-
-                                        <label for="desiredExperience">Desired Experience</label>
-                                    </div>
-                                </div>
-
-                            </div>
                         </div>
 
+
+                    </div>
+                    <div class="row">
+                        <div class="col-md-10">
+                            <div class="form-floating">
+
+                                <input type="text" class="form-control w-100" wire:model = "desiredExperience"
+                                    id="desiredExperience" placeholder="" />
+
+                                <label for="desiredExperience">Desired Experience</label>
+                            </div>
+                        </div>
                         <div class="col-md-2 align-self-end">
                             <div class="d-flex align-items-center">
                                 <button type="submit" class="btn btn-warning me-3">Update</button>

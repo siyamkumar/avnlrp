@@ -60,8 +60,7 @@
         <div class="col-3 mb-3">
             <label for="vacancy" class="form-label">Number of Vacancy</label>
             <input type="number" id="vacancy" name="vacancy"
-                class="form-control @error('vacancy') is-invalid @enderror" placeholder=""
-                value={{ old('vacancy') }}>
+                class="form-control @error('vacancy') is-invalid @enderror" placeholder="" value={{ old('vacancy') }}>
             @error('vacancy')
                 <div class="invalid-feedback">
                     {{ $message }}
@@ -73,7 +72,7 @@
         <div class="col-3 mb-3">
             <label for="" class="form-label">Tenure <small>(in years)</small></label>
             <input type="number" name="tenure" class="form-control @error('tenure') is-invalid @enderror"
-                id="tenure" placeholder="">
+                id="tenure" placeholder="" value="{{ old('tenure') }}">
             @error('tenure')
                 <div class="invalid-feedback">
                     {{ $message }}
@@ -85,9 +84,21 @@
         <div class="col-3 mb-3">
             <label for="" class="form-label">Renumeration</label>
             <input type="number" name="renumeration" class="form-control  @error('renumeration') is-invalid @enderror"
-                id="" placeholder="">
+                id="" placeholder="" value="{{ old('renumeration') }}">
 
             @error('renumeration')
+                <div class="invalid-feedback">
+                    {{ $message }}
+                </div>
+            @enderror
+        </div>
+
+        <div class="col-3 mb-3">
+            <label for="" class="form-label">Application Fees</label>
+            <input type="number" name="fees" class="form-control  @error('fees') is-invalid @enderror"
+                id="" placeholder="" value="{{ old('fees') }}">
+
+            @error('fees')
                 <div class="invalid-feedback">
                     {{ $message }}
                 </div>

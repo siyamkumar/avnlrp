@@ -29,8 +29,9 @@
 
 
                 </td>
-                <td>{{ $ja->jobpostings->jobTitle }}</td>
-                <td>{{ $ja->jobpostings->jobPostingLastDate ? $ja->jobpostings->jobPostingLastDate->format('d/M/Y') : '' }}
+                <td>{{ $ja->jobpostings->jobTitle ?? '' }}</td>
+                <td>
+                {{-- {{ $ja->jobpostings->jobPostingLastDate ? $ja->jobpostings->jobPostingLastDate->format('d/M/Y') : '' }} --}}
                 </td>
                 <td><x-arnstatus-regular :status="$ja->status" />
                 </td>

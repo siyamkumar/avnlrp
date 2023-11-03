@@ -494,7 +494,7 @@
                                     aria-label="Close"></button>
                             </div>
                             <div class="offcanvas-body">
-                                <img src="{{ url('storage/public/' . $arn->payment_proof ?? '') }}" alt=""
+                                <img src="{{ url('storage/' . $arn->payment_proof ?? '') }}" alt=""
                                     height="100%">
                             </div>
 

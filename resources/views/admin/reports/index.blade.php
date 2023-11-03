@@ -4,8 +4,8 @@
             {{ __('Jobs') }}
         </h2>
     </x-slot> --}}
-<!-- 
-    {{$applications }} -->
+    <!--
+    {{ $applications }} -->
 
 
 
@@ -48,7 +48,7 @@
                             <td class="text-nowrap"> {{ $arn->candidates->fullname ?? 'NA' }} </td>
                             <td class="text-nowrap"> {{ $arn->candidates->personaldetails->fatherName ?? '' }} </td>
                             <td class="text-capitalize">{{ $arn->candidates->personaldetails->gender ?? '' }}</td>
-                            <td> {{ $arn->jobpostings->agecriteria->minAge }} </td>
+                            <td> {{ $arn->jobpostings->agecriteria->minAge ?? '' }} </td>
                             <td class="text-nowrap">
                                 {{ $arn->candidates->personaldetails->dob ? $arn->candidates->personaldetails->dob->format('d-m-Y') : '' }}
                             </td>
@@ -67,7 +67,7 @@
                                     10th/Secondary School
                                 @endif
                             </td>
-                            <td>{{ $arn->jobpostings->experiencecriteria->minExp }}</td>
+                            <td>{{ $arn->jobpostings->experiencecriteria->minExp ?? '' }}</td>
                             <td> @php
                                 $expyears = 0;
                                 foreach ($arn->experiencedetails as $ex) {
@@ -78,16 +78,17 @@
                                 $totalexperience = round($expyears / 365, 1);
                             @endphp
                                 {{ $totalexperience ?? '' }} <span class="fw-normal text-capitalize">years</span></td>
-                            <td  class="text-nowrap"> {{ $arn->candidates->personaldetails->address_line_1 }},<br/>
-                                {{ $arn->candidates->personaldetails->address_line_2 }},<br/>
-                                {{ $arn->candidates->personaldetails->city }} - {{ $arn->candidates->personaldetails->pin_code }},
+                            <td class="text-nowrap"> {{ $arn->candidates->personaldetails->address_line_1 }},<br />
+                                {{ $arn->candidates->personaldetails->address_line_2 }},<br />
+                                {{ $arn->candidates->personaldetails->city }} -
+                                {{ $arn->candidates->personaldetails->pin_code }},
                             </td>
 
                             <td>{{ $arn->candidates->phone_no }}</td>
                             <td>{{ $arn->candidates->email }}</td>
                             <td>{{ $arn->candidates->personaldetails->aadhaarNo ?? '' }}</td>
                             <td>{{ $arn->jobpostings->jobTitle ?? '' }}</td>
-                            <td  class="text-nowrap">
+                            <td class="text-nowrap">
                                 @if ($arn->candidates->personaldetails->gender == 'female')
                                     NA
                                 @elseif(in_array($arn->candidates->personaldetails->reservationcategory->code, ['SC', 'ST']))
@@ -107,4 +108,3 @@
     </div>
 
 </x-app-layout>
-

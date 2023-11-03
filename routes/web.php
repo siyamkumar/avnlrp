@@ -6,6 +6,7 @@ use App\Http\Controllers\Admin\CandidatesController;
 use App\Http\Controllers\Admin\JobPostingArnController;
 use App\Http\Controllers\Admin\ReportController;
 use App\Http\Controllers\Admin\RegisteredCandidateController;
+use App\Http\Controllers\Admin\Reports\UnitWiseReportController;
 use App\Http\Controllers\Admin\Settings\LocationUnitController;
 use App\Http\Controllers\Admin\Settings\ReservationCategoryController;
 use App\Http\Controllers\Admin\Settings\UserController;
@@ -101,15 +102,20 @@ Route::middleware('auth')->group(function () {
         Route::resource('candidates', CandidatesController::class);
 
         Route::resource('arn', ARNController::class)->only(['show']);
-        Route::get('/reports', ReportController::class)->name('reports');
 
-        Route::get('/statewisereport', function () {
-            return view('admin.reports.statewiseindex');
-           
-        });
-        Route::get('/unitwisereport', function () {
-            return view('admin.reports.unitwise-index');
-        });
+        Route::get('/reports', ReportController::class)->name('reports');
+        Route::prefix('reports')->group(
+            function () {
+                Route::get('/state-wise-report', function () {
+                    return view('admin.reports.statewiseindex');
+                });
+
+                Route::get('    ', UnitWiseReportController::class );
+            }
+        );
+
+
+
 
         Route::get('/settings', function () {
             // return 'settings';
@@ -124,7 +130,6 @@ Route::middleware('auth')->group(function () {
             Route::resource('locationunit', LocationUnitController::class);
             Route::resource('reservationcategory', ReservationCategoryController::class);
             Route::resource('user', UserController::class);
-            
         });
     });
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

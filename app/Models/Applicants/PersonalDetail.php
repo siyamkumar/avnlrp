@@ -2,6 +2,7 @@
 
 namespace App\Models\Applicants;
 
+use App\Models\Candidate;
 use App\Models\RegionState;
 use App\Models\ReservationCategory;
 
@@ -31,6 +32,11 @@ class PersonalDetail extends Model
     protected $casts = [
         'dob' => 'date'
     ];  
+
+    
+    public function candidate(){
+        return $this->belongsTo(Candidate::class, 'candidate_id');
+    }
 
     public function reservationcategory(){
         return $this->belongsTo(ReservationCategory::class, 'reservation_category_id');

@@ -15,9 +15,6 @@ class ReportController extends Controller
      */
     public function __invoke(Request $request)
     {
-       
-
-
         return view('admin.reports.index')->with([
             'applications' => ApplicationReferenceNumber::where('status', 'shortlisted')->get(),
         ]);

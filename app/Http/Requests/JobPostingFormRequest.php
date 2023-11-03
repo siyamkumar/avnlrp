@@ -34,6 +34,7 @@ class JobPostingFormRequest extends FormRequest
             'status' => 'sometimes|string',        
             'tenure' => 'sometimes|required|integer|min:1|max:50',
             'renumeration' => 'sometimes|required|integer|min:1',
+            'fees' => 'sometimes|required|integer|min:1',
             'user_id' => 'exists:App\Models\User,id',
             'summary' => 'sometimes|string',
         ];

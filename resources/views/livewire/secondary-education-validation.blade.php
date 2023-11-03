@@ -11,12 +11,12 @@
         @if (isset($secondaryeducationdetail->isValid))
             <x-valid-status :validity="$secondaryeducationdetail->isValid" />
         @else
-            <a class="btn btn-sm btn-secondary" data-bs-toggle="offcanvas" href="#secondaryRecord" role="button"
+            <a class="btn btn-sm btn-secondary" data-bs-toggle="offcanvas" href="#secondaryRecord-{{$secondaryeducationdetail->id}}" role="button"
                 aria-controls="offcanvasExample">
                 Validate
             </a>
 
-            <div class="offcanvas offcanvas-end" tabindex="-1" id="secondaryRecord">
+            <div class="offcanvas offcanvas-end" tabindex="-1" id="secondaryRecord-{{$secondaryeducationdetail->id}}">
 
                 <div class="offcanvas-header">
                     <h5 class="offcanvas-title">Secondary Education Details</h5>
@@ -24,7 +24,7 @@
                         aria-label="Close"></button>
                 </div>
                 <div class="offcanvas-body">
-                    <img src="{{ url('storage/public/' . $secondaryeducationdetail->marksheet_path ?? '') }}"
+                    <img src="{{ url('storage/' . $secondaryeducationdetail->marksheet_path ?? '') }}"
                         alt="" height="100%">
                 </div>
                 <div class="offcanvas-footer p-2">
