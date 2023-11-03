@@ -68,10 +68,34 @@ class DashboardController extends Controller
       $filteredcount = Arr::whereNotNull($statecount);
     }
 
+
+     // Qualificationwise chart
+     $qualification = ApplicationReferenceNumber::all()->map(function (ApplicationReferenceNumber $arn) {
+      return $arn->candidates->personaldetails  ? $arn->candidates->personaldetails->secondaryeducationdetails :  '';
+    })->groupBy('school_name');
+
+    $labels = $qualification->keys();
+    $data = $qualification->values();
+
+    $qname = [];
+    $quali=[];
+    $qcount =[];
+
+    foreach ($labels as $d) {
+      array_push($qname, $d);
+      $quali = Arr::whereNotNull($qname);
+    }
+
+    $qcount = [];
+    foreach ($data as $d) {
+      array_push($qcount,   count($d));
+      $qcount = Arr::whereNotNull($qcount);
+    }
+
   
 
     return view('dashboard', 
-    compact('count1', 'count', 'filtered', 'filteredcount', ))->with([
+    compact('count1', 'count', 'filtered', 'filteredcount','quali','qcount' ))->with([
       'jobpostings_count' => JobPosting::where('status', 'Active')->count(),
       'arns_count' => ApplicationReferenceNumber::count(),
       'candidates_count' => Candidate::count(),
