@@ -1,7 +1,7 @@
 <x-app-layout>
     <div class="container pt-3">
         <x-card>
-            <h3 style= "text-align:center">Add new User</h3>
+            <h3 style= "text-align:center">Add New User</h3>
             <a href="{{ route('user.index') }}" class="btn btn-primary btn-sm">&larr; Back</a>
 
 
@@ -51,7 +51,7 @@
                     <div class="mb-3 row">
                     <label for="password_confirmation"  class="col-md-4 col-form-label text-md-end text-start">Confirm Password</label>
                     <div class="col-md-6">
-                    <input type="password"  :value="__('Confirm Password')" step="0.01"
+                    <input type="password" 
                                 class="form-control @error('password_confirmation') is-invalid @enderror" id="password_confirmation"
                                 name="password_confirmation" value="{{ old('password_confirmation') }}"  required autocomplete="password" />
                                 @error('password_confirmation')

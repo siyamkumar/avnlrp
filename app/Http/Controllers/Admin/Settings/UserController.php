@@ -18,9 +18,10 @@ class UserController extends Controller
 
     public function index()
     {
-     $user = User::orderBy('name', 'ASC');
+        $users = User::orderBy('name', 'asc')->paginate(10);
+  
         return view('admin.settings.users.index',
-         ['users'=> User::paginate(5)]);
+       compact('users'));
     }
 
     /**
@@ -29,7 +30,7 @@ class UserController extends Controller
     public function create()
     {
         // $divisions = Division::all();
-         
+        $user = User::orderBy('name', 'ASC')->get();
         return view('admin.settings.users.create');
     }
 
@@ -43,7 +44,10 @@ class UserController extends Controller
             [
                 'email' => ['required', 'unique:' . User::class],
                 'name' => ['required','unique:' . User::class],
-            ]
+                'password' => 'min:6|required_with:password_confirmation|same:password_confirmation',
+                // 'password_confirmation' => 'min:6|required_with:password_confirmation|same:password_confirmation',
+            ],
+           
 
         );
          $user = User::create([
@@ -79,6 +83,16 @@ class UserController extends Controller
      */
     public function update(Request $request,  $id)
     {
+        $request->validate(
+            [
+                'email' => ['required', 'unique:' . User::class],
+                'name' => ['required','unique:' . User::class],
+                'password' => 'min:6|required_with:password_confirmation|same:password_confirmation',
+                'password_confirmation' => 'min:6'
+            ],
+           
+
+        );
         User::where('id',$id)->update([
             'name' => $request->name,
             'email' => $request->email,
