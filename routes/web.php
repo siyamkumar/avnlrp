@@ -110,7 +110,7 @@ Route::middleware('auth')->group(function () {
                     return view('admin.reports.statewiseindex');
                 });
 
-                Route::get('    ', UnitWiseReportController::class );
+                Route::get('/unit-wise-report', UnitWiseReportController::class );
             }
         );
 

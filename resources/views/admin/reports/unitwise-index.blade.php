@@ -14,7 +14,7 @@
         </h2>
 
 
-<form action="{{route('/unit-wise-report')}}" method="Get">
+<form action="" method="Get">
 
  <label for="fromperiod">From Date</label>
           <input type="date" id="fromperiod" name="fromperiod">

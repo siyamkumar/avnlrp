@@ -1,24 +1,55 @@
-.page[data-size="A4"] {
+@page {
+    margin: 0;
+}
+
+
+
+/* .page[data-size="A4"] {
     background: white;
     size: 21cm 29.7cm;
-    padding:20mm;
-    box-shadow: 0 0 0.5cm rgba(0,0,0,0.5);
-    font-size:12pt;
+    padding: 20mm;
+    box-shadow: 0 0 0.5cm rgba(0, 0, 0, 0.5);
+    font-size: 12pt;
+} */
+
+/* 
+.print_frame{
+    size: 21cm 29.7cm;
+} */
+
+
+
+body,
+.page {
+    background: white;
+    margin: 1cm;
+    box-shadow: 0;
+    font-family: Arial !important;
+    font-size: 8px !important;
 }
 
-
-
-
-
-@media print {
-
-    body,
-    .page {
-        background: white;
-        margin: 0;
-        box-shadow: 0;
-    }
-
-
-   
+.report-table {
+    border: 1px solid black !important;
+    border-collapse: collapse !important;
 }
+
+th{
+    text-align: left;
+}
+table,
+th,
+td {
+    font-size: 8.5pt !important;
+    border: 1px solid black;
+    border-collapse: collapse;
+    white-space: no-wrap !important;
+    padding: 10px 5px ;
+}
+
+tr {
+    vertical-align: top !important;
+}
+
+.report-table,
+.report-table>thead>tr>th,
+.report-table>tbody>tr>td {}

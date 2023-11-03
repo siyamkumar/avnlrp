@@ -3,10 +3,12 @@
 @import "joblisting.css";
 @import "login.css";
 @import "table.css";
-@import "print.css";
+
 @import "form.css";
 @import "arn.css";
 @import "report.css";
+
+/* @import "print.css"; */
 /* @import "setting.css";
 @import "howtoapply.css";  
 @import  "notice.css";   */

@@ -4,7 +4,7 @@ import './bootstrap/';
 import '../../node_modules/bootstrap/dist/css/bootstrap.css';
 
 
-
+import styles from '../css/print.css?inline';
 
 
 
@@ -50,7 +50,7 @@ FilePond.create(advertisementupload, FPOPTIONS);
 
 window.onload = () => {
     const TOAST = bootstrap.Toast.getOrCreateInstance('#alertToast');
-   
+
     document.addEventListener('alert', (alert) => {
         document.getElementById("status").innerHTML = alert.detail[0].status ?? '';
         document.getElementById("status").classList.add('text-' + alert.detail[0].status);
@@ -62,8 +62,30 @@ window.onload = () => {
             toastIcon.innerHTML = '<svg version="1.1" class="me-2" width="25" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 50 50" xml:space="preserve" fill="#000000"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <circle style="fill:#D75A4A;" cx="25" cy="25" r="25"></circle> <polyline style="fill:none;stroke:#FFFFFF;stroke-width:2;stroke-linecap:round;stroke-miterlimit:10;" points="16,34 25,25 34,16 "></polyline> <polyline style="fill:none;stroke:#FFFFFF;stroke-width:2;stroke-linecap:round;stroke-miterlimit:10;" points="16,16 25,25 34,34 "></polyline> </g></svg>';
         }
         document.getElementById("message").innerHTML = alert.detail[0].message;
-        
+
         TOAST.show();
-        
+
     });
+
+
+
+    const printButton = document.getElementById('printTable')
+    printButton.addEventListener('click', printForm)
 };
+
+export function printForm() {
+
+    const cssStyle = document.createElement("style");
+    cssStyle.innerHTML = styles;
+    var winPrint = window.open('', '', 'left=0,top=0,width=1200,height=800,toolbar=0,scrollbars=0,status=0');
+    var printContents = document.getElementById("printable-table").innerHTML;
+    window.frames["print_frame"].window.open();
+    window.frames["print_frame"].document.body.innerHTML = printContents;
+    window.frames["print_frame"].document.head.appendChild(cssStyle)
+    winPrint.document.write(window.frames["print_frame"].document.head.innerHTML);
+    winPrint.document.write(window.frames["print_frame"].document.body.innerHTML);
+    window.frames["print_frame"].window.focus();
+    winPrint.print();
+    winPrint.close();
+
+}
