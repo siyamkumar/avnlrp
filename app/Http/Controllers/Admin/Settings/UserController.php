@@ -30,7 +30,7 @@ class UserController extends Controller
     public function create()
     {
         // $divisions = Division::all();
-        $user = User::orderBy('name', 'ASC')->get();
+        // $user = User::orderBy('name', 'ASC')->get();
         return view('admin.settings.users.create');
     }
 
