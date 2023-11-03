@@ -12,13 +12,13 @@ use Illuminate\Validation\Rules;
 
 class UserController extends Controller
 {
-    
+
 
     public function index()
     {
-       
-        return view('admin.settings.users.index',
-         ['users'=> User::paginate(10)]);
+        return view('admin.settings.users.index')->with([
+            'users' => User::orderBy('name', 'asc')->paginate(10)
+        ]);
     }
 
     /**
@@ -26,8 +26,6 @@ class UserController extends Controller
      */
     public function create()
     {
-        // $divisions = Division::all();
-        // $permissionsList = Permission::orderBy('name', 'ASC')->get()->groupBy('model');
         return view('admin.settings.users.create');
     }
 
@@ -36,14 +34,25 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-         // ]);
-         $user = User::create([
+
+        $request->validate(
+            [
+                'email' => ['required', 'unique:' . User::class],
+                'name' => ['required', 'unique:' . User::class],
+                'password' => 'min:6|required_with:password_confirmation|same:password_confirmation',
+                'password_confirmation' => 'min:6|required_with:password|same:password',
+            ],
+
+
+        );
+
+        $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password)
-           
+
         ]);
-       
+
         return redirect()->route('user.index')->with('success', 'User ' . $user->name . ' has been created succesfully');
     }
 
@@ -60,9 +69,7 @@ class UserController extends Controller
      */
     public function edit(User $user)
     {
-        return view('admin.settings.users.edit', [
-            'user' => $user,
-        ]);
+        return view('admin.settings.users.edit', compact('user'));
     }
 
     /**
@@ -70,14 +77,24 @@ class UserController extends Controller
      */
     public function update(Request $request,  $id)
     {
-        User::where('id',$id)->update([
+        $request->validate(
+            [
+                'email' => ['required', 'unique:' . User::class],
+                'name' => ['required', 'unique:' . User::class],
+                'password' => 'min:6|required_with:password_confirmation|same:password_confirmation',
+                'password_confirmation' => 'min:6'
+            ],
+
+
+        );
+        User::where('id', $id)->update([
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password)
 
         ]);
-        $user= User::where('id',$id)->first();
-               return redirect()->route('user.index')->with('success', 'User ' . $user->name . ' has been modified succesfully');
+        $user = User::where('id', $id)->first();
+        return redirect()->route('user.index')->with('success', 'User ' . $user->name . ' has been modified succesfully');
     }
 
     /**

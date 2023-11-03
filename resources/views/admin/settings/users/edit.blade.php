@@ -45,6 +45,20 @@
                          @enderror
                         </div>
                     </div>
+                    <div class="mb-3 row">
+                    <label for="password_confirmation"  class="col-md-4 col-form-label text-md-end text-start">Confirm Password</label>
+                    <div class="col-md-6">
+                    <input type="password" 
+                                class="form-control @error('password_confirmation') is-invalid @enderror" id="password_confirmation"
+                                name="password_confirmation" value="{{$user->password }}"  required autocomplete="password" />
+                                @error('password_confirmation')
+                                <div class="invalid-feedback">
+                                    {{ $message }}
+                                </div>
+                            @enderror
+                        </div>
+        </div>
+                   
 
                     
                     <div class="mb-3 row">

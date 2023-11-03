@@ -1,7 +1,7 @@
 <x-app-layout>
     <div class="container pt-3">
         <x-card>
-            <h3 style= "text-align:center">User Details </h3>
+            <h3 style= "text-align:center">Add New User</h3>
             <a href="{{ route('user.index') }}" class="btn btn-primary btn-sm">&larr; Back</a>
 
 
@@ -40,7 +40,7 @@
                         <div class="col-md-6">
                             <input type="password" step="0.01"
                                 class="form-control @error('password') is-invalid @enderror" id="password"
-                                name="password" value="{{ old('password') }}" required>
+                                name="password" value="{{ old('password') }}"  required autocomplete="password">
                             @error('password')
                                 <div class="invalid-feedback">
                                     {{ $message }}
@@ -48,6 +48,19 @@
                             @enderror
                         </div>
                     </div>
+                    <div class="mb-3 row">
+                    <label for="password_confirmation"  class="col-md-4 col-form-label text-md-end text-start">Confirm Password</label>
+                    <div class="col-md-6">
+                    <input type="password" 
+                                class="form-control @error('password_confirmation') is-invalid @enderror" id="password_confirmation"
+                                name="password_confirmation" value="{{ old('password_confirmation') }}"  required autocomplete="password" />
+                                @error('password_confirmation')
+                                <div class="invalid-feedback">
+                                    {{ $message }}
+                                </div>
+                            @enderror
+                        </div>
+        </div>
                    
                     <div class="mb-3 row">
                         <input type="submit" class="col-md-3 offset-md-5 btn btn-primary" value="Add New User">

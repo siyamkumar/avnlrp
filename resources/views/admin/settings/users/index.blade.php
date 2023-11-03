@@ -40,11 +40,10 @@
                 </tbody>
             </table>
         </x-card>
-        <div>
+       
+        <div class="mt-3">
             {{ $users->links() }}
         </div>
-    </div>
-
   
 
 </x-app-layout>
