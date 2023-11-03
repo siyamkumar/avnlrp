@@ -15,7 +15,7 @@
 
 
 
-        <div class="row g-4 pt-3">
+        <div class="row g-4 pt-3 mb-3">
 
             <div class="col-xl-3 col-sm-6">
                 <a class="text-decoration-none card-link" href="{{ route('jobpostings.index') }}">
@@ -259,137 +259,137 @@
                     </script>
 
                 </div>
-                    </div>
-
-                <div class="col-xl-6 col-sm-6">
-
-<div class="card border-0 shadow-sm p-3">
-    <div class="card-header border-0 bg-white">
-        <h3 class="pt-3">Applicants By Qualification</h3>
-        <p style="width:90%;"></p>
-
-    </div>
-
-
-    <div class="card-body" style="height: 328px">
-
-        <canvas id="radarChart" style="width:50%;height:100px"></canvas>
-
-
-    </div>
-
-
-
-</div>
-
-
-<!-- Qualification chart -->
-
-<script type="module">
-                        var labels2 = {{ Js::from($quali) }};
-                        var users2 = {{ Js::from($qcount) }};
-
-                        const data2 = {
-                            labels: labels2,
-
-                            datasets: [{
-                                label: 'QualificationWise',
-                                backgroundColor: [
-                                    'rgb(255, 99, 132)',
-                                    'rgb(75, 192, 192)',
-                                    'rgb(255, 205, 86)',
-                                    '#e7bcf3',
-                                    'rgb(54, 162, 235)',
-                                    '#67E0E3'
-                                ],
-                                borderColor: [
-                                    'rgb(255, 99, 132)',
-                                    'rgb(75, 192, 192)',
-                                    'rgb(255, 205, 86)',
-                                    '#e7bcf3',
-                                    'rgb(54, 162, 235)',
-                                    '#67E0E3'
-                                ],
-                                data: users2,
-                            }]
-                        };
-
-                        const config = {
-                            type: 'bar',
-                            data: data2,
-
-                            options: {
-        scales: {
-            y: {
-                stacked: true
-            }
-        }
-    }
-
-                          
-                        };
-
-
-                        const myChart = new Chart(
-                            document.getElementById('radarChart'),
-                            config
-                        );
-                    </script>
-
-
-
-
-
-</div>
-
-
-
             </div>
 
-            <div class="col-xs-12">
+            <div class="col-xl-6 col-sm-6">
 
-
-                <div class="card border-0 shadow-sm p-3 mb-4">
+                <div class="card border-0 shadow-sm p-3">
                     <div class="card-header border-0 bg-white">
-                        <h3 class="pt-3">Recent Applications</h3>
+                        <h3 class="pt-3">Applicants By Qualification</h3>
+                        <p style="width:90%;"></p>
+
                     </div>
 
-                    <div class="card-body">
-                        <div class="table-responsive">
 
-                            <table class="table table-hover table-nowrap">
-                                <thead class="table-light">
-                                    <tr>
-                                        <th scope="col">ARN #</th>
-                                        <th scope="col">Full Name</th>
-                                        <th scope="col">Applied For</th>
-                                        <th scope="col">Applied On</th>
-                                        <th scope="col">Category</th>
-                                        <th>Unit</th>
+                    <div class="card-body" style="height: 328px">
 
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @foreach ($arns as $arn)
-                                        <tr>
-                                            <td>{{ $arn->arn ?? '' }}</td>
-                                            <td>{{ $arn->candidates->fullname ?? '' }}</td>
-                                            <td>{{ $arn->jobpostings->jobTitle ?? '' }}</td>
-                                            <td>{{ $arn->created_at->format('d/M/Y') }}</td>
-                                            <td>{{ $arn->candidates->personaldetails->reservationcategory ? $arn->candidates->personaldetails->reservationcategory->code : '' }}
-                                            </td>
-                                            <td>{{ $arn->jobpostings->locationunit->unit_name ?? '' }}</td>
-                                        </tr>
-                                    @endforeach
-                                </tbody>
+                        <canvas id="radarChart" style="width:50%;height:100px"></canvas>
 
-                            </table>
-                        </div>
+
                     </div>
+
+
+
                 </div>
 
+
+                <!-- Qualification chart -->
+
+                <script type="module">
+                    var labels2 = {{ Js::from($quali) }};
+                    var users2 = {{ Js::from($qcount) }};
+
+                    const data2 = {
+                        labels: labels2,
+
+                        datasets: [{
+                            label: 'QualificationWise',
+                            backgroundColor: [
+                                'rgb(255, 99, 132)',
+                                'rgb(75, 192, 192)',
+                                'rgb(255, 205, 86)',
+                                '#e7bcf3',
+                                'rgb(54, 162, 235)',
+                                '#67E0E3'
+                            ],
+                            borderColor: [
+                                'rgb(255, 99, 132)',
+                                'rgb(75, 192, 192)',
+                                'rgb(255, 205, 86)',
+                                '#e7bcf3',
+                                'rgb(54, 162, 235)',
+                                '#67E0E3'
+                            ],
+                            data: users2,
+                        }]
+                    };
+
+                    const config = {
+                        type: 'bar',
+                        data: data2,
+
+                        options: {
+                            scales: {
+                                y: {
+                                    stacked: true
+                                }
+                            }
+                        }
+
+
+                    };
+
+
+                    const myChart = new Chart(
+                        document.getElementById('radarChart'),
+                        config
+                    );
+                </script>
+
+
+
+
+
             </div>
+
+
+
         </div>
+
+        <div class="col-xs-12">
+
+
+            <div class="card border-0 shadow-sm p-3 mb-4">
+                <div class="card-header border-0 bg-white">
+                    <h3 class="pt-3">Recent Applications</h3>
+                </div>
+
+                <div class="card-body">
+                    <div class="table-responsive">
+
+                        <table class="table table-hover table-nowrap">
+                            <thead class="table-light">
+                                <tr>
+                                    <th scope="col">ARN #</th>
+                                    <th scope="col">Full Name</th>
+                                    <th scope="col">Applied For</th>
+                                    <th scope="col">Applied On</th>
+                                    <th scope="col">Category</th>
+                                    <th>Unit</th>
+
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach ($arns as $arn)
+                                    <tr>
+                                        <td>{{ $arn->arn ?? '' }}</td>
+                                        <td>{{ $arn->candidates->fullname ?? '' }}</td>
+                                        <td>{{ $arn->jobpostings->jobTitle ?? '' }}</td>
+                                        <td>{{ $arn->created_at->format('d/M/Y') }}</td>
+                                        <td>{{ $arn->candidates->personaldetails->reservationcategory ? $arn->candidates->personaldetails->reservationcategory->code : '' }}
+                                        </td>
+                                        <td>{{ $arn->jobpostings->locationunit->unit_name ?? '' }}</td>
+                                    </tr>
+                                @endforeach
+                            </tbody>
+
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
 
     </div>
 

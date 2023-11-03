@@ -59,6 +59,7 @@ class JobApplicataionsController extends Controller
         if ($request->isSubmitted) {
             $jobapplication->declaration_date = $request->declaration_date;
             $jobapplication->fee_details = $request->fee_details;
+            $jobapplication->fees_paid = $request->fees_paid;
             $jobapplication->place = $request->place;
             if ($request->file('declarationSignature')) {
                 $file = $request->file('declarationSignature');

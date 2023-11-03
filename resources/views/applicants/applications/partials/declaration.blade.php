@@ -24,10 +24,10 @@
 
             <div class="col-md-4">
 
-                <label for="mode_of_payment" class="form-label">Payment Fee</label>
+                <label for="mode_of_payment" class="form-label">Fees Paid</label>
 
                 <input type="text" class="form-control  @error('mode_of_payment') is-invalid @enderror"
-                    id="mode_of_payment" name="mode_of_payment" value="₹ 300 /-" disabled>
+                    id="mode_of_payment" name="mode_of_payment" value="₹ {{ $jobapplication->fees_paid ?? ''}} /-" disabled>
                 @error('mode_of_payment')
                     <div class="invalid-feedback">
                         {{ $message }}
@@ -132,8 +132,26 @@
 
                         <label for="mode_of_payment" class="form-label">Payment Fee</label>
 
+                        @php $feesValue = 0 @endphp
+                        @if (in_array(
+                                $jobapplication->candidates->personaldetails->reservation_category_id,
+                                $jobapplication->jobpostings->feesexemptions()->pluck('reservation_category_id')->toArray()))
+                            @php
+                                $feesValue =
+                                    $jobapplication->jobpostings->fees -
+                                    $jobapplication->jobpostings
+                                        ->feesexemptions()
+                                        ->where('reservation_category_id', $jobapplication->candidates->personaldetails->reservation_category_id)
+                                        ->pluck('exemptedfees')
+                                        ->first();
+                            @endphp
+                        @else
+                            @php $feesValue = $jobapplication->jobpostings->fees @endphp
+                        @endif
                         <input type="text" class="form-control  @error('mode_of_payment') is-invalid @enderror"
-                            id="mode_of_payment" name="mode_of_payment" value="₹ 300 /-" disabled>
+                            id="mode_of_payment" name="mode_of_payment" value="₹ {{ $feesValue }} /-" disabled>
+
+                             <input type="hidden" name="fees_paid" value="{{ $feesValue }}" />
                         @error('mode_of_payment')
                             <div class="invalid-feedback">
                                 {{ $message }}
@@ -147,9 +165,7 @@
                         <input type="text" class="form-control  @error('fee_details') is-invalid @enderror"
                             id="fee_details" name="fee_details" placeholder="Trans. ID"
                             value="{{ old('fee_details', $jobapplication->fee_details ?? '') }}"
-                            @if ($jobapplication->candidates->personaldetails->gender == 'female') disabled
-                        @elseif(in_array($jobapplication->candidates->personaldetails->reservationcategory->code, ['SC', 'ST'])) 
-                        disabled @endif>
+                            @if ($feesValue == 0) disabled @endif>
                         @error('fee_details')
                             <div class="invalid-feedback">
                                 {{ $message }}
@@ -157,12 +173,10 @@
                         @enderror
                     </div>
 
-                    @if ($jobapplication->candidates->personaldetails->gender == 'female')
-                    @elseif(in_array($jobapplication->candidates->personaldetails->reservationcategory->code, ['SC', 'ST']))
-                    @else
+                    @if($feesValue>0)
                         <div class="col-md-4">
                             <label for="payment_proof" class="form-label">Payment Proof
-                                <span style="color:red">*</span></label>
+                                <span class="text-danger">*</span></label>
                             <input type="file" name="payment_proof" id="payment_proof" class="filepond" />
 
                             @error('payment_proof')
@@ -174,12 +188,16 @@
                     @endif
 
 
+
                     <div class="col-12">
                         <p class="" style="line-height:1.8">SC/ST/PwD/Ex-SM/Female candidates are exempted
                             from
-                            payment of application fees. Payment of Processing Fee of Rs.300/- (Rupees Three Hundred
-                            only) through <a href="https://www.onlinesbi.sbi/sbicollect/icollecthome.htm"
-                                target="_blank">SBI Collect</a> (PSU- Armoured
+                            payment of application fees. Payment of Processing Fee of ₹. {{ $feesValue }} /- (Rupees
+                            {{ \Rmunate\Utilities\SpellNumber::value($feesValue)->locale('en')->toLetters() }} only
+
+                            ) through <a href="https://www.onlinesbi.sbi/sbicollect/icollecthome.htm"
+                                target="_blank">SBI Collect</a>
+                            (PSU- Armoured
                             Vehicles Nigam Limited- Miscellaneous) or by means of a Demand Draft drawn in favour of
                             Ordnance Factory
                             Medak, payable at Sanga Reddy.</p>
@@ -219,19 +237,19 @@
 
                 <div class="row mb-3">
                     <div class="col-md-4">
-                        <label for="" class="form-label">Date</label>
+                        <label for="" class="form-label">Date<span class="text-danger">*</span></label>
                         <input type="date" class="form-control" name="declaration_date" />
                     </div>
                     <div class="col-md-4">
-                        <label for="" class="form-label">Place</label>
+                        <label for="" class="form-label">Place<span class="text-danger">*</span></label>
                         <input type="text" class="form-control" name="place" />
                     </div>
                     <div class="col-md-4">
                         @if ($jobapplication->signature_path)
-                            <img src="{{ url('storage/public/' . $jobapplication->signature_path) }}" alt=""
+                            <img src="{{ url('storage/' . $jobapplication->signature_path) }}" alt=""
                                 width="150">
                         @else
-                            <label for="" class="form-label">Signature</label>
+                            <label for="" class="form-label">Signature<span class="text-danger">*</span></label>
                             <input type="file" name="declarationSignature" id="signature" class="filepond" />
                         @endif
                     </div>
@@ -271,8 +289,8 @@
                                 @endif
 
                                 @if (!$jobapplication->highersecondaryeducationdetails)
-                                    @php array_push($submitErrors, 'Please fill higher secondary education details');
-                                     $canSubmit = false;  @endphp
+                                    @phparray_push($submitErrors, 'Please fill higher secondary education details');
+                                                                                                                                                                                                                                                                        $canSubmit = false; @endphp ?> ?> ?> ?> ?> ?> ?>
                                 @else
                                     @php
                                         $canSubmit = true;
@@ -282,8 +300,8 @@
                                 @if ($jobapplication->jobpostings->educationcriteria)
                                     @if (in_array('UG', $jobapplication->jobpostings->educationcriteria->min_qualification))
                                         @if (count($jobapplication->graduationeducationdetails) < 1)
-                                            @php array_push($submitErrors, 'Please fill graduation education details');
-                                            $canSubmit = false;  @endphp
+                                            @phparray_push($submitErrors, 'Please fill graduation education details');
+                                                                                                                                                                                                                                                                                                                                        $canSubmit = false; @endphp ?> ?> ?> ?> ?> ?> ?>
                                         @else
                                             @php
                                                 $canSubmit = true;
@@ -293,9 +311,9 @@
 
                                     @if (in_array('PG', $jobapplication->jobpostings->educationcriteria->min_qualification))
                                         @if (count($jobapplication->graduationeducationdetails) < 1)
-                                            @php array_push($submitErrors, 'Please <fil>    </fil>l graduation education details');
-                                            $canSubmit = false; 
-                                             @endphp
+                                            @phparray_push($submitErrors, 'Please <fil>    </fil>l graduation education details');
+                                                                                                                                                                                                                                                                                                                                                                        $canSubmit = false;
+                                                                                                                                                                                                                                                                                                                                        @endphp ?> ?> ?> ?> ?> ?> ?>
                                         @else
                                             @php
                                                 $canSubmit = true;

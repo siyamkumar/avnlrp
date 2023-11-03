@@ -22,16 +22,16 @@ class JobPostingFormRequest extends FormRequest
      */
     public function rules(): array
     {
-        
+
         return [
             'jobPostingDate' => 'sometimes|required|date',
-            'jobPostingLastDate'=>'sometimes|date',
+            'jobPostingLastDate' => 'sometimes|date',
             'jobAdvertismentNo' => 'sometimes|required|string',
             'location_unit_id' => 'sometimes|required',
             'jobTitle' => 'sometimes|required',
             'reservation_category_id' => '',
             'vacancy' => 'sometimes|required|integer|min:1',
-            'status' => 'sometimes|string',        
+            'status' => 'sometimes|string',
             'tenure' => 'sometimes|required|integer|min:1|max:50',
             'renumeration' => 'sometimes|required|integer|min:1',
             'fees' => 'sometimes|required|integer|min:1',
@@ -40,8 +40,16 @@ class JobPostingFormRequest extends FormRequest
         ];
     }
 
-    protected function prepareForValidation(){
-         $this->merge([
+    public function messages()
+    {
+        return [
+            'fees.required' => 'Fees is required',
+        ];
+    }
+
+    protected function prepareForValidation()
+    {
+        $this->merge([
             'user_id' => auth()->user()->id,
         ]);
     }

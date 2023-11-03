@@ -50,6 +50,10 @@ class JobPosting extends Model
         return $this->hasOne(AgeCriteria::class);
     }
 
+    public function feesexemptions(){
+        return $this->hasMany(FeesExemption::class,'job_posting_id');
+    }
+
     public function educationcriteria(){
         return $this->hasOne(EducationCriteria::class, 'job_posting_id');
     }

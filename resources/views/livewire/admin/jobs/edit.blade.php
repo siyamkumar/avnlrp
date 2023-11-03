@@ -32,6 +32,20 @@
 
                     <li class="nav-item text-center" role="presentation" wire:ignore.self>
 
+                        @empty($jobposting->feesexemptions)
+                                <x-icons.checknotok />
+                        @else
+                        <x-icons.checkok />
+                        
+                        @endempty
+
+                        <a class="nav-link pt-0" id="feesexemption-tab" data-bs-toggle="tab" href="#tab-feesexemption"
+                            role="tab" aria-controls="tab-profile" wire:ignore>
+                            Fees Exemption</a>
+                    </li>
+
+                    <li class="nav-item text-center" role="presentation" wire:ignore.self>
+
                         @if ($jobposting->jobrequirement)
 
                             @if (
@@ -133,7 +147,7 @@
             </x-card>
         </div>
 
-        {{ $errors }}
+
 
         {{-- CRITERIA TAB --}}
         <div class="tab-pane fade show" id="tab-criteria" wire:ignore.self>
@@ -169,8 +183,9 @@
                                     <div class="row">
                                         <label for="maxAge" class="col-sm-4 col-form-label">Maximum Age</label>
                                         <div class="col-sm-6">
-                                            <input type="number" class="form-control @error('maxAge') is-invalid @enderror" id="maxAge"
-                                                wire:model = 'maxAge' 
+                                            <input type="number"
+                                                class="form-control @error('maxAge') is-invalid @enderror"
+                                                id="maxAge" wire:model = 'maxAge'
                                                 value="{{ $jobposting->agecriteria->maxAge ?? '' }}">
                                             @error('maxAge')
                                                 <div class="invalid-feedback">
@@ -350,6 +365,14 @@
                     </div>
                 </form>
             </x-card>
+
+        </div>
+
+        {{-- FEES EXEMPTION TAB --}}
+        <div class="tab-pane active  fade show" id="tab-feesexemption" role="tabpanel" aria-labelledby="feesexemption-tab"
+            wire:ignore.self>
+
+            <livewire:admin.jobs.fees-exemption :$jobposting />
 
         </div>
 

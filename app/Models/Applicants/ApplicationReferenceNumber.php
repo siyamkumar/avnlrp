@@ -24,7 +24,7 @@ class ApplicationReferenceNumber extends Model
         'file_name',
         'file_type',
         'file_size',
-        
+        'fees_paid',
         'declaration_date',
         'isShortlisted',
         'place',
