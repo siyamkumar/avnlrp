@@ -75,19 +75,19 @@
     </a>
             </div>
 
-            <div class="col-xl-6 col-sm-6">
+            <div class="col-xl-12 col-sm-12">
 
                 <div class="card border-0 shadow-sm p-3">
                     <div class="card-header border-0 bg-white">
                         <h3 class="pt-3">Applicants By State</h3>
-                        <p style="width:90%;"></p>
+                        <p style="width:100%;"></p>
 
                     </div>
 
 
                     <div class="card-body" style="height: 328px">
 
-                        <canvas id="barChart" style="width:50%;height:100px"></canvas>
+                        <canvas id="barChart" style="width:100%;height:100px"></canvas>
 
 
                     </div>
@@ -164,7 +164,7 @@
                             data: data1,
                             plugins: [ChartDataLabels],
                             options: {
-                                aspectRatio: 2,
+                                aspectRatio: 4,
                                 y: {
                                     ticks: {
                                         precision: 0
@@ -259,16 +259,89 @@
                         );
                     </script>
 
-
-
-
-
-
-
-
-
                 </div>
+                    </div>
 
+                <div class="col-xl-6 col-sm-6">
+
+<div class="card border-0 shadow-sm p-3">
+    <div class="card-header border-0 bg-white">
+        <h3 class="pt-3">Applicants By Qualification</h3>
+        <p style="width:90%;"></p>
+
+    </div>
+
+
+    <div class="card-body" style="height: 328px">
+
+        <canvas id="radarChart" style="width:50%;height:100px"></canvas>
+
+
+    </div>
+
+
+
+</div>
+
+
+<!-- Qualification chart -->
+
+<script type="module">
+                        var labels2 = {{ Js::from($quali) }};
+                        var users2 = {{ Js::from($qcount) }};
+
+                        const data2 = {
+                            labels: labels2,
+
+                            datasets: [{
+                                label: 'QualificationWise',
+                                backgroundColor: [
+                                    'rgb(255, 99, 132)',
+                                    'rgb(75, 192, 192)',
+                                    'rgb(255, 205, 86)',
+                                    '#e7bcf3',
+                                    'rgb(54, 162, 235)',
+                                    '#67E0E3'
+                                ],
+                                borderColor: [
+                                    'rgb(255, 99, 132)',
+                                    'rgb(75, 192, 192)',
+                                    'rgb(255, 205, 86)',
+                                    '#e7bcf3',
+                                    'rgb(54, 162, 235)',
+                                    '#67E0E3'
+                                ],
+                                data: users2,
+                            }]
+                        };
+
+                        const config = {
+                            type: 'bar',
+                            data: data2,
+
+                            options: {
+        scales: {
+            y: {
+                stacked: true
+            }
+        }
+    }
+
+                          
+                        };
+
+
+                        const myChart = new Chart(
+                            document.getElementById('radarChart'),
+                            config
+                        );
+                    </script>
+
+
+
+
+
+</div>
 
 
 
