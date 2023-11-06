@@ -26,6 +26,8 @@ class UserController extends Controller
      */
     public function create()
     {
+        // $divisions = Division::all();
+        // $permissionsList = Permission::orderBy('name', 'ASC')->get()->groupBy('model');
         return view('admin.settings.users.create');
     }
 
@@ -34,19 +36,8 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-
-        $request->validate(
-            [
-                'email' => ['required', 'unique:' . User::class],
-                'name' => ['required', 'unique:' . User::class],
-                'password' => 'min:6|required_with:password_confirmation|same:password_confirmation',
-                'password_confirmation' => 'min:6|required_with:password|same:password',
-            ],
-
-
-        );
-
-        $user = User::create([
+         // ]);
+         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password)
