@@ -67,7 +67,7 @@ class UnitWiseReportController extends Controller
 
 
         $jobsbyLocation = JobPosting::where('status', '!=', 'draft')
-        ->paginate(5)
+        ->paginate(25)
             ->sortBy(function ($j, $key) {
                 return $j->locationunit->unit_name;
             })
@@ -121,7 +121,7 @@ class UnitWiseReportController extends Controller
         $locationunits = LocationUnit::all();
         return view('admin.reports.unitwise-index')->with(
             [
-                'jobpostings' => $jobsbyLocation,
+                'jobpostings' => $jobsbyPosting,
                 'locationunits' => $locationunits
             ]
         );
