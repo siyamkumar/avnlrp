@@ -5,8 +5,9 @@
         <label for="course_name" class="form-label">Name of Course</label>
         <input type="text" class="form-control
         @error('course_name') is-invalid @enderror
-        " id="course_name"
-            name="course_name" value = "{{ old('course_name', $postgraduationeducationdetail->course_name ?? '') }}">
+        "
+            id="course_name" name="course_name"
+            value = "{{ old('course_name', $postgraduationeducationdetail->course_name ?? '') }}">
         @error('course_name')
             <div class="invalid-feedback">
                 {{ $message }}
@@ -16,8 +17,8 @@
 
     <div class="col-md-4">
         <label for="college_name" class="form-label">Name of College</label>
-        <input type="text" class="form-control @error('college_name') is-invalid @enderror" id="college_name" name="college_name"
-            value = "{{ old('college_name', $postgraduationeducationdetail->college_name ?? '') }}">
+        <input type="text" class="form-control @error('college_name') is-invalid @enderror" id="college_name"
+            name="college_name" value = "{{ old('college_name', $postgraduationeducationdetail->college_name ?? '') }}">
         @error('college_name')
             <div class="invalid-feedback">
                 {{ $message }}
@@ -61,8 +62,19 @@
 
     <div class="col-md-4">
         <label for="postgraduateMarksheet" class="form-label">Degree Upload</label>
+        <div class="form-text">
+           Upload only PDF or Jpeg files less than 5MB
+        </div>
         <input type="file" id="postgraduateMarksheet" name="postgraduateMarksheet" class="filepond" />
     </div>
+
+    @isset($postgraduationeducationdetail)
+        <div class="col-md-4">
+            <img src="{{ url('storage/' . $postgraduationeducationdetail->marksheet_path ?? '') }} "
+                style="width: 138px; height: 188px; object-fit: cover">
+        </div>
+    @endisset
+
 
 
 </div>

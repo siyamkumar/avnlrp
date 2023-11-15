@@ -15,6 +15,14 @@ class CandidateAuth
      */
     public function handle(Request $request, Closure $next): Response
     {
+
+        $input = $request->all();
+        array_walk_recursive($input, function (&$input) {
+            $input = strip_tags($input);
+        });
+        $request->merge($input);
+      
+
         if (auth()->guard('applicants')->check())
             return $next($request);
         else

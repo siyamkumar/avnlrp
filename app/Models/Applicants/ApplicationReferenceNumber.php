@@ -31,6 +31,7 @@ class ApplicationReferenceNumber extends Model
         'signature_path',
         'shortlist_remarks',
         'reject_remarks',
+        'sl_rj_date',
 
     ];
 

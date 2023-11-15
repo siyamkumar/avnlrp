@@ -26,8 +26,14 @@
 
     <div class="bg-white pt-3">
         <div class="container px-4 py-2" id="custom-cards">
-            <div class="d-flex border-bottom">
+            <div class="d-flex border-bottom justify-content-between">
                 <h3 class="pb-3 ">Recent Openings</h3>
+                <div>
+                    <a href="{{route('jobs.index')}}" class="btn btn-secondary">
+                        View All Application
+                    </a>
+                </div>
+
             </div>
 
 
@@ -50,7 +56,7 @@
                                                 <small>Engagement of Professional <br />on fixed term contract
                                                     basis</small>
                                             @endif
-                                            <h3 class="pt-1 display-6 lh-1 fw-bold">{{ $jobposting->jobTitle }}</h3>
+                                            <h3 class="pt-1 display-6 lh-1 fw-bold">{{ ucwords(strtolower($jobposting->jobTitle)) }}</h3>
                                         </div>
 
 

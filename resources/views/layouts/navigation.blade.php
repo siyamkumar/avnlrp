@@ -61,7 +61,7 @@
                         </li>
                         <li>
                             <form id="frm-logout" action="{{ route('logout') }}" method="POST">
-                                {{ csrf_field() }}
+                                @csrf
                                 <button type="submit" class="dropdown-item">Sign out</button>
 
                             </form>

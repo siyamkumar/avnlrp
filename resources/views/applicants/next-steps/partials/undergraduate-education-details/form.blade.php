@@ -24,7 +24,10 @@
     </div>
 
     <div class="col-md-4">
-        <label for="university_name" class="form-label">Affiliated Institute/University</label>
+        <label for="university_name" class="form-label">Affiliated Institute/University<x-icons.required-field/></label>
+        <div class="form-text">
+           Upload only PDF or Jpeg files less than 5MB
+        </div>
         <input type="text" class="form-control
         @error('university_name') is-invalid @enderror" id="university_name" name="university_name"
             value = "{{ old('university_name', $graduationeducationdetail->university_name ?? '') }}">

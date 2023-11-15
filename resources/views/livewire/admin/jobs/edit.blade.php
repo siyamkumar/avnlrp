@@ -33,10 +33,15 @@
                     <li class="nav-item text-center" role="presentation" wire:ignore.self>
 
                         @empty($jobposting->feesexemptions)
-                                <x-icons.checknotok />
+                            <x-icons.checknotok />
                         @else
-                        <x-icons.checkok />
-                        
+                            @if (count($jobposting->feesexemptions) > 0)
+                                <x-icons.checkok />
+                            @else
+                                <x-icons.checknotok />
+                            @endif
+
+
                         @endempty
 
                         <a class="nav-link pt-0" id="feesexemption-tab" data-bs-toggle="tab" href="#tab-feesexemption"
@@ -369,7 +374,7 @@
         </div>
 
         {{-- FEES EXEMPTION TAB --}}
-        <div class="tab-pane active  fade show" id="tab-feesexemption" role="tabpanel" aria-labelledby="feesexemption-tab"
+        <div class="tab-pane fade show" id="tab-feesexemption" role="tabpanel" aria-labelledby="feesexemption-tab"
             wire:ignore.self>
 
             <livewire:admin.jobs.fees-exemption :$jobposting />

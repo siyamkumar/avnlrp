@@ -18,7 +18,7 @@ class PublicJobPostingController extends Controller
         if ($search) {
             $jobs = JobPosting::where('status', 'active')->where('jobPostingLastDate', '>=', Carbon::today())->where('jobTitle', 'like', "%{$search}")->paginate(10);
         }
-        
+
         return view('applicants.jobopenings')->with([
             'jobs' => $jobs,
             'search' => strip_tags($request->search),

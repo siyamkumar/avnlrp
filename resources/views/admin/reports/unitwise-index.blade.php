@@ -1,71 +1,70 @@
 <x-app-layout>
-    {{-- <x-slot name="header">
-        <h2 class="">
-            {{ __('Jobs') }}
-        </h2>
-    </x-slot> --}}
 
-
-
-
+    @include('admin.reports.menu')
     <div class="container-fluid">
-        <h2 class="pt-3">
-            {{ __('Unitwise Report') }}
-        </h2>
+        <div class="row align-middle pt-3 mb-3">
+            <div class="col-md-3">
+                <h2 class="">
+                    {{ __('Unit Wise Report') }}
+                </h2>
 
 
-<form action="" method="Get">
+                @if ($fromDate || $endDate)
+                    <span class="muted">Showing results from</span>
+                    <b>{{ $fromDate ? $fromDate->format('d/M/Y') : '' }}</b>
+                    - <b>{{ $endDate ? $endDate->format('d/M/Y') : '' }}</b>
+                @endif
 
- <label for="fromperiod">From Date</label>
-          <input type="date" id="fromperiod" name="fromperiod">
-          <label for="toperiod">To Date</label>
-          <input type="date" id="toperiod" name="toperiod">
+            </div>
+            <iframe id="print_frame" name="print_frame" width="0" height="0" frameborder="0"
+                src="about:blank"></iframe>
 
-</form>
+            @if (count($jobpostings) < 1)
 
+                <b>0 Records found for the selected dates</b>
+            @else
+                <div id="printable-table">
+                    <table class="table table-hover table-responsive table-bordered">
 
+                        @php $count = 0; @endphp
 
+                        @foreach ($jobpostings as $j => $jobposting)
+                            @if ($count < 1)
+                                @php $keys = $jobposting; @endphp
+                                <tr>
+                                    <td rowspan="3" class="align-middle">#</td>
+                                    @foreach ($keys as $key => $item)
+                                        @if (is_object($item))
+                                            <th colspan="{{ count($item) * 3 }}" class="text-center">{{ $key }}
 
-        <table class="table table-hover table-responsive table-bordered">
+                                            </th>
+                                        @else
+                                            <th rowspan="3" class="align-middle">{{ $key }}</th>
+                                        @endif
+                                    @endforeach
+                                </tr>
 
-            @php $count = 0; @endphp
-            @foreach ($jobpostings as $j => $jobposting)
-                @if ($count < 1)
-                    @php $keys = $jobposting; @endphp
-                    <tr>
-                        <td rowspan="3" class="align-middle">#</td>
-                        @foreach ($keys as $key => $item)
-                            @if (is_object($item))
-                                <th colspan="{{ count($item) * 3 }}" class="text-center">{{ $key }}
+                                <tr>
 
-                                </th>
-                            @else
-                                <th rowspan="3" class="align-middle">{{ $key }}</th>
-                            @endif
-                        @endforeach
-                    </tr>
+                                    @foreach ($keys as $key => $item)
+                                        @if (is_object($item))
+                                            @foreach ($item->toArray() as $k => $i)
+                                                {{-- @foreach ($i as $k => $i) --}}
+                                                <th colspan="3" class="text-center">{{ $k }}</th>
+                                                {{-- @endforeach --}}
+                                            @endforeach
+                                        @endif
+                                    @endforeach
+                                </tr>
 
-                    <tr>
+                                <tr>
 
-                        @foreach ($keys as $key => $item)
-                            @if (is_object($item))
-                                @foreach ($item->toArray() as $k => $i)
-                                    {{-- @foreach ($i as $k => $i) --}}
-                                    <th colspan="3" class="text-center">{{ $k }}</th>
-                                    {{-- @endforeach --}}
-                                @endforeach
-                            @endif
-                        @endforeach
-                    </tr>
-
-                    <tr>
-
-                        @foreach ($keys as $key => $item)
-                            @if (is_object($item))
-                                @foreach ($item->toArray() as $k => $i)
-                                    @foreach ($i as $k => $i)
-                                        <th
-                                            class="bg-opacity-10 
+                                    @foreach ($keys as $key => $item)
+                                        @if (is_object($item))
+                                            @foreach ($item->toArray() as $k => $i)
+                                                @foreach ($i as $k => $i)
+                                                    <th
+                                                        class="bg-opacity-10 
                                     @switch($k)
                                     @case('TOTAL') bg-info
                                     @break
@@ -75,26 +74,26 @@
                                     @break
                                     @endswitch
                                      ">
-                                            {{ $k }}</th>
+                                                        {{ $k }}</th>
+                                                @endforeach
+                                            @endforeach
+                                        @endif
                                     @endforeach
-                                @endforeach
+                                </tr>
                             @endif
-                        @endforeach
-                    </tr>
-                @endif
 
-                @php $count++ @endphp
+                            @php $count++ @endphp
 
-                <tr>
-                  
-                        <td> {{ $j+1 }}</td>
-                   
-                    @foreach ($jobposting as $key => $item)
-                        @if (is_object($item))
-                            @foreach ($item as $i)
-                                @foreach ($i as $k => $cat)
-                                    <td
-                                        class="bg-opacity-10 
+                            <tr>
+
+                                <td> {{ $j + 1 }}</td>
+
+                                @foreach ($jobposting as $key => $item)
+                                    @if (is_object($item))
+                                        @foreach ($item as $i)
+                                            @foreach ($i as $k => $cat)
+                                                <td
+                                                    class="bg-opacity-10 
                                     @switch($k)
                                     @case('TOTAL') bg-info fw-bold
                                     @break
@@ -103,17 +102,23 @@
                                     @case('RJ') bg-danger
                                     @break
                                     @endswitch">
-                                        {{ $cat }} </td>
+                                                    {{ $cat }} </td>
+                                            @endforeach
+                                        @endforeach
+                                    @else
+                                        <td> {{ $item }} </td>
+                                    @endif
                                 @endforeach
-                            @endforeach
-                        @else
-                            <td> {{ $item }} </td>
-                        @endif
-                    @endforeach
-                </tr>
-            @endforeach
+                            </tr>
+                        @endforeach
 
-        </table>
+                    </table>
+
+                </div>
+            @endif
+
+
+        </div>
 
 
     </div>

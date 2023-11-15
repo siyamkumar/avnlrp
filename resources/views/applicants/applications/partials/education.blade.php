@@ -39,7 +39,7 @@
                             <li><a class="dropdown-item"
                                     href="{{ route('jobapplication.postgraduationeducationdetails.create', $jobapplication) }}">Add
                                     Post Graduate</a></li>
-                            <li><a class="dropdown-item" href="#">Add Ph.D. </a></li>
+                            {{-- <li><a class="dropdown-item" href="#">Add Ph.D. </a></li> --}}
                         </ul>
                     </div>
                 @endif
@@ -72,7 +72,7 @@
                         <td>{{ $jobapplication->secondaryeducationdetails->school_name }}</td>
                         <td>{{ $jobapplication->secondaryeducationdetails->school_board }}</td>
                         <td>
-                            <a href="{{ url('storage/public/' . $jobapplication->secondaryeducationdetails->marksheet_path ?? '') }}""
+                            <a href="{{ url('storage/' . $jobapplication->secondaryeducationdetails->marksheet_path ?? '') }}""
                                 target="_blank">{{ $jobapplication->secondaryeducationdetails->file_name }}</a>
 
 
@@ -85,7 +85,7 @@
                         </td>
                     @else
                     <tr>
-                        <td>10th/Secondary *</td>
+                        <td>10th/Secondary<x-icons.required-field/></td>
                         <td colspan="">
                             <a href="{{ route('jobapplication.secondaryeducationdetails.create', $jobapplication) }}">Add
                                 Secondary
@@ -105,7 +105,7 @@
                         <td>{{ $jobapplication->highersecondaryeducationdetails->school_name }}</td>
                         <td>{{ $jobapplication->highersecondaryeducationdetails->school_board }}</td>
                         <td>
-                            <a href="{{ url('storage/public/' . $jobapplication->highersecondaryeducationdetails->marksheet_path ?? '') }}"
+                            <a href="{{ url('storage/' . $jobapplication->highersecondaryeducationdetails->marksheet_path ?? '') }}"
                                 target="_blank">{{ $jobapplication->highersecondaryeducationdetails->file_name }}</a>
 
                         </td>
@@ -118,7 +118,7 @@
                     </tr>
                 @else
                     <tr>
-                        <td>12th/Secondary*</td>
+                        <td>12th/Secondary<x-icons.required-field/></td>
                         <td colspan="6">
                             <a
                                 href="{{ route('jobapplication.highersecondaryeducationdetails.create', $jobapplication) }}">Add
@@ -138,7 +138,7 @@
                                 <td>{{ $ged->college_name }}</td>
                                 <td>{{ $ged->university_name }}</td>
                                 <td>
-                                    <a href="{{ url('storage/public/' . $ged->marksheet_path ?? '') }}"
+                                    <a href="{{ url('storage/' . $ged->marksheet_path ?? '') }}"
                                         target="_blank">{{ $ged->file_name ?? '' }}</a>
 
                                 </td>
@@ -164,7 +164,7 @@
                                 <td>{{ $ged->college_name }}</td>
                                 <td>{{ $ged->university_name }}</td>
                                 <td>
-                                    <a href="{{ url('storage/public/' . $ged->marksheet_path ?? '') }}"
+                                    <a href="{{ url('storage/' . $ged->marksheet_path ?? '') }}"
                                         target="_blank">{{ $ged->file_name ?? '' }}</a>
 
                                 </td>
@@ -185,7 +185,7 @@
                         @if ($jobapplication->graduationeducationdetails)
                             @if (count($jobapplication->graduationeducationdetails) <= 0)
                                 <tr>
-                                    <td>UG*</td>
+                                    <td>UG<x-icons.required-field/></td>
                                     <td colspan="6">
                                         <a
                                             href="{{ route('jobapplication.graduationeducationdetails.create', $jobapplication) }}">Add
@@ -197,9 +197,9 @@
 
                         @if (in_array('PG', $jobapplication->jobpostings->educationcriteria->min_qualification))
                             @if ($jobapplication->postgraduationeducationdetails)
-                                @if (count($jobapplication->graduationeducationdetails) <= 0)
+                                @if (count($jobapplication->postgraduationeducationdetails) <= 0)
                                     <tr>
-                                        <td>PG*</td>
+                                        <td>PG<x-icons.required-field/></td>
                                         <td colspan="6">
                                             <a
                                                 href="{{ route('jobapplication.postgraduationeducationdetails.create', $jobapplication) }}">Add

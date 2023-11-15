@@ -49,8 +49,11 @@ const advertisementupload = document.getElementById('advertisementupload');
 FilePond.create(advertisementupload, FPOPTIONS);
 
 window.onload = () => {
-    const TOAST = bootstrap.Toast.getOrCreateInstance('#alertToast');
 
+    const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
+    const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
+
+    const TOAST = bootstrap.Toast.getOrCreateInstance('#alertToast');
     document.addEventListener('alert', (alert) => {
         document.getElementById("status").innerHTML = alert.detail[0].status ?? '';
         document.getElementById("status").classList.add('text-' + alert.detail[0].status);
@@ -70,8 +73,22 @@ window.onload = () => {
 
 
     const printButton = document.getElementById('printTable')
-    printButton.addEventListener('click', printForm)
+    if (printButton)
+        printButton.addEventListener('click', printForm)
+
+    //DATERANGE PICKER
+
+    const myInput = document.getElementById("dateRangePicker");
+    if (myInput) {
+        const fp = flatpickr(myInput, {
+            mode: "range"
+        });  // flatpickr
+    }
+
+
+
 };
+
 
 export function printForm() {
 

@@ -7,7 +7,7 @@
                 <h1 class="mb-3">Recruitment Application </h1>
 
                 <x-card class="p-4">
-                    <p class="fw-semibold mb-2 fs-14">Purpose of this Document</p>
+                    {{-- <p class="fw-semibold mb-2 fs-14">Purpose of this Document</p> --}}
                     <div class="mb-4">
                         <p class="text-justify"> The below instructions are drafted to aid the candidates on how to apply for a job in AVNL portal. 
                             This will be uploaded in the Recruitment portal of AVNL.

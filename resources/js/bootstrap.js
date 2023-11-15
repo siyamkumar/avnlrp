@@ -11,11 +11,13 @@ import FilePondPluginImagePreview from 'filepond-plugin-image-preview';
 
 
 import 'filepond/dist/filepond.min.css';
+import flatpickr from "flatpickr";
 
 
 
 // Import the plugin styles
 import 'filepond-plugin-image-preview/dist/filepond-plugin-image-preview.css';
+import 'flatpickr/dist/themes/light.css';
 
 // Register the plugin
 FilePond.registerPlugin(FilePondPluginImagePreview);
@@ -25,7 +27,7 @@ window.Popper = Popper;
 
 import * as bootstrap from '../../node_modules/bootstrap/dist/js/bootstrap.esm.js';
 import 'filepond-plugin-image-preview/dist/filepond-plugin-image-preview.css';
-import  Chart  from 'chart.js/auto';
+import Chart from 'chart.js/auto';
 import ChartDataLabels from 'chartjs-plugin-datalabels';
 
 
@@ -33,7 +35,7 @@ window.axios = axios;
 window.bootstrap = bootstrap;
 window.FilePond = FilePond;
 
-window.FilePond = FilePond;
+window.flatpickr = flatpickr;
 
 window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 window.Chart = Chart;
@@ -41,11 +43,11 @@ window.ChartDataLabels = ChartDataLabels;
 
 
 FilePond.registerPlugin(
-    
-    FilePondPluginImagePreview,
-    
-  );
-  
+
+  FilePondPluginImagePreview,
+
+);
+
 
 /**
  * Echo exposes an expressive API for subscribing to channels and listening

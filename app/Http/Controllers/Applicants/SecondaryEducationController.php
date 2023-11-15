@@ -65,7 +65,9 @@ class SecondaryEducationController extends Controller
 
     public function edit(ApplicationReferenceNumber $jobapplication, SecondaryEducationDetail $secondaryeducationdetail)
     {
-        return view('applicants.next-steps.secondary-education', compact('jobapplication', 'secondaryeducationdetail'));
+        return view('applicants.next-steps.partials.secondary-education-details.edit', compact('jobapplication', 'secondaryeducationdetail'));
+
+        // return view('applicants.next-steps.secondary-education', compact('jobapplication', 'secondaryeducationdetail'));
     }
 
     public function update(SecondaryEducationFormRequest $request, ApplicationReferenceNumber $jobapplication, SecondaryEducationDetail $secondaryeducationdetail)

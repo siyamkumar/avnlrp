@@ -22,7 +22,7 @@
                                     @if (auth()->guard('applicants')->user()->personaldetails->photo_path)
                                         <img class="rounded-circle"
                                             src="{{ url('storage/' .auth()->guard('applicants')->user()->personaldetails->photo_path ??'') }} "
-                                            width="75" height="75">
+                                            width="75" height="75" style="object-fit: cover;">
                                     @else
                                         <x-profile-picture />
                                     @endif

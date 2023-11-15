@@ -15,67 +15,70 @@
             </div>
 
             @if ($arn->isSubmitted && $arn->status == 'submitted')
-             <div>
-    <button type="button" class="btn btn-icon btn-danger me-2" data-bs-toggle="modal"
-        data-bs-target="#rejectModal-{{ $arn->id }}">
-        <x-icons.thumbsdown />
-    </button>
-
-    <!-- Reject Modal -->
-    <div wire:ignore.self class="modal fade" id="rejectModal-{{ $arn->id }}" tabindex="-1">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="exampleModalLabel">Reject Application</h1>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <label for="reject_summary">Reason/Remarks for rejection</label>
-                    <textarea id="reject_summary" type="text" class="form-control" wire:model="reject_summary"></textarea>
-
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button class="btn btn-danger me-2" wire:click="reject" data-bs-dismiss="modal">
-                        Reject
+                <div>
+                    <button type="button" class="btn btn-icon btn-danger me-2" data-bs-toggle="modal"
+                        data-bs-target="#rejectModal-{{ $arn->id }}">
+                        <x-icons.thumbsdown />
                     </button>
 
-                </div>
-            </div>
-        </div>
-    </div>
+                    <!-- Reject Modal -->
+                    <div wire:ignore.self class="modal fade" id="rejectModal-{{ $arn->id }}" tabindex="-1">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h1 class="modal-title fs-5" id="exampleModalLabel">Reject Application</h1>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                        aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <label for="reject_summary">Reason/Remarks for rejection</label>
+                                    <textarea id="reject_summary" type="text" class="form-control" wire:model="reject_summary"></textarea>
 
-    <button type="button" class="btn btn-icon btn-success" data-bs-toggle="modal"
-        data-bs-target="#shortlistModal-{{ $arn->id }}">
-        <x-icons.thumbsup />
-    </button>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary"
+                                        data-bs-dismiss="modal">Close</button>
+                                    <button class="btn btn-danger me-2" wire:click="reject" data-bs-dismiss="modal">
+                                        Reject
+                                    </button>
 
-    <!-- Shortlist Modal -->
-    <div wire:ignore.self class="modal fade" id="shortlistModal-{{ $arn->id }}" tabindex="-1">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="exampleModalLabel">Shorlist Application</h1>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <label for="reject_summary">Summary/Remarks</label>
-                    <textarea id="reject_summary" type="text" class="form-control" wire:model="reject_summary"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button class="btn btn-success me-2" wire:click="shortlist" data-bs-dismiss="modal">
-                        Shortlist
+                    <button type="button" class="btn btn-icon btn-success" data-bs-toggle="modal"
+                        data-bs-target="#shortlistModal-{{ $arn->id }}">
+                        <x-icons.thumbsup />
                     </button>
 
+                    <!-- Shortlist Modal -->
+                    <div wire:ignore.self class="modal fade" id="shortlistModal-{{ $arn->id }}" tabindex="-1">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h1 class="modal-title fs-5" id="exampleModalLabel">Shorlist Application</h1>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                        aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <label for="reject_summary">Summary/Remarks</label>
+                                    <textarea id="reject_summary" type="text" class="form-control" wire:model="reject_summary"></textarea>
+
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary"
+                                        data-bs-dismiss="modal">Close</button>
+                                    <button class="btn btn-success me-2" wire:click="shortlist" data-bs-dismiss="modal">
+                                        Shortlist
+                                    </button>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
-            </div>
-        </div>
-    </div>
-
-</div>
-
             @endif
 
         </div>
@@ -177,6 +180,72 @@
                                     on
                                     the date
                                     of Advt.)</small>
+
+                                @php
+                                    $tickAge = false;
+                                    $tickQualification = false;
+                                    $minAge = $arn->jobpostings->agecriteria->minAge;
+                                    $maxAge = $arn->jobpostings->agecriteria->maxAge;
+                                @endphp
+
+                                @if ($minAge)
+
+                                    @if ($minAge < $date->diffInYears($now))
+                                        @php
+                                            $tickAge = true;
+                                        @endphp
+                                    @endif
+
+                                @endif
+
+                                @if ($maxAge)
+
+                                    @if ($maxAge > $date->diffInYears($now))
+                                        @php
+                                            $tickAge = true;
+                                        @endphp
+                                    @else
+                                        @php
+                                            $tickAge = false;
+                                        @endphp
+                                    @endif
+
+                                @endif
+
+                                @if ($tickAge)
+                                    <x-icons.tick width="20" />
+                                @else
+                                    <x-icons.wrong width="20" data-bs-toggle="tooltip" data-bs-placement="top"
+                                        data-bs-title="Age doesnt match with the given criteria. " />
+                                @endif
+                                @if ($arn->jobpostings->educationcriteria)
+
+                                    @if (in_array('PG', $arn->jobpostings->educationcriteria->min_qualification))
+                                        @if ($arn->postgraduationeducationdetails)
+                                            @if (count($arn->postgraduationeducationdetails) > 0)
+                                                @php $tickQualification = true; @endphp
+
+                                                @else
+                                                @php $tickQualification = false; @endphp
+                                            @endif
+                                        @endif
+                                    @endif
+
+                                    @if (in_array('UG', $arn->jobpostings->educationcriteria->min_qualification))
+                                      @if ($arn->graduationeducationdetails)
+                                            @if (count($arn->graduationeducationdetails) > 0)
+                                                @php $tickQualification = true; @endphp
+
+                                                @else
+                                                @php $tickQualification = false; @endphp
+                                            @endif
+                                        @endif
+                                    @endif
+
+
+                                @endif
+
+
                             </div>
                         </div>
 
@@ -184,12 +253,11 @@
                             <div class="col-5">Highest Qualification</div>
                             <div class="col-6 fw-bold text-uppercase">
                                 @if ($arn->candidates->postgraduationeducationdetails)
-                                    pg
+                                    pg @if($tickQualification)  <x-icons.tick width="20" /> @else  <x-icons.tick width="20" />  @endif
                                 @elseif ($arn->candidates->graduationeducationdetails)
-                                    ug |
-                                    {{ $arn->candidates->graduationeducationdetails->course_name }}
+                                    ug | {{ $arn->candidates->graduationeducationdetails->course_name }} @if($tickQualification)  <x-icons.tick width="20" /> @else  <x-icons.tick width="20" />  @endif
                                 @elseif ($arn->candidates->highersecondaryeducationdetails)
-                                    12th/Higher Secondary
+                                    12th/Higher Secondary 
                                 @elseif ($arn->candidates->secondaryeducationdetails)
                                     10th/Secondary School
                                 @endif
@@ -562,8 +630,7 @@
                         </span>
                     </div>
                     <div class="col-md-4">
-                        <img src="{{ url('storage/public/' . $arn->signature_path) }}" alt=""
-                            width="75">
+                        <img src="{{ url('storage/' . $arn->signature_path) }}" alt="" width="75">
                     </div>
                 </div>
             </x-card>

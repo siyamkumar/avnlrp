@@ -39,6 +39,7 @@ class JobPostingController extends Controller
      */
     public function store(JobPostingFormRequest $request)
     {
+        
         $lastDate = Carbon::createFromFormat('Y-m-d', $request->jobPostingDate);
         $lastDate = $lastDate->addDays(21);
         $jobposting = JobPosting::create(
@@ -46,7 +47,8 @@ class JobPostingController extends Controller
                 $request->validated(),
                 [
                     'isContract' => true,
-                    'jobPostingLastDate' => $lastDate->format('Y-m-d')
+                    'jobPostingLastDate' => $lastDate->format('Y-m-d'),
+                    'slug' => str()->slug(LocationUnit::whereId($request->location_unit_id)->pluck('unit_code')->first() . ' ' . $request->jobAdvertismentNo . ' ' . $request->jobTitle)
                 ]
             )
         );

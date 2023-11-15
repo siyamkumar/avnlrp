@@ -47,12 +47,15 @@
                                             <td>{{ $candidate->phone_no ?? '' }}</td>
                                             <td>{{ $candidate->personaldetails->gender ?? '' }}</td>
                                             @php
-                                                $birthday = $candidate->personaldetails->dob;
-                                                $age = Carbon\Carbon::parse($birthday)
-                                                    ->diff(Carbon\Carbon::now())
-                                                    ->format('%y years');
+                                                if ($candidate->personaldetails->dob) {
+                                                    $birthday = $candidate->personaldetails->dob;
+                                                    $age = Carbon\Carbon::parse($birthday)
+                                                        ->diff(Carbon\Carbon::now())
+                                                        ->format('%y years');
+                                                }
+
                                             @endphp
-                                            <td>{{ $age }}</td>
+                                            <td>{{ $age ?? '' }}</td>
 
 
 

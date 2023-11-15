@@ -19,6 +19,7 @@
 }
 
 .job-single {
+    font-size: 16px;
     background-image: linear-gradient(120deg, #fdfbfb 0%, #ebedee 100%);
 }
 
@@ -28,10 +29,10 @@
 }
 
 .job-list-card:hover .job-title {
-    color: #048BA8;
+    color: #C68616;
 }
 
-.filter-card{
+.filter-card {
     background-color: white;
 
 }
@@ -46,11 +47,13 @@
 
 
 }
-.filter-checkbox > input[type="checkbox"]{
+
+.filter-checkbox>input[type="checkbox"] {
     display: none;
 }
 
-.filter-checkbox, .filter-checkbox > label{
+.filter-checkbox,
+.filter-checkbox>label {
     cursor: pointer;
 }
 
@@ -58,9 +61,42 @@
     font-weight: bold !important;
 }
 
-.badge-ultra-violet{
-    background-color:#52489C ;
+.badge-ultra-violet {
+    background-color: #52489C;
     font-weight: 300 !important;
     min-width: 1.5rem !important;
     border-radius: 0 !important;
+}
+
+/* SINGLE JOB DETAIL */
+
+.job-posting-title {
+    color: #C68616;
+    font-weight: 700;
+    font-size: 3em;
+}
+
+.job-posting-subtitle {
+    color: #C68616;
+}
+
+.age-tooltip {
+
+    --bs-tooltip-color: white !important;
+    --bs-tooltip-bg: #C68616 !important;
+    --bs-tooltip-box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px !important;
+}
+
+.tooltip-container {
+    border-bottom: 2px dotted #C68616;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.job-posting-heading{
+    font-size:16px;
+    font-weight: 700;
+    border-left: 0.2em solid #C68616;
+    padding: 0.5em 0 0.5em 0.5em;
+    
 }

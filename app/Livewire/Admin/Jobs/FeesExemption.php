@@ -35,4 +35,12 @@ class FeesExemption extends Component
             ['status' => 'success',  'message' => '<b>Fees exemption</b> for the reservation category <b>' . $this->reservation_category_id  .'</b> jobposting <b>' . $this->jobposting->jobTitle . '</b> has been <b>added</b> successfully!']
         );
     }
+
+    public function deleteFeesExemption(ModelsFeesExemption $feesexemption){
+        $feesexemption->delete();
+        return $this->dispatch(
+            'alert',
+            ['status' => 'success',  'message' => '<b>Fees exemption</b> for the reservation category <b>' . $this->reservation_category_id  .'</b> jobposting <b>' . $this->jobposting->jobTitle . '</b> has been <b>deleted</b> successfully!']
+        );
+    }
 }

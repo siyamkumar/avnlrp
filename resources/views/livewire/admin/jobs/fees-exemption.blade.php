@@ -56,7 +56,7 @@
                      <td>{{ $jobposting->fees - $feesexemption->exemptedfees ?? 0 }}</td>
 
                      <td>
-                         <button class="btn btn-sm btn-danger" wire:click="deleteVacancy({{ $feesexemption }})"> Delete
+                         <button class="btn btn-sm btn-danger" wire:click="deleteFeesExemption({{ $feesexemption }})"> Delete
                              </div>
                      </td>
                  </tr>

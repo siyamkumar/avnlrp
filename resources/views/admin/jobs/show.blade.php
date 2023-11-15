@@ -11,7 +11,7 @@
 
 
             <div class="col-auto align-self-end">
-                <button type="submit" class="btn btn-primary "> Announce Examination </button>
+                <a class="btn btn-primary" href="{{ route('jobpostings.applications.index', $jobposting) }}">View All Applications</a>
             </div>
         </div>
 

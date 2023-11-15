@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\JobPosting;
 use App\Models\LocationUnit;
 use App\Models\ReservationCategory;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class UnitWiseReportController extends Controller
@@ -15,9 +16,26 @@ class UnitWiseReportController extends Controller
      */
     public function __invoke(Request $request)
     {
+        $startDate = '';
+        $endDate = '';
 
-        $jobsbyPosting = JobPosting::where('status', '!=', 'draft')
-            ->orderBy('jobTitle')
+        if ($request->dateRange) {
+            $range = explode('to', $request->dateRange);
+            $startDate =  Carbon::createFromFormat('Y-m-d', trim($range[0]))->startOfDay();
+            $endDate = Carbon::createFromFormat('Y-m-d', trim($range[1]))->endOfDay();
+           
+        }
+
+
+        $jobsbyPosting = JobPosting::where(function ($query) use ($request) {
+            $query->where('status', '!=', 'draft');
+            if ($request->dateRange) {
+                $range = explode('to', $request->dateRange);
+                $startDate =  Carbon::createFromFormat('Y-m-d', trim($range[0]))->startOfDay();
+                $endDate = Carbon::createFromFormat('Y-m-d', trim($range[1]))->endOfDay();
+                $query->whereBetween('jobPostingDate', [$startDate, $endDate]);
+            }
+        })->orderBy('jobTitle')
             // ->orderBy('location_unit_id')
             ->get()->map(function ($job) {
 
@@ -30,7 +48,7 @@ class UnitWiseReportController extends Controller
                     'Rejected' => $job->arns()->where('status', 'rejected')->get()->count(),
                     'Category' =>
                     $reservations->mapWithKeys(function ($r, $key) use ($job) {
-                        // dd($r->code);
+
                         $totalcount = 0;
                         $slcount = 0;
                         $rjcount = 0;
@@ -66,8 +84,13 @@ class UnitWiseReportController extends Controller
             });
 
 
-        $jobsbyLocation = JobPosting::where('status', '!=', 'draft')
-        ->paginate(25)
+        $jobsbyLocation = JobPosting::where(function ($query) use ($request, $startDate, $endDate) {
+            $query->where('status', '!=', 'draft');
+            if ($request->dateRange) {
+                $query->whereBetween('jobPostingDate', [$startDate, $endDate]);
+            }
+        })
+            ->paginate(25)
             ->sortBy(function ($j, $key) {
                 return $j->locationunit->unit_name;
             })
@@ -82,7 +105,6 @@ class UnitWiseReportController extends Controller
                     'Rejected' => $job->arns()->where('status', 'rejected')->get()->count(),
                     'Category' =>
                     $reservations->mapWithKeys(function ($r, $key) use ($job) {
-                        // dd($r->code);
                         $totalcount = 0;
                         $slcount = 0;
                         $rjcount = 0;
@@ -107,7 +129,6 @@ class UnitWiseReportController extends Controller
 
                         return [
                             $r->code => [
-
                                 'TOTAL' => $totalcount,
                                 'SL' => $slcount,
                                 'RJ' => $rjcount,
@@ -117,11 +138,14 @@ class UnitWiseReportController extends Controller
                 ];
             });
 
-            
+
+
         $locationunits = LocationUnit::all();
         return view('admin.reports.unitwise-index')->with(
             [
-                'jobpostings' => $jobsbyPosting,
+                'fromDate' => $startDate,
+                'endDate' => $endDate,
+                'jobpostings' => $jobsbyLocation,
                 'locationunits' => $locationunits
             ]
         );

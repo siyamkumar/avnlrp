@@ -42,12 +42,12 @@ CREATE TABLE `location_units` (
 --
 
 INSERT INTO `location_units` (`id`, `unit_code`, `unit_name`, `address`, `about`, `created_at`, `updated_at`) VALUES
-(1, '119', 'MTPF', '', '', NULL, NULL),
-(2, '125', 'HVF', 'HVF', '', NULL, NULL),
-(3, 'VFJ', 'VFJ', 'VFJ', '', NULL, NULL),
-(4, 'OFMK', 'OFMK', 'Yeddumailaram', 'Ordnance Factory Medak is one of the 5 Ordnance Factories under Armoured Vehicles Nigam Ltd., On 19th July, 1984 the then Prime Minister Late Smt. Indira Gandhi laid the foundation to establish the factory for indigenous production of Infantry Combat Vehicles(ICVs) at Yeddumailaram in Sangareddy District of Telangana State.', NULL, NULL),
-(5, 'EFA', 'EFA', 'EFA', '', NULL, NULL),
-(6, 'AVNLCO', 'AVNLCO', 'AVNLCO', 'Armoured Vehicles Nigam Limited (AVANI) (AVNL) is a new Defence PSU with its headquarters at Avadi (Chennai). It has five (05) constituent production units and has around 12,000 employees. AVNL produces battle tanks i.e. T-72, T90, MBT Arjun and Infantry Combat Vehicles, support vehicles (MPV, AERV etc.) and Defence mobility solutions (Stallion, LPTA etc.) for the armed forces and homeland security agencies. It is the current market leader in this segment. It is a new Government Company with Great Future. It offers great work environment and challenging opportunities for the professionals to prove their mettle.', '0000-00-00 00:00:00', NULL);
+(1, 'AVNLCO', 'AVNLCO', 'AVNLCO', 'Armoured Vehicles Nigam Limited (AVANI) (AVNL) is a new Defence PSU with its headquarters at Avadi (Chennai). It has five (05) constituent production units and has around 12,000 employees. AVNL produces battle tanks i.e. T-72, T90, MBT Arjun and Infantry Combat Vehicles, support vehicles (MPV, AERV etc.) and Defence mobility solutions (Stallion, LPTA etc.) for the armed forces and homeland security agencies. It is the current market leader in this segment. It is a new Government Company with Great Future. It offers great work environment and challenging opportunities for the professionals to prove their mettle.', NULL, NULL),
+(2, 'HVF', 'HVF', 'HVF', '', NULL, NULL),
+(3, 'EFA', 'EFA', 'EFA', '', NULL, NULL),
+(4, 'VFJ', 'VFJ', 'VFJ', '', NULL, NULL),
+(5, 'MTPF', 'MTPF', 'MTPF', '', NULL, NULL),
+(6, 'OFMK', 'OFMK', 'Yeddumailaram', 'Ordnance Factory Medak is one of the 5 Ordnance Factories under Armoured Vehicles Nigam Ltd., On 19th July, 1984 the then Prime Minister Late Smt. Indira Gandhi laid the foundation to establish the factory for indigenous production of Infantry Combat Vehicles(ICVs) at Yeddumailaram in Sangareddy District of Telangana State.', NULL, NULL);
 
 --
 -- Indexes for dumped tables

@@ -1,7 +1,7 @@
 <div class="row g-3 pb-3 border-bottom">
     <div class="col-md-6">
         <label for="companyName" class="form-label"> Name of the
-            Company </label>
+            Company<x-icons.required-field/> </label>
         <input type="text" readoly class="form-control  @error('companyName') is-invalid @enderror" id="companyName"
             name="companyName" value="{{ old('companyName', $experiencedetail->companyName ?? '') }}">
 

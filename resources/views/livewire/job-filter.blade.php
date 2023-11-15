@@ -64,7 +64,7 @@
 
                  </div>
 
-                 <div class="filter-card p-3 mb-3">
+                 {{-- <div class="filter-card p-3 mb-3">
                      <h5 class="border-bottom pb-3">Education</h5>
                      <div class="form-check">
                          <input class="form-check-input" type="checkbox" value="" id="education1"
@@ -97,7 +97,7 @@
                          </label>
                      </div>
 
-                 </div>
+                 </div> --}}
 
                  <div class="filter-card p-3">
                      <h5 class="pb-3">Experience</h5>
@@ -195,7 +195,7 @@
                                  <div class="row ">
                                      <div class="col-12">
                                          <h2 class="job-title">
-                                             {{ $job->jobTitle }}
+                                             {{ ucwords(strtolower($job->jobTitle)) }}
                                          </h2>
                                          <p>
                                              {{ $job->summary }}

@@ -11,7 +11,7 @@
 
             <div class="row">
                 <div class="col-md-8">
-                    <div class="card bg-white border-0 rounded-3 mb-3">
+                    <div class="card bg-white border-0 rounded-0 mb-3">
                         <div class="card-body p-4">
                             <div class="row mb-3">
                                 <div class="col-md-4">
@@ -34,8 +34,8 @@
 
                             <div class="row ">
                                 <div class="col-12">
-                                    <h2>
-                                        {{ $job->jobTitle }}
+                                    <h2 class="job-posting-title">
+                                        {{ ucwords(strtolower($job->jobTitle)) ?? '' }}
                                     </h2>
                                     <p>
                                         {{ $job->summary }}
@@ -46,80 +46,73 @@
 
                     </div>
 
-                    <div class="card bg-white border-0 rounded-3 mb-3">
-                        <div class="card-body p-4">
-                            <h5>
-                                About {{ $job->locationunit->unit_name ?? '' }}
-                            </h5>
-                            <p>
+                    <x-jobs.details-card>
+                        <x-slot:title>
+                            About {{ $job->locationunit->unit_name ?? '' }}
+                        </x-slot>
 
-                                {{ $job->locationunit->about ?? '' }}
+                        {{ $job->locationunit->about ?? '' }}
+                        </x-jobs.details.card>
 
-
-                            </p>
-                        </div>
-                    </div>
-
-                    <div class="card bg-white border-0 rounded-3 mb-3">
-                        <div class="card-body p-4">
-                            <h5>
+                        <x-jobs.details-card>
+                            <x-slot:title>
                                 Experience Required
-                            </h5>
-                            <p>
-                                @if ($job->experiencecriteria)
-                                    {{ $job->experiencecriteria->desiredExperience }}
+                            </x-slot>
+
+                            @if ($job->experiencecriteria)
+                                {{ $job->experiencecriteria->desiredExperience }}
+                            @else
+                                <span class="text-muted">No experience mentioned</span>
+                            @endif
+                            </x-jobs.details.card>
+
+
+                            <x-jobs.details-card>
+                                <x-slot:title>
+                                    Job Specification / Requirement
+                                </x-slot>
+
+                                @if ($job->jobrequirement)
+                                    <div class="my-5">
+                                        <h6 class="job-posting-heading">Specification</h6>
+                                        <p class="job-posting-content"> {{ $job->jobrequirement->job_specification }}
+                                        </p>
+                                    </div>
+
+                                    <div class="my-5">
+                                        <h6 class="job-posting-heading">Knowledge</h6>
+                                        <p> {{ $job->jobrequirement->knowledge }}</p>
+                                    </div>
+                                    <div class="mt-5">
+                                        <h6 class="job-posting-heading">Skills</h6>
+                                        <p> {{ $job->jobrequirement->skills }}</p>
+                                    </div>
                                 @else
-                                    <span class="text-muted">No experience mentioned</span>
+                                    <span class="text-muted">No requirement mentioned</span>
                                 @endif
-                            </p>
 
-                        </div>
-                    </div>
+                            </x-jobs.details-card>
 
-                    <div class="card bg-white border-0 rounded-3 mb-3">
-                        <div class="card-body p-4">
-                            <h5>
-                                Job Specification / Requirement
-                            </h5>
 
-                            @if ($job->jobrequirement)
-                                <b>Specification</b>
-                                <p> {{ $job->jobrequirement->job_specification }}</p>
-
-                                <b>Knowledge</b>
-                                <p> {{ $job->jobrequirement->knowledge }}</p>
-
-                                <b>Skills</b>
-                                <p> {{ $job->jobrequirement->skills }}</p>
-                            @else
-                                <span class="text-muted">No requirement mentioned</span>
-                            @endif
-
-                        </div>
-                    </div>
+                            <x-jobs.details-card>
+                                <x-slot:title>
+                                    Terms & Condition
+                                </x-slot>
+                                @if ($job->termscondition)
+                                    <p> {{ $job->termscondition->job_terms }}</p>
+                                @else
+                                    <span class="text-muted">No requirement mentioned</span>
+                                @endif
+                            </x-jobs.details-card>
 
 
 
-
-                    <div class="card bg-white border-0 rounded-3 mb-3">
-                        <div class="card-body p-4">
-                            <h5>
-                                Terms & Condition
-                            </h5>
-                            @if ($job->termscondition)
-                                <p> {{ $job->termscondition->job_terms }}</p>
-                            @else
-                                <span class="text-muted">No requirement mentioned</span>
-                            @endif
-
-                        </div>
-                    </div>
 
 
                 </div>
 
                 <div class="col-md-4">
-                    <div class="position-sticky" style="top: 2rem;">
+                    <div class="position-sticky" style="top: 12%;">
                         <div class="card card bg-white border-0 rounded-3 mb-3">
                             <div class="card-body p-4">
                                 <div class="row align-items-center">
@@ -154,6 +147,7 @@
 
                                                 @if ($job->agecriteria->minAge && $job->agecriteria->maxAge)
                                                     {{ $job->agecriteria->minAge }} - {{ $job->agecriteria->maxAge }}
+                                                    Years
                                                 @elseif ($job->agecriteria->minAge)
                                                     <div>more than <span
                                                             class="fw-bold">{{ $job->agecriteria->minAge }}</span>
@@ -173,17 +167,17 @@
                                                 <x-icons.vacancy />
                                                 No of Vacancies
                                             </div>
-                                            <div>
-                                                <span class="fw-bold">{{ $job->vacancy }} </span>
+                                            <div class=" @if (count($job->reservationvacancyrelaxations) > 0) tooltip-container @endif">
+                                                <span
+                                                    @if (count($job->reservationvacancyrelaxations) > 0) data-bs-toggle="tooltip" data-bs-placement="right"
+                                                    data-bs-custom-class="age-tooltip" data-bs-html="true"
+                                                    data-bs-title="<ul class='list-unstyled text-start'>@foreach ($job->reservationvacancyrelaxations as $res)
+                                                         <li>{{ $res->reservationcategories->code }} - {{ $res->vacancy }} </li>
+                                                         @endforeach 
+                                                         </ul>" @endif>{{ $job->vacancy }}
+                                                </span>
 
-                                                @if (count($job->reservationvacancyrelaxations) > 0)
-                                                    @foreach ($job->reservationvacancyrelaxations as $res)
-                                                        [ {{ $res->reservationcategories->code }} -
-                                                        {{ $res->vacancy }}
-                                                        ]
-                                                    @endforeach
 
-                                                @endif
 
                                             </div>
 
@@ -192,7 +186,8 @@
                                         </div>
                                     </div>
 
-                                    <div class="col-12 mb-3">
+                                    <div class="col-12
+                                                    mb-3">
                                         <div class="d-flex align-items-center justify-content-between">
 
                                             <div class="d-flex align-items-center">

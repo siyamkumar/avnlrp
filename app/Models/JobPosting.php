@@ -25,14 +25,15 @@ class JobPosting extends Model
         'category',
         'location_unit_id',
         'vacancy',
-        'status',        
+        'slug',
+        'status',
         'tenure',
         'renumeration',
         'fees',
         'summary',
         'user_id',
         'isContract',
-        
+
     ];
 
 
@@ -42,53 +43,70 @@ class JobPosting extends Model
         'isContract' => 'boolean'
     ];
 
-    public function user(){
+    public function getRouteKeyName()
+    {
+        return 'slug';
+    }
+
+    public function user()
+    {
         return $this->belongsTo(User::class);
     }
 
-    public function agecriteria(){
+    public function agecriteria()
+    {
         return $this->hasOne(AgeCriteria::class);
     }
 
-    public function feesexemptions(){
-        return $this->hasMany(FeesExemption::class,'job_posting_id');
+    public function feesexemptions()
+    {
+        return $this->hasMany(FeesExemption::class, 'job_posting_id');
     }
 
-    public function educationcriteria(){
+    public function educationcriteria()
+    {
         return $this->hasOne(EducationCriteria::class, 'job_posting_id');
     }
 
 
-    public function experiencecriteria(){
+    public function experiencecriteria()
+    {
         return $this->hasOne(ExperienceCriteria::class, 'job_posting_id');
     }
 
-    public function locationunit(){
+    public function locationunit()
+    {
         return $this->belongsTo(LocationUnit::class, 'location_unit_id');
     }
 
-    public function reservationagerelaxations(){
+    public function reservationagerelaxations()
+    {
         return $this->hasMany(ReservationAgeRelaxation::class, 'job_posting_id');
     }
 
-    public function reservationvacancyrelaxations(){
+    public function reservationvacancyrelaxations()
+    {
         return $this->hasMany(ReservationVacancyRelaxation::class, 'job_posting_id');
     }
 
-    public function arns(){
+    public function arns()
+    {
         return $this->hasMany(ApplicationReferenceNumber::class, 'job_posting_id');
     }
 
-   
-    public function jobrequirement(){
+
+    public function jobrequirement()
+    {
         return $this->hasOne(JobRequirement::class, 'job_posting_id');
     }
 
-    public function jobresponsibility(){
+    public function jobresponsibility()
+    {
         return $this->hasOne(JobResponsibility::class, 'job_posting_id');
     }
 
-    public function termscondition(){
+    public function termscondition()
+    {
         return $this->hasOne(TermsCondition::class, 'job_posting_id');
     }
 }

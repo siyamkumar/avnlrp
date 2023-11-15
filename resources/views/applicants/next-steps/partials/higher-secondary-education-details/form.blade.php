@@ -1,7 +1,7 @@
 <div class="row mt-3 mb-3 g-3 border-bottom pb-3">
 
     <div class="col-md-6">
-        <label for="schoolTwelveth" class="form-label">Name of School</label>
+        <label for="schoolTwelveth" class="form-label">Name of School<x-icons.required-field/></label>
         <input type="text" class="form-control  @error('school_name') is-invalid @enderror" id="school_name"
             name="school_name" value="{{ old('school_name', $highersecondaryeducationdetail->school_name ?? '') }}" placeholder="Name of the school">
         @error('school_name')
@@ -44,7 +44,10 @@
         @enderror
     </div>
     <div class="col-md-4">
-        <label for="highersecondaryMarksheet" class="form-label"> Certificate Upload <span style="color:red">*</span> </label>
+        <label for="highersecondaryMarksheet" class="form-label"> Certificate Upload <x-icons.required-field/> </label>
+        <div class="form-text">
+           Upload only PDF or Jpeg files less than 5MB
+        </div>
         <input id="highersecondaryMarksheet" type="file" name="highersecondaryMarksheet"
             class="filepond  @error('highersecondaryMarksheet') is-invalid @enderror" />
         @error('highersecondaryMarksheet')
